@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://1tub7x6h0n61"]
+
+[ext_resource type="Script" path="res://SCN_EVENTOS_REPO/SCN_REPO.gd" id="1_bwi6y"]
+[ext_resource type="Script" path="res://SCN_EVENTOS_REPO/REPO_BTBase.gd" id="2_d5mb8"]
+
+[node name="SCN_REPO" type="Node2D"]
+script = ExtResource("1_bwi6y")
+
+[node name="REPO_BTBase" type="Button" parent="."]
+modulate = Color(0, 0.560784, 1, 1)
+offset_right = 8.0
+offset_bottom = 8.0
+alignment = 2
+script = ExtResource("2_d5mb8")

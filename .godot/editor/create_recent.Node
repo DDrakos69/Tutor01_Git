@@ -1,0 +1,16 @@
+Camera3D
+Node3D
+Label
+Button
+Panel
+SubViewportContainer
+HBoxContainer
+VBoxContainer
+Container
+ColorRect
+Control
+Node2D
+CollisionShape2D
+Sprite2D
+CharacterBody2D
+Node
