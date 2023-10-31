@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhrdtqycxa0nr"]
+
+[ext_resource type="Script" path="res://SCN_3DBase/SCN_3DBase.gd" id="1_0adpr"]
+[ext_resource type="PackedScene" uid="uid://b7pb3gjkrcov0" path="res://BLENDER/CUBO.blend" id="2_gkqa5"]
+
+[node name="SCN_3DBase" type="Node3D"]
+script = ExtResource("1_0adpr")
+
+[node name="CUBO" parent="." instance=ExtResource("2_gkqa5")]
+transform = Transform3D(-0.669299, 0.742629, -0.0232473, 0, 0.0312887, 0.999511, 0.742993, 0.668972, -0.0209415, 0.0408505, 0.189295, 0.335461)
+
+[editable path="CUBO"]

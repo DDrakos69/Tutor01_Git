@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://7lqmenv3sksc"]
+
+[ext_resource type="Script" path="res://SCN_MyMov_GUIs/CharacterBody2D.gd" id="1_4ih5k"]
+[ext_resource type="Script" path="res://SCN_MyMov_GUIs/SCN_MyMov.gd" id="1_17t3h"]
+[ext_resource type="Texture2D" uid="uid://bmcy2py1n5dc" path="res://icon.svg" id="2_622qc"]
+[ext_resource type="Script" path="res://SCN_MyMov_GUIs/Lb_WSizeX.gd" id="2_buhfa"]
+[ext_resource type="Script" path="res://SCN_MyMov_GUIs/PanFondo.gd" id="2_m2lul"]
+[ext_resource type="Script" path="res://SCN_MyMov_GUIs/PAN_CfgVideo.gd" id="3_yaeim"]
+[ext_resource type="Script" path="res://SCN_MyMov_GUIs/BT_SHOW.gd" id="4_5psux"]
+[ext_resource type="Script" path="res://SCN_MyMov_GUIs/BT_HIDE.gd" id="5_bnilt"]
+[ext_resource type="Script" path="res://SCN_MyMov_GUIs/BT_ZIndex.gd" id="7_s8y6v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v81nm"]
+size = Vector2(128, 129)
+
+[node name="SCN_MyMov" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_17t3h")
+
+[node name="PanFondo" type="Panel" parent="."]
+process_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_m2lul")
+
+[node name="ChBd2D_Keko" type="CharacterBody2D" parent="PanFondo"]
+position = Vector2(100, 100)
+script = ExtResource("1_4ih5k")
+
+[node name="Sprite2D" type="Sprite2D" parent="PanFondo/ChBd2D_Keko"]
+position = Vector2(1, -1)
+texture = ExtResource("2_622qc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanFondo/ChBd2D_Keko"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_v81nm")
+
+[node name="BT_SHOW" type="Button" parent="PanFondo"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "VER"
+script = ExtResource("4_5psux")
+
+[node name="BT_HIDE" type="Button" parent="PanFondo"]
+custom_minimum_size = Vector2(100, 0)
+offset_right = 8.0
+offset_bottom = 8.0
+text = "OCULTAR"
+script = ExtResource("5_bnilt")
+
+[node name="LB_Status" type="Label" parent="PanFondo"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BT_ZIndex" type="Button" parent="PanFondo"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "ZIndex"
+script = ExtResource("7_s8y6v")
+
+[node name="Lab_Pos" type="Label" parent="PanFondo"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PAN_CfgVideo" type="Panel" parent="."]
+process_mode = 1
+anchors_preset = -1
+offset_right = 800.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_yaeim")
+metadata/_edit_use_anchors_ = true
+
+[node name="Lb_WSizeX" type="Label" parent="PAN_CfgVideo"]
+process_mode = 1
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 30.0
+text = "Win Size X"
+vertical_alignment = 1
+script = ExtResource("2_buhfa")
