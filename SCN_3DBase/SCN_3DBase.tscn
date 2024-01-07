@@ -1,12 +1,120 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhrdtqycxa0nr"]
+[gd_scene load_steps=8 format=3 uid="uid://dhrdtqycxa0nr"]
 
 [ext_resource type="Script" path="res://SCN_3DBase/SCN_3DBase.gd" id="1_0adpr"]
-[ext_resource type="PackedScene" uid="uid://b7pb3gjkrcov0" path="res://BLENDER/CUBO.blend" id="2_gkqa5"]
+[ext_resource type="PackedScene" uid="uid://coil5xvymsmwi" path="res://BLENDER/Mueble.gltf" id="2_thum2"]
+[ext_resource type="Material" uid="uid://c3cjvavb2fjox" path="res://BLENDER/TEXT/mat_Wood_OakVeneer2.tres" id="3_d7npj"]
+[ext_resource type="Material" uid="uid://b2tigmgvdp76p" path="res://BLENDER/TEXT/mat_CristalAzul.tres" id="4_qm5ug"]
+
+[sub_resource type="Animation" id="Animation_4ut3v"]
+resource_name = "doors_oppen"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0.980448, 0.0226604, -0.195467)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_002")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, -2.40459e-10, 0.968275, 0.0223791, 0.248884)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"f_dors_closecomplet"
+}, {
+"args": [],
+"method": &"f_dors_opencomplet"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qylbq"]
+resource_name = "doors_close"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.980448, 0.0226604, -0.195467, 1, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_002")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -2.40459e-10, 0.968275, 0.0223791, 0.248884, 1, 1, 0, 0, 0, 1)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"f_dors_opencomplet"
+}, {
+"args": [],
+"method": &"f_dors_closecomplet"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2anss"]
+_data = {
+"doors_close": SubResource("Animation_qylbq"),
+"doors_oppen": SubResource("Animation_4ut3v")
+}
 
 [node name="SCN_3DBase" type="Node3D"]
 script = ExtResource("1_0adpr")
 
-[node name="CUBO" parent="." instance=ExtResource("2_gkqa5")]
-transform = Transform3D(-0.669299, 0.742629, -0.0232473, 0, 0.0312887, 0.999511, 0.742993, 0.668972, -0.0209415, 0.0408505, 0.189295, 0.335461)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
-[editable path="CUBO"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1552, 10.6377, 4.90612)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.686624, -0.0529316, 0.725083, 0.00654518, 0.997756, 0.0666389, -0.726983, -0.04101, 0.685429, 115.997, 0.301808, -6.75074)
+fov = 52.1759
+
+[node name="Mueble" parent="." instance=ExtResource("2_thum2")]
+transform = Transform3D(1, 0, 0, 0, 0.999733, 0.0231061, 0, -0.0231061, 0.999733, 113.661, -1.90735e-06, -10.6955)
+
+[node name="Cube" parent="Mueble" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196739, -0.342732, 0.554117)
+surface_material_override/0 = ExtResource("3_d7npj")
+surface_material_override/1 = ExtResource("3_d7npj")
+
+[node name="AnimP_Doors" type="AnimationPlayer" parent="Mueble/Cube" index="0"]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_2anss")
+}
+
+[node name="Cube_001" parent="Mueble/Cube" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.760788, 0.902234, 0.519689)
+surface_material_override/0 = ExtResource("3_d7npj")
+surface_material_override/1 = ExtResource("4_qm5ug")
+
+[node name="Cube_002" parent="Mueble/Cube" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.743622, 0.904917, 0.496564)
+surface_material_override/0 = ExtResource("3_d7npj")
+surface_material_override/1 = ExtResource("4_qm5ug")
+
+[connection signal="animation_finished" from="Mueble/Cube/AnimP_Doors" to="." method="_on_anim_p_doors_animation_finished"]
+
+[editable path="Mueble"]

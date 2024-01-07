@@ -1,1 +1,5 @@
 res://SCN_3DBase/SCN_3DBase.tscn
+res://BLENDER/TEXT/mat_Wood_OakVeneer2.tres
+res://BLENDER/TEXT/mat_Wood_worn2.tres
+res://BLENDER/TEXT/mat_CristalAzul.tres
+res://SCN_3DBase/SCN_3DBase.gd
