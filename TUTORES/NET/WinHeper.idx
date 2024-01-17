@@ -1,0 +1,457 @@
+{WinHelper V1.05 by FNX A1 2022}
+{TITTLE}
+{WIN_W}00462
+{JPG_SIZE}00000
+{IMG_AUTO}10000
+{WIN_DESC_H}00362
+{WIN_DESC_PIC_H}00068
+{WIN_EDT_GRP_H}00292
+{WIN_ALING_LEFT}00000
+{WIN_IMG_CFG}.0010.0010.0640.0480.0100
+{PANLAT_CLR}255,000,000
+
+*Microsoft Win32
+	·20230725182119
+	:Proporciona dos tipos de clases: las que controlan los eventos generados
+	:por el sistema operativo y las que manipulan el Registro del sistema.
+	:
+	*[ Clases ]
+		·20230725182119
+		:-Registry
+		:Proporciona objetos RegistryKey, que representan las claves principales del Registro de Windows, así como métodos static para obtener acceso a los pares de clave y valor.
+		:-RegistryKey
+		:Representa un nodo de nivel de clave en el Registro de Windows. Esta clase es una encapsulación del Registro.
+		:
+		*-Registry
+			·20230725182119
+			:Proporciona objetos RegistryKey, que representan las claves principales del Registro de Windows, así como métodos static para obtener acceso a los pares de clave y valor.
+			:
+		*-RegistryKey
+			·20230725182119
+			:Representa un nodo de nivel de clave en el Registro de Windows. Esta clase es una encapsulación del Registro.
+			:
+	*[ Enumeraciones ]
+		·20230725182119
+		:-RegistryHive
+		:Representa los posibles valores de un nodo de nivel superior en un equipo externo.
+		:-RegistryKeyPermissionCheck
+		:Especifica si se deben realizar comprobaciones de seguridad al abrir las claves del Registro y al tener acceso a sus pares de nombre y valor.
+		:-RegistryOptions
+		:Especifica las opciones que se usarán al crear una clave del Registro.
+		:-RegistryValueKind
+		:Especifica los tipos de datos que se deben utilizar para almacenar valores en el Registro, o identifica el tipo de datos de un valor contenido en el Registro.
+		:-RegistryValueOptions
+		:Especifica el comportamiento opcional cuando se recuperan pares de nombre y valor de una clave del Registro.
+		:-RegistryView
+		:Especifica la vista del Registro que será el destino en un sistema operativo de 64 bits.
+		:
+		*RegistryHive
+			·20230725182119
+			:Representa los posibles valores de un nodo de nivel superior en un equipo externo.
+			:
+		*RegistryKeyPermissionCheck
+			·20230725182119
+			:Especifica si se deben realizar comprobaciones de seguridad al abrir las claves del Registro y al tener acceso a sus pares de nombre y valor.
+			:
+		*RegistryOptions
+			·20230725182119
+			:Especifica las opciones que se usarán al crear una clave del Registro.
+			:
+		*RegistryValueKind
+			·20230725182119
+			:Especifica los tipos de datos que se deben utilizar para almacenar valores en el Registro,
+			:o identifica el tipo de datos de un valor contenido en el Registro.
+			:Espacio de nombres: Microsoft.Win32
+			:Ensamblado: Microsoft.Win32.Registry.dll
+			:Binary		3	Datos binarios en cualquier formato.
+			:DWord		4	Un número binario de 32 bits.
+			:ExpandString	2	Una cadena terminada en nulo que contiene referencias no expandidas
+			:a variables de entorno, tales como %PATH%, que se expanden cuando
+			:se recupera el valor.
+			:MultiString	7	Una matriz de cadenas terminadas en nulo, finalizada con dos caracteres null.
+			:None		-1	Ningún tipo de datos.
+			:QWord		11	Número binario de 64 bits.
+			:String		1	Una cadena terminada en null.
+			:Unknown		0	Un tipo de datos del Registro no admitido.
+			:Utilice este valor para especificar que el método SetValue(String, Object)
+			:debe determinar el tipo de dato adecuado al almacenar un par de nombre y valor en el Registro.
+			:[ EJ ]
+			:using System;
+			:using Microsoft.Win32;
+			:class RegGetDef{
+			:public static void Main(){
+			:RegistryKey rk = Registry.LocalMachine.OpenSubKey("Software\\myTestKey", false);
+			:string valueName = "myTestValue";
+			:object o = rk.GetValue(valueName);
+			:Console.WriteLine("Object Type = " + o.GetType().FullName);
+			:switch (rk.GetValueKind(valueName)){
+			:case RegistryValueKind.String:
+			:case RegistryValueKind.ExpandString:
+			:Console.WriteLine("Value = " + o);break;
+			:case RegistryValueKind.Binary:
+			:foreach (byte b in (byte[])o){Console.Write("{0:x2} ", b);}
+			:break;
+			:case RegistryValueKind.DWord:
+			:Console.WriteLine("Value = " + Convert.ToString((int)o));break;
+			:case RegistryValueKind.QWord:
+			:Console.WriteLine("Value = " + Convert.ToString((Int64)o));break;
+			:case RegistryValueKind.MultiString:
+			:foreach (string s in (string[])o){Console.Write("[{0:s}], ", s);};break;
+			:default:
+			:Console.WriteLine("Value = (Unknown)");break;
+			:}
+			:string def = (string)rk.GetValue("notavalue", "The default to return");
+			:Console.WriteLine(def);
+			:rk.Close();
+			:}
+			:}
+			:
+		*RegistryValueOptions
+			·20230725182119
+			:Especifica el comportamiento opcional cuando se recuperan pares de nombre y valor de una clave del Registro.
+			:
+		*RegistryView
+			·20230725182119
+			:Especifica la vista del Registro que será el destino en un sistema operativo de 64 bits.
+			:En la versión de 64 bits de Windows, las partes del registro se almacenan por separado
+			:para aplicaciones de 32 y 64 bits. Hay una vista de 32 bits para aplicaciones de 32 bits y
+			:una vista de 64 bits para aplicaciones de 64 bits.
+			:Puede especificar una vista del Registro al usar los OpenBaseKey métodos y
+			:OpenRemoteBaseKey(RegistryHive, String, RegistryView) y la FromHandle propiedad
+			:en un RegistryKey objeto .
+			:Si solicita una vista de 64 bits en un sistema operativo de 32 bits, las claves
+			:devueltas estarán en la vista de 32 bits.
+			:Default		0	La vista predeterminada.
+			:Registry32	512	La vista de 32 bits.
+			:Registry64	256	Vista de 64 bits.
+			:
+	*Obtener Valor Registro Win
+		·20230725182119
+		:En C#, puedes obtener el valor de una clave de registro de Windows utilizando la clase Registry del espacio de nombres Microsoft.Win32. Aquí tienes un ejemplo de cómo obtener el valor de una clave de registro:
+		:csharp
+		:Copy code
+		:using Microsoft.Win32;
+		:using System;
+		:class Program
+		:{
+		:static void Main(string[] args)
+		:{
+		:// Ruta de la clave de registro que deseas leer
+		:string registryPath = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion";
+		:// Nombre del valor que deseas obtener
+		:string valueName = "ProgramFilesDir";
+		:try
+		:{
+		:// Leer el valor de la clave de registro
+		:object value = Registry.GetValue(registryPath, valueName, null);
+		:if (value != null)
+		:{
+		:Console.WriteLine($"El valor de {valueName} es: {value.ToString()}");
+		:}
+		:else
+		:{
+		:Console.WriteLine($"No se encontró el valor {valueName} en la clave de registro {registryPath}");
+		:}
+		:}
+		:catch (Exception ex)
+		:{
+		:Console.WriteLine($"Error al leer el valor de la clave de registro: {ex.Message}");
+		:}
+		:Console.ReadLine();
+		:}
+		:}
+		:En este ejemplo, se especifica la ruta de la clave de registro que deseas leer en la variable registryPath. Luego, se especifica el nombre del valor que deseas obtener en la variable valueName. La función Registry.GetValue se utiliza para obtener el valor de la clave de registro. Si se encuentra el valor, se muestra en la consola. Si no se encuentra, se muestra un mensaje indicando que no se encontró el valor.
+		:Recuerda adaptar la ruta de la clave de registro y el nombre del valor a tus necesidades específicas.
+		:Espero que esto te ayude a obtener el valor de una clave de registro de Windows en C#. Si tienes más preguntas, no dudes en hacerlas. ¡Estoy aquí para ayudarte!
+		:
+	*Reg Win miniaturas
+		·20230725182119
+		:Aquí tienes un ejemplo de cómo modificar la configuración para ocultar las miniaturas de las aplicaciones abiertas en la barra de tareas al pasar el ratón por encima de ellas:
+		:csharp
+		:Copy code
+		:using Microsoft.Win32;
+		:using System;
+		:class Program
+		:{
+		:static void Main(string[] args)
+		:{
+		:// Ruta de la clave de registro que deseas modificar
+		:string registryPath = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced";
+		:// Nombre del valor que deseas modificar
+		:string valueName = "ExtendedUIHoverTime";
+		:try
+		:{
+		:// Modificar el valor de la clave de registro para ocultar las miniaturas
+		:Registry.SetValue(registryPath, valueName, "ffffffff", RegistryValueKind.DWord);
+		:Console.WriteLine("La configuración se ha modificado correctamente.");
+		:}
+		:catch (Exception ex)
+		:{
+		:Console.WriteLine($"Error al modificar la configuración: {ex.Message}");
+		:}
+		:Console.ReadLine();
+		:}
+		:}
+		:En este ejemplo, se especifica la ruta de la clave de registro que deseas modificar en la variable registryPath. Luego, se especifica el nombre del valor que deseas modificar en la variable valueName. La función Registry.SetValue se utiliza para modificar el valor de la clave de registro y se establece el valor en "ffffffff" para ocultar las miniaturas de las aplicaciones abiertas al pasar el ratón por encima de ellas.
+		:Recuerda ejecutar esta aplicación con privilegios de administrador para poder realizar cambios en el registro de Windows.
+		:Espero que esto te ayude a modificar la configuración del registro de Windows desde C#. Si tienes más preguntas, no dudes en hacerlas. ¡Estoy aquí para ayudarte!
+		:
+	*NEW
+		·20230725172518
+*System Environment
+	·20230725182119
+	:Espacio de nombres System
+	:Ensamblado System.Runtime.dll
+	:Proporciona información acerca del entorno y la plataforma actuales
+	:y la forma de manipularlos. Esta clase no puede heredarse.
+	:
+	*[ Procedimientos ]
+		·20230725172433
+	*CommandLine
+		·20230725182119
+		:Obtiene la línea de comandos para este proceso.
+		:
+	*CurrentDirectory
+		·20230725182119
+		:Obtiene o establece la ruta de acceso completa del directorio de trabajo actual.
+		:
+	*CurrentManagedThreadId
+		·20230725182119
+		:Obtiene un identificador único para el actual subproceso administrado.
+		:
+	*ExitCode
+		·20230725182119
+		:Obtiene o establece el código de salida del proceso.
+		:
+	*HasShutdownStarted
+		·20230725182119
+		:Obtiene un valor que indica si el dominio de aplicación actual se está descargando o si Common Language Runtime (CLR) se está cerrando.
+		:
+	*Is64BitOperatingSystem
+		·20230725182119
+		:Permite obtener un valor que indica si el sistema operativo actual es de 64 bits.
+		:
+	*Is64BitProcess
+		·20230725182119
+		:Permite obtener un valor que indica si el proceso actual es de 64 bits.
+		:
+	*MachineName
+		·20230725182119
+		:Obtiene el nombre NetBIOS del equipo local.
+		:
+	*NewLine
+		·20230725182119
+		:Obtiene la cadena de nueva línea definida para este entorno.
+		:
+	*OSVersion
+		·20230725182119
+		:Permite obtener el identificador y el número de versión de la plataforma actual.
+		:
+	*ProcessId
+		·20230725182119
+		:Obtiene el identificador único del proceso actual.
+		:
+	*ProcessorCount
+		·20230725182119
+		:Obtiene el número de procesadores disponibles para el proceso actual.
+		:
+	*ProcessPath
+		·20230725182119
+		:Devuelve la ruta de acceso del archivo ejecutable que inició el proceso que se está ejecutando actualmente. Devuelve null cuando la ruta de acceso no está disponible.
+		:
+	*StackTrace
+		·20230725182119
+		:Obtiene información de seguimiento de la pila actual.
+		:
+	*SystemDirectory
+		·20230725182119
+		:Obtiene la ruta de acceso completa del directorio del sistema.
+		:
+	*SystemPageSize
+		·20230725182119
+		:Obtiene el número de bytes de la página de memoria del sistema operativo.
+		:
+	*TickCount
+		·20230725182119
+		:Obtiene el número de milisegundos transcurridos desde que se inició el sistema.
+		:
+	*TickCount64
+		·20230725182119
+		:Obtiene el número de milisegundos transcurridos desde que se inició el sistema.
+		:
+	*UserDomainName
+		·20230725182119
+		:Obtiene el nombre de dominio de red asociado al usuario actual.
+		:
+	*UserInteractive
+		·20230725182119
+		:Obtiene un valor que indica si el proceso actual se ejecuta en modo de interacción con el usuario.
+		:
+	*UserName
+		·20230725182119
+		:Obtiene el nombre de la persona asociada al subproceso actual.
+		:
+	*Version
+		·20230725182119
+		:Permite obtener una versión que consiste en los números principal, secundario, de compilación y de revisión de Common Language Runtime.
+		:
+	*WorkingSet
+		·20230725182119
+		:Obtiene la cantidad de memoria física asignada al contexto del proceso.
+		:
+	*[ Metodos ]
+		·20230725182119
+		:-Exit(Int32)
+		:Termina este proceso y devuelve un código de salida al sistema operativo.
+		:-ExpandEnvironmentVariables(String)(Met)
+		:Reemplaza el nombre de cada variable de entorno incluida en la cadena especificada por la cadena equivalente del valor de la variable y devuelve la cadena resultante.
+		:-FailFast(String)(Met)
+		:Finaliza inmediatamente un proceso después de escribir un mensaje en el registro de eventos de la aplicación Windows y, después, incluye el mensaje en el informe de errores que se envía a Microsoft.
+		:-FailFast(String, Exception)(Met)
+		:Finaliza inmediatamente un proceso después de escribir un mensaje en el registro de eventos de la aplicación Windows y, luego, incluye el mensaje y la información de excepción en el informe de errores que se envía a Microsoft.
+		:-GetCommandLineArgs()(Met)
+		:Devuelve una matriz de cadena que contiene los argumentos de la línea de comandos del proceso actual.
+		:-GetEnvironmentVariable(String)(Met)
+		:Recupera el valor de una variable de entorno del proceso actual.
+		:-GetEnvironmentVariable(String, EnvironmentVariableTarget)(Met)
+		:Recupera el valor de una variable de entorno del proceso actual o de la clave del Registro del sistema operativo Windows para la máquina local o el usuario actual.
+		:-GetEnvironmentVariables()(Met)
+		:Recupera todos los nombres de las variables de entorno y sus valores del proceso actual.
+		:-GetEnvironmentVariables(EnvironmentVariableTarget)(Met)
+		:Recupera todos los nombres de las variables de entorno y sus valores del proceso actual o de la clave del Registro del sistema operativo Windows para la máquina local o el usuario actual.
+		:-GetFolderPath(Environment+SpecialFolder)(Met)
+		:Obtiene la ruta de acceso a la carpeta especial del sistema especificada.
+		:-GetFolderPath(Environment+SpecialFolder, Environment+SpecialFolderOption)(Met)
+		:Obtiene la ruta de acceso a la carpeta especial del sistema especificada mediante una opción especificada para acceder a carpetas especiales.
+		:-GetLogicalDrives()(Met)
+		:Devuelve una matriz de cadena que contiene los nombres de las unidades lógicas del equipo actual.
+		:-SetEnvironmentVariable(String, String)(Met)
+		:Crea, modifica o elimina una variable de entorno almacenada en el proceso actual.
+		:-SetEnvironmentVariable(String, String, EnvironmentVariableTarget)(Met)
+		:Crea, modifica o elimina una variable de entorno almacenada en el proceso actual o en la clave del Registro del sistema operativo Windows reservada para la máquina local o el usuario actual.
+		:
+	*Exit(Int32)
+		·20230725182119
+		:Termina este proceso y devuelve un código de salida al sistema operativo.
+		:
+	*ExpandEnvironmentVariables(String)(Met)
+		·20230725182119
+		:Reemplaza el nombre de cada variable de entorno incluida en la cadena especificada
+		:por la cadena equivalente del valor de la variable y devuelve la cadena resultante.
+		:string query = "My system drive is %SystemDrive% and my system root is %SystemRoot%";
+		:string str = Environment.ExpandEnvironmentVariables(query);
+		:Console.WriteLine(str);
+		:
+	*FailFast(String)(Met)
+		·20230725182119
+		:Finaliza inmediatamente un proceso después de escribir un mensaje en el registro de eventos de la aplicación Windows y, después, incluye el mensaje en el informe de errores que se envía a Microsoft.
+		:
+	*FailFast(String, Exception)(Met)
+		·20230725182119
+		:Finaliza inmediatamente un proceso después de escribir un mensaje en el registro de eventos de la aplicación Windows y, luego, incluye el mensaje y la información de excepción en el informe de errores que se envía a Microsoft.
+		:
+	*GetCommandLineArgs()(Met)
+		·20230725182119
+		:Devuelve una matriz de cadena que contiene los argumentos de la línea de comandos del proceso actual.
+		:
+	*GetEnvironmentVariable(String)(Met)
+		·20230725182119
+		:Recupera el valor de una variable de entorno del proceso actual.
+		:[ EJ- En el ejemplo siguiente se usa el GetEnvironmentVariable método para
+		:recuperar la windir variable de entorno, que contiene la ruta de acceso del directorio de Windows.]
+		:if (Environment.OSVersion.Platform == PlatformID.Win32NT){
+		:// Change the directory to %WINDIR%
+		:Environment.CurrentDirectory = Environment.GetEnvironmentVariable("windir");
+		:DirectoryInfo info = new DirectoryInfo(".");
+		:Console.WriteLine("Directory Info: " + info.FullName);
+		:}else{
+		:Console.WriteLine("This example runs on Windows only.");
+		:}
+		:[ EJ- Se intenta recuperar la variable de entornoTest1. Si no existe, crea y recupera su valor.
+		:Si creó la variable,llama a GetEnvironmentVariables(EnvironmentVariableTarget) con cada miembro
+		:de la EnvironmentVariableTarget para establecer que la variable solo se puede recuperar delentorno de proceso actual.
+		:Si se creó la variable, la elimina.]
+		:string value;
+		:bool toDelete = false;
+		:value = Environment.GetEnvironmentVariable("Test1");
+		:if (value == null){
+		:Environment.SetEnvironmentVariable("Test1", "Value1");
+		:toDelete = true;
+		:value = Environment.GetEnvironmentVariable("Test1");
+		:}
+		:Console.WriteLine($"Test1: {value}\n");
+		:if (Environment.OSVersion.Platform == PlatformID.Win32NT){
+		:Console.WriteLine("Attempting to retrieve Test1 from:");
+		:foreach (EnvironmentVariableTarget enumValue in
+		:Enum.GetValues(typeof(EnvironmentVariableTarget))) {
+		:value = Environment.GetEnvironmentVariable("Test1", enumValue);
+		:Console.WriteLine($" {enumValue}: {(value != null ? "found" : "not found")}");
+		:}
+		:Console.WriteLine();
+		:}
+		:if (toDelete) {
+		:Environment.SetEnvironmentVariable("Test1", null);
+		:if (Environment.GetEnvironmentVariable("Test1") == null)
+		:Console.WriteLine("Test1 has been deleted.");
+		:}
+		:
+	*GetEnvironmentVariable(String, EnvironmentVariableTarget)
+		·20230725182119
+		:Recupera el valor de una variable de entorno del proceso actual o de la clave del Registro del sistema operativo Windows para la máquina local o el usuario actual.
+		:
+	*GetEnvironmentVariables()
+		·20230725182119
+		:Recupera todos los nombres de las variables de entorno y sus valores del proceso actual.
+		:
+	*GetEnvironmentVariables(EnvironmentVariableTarget)(Met)
+		·20230725182119
+		:Recupera todos los nombres de las variables de entorno y sus valores del proceso actual o de la clave del Registro del sistema operativo Windows para la máquina local o el usuario actual.
+		:
+	*GetFolderPath(Environment+SpecialFolder)(Met)
+		·20230725182119
+		:Obtiene la ruta de acceso a la carpeta especial del sistema especificada.
+		:
+	*GetFolderPath(Environment+SpecialFolder, Environment+SpecialFolderOption)(Met)
+		·20230725182119
+		:Obtiene la ruta de acceso a la carpeta especial del sistema especificada mediante una opción especificada para acceder a carpetas especiales.
+		:
+	*GetLogicalDrives()(Met)
+		·20230725182119
+		:Devuelve una matriz de cadena que contiene los nombres de las unidades lógicas del equipo actual.
+		:
+	*SetEnvironmentVariable(String, String)(Met)
+		·20230725182119
+		:Crea, modifica o elimina una variable de entorno almacenada en el proceso actual.
+		:
+	*SetEnvironmentVariable(String, String, EnvironmentVariableTarget)(Met)
+		·20230725182119
+		:Crea, modifica o elimina una variable de entorno almacenada en el proceso actual o en la clave del Registro del sistema operativo Windows reservada para la máquina local o el usuario actual.
+		:
+*[ EJEMPLOS ]
+	·20230725172433
+	*Editar registro de windows
+		·20230725182119
+		:using System;
+		:using System.Collections.Generic;
+		:using System.Linq;
+		:using System.Text;
+		:using System.Threading.Tasks;
+		:using Microsoft.Win32;
+		:namespace Registro{
+		:class Program {
+		:static void Main(string[] args){
+		:string userRoot = "HKEY_CURRENT_USER";
+		:string subkey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced";
+		:string keyName = userRoot + "\\" + subkey;
+		:Console.WriteLine("1- Mostrar archivos ocultos");
+		:Console.WriteLine("2- Ocultar archivos ocultos");
+		:ConsoleKeyInfo reg = Console.ReadKey();
+		:if (reg.Key == ConsoleKey.D1) {
+		:Registry.SetValue(keyName, "Hidden", 1, RegistryValueKind.QWord);
+		:} else{
+		:Registry.SetValue(keyName, "Hidden", 2, RegistryValueKind.QWord);
+		:}
+		:}
+		:}
+		:}
+		:

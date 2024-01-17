@@ -1,0 +1,130 @@
+{WinHelper V1.05 by FNX A1 2022}
+{TITTLE}
+{WIN_W}00540
+{JPG_SIZE}00000
+{IMG_AUTO}10000
+{WIN_DESC_H}00476
+{WIN_DESC_PIC_H}00068
+{WIN_EDT_GRP_H}00119
+{WIN_ALING_LEFT}00000
+{WIN_IMG_CFG}.0010.0010.0640.0480.0100
+{PANLAT_CLR}200,200,180
+
+*GODOT
+	·20230925213026
+	:Video Tutorial.
+	:https://www.youtube.com/watch?v=L3pFEk1HPCQ&list=PL5PTqiCIVoiVyA2qed1NE4uKejXEWM60e
+	:-En la web oficial nos descargamos el motor.
+	:https://godotengine.org/download/windows/
+	:Tenemos dos versiones.
+	:la primera esta pensada para usar GScript
+	:La segunda .NET para usar C#.
+	:No requiere instalacion simplemente es descargar y descomprimir
+	:en una carpeta.
+	:Segun lo abrimos nos presenta dos pestañas.
+	:Proyectos Locales y Libreria de Assets.
+	:Creamos un nuevo proyecto.
+	:Le damos una carpeta.
+	:Decidimos el tipo de motor grafico.
+	:-Los dos primeros usan bulkan (opengl4)
+	:-El modo compatible para equipos mas viejos usa (opengl3)
+	:-Pretenden implementar DirectX13 pero aun no esta.
+	:Decidimos si queremos control de versiones o no.
+	:
+	*INDICE (Aprendizaje)
+		·20230925213026
+		:Nivel Principiante
+		:Instalación y Configuración:
+		:Descargar e instalar Godot.
+		:Explorar la interfaz de usuario.
+		:Crear tu Primer Proyecto:
+		:Crear un nuevo proyecto.
+		:Familiarizarse con la estructura de carpetas del proyecto.
+		:Introducción a las Escenas:
+		:Aprender sobre las escenas en Godot.
+		:Crear una escena básica.
+		:Sprites y Texturas:
+		:Importar y usar sprites y texturas.
+		:Mover y rotar sprites.
+		:Introducción a la Programación con GDScript:
+		:Entender los conceptos básicos de GDScript.
+		:Crear scripts simples para objetos.
+		:Colisiones y Física:
+		:Configurar colisiones entre objetos.
+		:Aplicar física básica a objetos.
+		:Nivel Intermedio:
+		:Animaciones:
+		:Crear animaciones simples para personajes u objetos.
+		:Controlar animaciones mediante scripts.
+		:Controles de Usuario:
+		:Capturar la entrada del jugador (teclado, ratón, pantalla táctil).
+		:Implementar controles de usuario personalizados.
+		:Sistema de Partículas:
+		:Crear efectos visuales con sistemas de partículas.
+		:Sonido y Música:
+		:Agregar efectos de sonido y música a tu juego.
+		:Manejo de Escenas y Transiciones:
+		:Cambiar entre escenas.
+		:Crear transiciones suaves.
+		:Nivel Avanzado:
+		:Redes y Multijugador:
+		:Implementar funciones multijugador en línea.
+		:Sincronizar objetos y datos en red.
+		:Optimización del Rendimiento:
+		:Mejorar la eficiencia y el rendimiento de tu juego.
+		:Publicación y Distribución:
+		:Preparar tu juego para su lanzamiento en diferentes plataformas.
+		:Distribuir tu juego en tiendas en línea.
+		:Extensiones y Plugins:
+		:Explorar extensiones y plugins para ampliar las capacidades de Godot.
+		:Contribuir a la comunidad de Godot.
+		:Resolución de Problemas y Depuración:
+		:Aprender técnicas de depuración.
+		:Resolver problemas comunes.
+		:Proyecto Completo:
+		:Desarrollar un proyecto de juego completo desde cero hasta el lanzamiento.
+		:
+	*Primer contacto
+		·20230925213706
+		ª10000
+		:El primer contacto te abre el editor en modo 3D.
+		:-
+		:En la parte central superior nos muestra las distintas plantillas.
+		:- 2D para juegos 2D o ventanas.
+		:- 3D para juegos 3D.
+		:- Script para programar la logica.
+		:- AssetLibs para librerias importadas.
+		:-
+		:En la parte derecha superior tenemos
+		:las opciones de ejecucion y renderizado.
+		:-
+		:En la parte izquierda superior tenemos
+		:los menus para editar crear modificar y configurar tanto
+		:el entorno como las escenas.
+		:-
+		:En la parte de la izquierda superior
+		:-Escena - Añadimos nodos a la escena.
+		:-Importar - Al selecionar un fichero importable nos
+		:mostrara las opciones para importarlo.
+		:-En la parte de la izquierda inferior.
+		:El Explorador de ficheros.
+		:-
+		:En la derecha
+		:-Inspector -Nos mostrara las opciones del nodo selecionado
+		:con sus propiedades.
+		:-Nodos - Cuando selecionemos un nodo nos mostrara dos sub pestañas.
+		:- - Señales - Son los eventos programados "alertas" que daremos a los nodos
+		:para que se comuniquen con el resto.
+		:- - Grupos - Nos permite agrupar nodos para luego buscarlos mejor
+		:pero consume muchos recursos.
+		:-Historial - Es la lista de las ultimas modificaciones realizadas.
+		:-
+		:En la parte inferior.
+		:-Salida - con los resultados de las operaciones
+		:-Depurador - Recursos consumidos por nuestro juego.
+		:-Resultados de la busqueda.
+		:-Audio - Los distintos canales de audio buscados.
+		:-Animacion - Creacion o edicion de animaciones importadas.
+		:-Editor de Shaders - son modulos encargados de efectos especiales
+		:o sombreados, se hace niebla fuego humo sombras brillos etc.
+		:Se trabajan directamente en la TGrafica lo que los hace muy rapidos.

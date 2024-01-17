@@ -1,0 +1,249 @@
+sabes que documentos se suelen hacer para crear un videojuego ... y los pasos a seguir desde el inicio?
+ChatGPT
+Sí, la creación de un videojuego generalmente sigue varios pasos y requiere la creación de varios documentos para guiar el proceso. Aquí hay una lista general de documentos y pasos comunes:
+
+Documentos Iniciales:
+Concepto del Juego:
+
+Descripción general del juego.
+Tema, género y mecánicas principales.
+Público objetivo.
+Documento de Diseño del Juego (GDD - Game Design Document):
+
+Descripción detallada del juego.
+Historia y personajes.
+Mecánicas de juego y reglas.
+Niveles y estructura del juego.
+Arte conceptual y estilo visual.
+Sonido y música previstos.
+Planificación de contenido.
+Fases del Desarrollo:
+Prototipo:
+
+Creación de un prototipo básico para probar mecánicas clave.
+Obtener retroalimentación temprana.
+Planificación del Proyecto:
+
+Desglose del desarrollo en fases o sprints.
+Estimación de tiempo y recursos.
+Asignación de tareas y roles.
+Desarrollo:
+
+Implementación del juego según el GDD.
+Creación de activos (gráficos, sonido, etc.).
+Codificación de características y funcionalidades.
+Pruebas y QA:
+
+Pruebas de jugabilidad.
+Identificación y corrección de errores.
+Iteración:
+
+Mejora continua basada en pruebas y comentarios.
+Ajustes en diseño y funcionalidades.
+Documentos Durante el Desarrollo:
+Documentación del Código:
+
+Comentarios en el código.
+Descripciones de funciones y clases.
+Manuales del Usuario y del Desarrollador:
+
+Instrucciones para jugadores y desarrolladores.
+Documentos Finales:
+Manual de Marketing:
+
+Estrategia de lanzamiento y promoción.
+Descripción del juego para la prensa y el público.
+Documentación Legal:
+
+Acuerdos de licencia y derechos de autor.
+Contratos con colaboradores y empleados.
+Fase de Lanzamiento:
+Lanzamiento:
+Despliegue del juego en plataformas específicas.
+Monitoreo del lanzamiento y retroalimentación de los jugadores.
+Recuerda que estos documentos y pasos pueden variar según la escala del proyecto y las preferencias del equipo de desarrollo. Es importante adaptar el proceso a las necesidades específicas de tu juego. La comunicación efectiva y la documentación clara son clave en cada etapa del desarrollo.
+
+
+------------------------
+Claro, aquí tienes ejemplos de los puntos que podrías incluir en el "Concepto del Juego" al inicio del desarrollo:
+
+Descripción general del juego:
+DESCRIPCION GENERAL
+Ejemplo: "Un juego de aventuras de mundo abierto ambientado en un futuro distópico donde los jugadores exploran una ciudad post-apocalíptica y luchan por la supervivencia."
+Tema, género y mecánicas principales:
+- Juego de supervivencia por niveles ambientado en un futuro donde plagas mutantes han matado a toda la poblacion y tu y tu compañero os dedicais a matar insectos mutantes y a sobrevivir.
+
+Ejemplo: "Género: Aventura / Acción / Mundo Abierto. Tema: Ciencia ficción distópica. Mecánicas principales: exploración, combate táctico, toma de decisiones que afectan la narrativa."
+GENERO:
+Accion, Niveles,Aventura
+TEMA:
+sc-fi, bichos.
+MECANICAS.
+Exploracion, Combate, Supervivencia, Crafteo, Farmeno, Bichos Mutantes.
+
+Público objetivo:
+Ejemplo: "El juego está diseñado para jugadores mayores de 18 años que disfrutan de juegos de acción y aventuras con historias ricas y complejas."
+Juego creado para jugadores mayores de 18 años, que disfrutan de partidas cooperativas o
+solitarias donde se explora , matan bichos y fabrican cosas en partidas rapidas.
+-----
+
+
+
+
+Claro, aquí tienes ejemplos cortos de algunos puntos que podrías incluir en un Game Design Document (GDD):
+
+-- Descripción del Juego --
+Ejemplo: "Un juego de plataformas en 2D donde los jugadores controlan a un personaje carismático llamado Bob, quien debe superar obstáculos y enemigos para rescatar a su mascota perdida."
+- Un juego en vista superior contra picada donde el peronaje y su compañero exploran y matan en zonas para completar misiones, obtener recursos, mejorar y/o crear items.
+- Y que te llevan en una historia principal a descubrir por que han salido los bichos mutantes.
+- Con historias y misiones conmobedoras a medida que encontramos documentacion del
+como llego todo a ponerse tan mal.
+- Con zonas ocultas y con monstruos tochos de fin de fase.
+
+
+-- Mecánicas de Juego --
+Ejemplo: "Bob puede saltar y correr para evitar peligros. Además, tiene la capacidad de lanzar burbujas para atrapar enemigos y utilizarlos como plataformas móviles."
+- Los Jugadores pueden 
+	- Andar y correr.
+	- Agacharse, 
+	- Disparar a distancia (Armas distintas)
+	- Golpear con puños , patadas o armas blancas.
+	- Lanzar granadas.
+	- Reparar objetos
+	- Crar objetos nuevos
+	- Comprar/vender recetas
+	- Comprar/vender objetos
+	- Comprar/Vender recursos.
+	- Aprender talentos.
+
+--- Progresión del Juego ----
+Ejemplo: "El juego consta de 20 niveles distribuidos en cuatro mundos temáticos. Cada nivel aumenta en dificultad, presentando nuevos desafíos y enemigos."
+
+- El juego consta de distintos barrios, edificios y alcantarillas que se desbloquean a medida
+que se descubren por medio de calles o entradas (Puertas o escaleras a alcantarillas)
+- Al descubrir una zona nos daran misiones para esa zona.
+- Tienes una zona principal donde te daran las misiones, venderas y compraras, y regresaran los pnj que rescates.
+- Cada zona nos cuenta cosas de lo que sucedio.
+- Cada zona tienen un monstruo final de zona y distintos kekos.
+- Cada zona tiene un nivel distinto.
+- Cada zona tiene recursos distintos y "limitados".
+- Algunas zonas tienen zonas secretas.
+- Algunas zonas tienen llaves y/o puzles simples.
+
+
+--- Arte y Estilo Visual ----
+Ejemplo: "El juego presenta gráficos coloridos y animaciones fluidas en un estilo cartoon. Los mundos incluyen paisajes variados, desde bosques encantados hasta desiertos peligrosos."
+
+- El juego esta creado con graficos poco detallados pero oscuros con animaciones tipo cartoon.
+- Las zonas tienen objetos e iluminaciones distintas con distintas ambientaciones, roboticas, arañas, ratas, cucarachas, cuebas, fabricas, alcantarillas, edificios, oficinas, etc.
+
+--- Sonido y Música ---
+Ejemplo: "La música incluirá melodías alegres y emocionantes para mantener un tono positivo. Los efectos de sonido se centrarán en realzar la jugabilidad, como sonidos de saltos y risas de los personajes."
+- La musica varia entre accion y tranquilidad.
+- Cada arma tiene un disparo y cada keko un grito de ataque voz o muerte.
+
+
+--- Personajes y Narrativa ---
+Ejemplo: "Bob es un personaje amigable y optimista en su búsqueda por rescatar a su mascota. La narrativa se desarrolla a través de diálogos simples y eventos en el juego."
+- El prota al inicio intenta sobrevivir pero pronto encuentra algo que le da a entender 
+que su hermana aun sigue vivia, les separaron cuando eran muy pekes y la dio por muerta
+despues de buscarla muchos años.
+- Su amigo le ayuda y le saca de la tristeza con chistes cuando la melancolia abruma al prota.
+-(Si juegas solo tu colega te habla por un pinganillo y te ayuda y guia.)
+- Te encontraras PNJs que tendras que rescatar y que te pediran cosas a lo largo de la aventura.
+- La historia se sigue por medio de cintas o escritos (Doblados)
+- La historia principal, Encontrar a su hermana.
+- La historia secundaria , Los cientificos, la corporacion, el cientifico loco, el compuesto X.
+
+--- Interfaz de Usuario (UI)--- 
+Ejemplo: "La interfaz de usuario será minimalista e intuitiva, con indicadores de vida, monedas y niveles. Se incluirán tutoriales interactivos para guiar a los jugadores."
+- La ui sera basica con la vida, escudo y municion de los jugadores.
+- Cada objeto contara con otra UI para creacion, misiones, compra/venta. dialogos, textos, audios.
+- Tambien contara con una zona donde se mostrara el texto de las voces/dialogos con preguntas y respuestas basicas.
+
+--- Contenido Adicional ----
+Ejemplo: "Se planea la inclusión de desafíos opcionales, como recolección de coleccionables y enfrentamientos con jefes al final de cada mundo."
+- Se planea añadir misiones ocultas  y zonas ocultas y personajes especiales con misiones
+ocultas.
+
+--- Requisitos del Sistema ---
+Ejemplo: "El juego estará disponible en plataformas principales, como PC, consolas y dispositivos móviles. Requisitos mínimos: procesador de 2.0 GHz, 4 GB de RAM, tarjeta gráfica compatible con DirectX 10."
+- El juego tiene que funcionar en equipos basicos con W7 en adelante una grafica de 2gb
+y vulkan.
+- Se intentara que funcione en WEB 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Claro, aquí tienes un ejemplo simplificado de cómo podría verse un desglose del desarrollo en fases o sprints para un juego de plataformas:
+
+Desglose del Desarrollo en Fases
+Fase 1: Prototipado (Sprint 1-2)
+Objetivo:
+Crear un prototipo básico del juego para evaluar las mecánicas clave.
+Tareas:
+Desarrollar el sistema de movimiento del personaje.
+Implementar la mecánica de salto y detección de colisiones.
+Crear un nivel de prueba para probar las mecánicas básicas.
+Obtener retroalimentación interna sobre el prototipo.
+
+
+Fase 2: Desarrollo Básico (Sprint 3-6)
+Objetivo:
+Establecer las bases del juego con las mecánicas principales.
+Tareas:
+Diseñar y desarrollar niveles iniciales.
+Implementar enemigos básicos y obstáculos.
+Añadir lógica de recolección de objetos y monedas.
+Integrar el sistema de progresión de niveles.
+
+Fase 3: Refinamiento de Jugabilidad (Sprint 7-10)
+Objetivo:
+Mejorar la jugabilidad y la experiencia del usuario.
+Tareas:
+Ajustar la dificultad de los niveles.
+Refinar la física del personaje y de los objetos.
+Agregar animaciones y detalles visuales.
+Implementar sugerencias de usuario y tutorial interactivo.
+
+Fase 4: Arte y Sonido (Sprint 11-14)
+Objetivo:
+Desarrollar y mejorar los aspectos visuales y auditivos.
+Tareas:
+Crear y diseñar arte conceptual para personajes y niveles.
+Desarrollar modelos 3D y animaciones.
+Diseñar efectos de sonido y música.
+Integrar activos visuales y auditivos en el juego.
+
+Fase 5: Pulido y Pruebas Finales (Sprint 15-18)
+Objetivo:
+Refinar detalles finales y realizar pruebas exhaustivas.
+Tareas:
+Realizar pruebas de jugabilidad y corrección de errores.
+Ajustar equilibrio y dificultad.
+Optimizar el rendimiento del juego.
+Preparar el juego para su lanzamiento.
+
+Fase 6: Lanzamiento (Sprint 19-20)
+Objetivo:
+Preparar el juego para el lanzamiento en plataformas específicas.
+Tareas:
+Despliegue en plataformas seleccionadas.
+Configurar la página del juego y materiales promocionales.
+Monitorear el lanzamiento y recopilar comentarios iniciales.
+Preparar actualizaciones y mejoras post-lanzamiento.
+
