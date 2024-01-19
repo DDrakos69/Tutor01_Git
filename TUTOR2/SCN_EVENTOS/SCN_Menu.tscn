@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bihp61sxo6iah"]
+
+[ext_resource type="Script" path="res://SCN_EVENTOS/SCN_Menu.gd" id="1_xx0pk"]
+[ext_resource type="Script" path="res://SCN_EVENTOS/Pan_Base.gd" id="2_a8dmg"]
+[ext_resource type="Script" path="res://SCN_EVENTOS/MColorRect.gd" id="3_a6n27"]
+[ext_resource type="Script" path="res://SCN_EVENTOS/Lb_BtPulsado.gd" id="4_0aw38"]
+[ext_resource type="Script" path="res://SCN_EVENTOS/Lb_PosBt.gd" id="5_rraan"]
+[ext_resource type="Script" path="res://SCN_EVENTOS/MButton.gd" id="6_6bx1x"]
+
+[node name="SCN_Menu" type="Node"]
+script = ExtResource("1_xx0pk")
+
+[node name="Pan_Base" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_a8dmg")
+
+[node name="MColorRect" type="ColorRect" parent="Pan_Base"]
+layout_mode = 0
+offset_right = 441.0
+offset_bottom = 254.0
+color = Color(1, 0.458824, 1, 1)
+script = ExtResource("3_a6n27")
+
+[node name="Lb_BtPulsado" type="Label" parent="Pan_Base"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 5.0
+offset_right = 92.0
+offset_bottom = 31.0
+text = "Boton?"
+script = ExtResource("4_0aw38")
+
+[node name="Lb_PosBt" type="Label" parent="Pan_Base"]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 1.0
+offset_right = 333.0
+offset_bottom = 34.0
+text = ".."
+script = ExtResource("5_rraan")
+
+[node name="MButton" type="Button" parent="Pan_Base"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 93.0
+offset_right = 300.0
+offset_bottom = 142.0
+disabled = true
+text = "BOTON"
+script = ExtResource("6_6bx1x")
+
+[connection signal="button_down" from="Pan_Base/MButton" to="." method="Evt_Button_ButtonDown"]
+[connection signal="button_down" from="Pan_Base/MButton" to="Pan_Base/MButton" method="_on_button_down"]
+[connection signal="button_up" from="Pan_Base/MButton" to="." method="Evt_Button_ButtonUp"]

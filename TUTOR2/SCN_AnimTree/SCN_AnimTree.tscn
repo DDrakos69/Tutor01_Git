@@ -1,0 +1,168 @@
+[gd_scene load_steps=20 format=3 uid="uid://3u8dogfh5kt"]
+
+[ext_resource type="Script" path="res://SCN_AnimTree/SCN_AnimTree.gd" id="1_upgcd"]
+[ext_resource type="Texture2D" uid="uid://d3gfb3svbxik4" path="res://SCN_AnimTree/PIUM_A.jpg" id="2_v27ql"]
+
+[sub_resource type="Animation" id="Animation_vc51t"]
+resource_name = "Hidle_L"
+length = 1.3
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2)
+}
+
+[sub_resource type="Animation" id="Animation_lhmca"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oxib3"]
+resource_name = "Step_L"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h7eua"]
+resource_name = "Run_l"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_vqbos"]
+resource_name = "GunA_L"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tljxs"]
+_data = {
+"GunA_L": SubResource("Animation_vqbos"),
+"Hidle_L": SubResource("Animation_vc51t"),
+"RESET": SubResource("Animation_lhmca"),
+"Run_l": SubResource("Animation_h7eua"),
+"Step_L": SubResource("Animation_oxib3")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3xajk"]
+animation = &"GunA_L"
+
+[sub_resource type="GDScript" id="GDScript_tgmjy"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_upw0q"]
+animation = &"Hidle_L"
+script = SubResource("GDScript_tgmjy")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_alyta"]
+animation = &"Run_l"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1vio7"]
+animation = &"Step_L"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hhiq8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e6quc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oh82l"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5frq5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ymlcx"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xyjob"]
+states/End/position = Vector2(534, 100)
+states/GunA_L/node = SubResource("AnimationNodeAnimation_3xajk")
+states/GunA_L/position = Vector2(367.452, 329)
+states/Hidle_L/node = SubResource("AnimationNodeAnimation_upw0q")
+states/Hidle_L/position = Vector2(216.452, 225)
+states/Run_l/node = SubResource("AnimationNodeAnimation_alyta")
+states/Run_l/position = Vector2(367.452, 225)
+states/Step_L/node = SubResource("AnimationNodeAnimation_1vio7")
+states/Step_L/position = Vector2(469.452, 225)
+transitions = ["Start", "Hidle_L", SubResource("AnimationNodeStateMachineTransition_hhiq8"), "Hidle_L", "Run_l", SubResource("AnimationNodeStateMachineTransition_e6quc"), "Run_l", "GunA_L", SubResource("AnimationNodeStateMachineTransition_oh82l"), "GunA_L", "Run_l", SubResource("AnimationNodeStateMachineTransition_5frq5"), "Run_l", "Hidle_L", SubResource("AnimationNodeStateMachineTransition_ymlcx")]
+graph_offset = Vector2(-98.7458, 130.536)
+
+[node name="SCN_AnimTree" type="Node2D"]
+script = ExtResource("1_upgcd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v27ql")
+centered = false
+hframes = 8
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_tljxs")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Sprite2D"]
+tree_root = SubResource("AnimationNodeStateMachine_xyjob")
+anim_player = NodePath("../AnimationPlayer")
+active = true

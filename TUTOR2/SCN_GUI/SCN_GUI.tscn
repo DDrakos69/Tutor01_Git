@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=3 uid="uid://i8rlhqyk137e"]
+
+[ext_resource type="Script" path="res://SCN_GUI/SCN_GUI.gd" id="1_k0add"]
+
+[sub_resource type="FontFile" id="FontFile_m2ond"]
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/30/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/30/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_isshe"]
+font = SubResource("FontFile_m2ond")
+font_size = 30
+font_color = Color(1, 0.117647, 1, 1)
+outline_size = 3
+outline_color = Color(0.105882, 0.145098, 0.2, 0.321569)
+
+[node name="SCN_GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k0add")
+
+[node name="RecColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.384314, 0.545098, 0.384314, 0.858824)
+
+[node name="LabTit" type="Label" parent="RecColor"]
+layout_mode = 2
+offset_right = 200.0
+offset_bottom = 44.0
+grow_horizontal = 2
+text = "PikaLoko"
+label_settings = SubResource("LabelSettings_isshe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bt_Resume" type="Button" parent="RecColor"]
+layout_mode = 2
+offset_top = 48.0
+offset_right = 200.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume Game"
+
+[node name="Bt_New" type="Button" parent="RecColor"]
+layout_mode = 2
+offset_top = 83.0
+offset_right = 200.0
+offset_bottom = 114.0
+text = "New Game"
+
+[node name="Bt_Exit" type="Button" parent="RecColor"]
+layout_mode = 2
+offset_top = 118.0
+offset_right = 200.0
+offset_bottom = 149.0
+size_flags_vertical = 8
+text = "Exit Game"
+
+[node name="Label" type="Label" parent="RecColor"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "001	"
+
+[node name="Label2" type="Label" parent="RecColor"]
+offset_left = -1.0
+offset_top = 19.0
+offset_right = 39.0
+offset_bottom = 45.0
+text = "001	"

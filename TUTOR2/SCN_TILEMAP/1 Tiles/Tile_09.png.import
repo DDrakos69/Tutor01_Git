@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://bmbn2bro8h6pn"
+path="res://.godot/imported/Tile_09.png-2e50205a6b73c472f2f1a2f2bcef61ab.res"
+group_file="res://001.png"
+valid=true
+[deps]
+
+
+source_file="res://SCN_TILEMAP/1 Tiles/Tile_09.png"
+dest_files=["res://.godot/imported/Tile_09.png-2e50205a6b73c472f2f1a2f2bcef61ab.res"]
+
+[params]
+
+atlas_file="res://001.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

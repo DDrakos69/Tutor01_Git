@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ngmc01qvodex"]
+
+[ext_resource type="Script" path="res://SCN_TWEEN/SCN_TWEEN.gd" id="1_ao77a"]
+
+[node name="SCN_TWEEN" type="Node2D"]
+script = ExtResource("1_ao77a")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 50.0
+offset_bottom = 26.0
+text = "TEXTO"

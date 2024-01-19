@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx7d3qobscod1"]
+
+[ext_resource type="Script" path="res://SCN_EVT2/SCN_EVT2.gd" id="1_1nby4"]
+[ext_resource type="Script" path="res://SCN_EVT2/Button.gd" id="2_uv7no"]
+
+[node name="SCN_EVT2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1nby4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 284.0
+offset_bottom = 239.0
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.261
+anchor_top = 0.268
+anchor_right = 0.43
+anchor_bottom = 0.5
+offset_left = 20.876
+offset_top = 11.948
+offset_right = 89.88
+offset_bottom = 33.5
+text = "Boton"
+script = ExtResource("2_uv7no")
