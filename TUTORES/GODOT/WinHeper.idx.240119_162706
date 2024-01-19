@@ -1,6 +1,6 @@
 {WinHelper V1.05 by FNX A1 2022}
 {TITTLE}
-{WIN_W}01115
+{WIN_W}00457
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00419
@@ -15,7 +15,7 @@
 	*
 		·20231127121750
 *GODOT
-	·20240119162557
+	·20231204164850
 	:Video Tutorial.
 	:https://www.youtube.com/watch?v=L3pFEk1HPCQ&list=PL5PTqiCIVoiVyA2qed1NE4uKejXEWM60e
 	:https://docs.godotengine.org/es/4.x/classes/class_performance.html
