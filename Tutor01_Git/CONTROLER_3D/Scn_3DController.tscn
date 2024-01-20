@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://capuex3nwk3gg"]
+
+[ext_resource type="Script" path="res://CONTROLER_3D/ChB3D_PJ.gd" id="1_xb0v7"]
+[ext_resource type="Texture2D" uid="uid://cluds1xxfk7x5" path="res://SCN_3DBase/vector-stone-path-texture.jpg" id="2_8mb0y"]
+[ext_resource type="Script" path="res://CONTROLER_3D/Camera3D.gd" id="2_41fnp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h21ki"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_j0xeb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_osp68"]
+size = Vector3(0.971313, 1.90992, 0.965607)
+
+[sub_resource type="Environment" id="Environment_rlhv3"]
+ambient_light_color = Color(0.933333, 0.564706, 0.752941, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqc56"]
+albedo_texture = ExtResource("2_8mb0y")
+metallic_specular = 0.52
+uv1_scale = Vector3(7.42, 7.42, 7.42)
+grow_amount = -1.627
+
+[sub_resource type="BoxMesh" id="BoxMesh_a1pvb"]
+material = SubResource("StandardMaterial3D_wqc56")
+subdivide_depth = 10
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3guwt"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nrpp8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ye2n"]
+
+[node name="Scn3dController" type="Node3D"]
+
+[node name="ChB3D_PJ" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.78999, 0)
+script = ExtResource("1_xb0v7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ChB3D_PJ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.728834)
+
+[node name="Camera3D" type="Camera3D" parent="ChB3D_PJ"]
+transform = Transform3D(1, 0, 0, 0, 0.871291, 0.490767, 0, -0.490767, 0.871291, 0, 2.41817, 3.32462)
+script = ExtResource("2_41fnp")
+
+[node name="MhIns3D" type="MeshInstance3D" parent="ChB3D_PJ"]
+mesh = SubResource("CapsuleMesh_h21ki")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChB3D_PJ/MhIns3D"]
+transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0.295955, 0.596424, -0.500965)
+mesh = SubResource("SphereMesh_j0xeb")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ChB3D_PJ/MhIns3D"]
+transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, -0.353366, 0.596424, -0.500965)
+mesh = SubResource("SphereMesh_j0xeb")
+skeleton = NodePath("../..")
+
+[node name="ColliSha3D" type="CollisionShape3D" parent="ChB3D_PJ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00799561, 0.00828171, -4.57764e-05)
+shape = SubResource("BoxShape3D_osp68")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rlhv3")
+
+[node name="N3D_Mundo2" type="Node3D" parent="."]
+
+[node name="MsIns3D_Suelo" type="MeshInstance3D" parent="N3D_Mundo2"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -1.97266, 0)
+transparency = 0.05
+cast_shadow = 0
+mesh = SubResource("BoxMesh_a1pvb")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="N3D_Mundo2/MsIns3D_Suelo"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="N3D_Mundo2/MsIns3D_Suelo/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_3guwt")
+
+[node name="Msh3D_Cubo" type="MeshInstance3D" parent="N3D_Mundo2"]
+mesh = SubResource("BoxMesh_nrpp8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="N3D_Mundo2/Msh3D_Cubo"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="N3D_Mundo2/Msh3D_Cubo/StaticBody3D"]
+shape = SubResource("BoxShape3D_6ye2n")

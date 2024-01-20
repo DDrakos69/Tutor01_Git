@@ -1,6 +1,6 @@
 {WinHelper V1.05 by FNX A1 2022}
 {TITTLE}
-{WIN_W}00469
+{WIN_W}01115
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00419
@@ -15,7 +15,7 @@
 	*
 		·20231127121750
 *GODOT
-	·20240120183428
+	·20240119162557
 	:Video Tutorial.
 	:https://www.youtube.com/watch?v=L3pFEk1HPCQ&list=PL5PTqiCIVoiVyA2qed1NE4uKejXEWM60e
 	:https://docs.godotengine.org/es/4.x/classes/class_performance.html
@@ -761,11 +761,6 @@
 			:_print("load res:",tab_resoluciones);
 			:#END f_resoluciones_fileload
 			:
-		*V4 Controlador Basico 3D
-			·20240120193337
-			:https://www.youtube.com/watch?v=J5-0X9xPDVE
-			:
-			:- Controlador sencillo para personajes 3D
 	*SPACE SHOOTER 2D
 		·20231201183324
 		:Por tratarse de un juego 2D usaremos el Renderizador
