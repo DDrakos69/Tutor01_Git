@@ -1,3 +1,8 @@
 res://CONTROLER_3D/Scn_3DController.tscn
+res://CONTROLER_3D/CamCont_N3D.gd
 res://CONTROLER_3D/ChB3D_PJ.gd
-res://CONTROLER_3D/Camera3D.gd
+res://CONTROLER_3D/Scn_3DController.gd
+res://CONTROLER_3D/Game_N3D.tscn
+res://CONTROLER_3D/UI.gd
+res://CONTROLER_3D/Game_N3D.gd
+res://V.gd

@@ -1,0 +1,280 @@
+[gd_scene load_steps=19 format=3 uid="uid://capuex3nwk3gg"]
+
+[ext_resource type="Script" path="res://CONTROLER_3D/Game_N3D.gd" id="1_4u3n1"]
+[ext_resource type="Script" path="res://CONTROLER_3D/ChB3D_PJ.gd" id="2_fiq5i"]
+[ext_resource type="Script" path="res://CONTROLER_3D/CamCont_N3D.gd" id="3_rl13t"]
+[ext_resource type="Texture2D" uid="uid://cluds1xxfk7x5" path="res://SCN_3DBase/vector-stone-path-texture.jpg" id="4_8tne0"]
+[ext_resource type="Script" path="res://CONTROLER_3D/UI.gd" id="5_s10d4"]
+
+[sub_resource type="Environment" id="Environment_rlhv3"]
+ambient_light_source = 1
+ambient_light_color = Color(0.933333, 0.564706, 0.752941, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h21ki"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_j0xeb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uo8e1"]
+radius = 0.305
+height = 2.09
+radial_segments = 12
+rings = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_osp68"]
+size = Vector3(0.971313, 1.90992, 0.965607)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qiw1m"]
+radius = 0.2475
+height = 0.535
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjqrw"]
+albedo_color = Color(0.835294, 0, 0.835294, 1)
+emission_enabled = true
+emission = Color(0.745098, 0, 0.745098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nrpp8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ye2n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqc56"]
+albedo_texture = ExtResource("4_8tne0")
+metallic_specular = 0.52
+uv1_scale = Vector3(7.42, 7.42, 7.42)
+grow_amount = -1.627
+
+[sub_resource type="BoxMesh" id="BoxMesh_a1pvb"]
+material = SubResource("StandardMaterial3D_wqc56")
+subdivide_depth = 10
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3guwt"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Theme" id="Theme_kfkt8"]
+default_font_size = 12
+
+[node name="Game_N3D" type="Node3D"]
+script = ExtResource("1_4u3n1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rlhv3")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.535046, 0.844823, 0, -0.844823, -0.535046, -0.179, 4.33813, -1.051)
+light_color = Color(0.74902, 0.890196, 1, 1)
+light_energy = 1.66
+light_indirect_energy = 0.245
+light_volumetric_fog_energy = 1.985
+light_angular_distance = 7.15
+shadow_normal_bias = 0.387
+editor_only = true
+directional_shadow_mode = 0
+directional_shadow_fade_start = 0.035
+directional_shadow_max_distance = 39.3
+directional_shadow_pancake_size = 8.6
+
+[node name="PJ_ChB3D" type="CharacterBody3D" parent="." groups=["GRP_PJ1"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117216, 0)
+script = ExtResource("2_fiq5i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="PJ_ChB3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.269289, 1.4447, -1.35883)
+light_energy = 0.15
+light_specular = 0.805
+distance_fade_enabled = true
+distance_fade_begin = 0.3
+distance_fade_length = 9.8
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PJ_ChB3D"]
+transform = Transform3D(1, 0, 0, 0, 0.970951, 0.239279, 0, -0.239279, 0.970951, -0.534527, -0.154337, -0.541565)
+light_color = Color(1, 1, 0.713726, 1)
+light_energy = 1.52
+light_specular = 0.881
+shadow_enabled = true
+spot_range = 152.587
+spot_attenuation = 0.594605
+spot_angle = 25.01
+
+[node name="Cuerpo_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D" groups=["GRP_PJ1"]]
+mesh = SubResource("CapsuleMesh_h21ki")
+
+[node name="OjoD_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/Cuerpo_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0.295955, 0.596424, -0.500965)
+mesh = SubResource("SphereMesh_j0xeb")
+skeleton = NodePath("../..")
+
+[node name="Brazo_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/Cuerpo_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.405, 0, 0, 0, 0.0180472, -0.404598, 0, 0.404598, 0.0180472, -0.542236, 0.195868, -0.377134)
+mesh = SubResource("CapsuleMesh_uo8e1")
+skeleton = NodePath("../..")
+
+[node name="OjoI_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/Cuerpo_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, -0.353366, 0.596424, -0.500965)
+mesh = SubResource("SphereMesh_j0xeb")
+skeleton = NodePath("../..")
+
+[node name="PJ_ColliSha3D" type="CollisionShape3D" parent="PJ_ChB3D" groups=["GRP_PJ1"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00799561, 0.00828171, -4.57764e-05)
+shape = SubResource("BoxShape3D_osp68")
+
+[node name="CamCont_N3D" type="Node3D" parent="." groups=["GRP_PJ1"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.42991, 0)
+script = ExtResource("3_rl13t")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamCont_N3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.835, 0)
+collision_mask = 2
+shape = SubResource("CapsuleShape3D_qiw1m")
+spring_length = 4.38
+
+[node name="Cam_Cam3D" type="Camera3D" parent="CamCont_N3D/SpringArm3D" groups=["GRP_PJ1"]]
+transform = Transform3D(1, 0, 0, 0, 0.971961, 0.235142, 0, -0.235142, 0.971961, 0, 0, 4.125)
+near = 0.001
+far = 368.6
+
+[node name="LoockAt_N3D" type="Node3D" parent="CamCont_N3D" groups=["GRP_PJ1"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.41)
+visible = false
+
+[node name="Msh3D_Cubo4" type="MeshInstance3D" parent="CamCont_N3D/LoockAt_N3D"]
+transform = Transform3D(-0.121161, -0.0765142, 0.107269, 0, 0.145727, 0.103946, -0.131761, 0.0703584, -0.0986389, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_pjqrw")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_nrpp8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CamCont_N3D/LoockAt_N3D/Msh3D_Cubo4"]
+transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="N3D_Mundo2" type="Node3D" parent="."]
+
+[node name="Msh3D_Cubo2" type="MeshInstance3D" parent="N3D_Mundo2"]
+transform = Transform3D(-0.0139638, 0, 1.29, 0, 100, 0, -100, 0, -0.000180133, -47.9796, 47.2787, 0.679109)
+mesh = SubResource("BoxMesh_nrpp8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="N3D_Mundo2/Msh3D_Cubo2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="N3D_Mundo2/Msh3D_Cubo2/StaticBody3D"]
+transform = Transform3D(1, 0, 3.63798e-12, 0, 1, 0, -5.82077e-11, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_6ye2n")
+
+[node name="Msh3D_Cubo3" type="MeshInstance3D" parent="N3D_Mundo2"]
+transform = Transform3D(-0.0139638, 0, 1.29, 0, 100, 0, -100, 0, -0.000180133, 46.6107, 47.2936, 3.80285)
+mesh = SubResource("BoxMesh_nrpp8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="N3D_Mundo2/Msh3D_Cubo3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="N3D_Mundo2/Msh3D_Cubo3/StaticBody3D"]
+shape = SubResource("BoxShape3D_6ye2n")
+
+[node name="Msh3D_Cubo4" type="MeshInstance3D" parent="N3D_Mundo2"]
+transform = Transform3D(-99.9435, 0, -0.0433552, 0, 100, 0, 3.36087, 0, -1.28927, -1.67332, 47.6343, -44.2468)
+mesh = SubResource("BoxMesh_nrpp8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="N3D_Mundo2/Msh3D_Cubo4"]
+transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="N3D_Mundo2/Msh3D_Cubo4/StaticBody3D"]
+shape = SubResource("BoxShape3D_6ye2n")
+
+[node name="Msh3D_Cubo6" type="MeshInstance3D" parent="N3D_Mundo2"]
+transform = Transform3D(-99.9435, 0, -0.0433552, 0, 100, 0, 3.36087, 0, -1.28927, -1.67332, 47.6343, 49.0168)
+mesh = SubResource("BoxMesh_nrpp8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="N3D_Mundo2/Msh3D_Cubo6"]
+transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="N3D_Mundo2/Msh3D_Cubo6/StaticBody3D"]
+shape = SubResource("BoxShape3D_6ye2n")
+
+[node name="MsIns3D_Suelo" type="MeshInstance3D" parent="N3D_Mundo2"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -1.97266, 0)
+transparency = 0.05
+cast_shadow = 0
+mesh = SubResource("BoxMesh_a1pvb")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="N3D_Mundo2/MsIns3D_Suelo"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="N3D_Mundo2/MsIns3D_Suelo/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_3guwt")
+
+[node name="Msh3D_Cubo" type="MeshInstance3D" parent="N3D_Mundo2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.434)
+mesh = SubResource("BoxMesh_nrpp8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="N3D_Mundo2/Msh3D_Cubo"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="N3D_Mundo2/Msh3D_Cubo/StaticBody3D"]
+shape = SubResource("BoxShape3D_6ye2n")
+
+[node name="Msh3D_Cubo5" type="MeshInstance3D" parent="N3D_Mundo2"]
+transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, -1.07768, 0.626343, -2.10011)
+gi_mode = 2
+mesh = SubResource("BoxMesh_nrpp8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="N3D_Mundo2/Msh3D_Cubo5"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="N3D_Mundo2/Msh3D_Cubo5/StaticBody3D"]
+shape = SubResource("BoxShape3D_6ye2n")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 679.0
+offset_bottom = 304.0
+script = ExtResource("5_s10d4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_kfkt8")
+
+[node name="RotCam_lb" type="Label" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "UI Texto"
+
+[node name="RotPj_lb" type="Label" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "UI Texto"
+
+[node name="PosPj_lb" type="Label" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "UI Texto"
+
+[node name="PosPj1_lb" type="Label" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "UI Texto"
+
+[node name="PosPj2_lb" type="Label" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 8
+text = "UI Texto"
+
+[node name="PosPj3_lb" type="Label" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "UI Texto"
+
+[node name="PosPj4_lb" type="Label" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "UI Texto"
