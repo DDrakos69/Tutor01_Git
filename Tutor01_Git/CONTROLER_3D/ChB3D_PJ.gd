@@ -136,6 +136,7 @@ func F_Move():
 	#[C1,C2,C3] [Vz] =[C1*Vz + C2*Vz + C3*Vz] = Vzf
 	var direction = (transform.basis * Vector3(V_MoveAxis.x, 0, -V_MoveAxis.y));
 	
+	
 	$"../UI/VBoxContainer/PosPj2_lb".text="transform:"+str(transform);
 	$"../UI/VBoxContainer/PosPj3_lb".text="basis:"+str(transform.basis);
 	$"../UI/VBoxContainer/PosPj4_lb".text="Direct:"+str(direction);

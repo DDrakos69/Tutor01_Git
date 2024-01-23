@@ -36,6 +36,7 @@ func F_Group01_Find(M_Name:String):
 # (Por si modifico algun nombre que me lo avise.)
 func F_Group01_Test():
 	
+	
 	var M_Res=true;
 	for M_q in V_Group01.size():
 		if(V_Group01[M_q]==null):

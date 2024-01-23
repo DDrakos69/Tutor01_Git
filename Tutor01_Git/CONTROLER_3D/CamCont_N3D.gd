@@ -36,6 +36,7 @@ func F_Ready():
 
 
 
+
 func _process(delta):
 	if(V.V_Init_Ok):
 		if(!V_ReadyOk):F_Ready();

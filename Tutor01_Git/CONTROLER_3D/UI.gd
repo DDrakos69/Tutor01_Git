@@ -21,6 +21,7 @@ func F_Ready():
 
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	F_Log(1,"_ready()");
