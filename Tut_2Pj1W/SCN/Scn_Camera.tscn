@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyi5hph2arjvd"]
+
+[ext_resource type="Script" path="res://SCN/Scn_Camera.gd" id="1_k7nh0"]
+
+[node name="Scn_Camera" type="Node3D"]
+script = ExtResource("1_k7nh0")
+
+[node name="Base_Cam3D" type="Camera3D" parent="."]
+cull_mask = 0
+
+[node name="BackGC1_SubViewPortCont" type="SubViewportContainer" parent="Base_Cam3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGC1_SubViewPort" type="SubViewport" parent="Base_Cam3D/BackGC1_SubViewPortCont"]
+transparent_bg = true
+handle_input_locally = false
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="BackGC1_Cam3D" type="Camera3D" parent="Base_Cam3D/BackGC1_SubViewPortCont/BackGC1_SubViewPort"]
+cull_mask = 1
+
+[node name="FrontC2_SubViewPortCont" type="SubViewportContainer" parent="Base_Cam3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FrontC2_SubViewPort" type="SubViewport" parent="Base_Cam3D/FrontC2_SubViewPortCont"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="FrontC2_Cam3D" type="Camera3D" parent="Base_Cam3D/FrontC2_SubViewPortCont/FrontC2_SubViewPort"]
+cull_mask = 1047554

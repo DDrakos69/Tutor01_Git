@@ -1,2 +1,15 @@
-MeshInstance3D
+WorldEnvironment
 Node3D
+Camera3D
+SubViewport
+SubViewportContainer
+VBoxContainer
+Control
+HBoxContainer
+Label
+Node2D
+OmniLight3D
+SpotLight3D
+CollisionShape3D
+CharacterBody3D
+CSGBox3D

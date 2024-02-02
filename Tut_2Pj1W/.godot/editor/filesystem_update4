@@ -1,1 +1,8 @@
-res://Scn_Base.tscn
+res://SCN/Scn_Camera.tscn
+res://MATS/Floor_Mat3D.tres
+res://MATS/Wall_Mat3D.tres
+res://SCN/Scn_Camera.gd
+res://SCN/Scn_MAPA.tscn
+res://SCN/M_Player.tscn
+res://GLOBALS/GLOBALS.gd
+res://SCN/M_Player.gd

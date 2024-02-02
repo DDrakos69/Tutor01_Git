@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://du5vg0eyg0xrf"]
+
+[ext_resource type="Script" path="res://SCN/Scn_Base.gd" id="1_flpp6"]
+
+[node name="ScnBase" type="Node3D"]
+script = ExtResource("1_flpp6")
