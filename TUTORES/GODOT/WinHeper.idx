@@ -1,6 +1,5 @@
-{WinHelper V1.05 by FNX A1 2022}
-{TITTLE}
-{WIN_W}00476
+{WinHelper V2.00 by FNX A1 2024}
+{WIN_W}00636
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00419
@@ -8,14 +7,12 @@
 {WIN_EDT_GRP_H}00221
 {WIN_ALING_LEFT}00001
 {WIN_IMG_CFG}.0010.0010.0943.0765.0100
-{PANLAT_CLR}000,255,255
-
+{LAT_H}00030
+{LAT_W}00010
+{LAT_C}255255000
 *CONTROLES
-	·20231127121750
 	*
-		·20231127121750
 *GODOT
-	·20240202194358
 	:Video Tutorial.
 	:https://www.youtube.com/watch?v=L3pFEk1HPCQ&list=PL5PTqiCIVoiVyA2qed1NE4uKejXEWM60e
 	:https://docs.godotengine.org/es/4.x/classes/class_performance.html
@@ -40,7 +37,6 @@
 	:print(self.name);
 	:
 	*INDICE (Aprendizaje)
-		·20240202194358
 		:Nivel Principiante
 		:Instalación y Configuración:
 		:Descargar e instalar Godot.
@@ -93,7 +89,6 @@
 		:Desarrollar un proyecto de juego completo desde cero hasta el lanzamiento.
 		:
 	*Primer contacto
-		·20240202194358
 		ª10000
 		:El primer contacto te abre el editor en modo 3D.
 		:-
@@ -138,7 +133,6 @@
 		:Se trabajan directamente en la TGrafica lo que los hace muy rapidos.
 		:
 	*Escenas y Nodos
-		·20240202194358
 		:Godot se estructura con escenas y nodos
 		:Una escena seria un objeto que tiene distintos nodos
 		:Cada escena tiene un solo script.
@@ -166,7 +160,6 @@
 		:Se pueden usar tanto en 3D como en 2D
 		:
 	*GScript Basico
-		·20240202194358
 		ª10005ª10006ª10008ª10007ª10009
 		:-Clases Metodos y funciones.
 		:Todos los controles eredan del objeto node.
@@ -181,7 +174,6 @@
 		:-El tiempo transcurrido entre refrescos es delta.
 		:
 	*LENGUAJE
-		·20240202194358
 		:Es muy parecido a pyton con algunas diferencias.
 		:Permite multilineas.
 		:Podemos terminar las sentencias con ; o si estan solas
@@ -189,7 +181,6 @@
 		:Usa <Tab> para los bloques de codigo.
 		:
 	*04 CLASES
-		·20240202194358
 		:Podemos definir que un script sea una CLASE
 		:Usaremos la sentencia.
 		:-
@@ -223,7 +214,6 @@
 		:var NombreVar=cls_file.new(Para1,Para2,ParaX);
 		:
 	*04 FUNCIONES y METODOS
-		·20240202194358
 		:Los METODOS y FUNCIONES son lo mismo.
 		:La unica diferencia es el alcance.
 		:Un metodo solo esta disponible dentro de una clase.
@@ -264,7 +254,6 @@
 		:_ SentenciaX
 		:
 	*04 VARIABLES y CONSTANTES
-		·20240202194358
 		:Godot es fuertemente tipado.
 		:Una variable de un tipo solo acepta ese tipo.
 		:Godot es caseSensitive. (Diferencia entre mayusculas y minusculas.)
@@ -321,7 +310,6 @@
 		:que queramos usar.
 		:
 	*04 COMENTARIOS
-		·20240202194358
 		:Son textos que no se ejecutan y nos permiten añadir
 		:descripciones al codigo o comentarios.
 		:-
@@ -337,7 +325,6 @@
 		:-
 		:
 	*04 ENUMS
-		·20240202194358
 		:En GODOT no existen los ENUMS como tal.
 		:En su lugar podemos usar LISTAS.
 		:-
@@ -357,7 +344,6 @@
 		:var Elista:ClsELista;
 		:
 	*04 OPERADORES MATEMATICOS
-		·20240202194358
 		:Son los simbolos que indican al motor que realizar
 		:con los datos o variables.
 		:-Los basicos serian:
@@ -374,7 +360,6 @@
 		:-= = Decrementa en X una variable o numero.
 		:
 	*04 CONDICIONALES IF y MACTH
-		·20240202194358
 		:Son sentencias de control de flujo que solo ejecutan
 		:su bloque de comandos si la o las condiciones son correctas.
 		:-Operadores logicos.
@@ -424,7 +409,6 @@
 		:#Fin del MATCH
 		:
 	*04 BUCLES
-		·20240202194358
 		:Los bucles son bloques de codigo que se repiten hasta
 		:que una condicion o mientras una condicion se cumpla.
 		:Tenemos dos tipos principalmente.
@@ -461,9 +445,7 @@
 		:#Fin del While
 		:
 *EJEMPLOS
-	·20231116214314
 	*Test For While
-		·20240202194358
 		:"_ " = <TAB>
 		:Este Test revisa el uso de memoria y la velocidad de
 		:los bucles FOR y WHILE
@@ -564,7 +546,6 @@
 		:-
 		:
 	*Acceder a un nodo y sus propiedades
-		·20240202194358
 		ª10017
 		:Tenemos tres modos de acceder a las propiedades de un
 		:nodo.
@@ -593,7 +574,6 @@
 		:#Fin Funcion F_Calcula
 		:
 	*Crear un Boton dinamico con evento
-		·20240202194358
 		:Con este codigo ejecutado en el nodo padre creamos
 		:un nodo button y le añadimos un evento al terminar el
 		:_ready();
@@ -619,7 +599,6 @@
 		:_ alerta.popup_centered() # Mostrar la alerta en el centro de la pantalla
 		:
 	*Botones Dinamicos y Eventos Dinamicos
-		·20240202194358
 		:En este ejemplo creo 4 botones dinamicos y
 		:enlazo su evento Button_up a una funcion pasandole
 		:un valor.
@@ -667,7 +646,6 @@
 		:#End Func F_Evt_MyButton_Up
 		:
 	*Importar objetos de Blender
-		·20240202194358
 		:Teniendo el Blender el modelo con todos los objetos asociados
 		:a la armadura y las animaciones .
 		:Lo selecionamos todo .
@@ -704,9 +682,7 @@
 		:_ _ _ _ MeshX :MeshInstance3D
 		:
 	*Materiales
-		·20231116214314
 	*SAVE_LOAD Tabla Arrays
-		·20240202194358
 		:En este ejemplo tengo un array de 2 dimensiones con cadenas
 		:y lo cargo y guardo en un fichero de texto plano separado
 		:por : y donde cada linea es un row.
@@ -762,19 +738,16 @@
 		:#END f_resoluciones_fileload
 		:
 	*V4 Controlador Basico 3D
-		·20240202194358
 		:https://www.youtube.com/watch?v=J5-0X9xPDVE
 		:- Controlador sencillo para personajes 3D
 		:
 	*SPACE SHOOTER 2D
-		·20240202194358
 		:Por tratarse de un juego 2D usaremos el Renderizador
 		:de movio o compatibilidad.
 		:Crearemos un mata mata de navecitas con :
 		:Scrool horizontal paralax.
 		:
 		*CONFIGURACION
-			·20240202194358
 			ª10086ª10084
 			:Entramos en la configuracion del proyecto y activamos
 			:"Configuraciones Avanzadas".
@@ -805,7 +778,6 @@
 			:que Neadest que significa Mas cercano al original.
 			:
 		*ESTRUCTURA
-			·20240202194358
 			:En este caso como es un proyecto simple es simple.
 			:Tenemos que tener en cuenta que todo en godot son
 			:escenas por lo que tenemos.
@@ -827,7 +799,6 @@
 			:-
 			:
 	*05 AUTOLOAD o SINGLETON
-		·20240202194358
 		ª10018ª10019ª10020ª10023ª10021ª10022
 		:Son script con funciones o variables que se
 		:cargan de forma automatica al iniciar un proyecto.
@@ -855,7 +826,6 @@
 		:GLOBAL.V_SCORE=XX;
 		:
 	*06 LAS SEÑALES
-		·20240202194358
 		:Las señales son EVENTOS.
 		:Son mensajes que se mandan al juego cuando algo ocurre.
 		:Cuando se presiona un boton, cuando se suelta, cuando
@@ -949,7 +919,6 @@
 		:-
 		:
 	*Acceso a los nodos
-		·20240202194358
 		:Godos encapsula todo en nodos .
 		:Cada nodo tienen un script.
 		:Cada nodo ereda del tipo base nodo pero puede o no
@@ -992,7 +961,6 @@
 		:<tb>sentencias.
 		:
 	*Instanciar Controles predefinidos
-		·20240202194358
 		:Podemos crear controles predefinidos y preconfigurados.
 		:Para ello tenemos que añadirlos a una nueva escena.
 		:Los creamos y los configuramos.
@@ -1032,7 +1000,6 @@
 		:_
 		:
 	*Crear Tabla de controles dinamicos
-		·20240202194358
 		:Tras PreCargar la escena madre y
 		:obtener el control de esa escena.
 		:Rellenamos una tabla con colnes de ese boton
@@ -1075,7 +1042,6 @@
 		:#End Func _ready
 		:
 	*08 Movimiento Personalizado
-		·20240202194358
 		:Para caputrar el movimiento es tan simple como:
 		:En el SCRIPT GLOBAL añadimos una funcion para obtener
 		:que tecla se ha pulsado y extraer la direcion.
@@ -1136,7 +1102,6 @@
 		:#End func _physics_process
 		:
 	*EL NODO
-		·20240202194358
 		:-PROPIEDADES
 		:String	<-	editor_description	""
 		:MultiplayerAPI	<-	multiplayer
@@ -1245,7 +1210,6 @@
 		:void	<-	update_configuration_warnings ( )
 		:
 	*Enlazar con Blender
-		·20240202194358
 		:El godot se puede enlazar con proyectos del Blender.
 		:Para ello tenemos que indicarle dos cosas.
 		:1- Indicarle donde tenemos instalado el blender.
@@ -1269,7 +1233,6 @@
 		:-
 		:
 	*04 Comentarios
-		·20240202194358
 		:En GDScript tenemos dos modos de comentarios.
 		:-
 		:De una sola linea.
@@ -1288,7 +1251,6 @@
 		:_ '''
 		:
 	*04 ARRAYS y DICCIONARIOS
-		·20240202194358
 		:Los ARRAYS,
 		:Son listas de datos, cada celda puede ser de un tipo
 		:de dato y guarda una posicion segun el orden de creacion.
@@ -1347,7 +1309,6 @@
 		:-
 		:
 	*04 Acceso a los nodos
-		·20240202194358
 		:Para obtener acceso a los nodos tenemos dos modos.
 		:-
 		:Podemos usar el comando get_node("Nombre Nodo")
@@ -1357,7 +1318,6 @@
 		:E incluso las propiedades de los nodos.
 		:
 	*06 LAS SEÑALES BASE
-		·20240202194358
 		:En godot las SEÑALES son parecidas a los EVENTOS pero
 		:un poco mas flexibles.
 		:Es un poco lioso.
@@ -1440,7 +1400,6 @@
 		:_ pass
 		:
 	*Numeros aleatorios
-		·20240202194358
 		:Podemos obtener un numero aleatorio usando las funciones
 		:randif() o randi()
 		:randi() para enteros
@@ -1450,7 +1409,6 @@
 		:Genera un numero entre 5 y 15.
 		:
 	*10 Animationplayer
-		·20240202194358
 		ª10035ª10032
 		:Este nodo se enlaza a otro nodo sobre el que puede animar
 		:cualquier propiedad de cualquier nodo.
@@ -1494,7 +1452,6 @@
 		:para que realize tareas especificas..
 		:
 	*11 AnimationTree
-		·20240202194358
 		ª10033ª10030ª10027ª10029ª10031
 		:AnimationTree o Arblo de animaciones.
 		:Este nodo nos permite enlazar un AnimationPlayer con
@@ -1563,7 +1520,6 @@
 		:burbuja de readys.
 		:
 	*12 TWEEN
-		·20240202194358
 		ª10034
 		:TWEEN es como se llama el proceso por el cual
 		:una animacion pasa del FTG-A al FTG-B.
@@ -1617,7 +1573,6 @@
 		:_ pass
 		:
 	*13 TILEMAP
-		·20240202194358
 		ª10040ª10041ª10042ª10044ª10060
 		:Se trata de un modulo para pintar una cuadricula.
 		:El propio control se encarga de colisiones, mapa
@@ -1653,7 +1608,6 @@
 		:propiedade del TileMAP y en el TileSet y del Tile.
 		:
 		*TILESET y CAPAS
-			·20240202194358
 			ª10044ª10043
 			:TILESET
 			:(Configuramos los suelos)
@@ -1693,7 +1647,6 @@
 			:-
 			:
 		*COLLISION LAYERS
-			·20240202194358
 			ª10043ª10044ª10045ª10046ª10047ª10048
 			:COLISIONES
 			:Tambien podemos definir colisiones en los Tiles que
@@ -1714,7 +1667,6 @@
 			:lo necesitamos.
 			:
 		*NAVIGATION LAYERS
-			·20240202194358
 			ª10050ª10051ª10048
 			:CAPAS DE NAVEGACION
 			:Al igual que las colision Map, si queremos que un enemigo
@@ -1727,7 +1679,6 @@
 			:Navigation Layer, y el resto es lo mismo.
 			:
 		*AUTO TILE MAP
-			·20240202194358
 			ª10052ª10053ª10054ª10055ª10056ª10057ª10058
 			:AUTO TILEMAP
 			:Esta es una herramienta para que el TileMap Autopinte
@@ -1760,7 +1711,6 @@
 			:crea combeniente.
 			:
 	*14 GRILLMAP
-		·20240202194358
 		ª10080ª10079ª10061ª10082ª10081
 		:Al igual que con el TILEMAP este nodo presenta una
 		:cuadricula pero en 3D.
@@ -1799,7 +1749,6 @@
 		:que aparecen en el editor 3d el boton GRIDMAP
 		:
 		*MESHLIBRARY
-			·20240202194358
 			ª10073ª10072ª10071ª10070ª10069ª10068ª10067ª10066ª10065ª10064ª10063ª10062ª10061ª10078ª10077ª10076ª10075ª10074
 			:Para crear una MESHLIBRARY la creamos desde el
 			:GRILLMAP.
@@ -1837,7 +1786,6 @@
 			:Le decimos donde y listo.
 			:
 	*CONFIGURAR ENTORNO
-		·20240202194358
 		ª10089ª10088
 		:Un punto principal a la hora de crear un videojuego es la
 		:configuracion del entorno.
@@ -1903,7 +1851,6 @@
 		:#END F_Settings_Set
 		:
 	*FICHEROS
-		·20240202194358
 		:GODOT trabaja los ficheros como otros lenguajes.
 		:1 - Se enlaza el fichero a una variable de un modo.
 		:2 - Se realizan las operaciones sobre el fichero dado.
@@ -1957,7 +1904,6 @@
 		:f.close();
 		:
 	*TIEMPOS
-		·20240202194358
 		:En godot podemos obtener temporizadores y las fechas y horas
 		:con distintas funciones:
 		:-
@@ -2042,7 +1988,6 @@
 		:print("AM/PM: ", am_pm)
 		:
 	*NOTIFICACIONES
-		·20240202194358
 		:Existe un evento que se dispara cuando ocurre algo y podemos
 		:capturar que ocurre por medio de constantes.
 		:Segun donde capturemos la notificacion significara una cosa.
@@ -2082,7 +2027,6 @@
 		:#END _notification
 		:
 	*MULTI IDIOMA
-		·20240202194358
 		:El godot tiene un modo muy simple para trabajar el texto en
 		:multi idioma.
 		:Podemos usar el excel aunque el usa un fichero con campos
@@ -2121,8 +2065,7 @@
 		:columnas con los idiomas.
 		:
 	*3D RPG Controler
-		·20240202194358
-		ª10090ª10100ª10099ª10098ª10097ª10096ª10095ª10094ª10093ª10092ª10091ª10089ª10101
+		ª10100ª10099ª10098ª10097ª10096ª10095ª10094ª10093ª10092ª10091ª10089ª10101ª10090
 		:https://www.youtube.com/watch?v=0T-FMkSru64
 		:-
 		:Creamos un manejador para un juego con el PJ
@@ -2227,15 +2170,14 @@
 		:secamente añadimos un mezclador a estas animaciones.
 		:func _ready():
 		:_ #- Añadimos a las animaciones de andar y Reposo un periodo de
-		:_ #  mezcla de 0,2seg.-
+		:_ # mezcla de 0,2seg.-
 		:_ V_anim_player.set_blend_time("walk","idle",0.2);
 		:_ V_anim_player.set_blend_time("idle","walk",0.2);
 		:#END _Ready
 		:-
 		:
 	*3D RPG Controler (Camara)
-		·20240202194358
-		ª10102ª10103ª10106ª10105ª10104ª10109ª10110ª10108ª10107
+		ª10102ª10103ª10106ª10105ª10104ª10109ª10110ª10108ª10107ª10111ª10112ª10113ª10114ª10115ª10116ª10117ª10118ª10119
 		:Ahora configuraremos la camara.
 		:Lo que queremos es que la linea entre la camara y el
 		:PJ siempre este visible por lo que tendremos que ocultar
@@ -2254,10 +2196,10 @@
 		:Añadimos dentro de esta camara un "SubviewportContainer"
 		:que contendra las camaras renderizadoras de las capas.
 		:y lo ajustamos a pantalla completa.
-		:Dentro añadimos un VIEWPORT  y dentro una CAMARA
+		:Dentro añadimos un VIEWPORT y dentro una CAMARA
 		:-
 		:Les damos nombres claros y lo copiamos para tener
-		:dos  SubViewPorts uno para el frontal y otro para
+		:dos SubViewPorts uno para el frontal y otro para
 		:el Back.
 		:-
 		:Creamos el Script de la escena.
@@ -2315,4 +2257,118 @@
 		:Podemos modificar el codigo para que muestre las vistas
 		:de las camaras en porciones separadas.
 		:-
+		:En el Escenario principal le decimos que las luces las
+		:trabaje tambien en las dos capas.
+		:-
+		:Tambien si queremos en el escenario principal le añadimos
+		:un WorldEnviroment para efectos y demas.
+		:-
+		:OJO: Si añades un WorldEnviroment solo te funcionara en
+		:Vulkan , en modo compatible no funciona y se carga el alpha de
+		:las capas de la camara.
+		:-
+		:Por ultimo le añadimos a la escena de las camaras el sombreador
+		:para que no nos dibuje el centro de la camara frontal.
+		:Esto lo hacemos añadiendiendo en el ViewPortContainer un
+		:material Shider en el CambasItem. para que aplique un
+		:cirlculo alha a lo que renderiza la camra frontal.
+		:-
+		:Por ultimo añadiremos un script a los objetos del frente
+		:para que modifiquen su capa si estan delante o detras del
+		:muñeco y de esa manera poder tener paredes y objetos no
+		:afectados por la transparencia.
+		:Creamos dos funciones una que mande la pared al fondo y otra
+		:que la mande al frente (Capa 1 o Capa 2)
+		:Y en el process revisamos la posicon X del player con la posicion X
+		:de la pared usando
+		:if(V.V_Player.global_position.x>global_position.x):
+		:para que si esta delante o detras llame a una u otra funcion.
+		:NT:Tambien he añadido una funcion que revisa en cada funcion
+		:si ya esta la capa bien y solo modificarta una vez.
+		:-
 		:
+*SHADERS
+	ª10120
+	:https://www.youtube.com/watch?v=kgGhJujTHM8&list=PLMiJk3nm2SG_p968uOTiOEPHXcdT9CPaP
+	:-
+	:Se ejecutan en la GPU.
+	:Pensemos en un cubo donde su X su Y y su Z se usan como
+	:colores G=Y B=X y R=Z (red, green,blue) de modo que
+	:tenemos un cubo de los colores del arcoiris.
+	:La posicion 0,0,0 seria el negro.
+	:Los colores serian hasta 225 y se alejan del centro.
+	:Y hacia arriba, X hacia la izquierda y Z hacia el frente.
+	:-
+	:Los sombreadores o shaders son para posprocesar las
+	:imagenes.
+	:En godot se crean por medio de un nuevo material tipo shader.
+	:y se aplican a nivel de SubViewPortContainer ya que son
+	:una capa de modificacion de render.
+	:Los shaders se ejecutan en la grafica y son calculos
+	:matematicos para modificar los colores de la salida
+	:de un render.
+	:
+	*Mezcla de colores
+		ª10120
+		:Una vez creado el material tipo shader le damos un nombre
+		:y en la parte central inferior nos aparecera el editor
+		:del codigo para el Shader.
+		:-
+		:Los shader se programan en una especie de C#
+		:Primero definiremos el tipo de shader o a que afecta.
+		:-
+		://- Tendremos dos opciones. "camvas_item" o "particles".
+		:shader_type particles;
+		:shader_type canvas_item;
+		://- Creamos 2 constantes Vector3D para dos colores.
+		:const vec3 V_ColorA=vec3(0.1,0.1,1.0);
+		:const vec3 V_ColorB=vec3(1.0,0.5,0.3);
+		:// Called for every vertex the material is visible on.
+		:void vertex() {
+		:}
+		:// Called for every pixel the material is visible on.
+		:void fragment() {
+		:vec3 M_Color= vec3(0.0);//- Creamos un vector3D para un color
+		://- Esto obtienen un float de un arco usando el TIME
+		://- y lo pasamos a absoluto positivo.
+		:float M_Pct= abs(sin(TIME));
+		://- Mezclamos el color1 con el color 2 en el % anterior.
+		:M_Color=mix(V_ColorA,V_ColorB,M_Pct);
+		://- Retornamos el color del Pixel en un Vector4
+		://- el 4º valor es el alpha.
+		:COLOR=vec4(M_Color,1.0);
+		:}
+		:// Called for every pixel for every light affecting the CanvasItem.
+		:void light() {
+		:}
+		:-
+		:
+	*Editando el alpha
+		ª10123ª10122
+		:Ahora despues del render , recorreremos cada pixel
+		:Obtenemos su color y modificamos su alpha.
+		:-
+		://- Le indico que sera un shader para canvas.
+		:shader_type canvas_item;
+		://- Genero un vector de color negro.
+		:const vec3 V_ColorB=vec3(0.0,0.0,0.0);
+		:// Called for every vertex the material is visible on.
+		:void vertex() {}
+		:// Called for every pixel the material is visible on.
+		:void fragment() {
+		:// - Obtengo el color de la textura
+		:vec3 M_ColorA=texture(TEXTURE,UV).rgb;
+		:// - Creo un color
+		:vec3 M_Color=vec3(0.0);
+		:// - obtengo un % (un arco)
+		:float M_Pc=abs(sin(TIME));
+		://- Mezclo el color del pixel objenido con mi color base.
+		:M_Color=mix(M_ColorA,V_ColorB,M_Pc);
+		://-modifico el color del pixel analizado.
+		:COLOR=vec4(M_Color,1.0);
+		:}
+		:// Called for every pixel for every light affecting the CanvasItem.
+		:void light() {}
+		:-
+		:
+

@@ -19,12 +19,12 @@ func _ready():
 func F_Resize():
 	#- Reescalamos a pelo para hacerlo dinamico , por parametro es estatico.
 	var M_Size:Vector2=DisplayServer.window_get_size();
-	M_Size.x=(M_Size.x/2);
+	#M_Size.x=(M_Size.x/2);
 	V_BackG_SubViewPort.size=M_Size;
 	V_Front_SubViewPort.size=M_Size;
 	$Base_Cam3D/BackGC1_SubViewPortCont.size=M_Size;
 	$Base_Cam3D/FrontC2_SubViewPortCont.size=M_Size;
-	$Base_Cam3D/FrontC2_SubViewPortCont.position.x=M_Size.x-250;
+	#$Base_Cam3D/FrontC2_SubViewPortCont.position.x=M_Size.x-250;
 	
 	
 #END F_Resize

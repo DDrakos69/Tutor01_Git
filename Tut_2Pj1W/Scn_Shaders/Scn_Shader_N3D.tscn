@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf036kia2wr7j"]
+
+[ext_resource type="Shader" path="res://Scn_Shaders/Scn_Shader_N3D1.gdshader" id="1_67i25"]
+[ext_resource type="Script" path="res://Scn_Shaders/Scn_Shader_N3D.gd" id="1_opfbn"]
+[ext_resource type="PackedScene" uid="uid://dyy0gtqrv4mw8" path="res://Scn_Shaders/Scn_keko_n3d.tscn" id="3_8eu7y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btouv"]
+shader = ExtResource("1_67i25")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_opfbn")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_btouv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.977783, 0.209619, 0, -0.209619, 0.977783, 0.0638534, 0.759734, -1.15357)
+
+[node name="Scn_Keko_N3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_8eu7y")]
+transform = Transform3D(0.19, 0, 0, 0, 0.19, 0, 0, 0, 0.19, -0.01, 0.188, -4.065)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.460014, -3.2971)

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5njsarxdu2kt"]
+
+[ext_resource type="PackedScene" uid="uid://63w1wrvqs0a8" path="res://Blender/Keko.glb" id="1_dyd66"]
+
+[node name="Keko" instance=ExtResource("1_dyd66")]

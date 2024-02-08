@@ -1,8 +1,5 @@
-res://SCN/Scn_Camera.tscn
-res://MATS/Floor_Mat3D.tres
-res://MATS/Wall_Mat3D.tres
-res://SCN/Scn_Camera.gd
-res://SCN/Scn_MAPA.tscn
-res://SCN/M_Player.tscn
-res://GLOBALS/GLOBALS.gd
-res://SCN/M_Player.gd
+res://Scn_Shaders/Scn_Shader_N3D.tscn
+res://Scn_Shaders/Scn_Shader_N3D.gdshader
+res://Scn_Shaders/Scn_Shader_N3D1.gdshader
+res://Scn_Shaders/Scn_Shader_N3D.gd
+res://SCN/Scn_keko_n3d.tscn

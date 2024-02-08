@@ -1,6 +1,6 @@
 extends Node
 
-var V_Player:Node;
+var V_Player:CharacterBody3D;#Node;
 var V_PlayerCamPoint:Node3D;
 
 var V_CamFront:Camera3D;

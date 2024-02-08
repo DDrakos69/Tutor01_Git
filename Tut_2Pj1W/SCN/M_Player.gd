@@ -13,6 +13,7 @@ var V_IsWalking:bool=false; #- guardara cuando el keko este caminando.
 
 
 func _ready():
+
 	#- Compartimos este propio player
 	V.F_PlayerSet(self);
 	V.F_PlayerCamPointSet($CamPoint_N3D);

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tut_2Pj1W"
-run/main_scene="res://SCN/Scn_MAPA.tscn"
+run/main_scene="res://Scn_Shaders/Scn_Shader_N3D.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -48,6 +48,5 @@ ACT_RIGHT={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 viewport/transparent_background=true
