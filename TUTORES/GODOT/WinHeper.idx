@@ -1,18 +1,16 @@
 {WinHelper V2.00 by FNX A1 2024}
-{WIN_W}00636
+{WIN_W}00466
 {JPG_SIZE}00068
 {IMG_AUTO}10000
-{WIN_DESC_H}00419
+{WIN_DESC_H}00530
 {WIN_DESC_PIC_H}00109
 {WIN_EDT_GRP_H}00221
 {WIN_ALING_LEFT}00001
-{WIN_IMG_CFG}.0010.0010.0943.0765.0100
+{WIN_IMG_CFG}.0199.0254.0586.0583.0055
 {LAT_H}00030
 {LAT_W}00010
 {LAT_C}255255000
-*CONTROLES
-	*
-*GODOT
+*00- GODOT
 	:Video Tutorial.
 	:https://www.youtube.com/watch?v=L3pFEk1HPCQ&list=PL5PTqiCIVoiVyA2qed1NE4uKejXEWM60e
 	:https://docs.godotengine.org/es/4.x/classes/class_performance.html
@@ -36,149 +34,47 @@
 	:igual al "THIS" en C#
 	:print(self.name);
 	:
-	*INDICE (Aprendizaje)
-		:Nivel Principiante
-		:Instalación y Configuración:
-		:Descargar e instalar Godot.
-		:Explorar la interfaz de usuario.
-		:Crear tu Primer Proyecto:
-		:Crear un nuevo proyecto.
-		:Familiarizarse con la estructura de carpetas del proyecto.
-		:Introducción a las Escenas:
-		:Aprender sobre las escenas en Godot.
-		:Crear una escena básica.
-		:Sprites y Texturas:
-		:Importar y usar sprites y texturas.
-		:Mover y rotar sprites.
-		:Introducción a la Programación con GDScript:
-		:Entender los conceptos básicos de GDScript.
-		:Crear scripts simples para objetos.
-		:Colisiones y Física:
-		:Configurar colisiones entre objetos.
-		:Aplicar física básica a objetos.
-		:Nivel Intermedio:
-		:Animaciones:
-		:Crear animaciones simples para personajes u objetos.
-		:Controlar animaciones mediante scripts.
-		:Controles de Usuario:
-		:Capturar la entrada del jugador (teclado, ratón, pantalla táctil).
-		:Implementar controles de usuario personalizados.
-		:Sistema de Partículas:
-		:Crear efectos visuales con sistemas de partículas.
-		:Sonido y Música:
-		:Agregar efectos de sonido y música a tu juego.
-		:Manejo de Escenas y Transiciones:
-		:Cambiar entre escenas.
-		:Crear transiciones suaves.
-		:Nivel Avanzado:
-		:Redes y Multijugador:
-		:Implementar funciones multijugador en línea.
-		:Sincronizar objetos y datos en red.
-		:Optimización del Rendimiento:
-		:Mejorar la eficiencia y el rendimiento de tu juego.
-		:Publicación y Distribución:
-		:Preparar tu juego para su lanzamiento en diferentes plataformas.
-		:Distribuir tu juego en tiendas en línea.
-		:Extensiones y Plugins:
-		:Explorar extensiones y plugins para ampliar las capacidades de Godot.
-		:Contribuir a la comunidad de Godot.
-		:Resolución de Problemas y Depuración:
-		:Aprender técnicas de depuración.
-		:Resolver problemas comunes.
-		:Proyecto Completo:
-		:Desarrollar un proyecto de juego completo desde cero hasta el lanzamiento.
+	:
+	:
+	:
+	*04 BUCLES
+		:Los bucles son bloques de codigo que se repiten hasta
+		:que una condicion o mientras una condicion se cumpla.
+		:Tenemos dos tipos principalmente.
+		:-
+		:for VARIABLE in rangue(INI,FIN):
+		:Este bucle se repite recorriendo una colecion para todos
+		:los miembros de un grupo.
+		:El comando range(1,10) genera un grupo de X elementos
+		:que luego se recorren y dando a VARIABLE el valor del grupo.
+		:La variable de control es creada no se puede predefinir y
+		:se elimina fuera del for.
+		:-
+		:#Se puede usar para numeros
+		:for V_PosX in range(1,10):
+		:_ print("PosX = ",V_PosX);
+		:#Fin For PosX.
+		:-
+		:#Se puede usar con arrais para recorrerlos
+		:var T_Frutas = ["Manzana","Pera","etc"];
+		:for V_Fruta in T_Frutas:
+		:_ print(V_Fruta);
+		:#Fin For Frutas.
+		:-
+		:Bucle WHILE (condicion)
+		:Este bucle no recorre lista
+		:Este bucle ejecuta un bloque de sentencias mientras que la
+		:condicion se cumpla.
+		:Para salir del bucle podemos o establecer la CONDICION a FALSA
+		:o usar la sentencia BREAK
+		:var Mq:int=0;
+		:while (Mq<10):
+		:_ print("Wile ",Mq);
+		:_ Mq+=1;
+		:#Fin del While
 		:
-	*Primer contacto
-		ª10000
-		:El primer contacto te abre el editor en modo 3D.
-		:-
-		:En la parte central superior nos muestra las distintas plantillas.
-		:- 2D para juegos 2D o ventanas.
-		:- 3D para juegos 3D.
-		:- Script para programar la logica.
-		:- AssetLibs para librerias importadas.
-		:-
-		:En la parte derecha superior tenemos
-		:las opciones de ejecucion y renderizado.
-		:-
-		:En la parte izquierda superior tenemos
-		:los menus para editar crear modificar y configurar tanto
-		:el entorno como las escenas.
-		:-
-		:En la parte de la izquierda superior
-		:-Escena - Añadimos nodos a la escena.
-		:-Importar - Al selecionar un fichero importable nos
-		:mostrara las opciones para importarlo.
-		:-En la parte de la izquierda inferior.
-		:El Explorador de ficheros.
-		:-
-		:En la derecha
-		:-Inspector -Nos mostrara las opciones del nodo selecionado
-		:con sus propiedades.
-		:-Nodos - Cuando selecionemos un nodo nos mostrara dos sub pestañas.
-		:- - Señales - Son los eventos programados "alertas" que daremos a los nodos
-		:para que se comuniquen con el resto.
-		:- - Grupos - Nos permite agrupar nodos para luego buscarlos mejor
-		:pero consume muchos recursos.
-		:-Historial - Es la lista de las ultimas modificaciones realizadas.
-		:-
-		:En la parte inferior.
-		:-Salida - con los resultados de las operaciones
-		:-Depurador - Recursos consumidos por nuestro juego.
-		:-Resultados de la busqueda.
-		:-Audio - Los distintos canales de audio buscados.
-		:-Animacion - Creacion o edicion de animaciones importadas.
-		:-Editor de Shaders - son modulos encargados de efectos especiales
-		:o sombreados, se hace niebla fuego humo sombras brillos etc.
-		:Se trabajan directamente en la TGrafica lo que los hace muy rapidos.
 		:
-	*Escenas y Nodos
-		:Godot se estructura con escenas y nodos
-		:Una escena seria un objeto que tiene distintos nodos
-		:Cada escena tiene un solo script.
-		:-
-		:Ejemplo.
-		:Tenemos una "SILLA" que seria la escena.
-		:Esta "SILLA" tiene 4 patas siendo cada pata un "NODO"
-		:Para manejar la "SILLA" existe un SCRIPT-
-		:-
-		:Godot da colores a los nodos para ayudarnos.
-		:[2D]
-		:Los de 2D son AZULES.
-		:El motro 2D es independiente no como suele pasar
-		:en otros motores que usan una adaptacion del motor
-		:3D para generar 2D.
-		:Esto le permite mas rendimiento.
-		:[3D]
-		:Los de 3D son ROSAS.
-		:[CONTROL]
-		:Los de tipo control son de color VERDE
-		:Se usan para entornos de usuario paneles y textos.
-		:Un contador de puntos o de vida.
-		:Se pueden usar tanto en 3D como en 2D
-		:[GENERICOS]
-		:Se pueden usar tanto en 3D como en 2D
 		:
-	*GScript Basico
-		ª10005ª10006ª10008ª10007ª10009
-		:-Clases Metodos y funciones.
-		:Todos los controles eredan del objeto node.
-		:al crear un script nos genera por defecto dos
-		:funciones
-		:extends Node
-		:-Este script hereda del objeto base "Node."
-		:func _ready():
-		:-Se ejecuta cuando se activa el nodo
-		:func _process(delta)
-		:-Se ejecuta cada vez que se dibuja la pantalla.
-		:-El tiempo transcurrido entre refrescos es delta.
-		:
-	*LENGUAJE
-		:Es muy parecido a pyton con algunas diferencias.
-		:Permite multilineas.
-		:Podemos terminar las sentencias con ; o si estan solas
-		:en la linea no poner nada.
-		:Usa <Tab> para los bloques de codigo.
 		:
 	*04 CLASES
 		:Podemos definir que un script sea una CLASE
@@ -212,6 +108,101 @@
 		:-
 		:Para instanciar una clase a una variable se usa el comando "new"
 		:var NombreVar=cls_file.new(Para1,Para2,ParaX);
+		:
+		:
+		:
+		:
+	*04 COMENTARIOS
+		:Son textos que no se ejecutan y nos permiten añadir
+		:descripciones al codigo o comentarios.
+		:-
+		:Existen dos modos de hacer comentarios.
+		:De una sola linea o Multilinea.
+		:-
+		:#Comentario de una linea.
+		:-
+		:'''
+		:Comentario
+		:multilinea
+		:'''
+		:-
+		:
+		:
+		:
+		:
+	*04 CONDICIONALES IF y MACTH
+		:Son sentencias de control de flujo que solo ejecutan
+		:su bloque de comandos si la o las condiciones son correctas.
+		:-Operadores logicos.
+		:Son los simbolos encargados de indicar que tipo de
+		:comparacion realizar.
+		:== = Igual que.
+		:=== = Exactamente igual que.
+		:!= = Distinto que.
+		:> = Mayor que
+		:< = Menor que
+		:>= = Mayor o igual que
+		:<= = Menor o igual que.
+		:and o && = todas sentencias son verdaderas (A y B)
+		:or o || = Alguna de las sentencias es verdadera (A o B)
+		:not o ! = La sentencia no es verdadera ( A no es verdadera)
+		:NT ! o not tambien se pueden usar para complementar
+		:una variable (if (A && !B): )=( Si A es verdad y B NO es verdad)
+		:-
+		:- IF (Comparacion) : Comandos.
+		:-
+		:Las condiciones pueden o no estar entre ().
+		:El inicio del codigo se define con :
+		:El codigo tiene que estar tabulado por encima del nivel del if.
+		:- (_ =<tab>)
+		:func F_Print(M_DELTA):
+		:_ var M_Q:int=2;
+		:_ _ if (M_DELTA > 1 && M_Q==2):
+		:_ _ _ print ("Delta > 1",M_DELTA);
+		:_ _ elif (M_DELTA < 1 && M_Q==2):
+		:_ _ _ print ("Delta < 1",M_DELTA);
+		:_ _ else:
+		:_ _ _ print ("Delta = 1",M_DELTA);
+		:_ _ #endif
+		:#Fin Funcion F_Print
+		:-
+		:- MATCH VARIABLE: CASO1: CASO2: CASOX: _:
+		:Funciona con un IF elIF donde se evalua el valor de la VARIABLE.
+		:en este caso el _: funciona como el ELSE:
+		:-
+		:match (M_DELTA):
+		:_ (1):
+		:_ _ print("Delta =1");
+		:_ (2):
+		:_ _ print("Delta =2");
+		:_ _: #Case Else
+		:_ _ print("Delta ni 1 ni 2");
+		:#Fin del MATCH
+		:
+		:
+		:
+		:
+	*04 ENUMS
+		:En GODOT no existen los ENUMS como tal.
+		:En su lugar podemos usar LISTAS.
+		:-
+		:var ELista = {
+		:_ "Rojo":0,
+		:_ "Verde":1,
+		:_ "Azul":2
+		:}
+		:-
+		:O usar una clase (Mejor una clase.).
+		:_
+		:class ClsELista:
+		:_ var Rojo=0;
+		:_ var Verde=1;
+		:_ var Azul=2;
+		:#END Class
+		:var Elista:ClsELista;
+		:
+		:
+		:
 		:
 	*04 FUNCIONES y METODOS
 		:Los METODOS y FUNCIONES son lo mismo.
@@ -252,6 +243,28 @@
 		:_ Sentencia1
 		:_ Sentencia2
 		:_ SentenciaX
+		:
+		:
+		:
+		:
+	*04 OPERADORES MATEMATICOS
+		:Son los simbolos que indican al motor que realizar
+		:con los datos o variables.
+		:-Los basicos serian:
+		:+ = sumar
+		:- = Restar
+		:* = Multiplicacion
+		:/ = Divison
+		:-
+		:-Los avanzados serian:
+		:** = Obtiene el Exponente
+		:% = Obtiene el Modulo
+		:// = Obtienen una division entera.
+		:+= = Incrementa en X una variable o numero.
+		:-= = Decrementa en X una variable o numero.
+		:
+		:
+		:
 		:
 	*04 VARIABLES y CONSTANTES
 		:Godot es fuertemente tipado.
@@ -309,495 +322,263 @@
 		:Existen distintos tipos de export segun el tipo de dato
 		:que queramos usar.
 		:
-	*04 COMENTARIOS
-		:Son textos que no se ejecutan y nos permiten añadir
-		:descripciones al codigo o comentarios.
-		:-
-		:Existen dos modos de hacer comentarios.
-		:De una sola linea o Multilinea.
-		:-
-		:#Comentario de una linea.
-		:-
-		:'''
-		:Comentario
-		:multilinea
-		:'''
-		:-
 		:
-	*04 ENUMS
-		:En GODOT no existen los ENUMS como tal.
-		:En su lugar podemos usar LISTAS.
-		:-
-		:var ELista = {
-		:_ "Rojo":0,
-		:_ "Verde":1,
-		:_ "Azul":2
-		:}
-		:-
-		:O usar una clase (Mejor una clase.).
-		:_
-		:class ClsELista:
-		:_ var Rojo=0;
-		:_ var Verde=1;
-		:_ var Azul=2;
-		:#END Class
-		:var Elista:ClsELista;
 		:
-	*04 OPERADORES MATEMATICOS
-		:Son los simbolos que indican al motor que realizar
-		:con los datos o variables.
-		:-Los basicos serian:
-		:+ = sumar
-		:- = Restar
-		:* = Multiplicacion
-		:/ = Divison
-		:-
-		:-Los avanzados serian:
-		:** = Obtiene el Exponente
-		:% = Obtiene el Modulo
-		:// = Obtienen una division entera.
-		:+= = Incrementa en X una variable o numero.
-		:-= = Decrementa en X una variable o numero.
 		:
-	*04 CONDICIONALES IF y MACTH
-		:Son sentencias de control de flujo que solo ejecutan
-		:su bloque de comandos si la o las condiciones son correctas.
-		:-Operadores logicos.
-		:Son los simbolos encargados de indicar que tipo de
-		:comparacion realizar.
-		:== = Igual que.
-		:=== = Exactamente igual que.
-		:!= = Distinto que.
-		:> = Mayor que
-		:< = Menor que
-		:>= = Mayor o igual que
-		:<= = Menor o igual que.
-		:and o && = todas sentencias son verdaderas (A y B)
-		:or o || = Alguna de las sentencias es verdadera (A o B)
-		:not o ! = La sentencia no es verdadera ( A no es verdadera)
-		:NT ! o not tambien se pueden usar para complementar
-		:una variable (if (A && !B): )=( Si A es verdad y B NO es verdad)
+	*Escenas y Nodos
+		:Godot se estructura con escenas y nodos
+		:Una escena seria un objeto que tiene distintos nodos
+		:Cada escena tiene un solo script.
 		:-
-		:- IF (Comparacion) : Comandos.
+		:Ejemplo.
+		:Tenemos una "SILLA" que seria la escena.
+		:Esta "SILLA" tiene 4 patas siendo cada pata un "NODO"
+		:Para manejar la "SILLA" existe un SCRIPT-
 		:-
-		:Las condiciones pueden o no estar entre ().
-		:El inicio del codigo se define con :
-		:El codigo tiene que estar tabulado por encima del nivel del if.
-		:- (_ =<tab>)
-		:func F_Print(M_DELTA):
-		:_ var M_Q:int=2;
-		:_ _ if (M_DELTA > 1 && M_Q==2):
-		:_ _ _ print ("Delta > 1",M_DELTA);
-		:_ _ elif (M_DELTA < 1 && M_Q==2):
-		:_ _ _ print ("Delta < 1",M_DELTA);
-		:_ _ else:
-		:_ _ _ print ("Delta = 1",M_DELTA);
-		:_ _ #endif
-		:#Fin Funcion F_Print
-		:-
-		:- MATCH VARIABLE: CASO1: CASO2: CASOX: _:
-		:Funciona con un IF elIF donde se evalua el valor de la VARIABLE.
-		:en este caso el _: funciona como el ELSE:
-		:-
-		:match (M_DELTA):
-		:_ (1):
-		:_ _ print("Delta =1");
-		:_ (2):
-		:_ _ print("Delta =2");
-		:_ _: #Case Else
-		:_ _ print("Delta ni 1 ni 2");
-		:#Fin del MATCH
+		:Godot da colores a los nodos para ayudarnos.
+		:[2D]
+		:Los de 2D son AZULES.
+		:El motro 2D es independiente no como suele pasar
+		:en otros motores que usan una adaptacion del motor
+		:3D para generar 2D.
+		:Esto le permite mas rendimiento.
+		:[3D]
+		:Los de 3D son ROSAS.
+		:[CONTROL]
+		:Los de tipo control son de color VERDE
+		:Se usan para entornos de usuario paneles y textos.
+		:Un contador de puntos o de vida.
+		:Se pueden usar tanto en 3D como en 2D
+		:[GENERICOS]
+		:Se pueden usar tanto en 3D como en 2D
 		:
-	*04 BUCLES
-		:Los bucles son bloques de codigo que se repiten hasta
-		:que una condicion o mientras una condicion se cumpla.
-		:Tenemos dos tipos principalmente.
-		:-
-		:for VARIABLE in rangue(INI,FIN):
-		:Este bucle se repite recorriendo una colecion para todos
-		:los miembros de un grupo.
-		:El comando range(1,10) genera un grupo de X elementos
-		:que luego se recorren y dando a VARIABLE el valor del grupo.
-		:La variable de control es creada no se puede predefinir y
-		:se elimina fuera del for.
-		:-
-		:#Se puede usar para numeros
-		:for V_PosX in range(1,10):
-		:_ print("PosX = ",V_PosX);
-		:#Fin For PosX.
-		:-
-		:#Se puede usar con arrais para recorrerlos
-		:var T_Frutas = ["Manzana","Pera","etc"];
-		:for V_Fruta in T_Frutas:
-		:_ print(V_Fruta);
-		:#Fin For Frutas.
-		:-
-		:Bucle WHILE (condicion)
-		:Este bucle no recorre lista
-		:Este bucle ejecuta un bloque de sentencias mientras que la
-		:condicion se cumpla.
-		:Para salir del bucle podemos o establecer la CONDICION a FALSA
-		:o usar la sentencia BREAK
-		:var Mq:int=0;
-		:while (Mq<10):
-		:_ print("Wile ",Mq);
-		:_ Mq+=1;
-		:#Fin del While
 		:
-*EJEMPLOS
-	*Test For While
-		:"_ " = <TAB>
-		:Este Test revisa el uso de memoria y la velocidad de
-		:los bucles FOR y WHILE
-		:-
-		:Conclusion, Para Fores pequeños es mejor el for
-		:pero al crecer el for aumenta el uso de memoria y de
-		:ciclos siendo mas rapido y mejor el while.
-		:- RESULTADOS
-		:Repeticiones X 1000
-		:REP1: 1000000 REP2: 1000000 REP3: 1000000
-		:MEM0:49144563 MEM1:49207191 MEM2:49207191 MEM3:49207191
-		:MEMT1:62628 MEMT2:0 MEMT3:0
-		:TBas=815 TFor1=875 TWhile=938 TFor2=998
-		:TFor1-TBas=60 TWhile-TFor1=63 TFor2-TWhile=60
-		:----
-		:Repeticiones X 10000
-		:REP1: 100000000 REP2: 100000000 REP3: 100000000
-		:MEM0:49144563 MEM1:49665943 MEM2:49665943 MEM3:49665943
-		:MEMT1:521380 MEMT2:0 MEMT3:0
-		:TBas=806 TFor1=6578 TWhile=12791 TFor2=18773
-		:TFor1-TBas=5772 TWhile-TFor1=6213 TFor2-TWhile=5982
-		:-----
-		:Repeticiones X 15000
-		:REP1: 225000000 REP2: 225000000 REP3: 225000000
-		:MEM0:49144563 MEM1:50190231 MEM2:50190231 MEM3:50190231
-		:MEMT1:1045668 MEMT2:0 MEMT3:0
-		:TBas=913 TFor1=14364 TWhile=28680 TFor2=41975
-		:TFor1-TBas=13451 TWhile-TFor1=14316 TFor2-TWhile=13295
-		:-------
-		:Repeticiones X 22000
-		:REP1: 484000000 REP2: 484000000 REP3: 484000000
-		:MEM0:49144563 MEM1:51238807 MEM2:51238807 MEM3:51238807
-		:MEMT1:2094244 MEMT2:0 MEMT3:0
-		:TBas=820 TFor1=31757 TWhile=62000 TFor2=94092
-		:TFor1-TBas=30937 TWhile-TFor1=30243 TFor2-TWhile=32092
-		:-------
-		:Repeticiones X 30000
-		:REP1: 900000000 REP2: 900000000 REP3: 900000000
-		:MEM0:49144563 MEM1:51238807 MEM2:51238807 MEM3:51238807
-		:MEMT1:2094244 MEMT2:0 MEMT3:0
-		:TBas=918 TFor1=57982 TWhile=114198 TFor2=171330
-		:TFor1-TBas=57064 TWhile-TFor1=56216 TFor2-TWhile=57132
-		:------------
-		:Repeticiones X 30000
-		:REP1: 0 REP2: 900000000 REP3: 0
-		:MEM0:49139803 MEM1:49139803 MEM2:49136887 MEM3:49136887
-		:MEMT1:0 MEMT2:-2916 MEMT3:0
-		:TBas=911 TFor1=911 TWhile=56806 TFor2=56806
-		:TFor1-TBas=0 TWhile-TFor1=55895 TFor2-TWhile=0
-		:-
-		:-CODIGO
-		:print("Hola Mundo");
-		:var V_Rang:int=30000;
-		:var V_Tim0_int:int=0;var V_Tim1_int:int=0;
-		:var V_Tim2_int:int=0;var V_Tim3_int:int=0;
-		:var Mq:int=0;var Mq1:int=0;
-		:var V0:float =0;var V1:float =0;var V2:float =0;
-		:var M0:float =0;var M1:float =0;var M2:float =0;var M3:float =0;
-		:# - - Del For1
-		:V_Tim0_int=Time.get_ticks_msec();
-		:M0=Performance.get_monitor(Performance.MEMORY_STATIC);
-		:# - - Del For1
-		:V_Tim0_int=Time.get_ticks_msec();
-		:M0=Performance.get_monitor(Performance.MEMORY_STATIC);
-		:for MqX in range(V_Rang):
-		:_ for MqY in range(V_Rang):
-		:_ _ V0+=1;
-		:_ #Fin For MqY
-		:#Fin For MqX
-		:#----- WHILES
-		:V_Tim1_int=Time.get_ticks_msec();
-		:M1=Performance.get_monitor(Performance.MEMORY_STATIC);
-		:while (Mq<V_Rang):
-		:_ Mq+=1;Mq1=0;
-		:_ while (Mq1<V_Rang):
-		:_ _ Mq1+=1;
-		:_ _ V1+=1;
-		:_ #Fin del While
-		:#Fin del While
-		:#----- FOR 2
-		:V_Tim2_int=Time.get_ticks_msec();
-		:M2=Performance.get_monitor(Performance.MEMORY_STATIC);
-		:for MqR in range(V_Rang):
-		:_ for MqT in range(V_Rang):
-		:_ _ V2+=1;
-		:_ #Fin For MqY
-		:#Fin For MqX
-		:V_Tim3_int=Time.get_ticks_msec();
-		:M3=Performance.get_monitor(Performance.MEMORY_STATIC);
-		:#--Resultados
-		:print("Repeticiones X ",V_Rang);
-		:print("REP1: ",V0," REP2: ",V1," REP3: ",V2);
-		:print("MEM0:",M0," MEM1:",M1," MEM2:",M2," MEM3:",M3);
-		:print("MEMT1:",(M1-M0)," MEMT2:",(M2-M1)," MEMT3:",(M3-M2));
-		:print("TBas=",V_Tim0_int," TFor1=",V_Tim1_int," TWhile=",V_Tim2_int," TFor2=",V_Tim3_int);
-		:print("TFor1-TBas=",(V_Tim1_int-V_Tim0_int)," TWhile-TFor1=",(V_Tim2_int-V_Tim1_int),
-		:" TFor2-TWhile=",(V_Tim3_int-V_Tim2_int));
-		:-
 		:
-	*Acceder a un nodo y sus propiedades
-		ª10017
-		:Tenemos tres modos de acceder a las propiedades de un
-		:nodo.
-		:-
-		:Usando el comando get_node("Nombre Nodo");
-		:-
-		:Usando el simbolo $NOMBRENODO
-		:-
-		:Arrastra el nodo hasta el script para que el escriba el nombre.
-		:-
-		:- EJEMPLOS
-		:# Called when the node enters the scene tree for the first time.
-		:func _ready()->void:
-		:_ var M_Node=get_node("Ctr_Casa");
-		:_ $Ctr_Casa.LAYOUT.clip_contents=true;
-		:_ print(F_Calcula());
-		:_ pass # Replace with function body.
-		:#Fin Func _Ready
-		:# Called every frame. 'delta' is the elapsed time since the previous frame.
-		:func _process(delta):
-		:_ #print(delta);
-		:_ pass
-		:func F_Calcula()->Array:
-		:_ return [3,5,7];
-		:_ pass
-		:#Fin Funcion F_Calcula
 		:
-	*Crear un Boton dinamico con evento
-		:Con este codigo ejecutado en el nodo padre creamos
-		:un nodo button y le añadimos un evento al terminar el
-		:_ready();
-		:-
+	*GScript Basico
+		ª10005ª10006ª10008ª10007ª10009
+		:-Clases Metodos y funciones.
+		:Todos los controles eredan del objeto node.
+		:al crear un script nos genera por defecto dos
+		:funciones
 		:extends Node
+		:-Este script hereda del objeto base "Node."
 		:func _ready():
-		:_ # Crear el botón
-		:_ var boton = Button.new()
-		:_ boton.text = "Mostrar Alerta"
-		:_ boton.rect_min_size = Vector2(200, 50)
-		:_ add_child(boton)
-		:_ # Conectar la señal "pressed" del botón a la función mostrar_alerta
-		:_ boton.connect("pressed", self, "mostrar_alerta")
-		:_
-		:func mostrar_alerta():
-		:_ # Crear la alerta (un cuadro de diálogo)
-		:_ var alerta = AcceptDialog.new()
-		:_ alerta.dialog_text = "¡Esto es una alerta personalizada!"
-		:_ alerta.add_button("Aceptar", true) # Botón para cerrar la alerta
-		:-
-		:_ # Agregar la alerta como un hijo del nodo principal
-		:_ add_child(alerta)
-		:_ alerta.popup_centered() # Mostrar la alerta en el centro de la pantalla
+		:-Se ejecuta cuando se activa el nodo
+		:func _process(delta)
+		:-Se ejecuta cada vez que se dibuja la pantalla.
+		:-El tiempo transcurrido entre refrescos es delta.
 		:
-	*Botones Dinamicos y Eventos Dinamicos
-		:En este ejemplo creo 4 botones dinamicos y
-		:enlazo su evento Button_up a una funcion pasandole
-		:un valor.
-		:-
-		:Callable(Control,NomFuncion)
-		:Crea un objeto que indica una funcion en cualquier
-		:Control.Script y el el nombre de esa funcion.
-		:-
-		:Connect(NomEvento,Callable)
-		:Conecta un evento con un callable.
-		:Dice la funcion y donde esta el manejador
-		:de ese evento.
-		:-
-		:Otro modo mas simple y que permite mandar variables
-		:seria:
-		:NomControl.NomEvent.connect(NomFuncion.bind(Valor));
-		:No tiene mucho sentido bind = conectar pero...
-		:Conecta el NomEvent del NomControl con NomFuncion
-		:y le manda Valor como parametro.
-		:-
-		:func _ready():
-		:_ var Mq:int=0;
-		:_ while(Mq<4):
-		:_ _ var MBt=Button.new();
-		:_ _ MBt.name="BT_ResX"+str(Mq);
-		:_ _ MBt.set_size(Vector2(50,30));
-		:_ _ MBt.text=str(((Mq*200)+600));
-		:_ _ self.add_child(MBt);
-		:_ _ MBt.set_position(Vector2((100+(Mq*50)),0));
-		:_ _ var MCall=Callable(self,"F_Evt_MyButton_Up");
-		:_ _ #MBt.connect("button_up",MCall);
-		:_ _ MBt.button_down.connect(F_Evt_MyButton_Up.bind(MBt));
-		:_ _ V_ResX.append(MBt);#Añado Boton a mi tabla.
-		:_ _ Mq+=1;
-		:_ #End While Mq
-		:_ print("Botones:"+str(V_ResX.size()));
-		:_ pass # Replace with function body.
-		:#End Func _ready
-		:-
-		:func F_Evt_MyButton_Up(VAL):
-		:_ if (VAL is Button):
-		:_ _ print("MyBtPress"+str(VAL.name));
-		:_ else:
-		:_ _ print("MyBtPress"+str(VAL));
-		:#End Func F_Evt_MyButton_Up
 		:
-	*Importar objetos de Blender
-		:Teniendo el Blender el modelo con todos los objetos asociados
-		:a la armadura y las animaciones .
-		:Lo selecionamos todo .
-		:Exportamos a GLTF2.
-		:En las ultimas versiones de blender vienen como addons por
-		:lo que para exportar se tiene que añadir el addon GLTF2.
-		:Al exportar en blender selecionamos.
-		:-Selected Objects
-		:-+Y Up
-		:-Apply Modifiers.
-		:-UVs
-		:-Normals
-		:-VertexColors.
-		:-Material = Exports.
-		:-Images = Atumatic.
-		:-
-		:Guardamos el fichero en la carpeta configurada en el GODOT
-		:para las importaciones.
-		:-
-		:Ahora en GODOT
-		:-
-		:Creamos una nueva scena.
-		:Añadimos una Camera
-		:Tenemos que tener configurado una carpeta para los
-		:resources de blender donde pusimos el GLB
-		:Al abrir el GLB importado nos dira si que remos una escena heredada
-		:le decimos que si y la guardamos.
-		:La estrucutra sera.
-		:ESCENA
-		:_ _ AnimationPlayer
-		:_ _ Armature : Node3D
-		:_ _ _ Skeleton3D : Skeleton3D
-		:_ _ _ _ Mesh1 :MeshInstance3D
-		:_ _ _ _ MeshX :MeshInstance3D
 		:
-	*Materiales
-	*SAVE_LOAD Tabla Arrays
-		:En este ejemplo tengo un array de 2 dimensiones con cadenas
-		:y lo cargo y guardo en un fichero de texto plano separado
-		:por : y donde cada linea es un row.
-		:_
-		:#byDark 231201 Tabla para las resoluciones.
-		:#Se carga desde el fichero.
-		:var tab_resoluciones=[
-		:_ ["640","480"],["800","600"],["1024","768"],
-		:_ ["1152","864"],["1280","720"],["1280","768"],
-		:_ ["1280","800"],["1280","960"],["1280","1024"],
-		:_ ["1600","1200"],["1920","1080"],["2048","1536"],
-		:_ ["2560","1440"],["2560","1600"],["3840","2160"],
-		:_ ["4096","2160"],["5120","2880"],["7680","4320"],
-		:_ ["10240","4320"]
+		:
+	*INDICE (Aprendizaje)
+		:Nivel Principiante
+		:Instalación y Configuración:
+		:Descargar e instalar Godot.
+		:Explorar la interfaz de usuario.
+		:Crear tu Primer Proyecto:
+		:Crear un nuevo proyecto.
+		:Familiarizarse con la estructura de carpetas del proyecto.
+		:Introducción a las Escenas:
+		:Aprender sobre las escenas en Godot.
+		:Crear una escena básica.
+		:Sprites y Texturas:
+		:Importar y usar sprites y texturas.
+		:Mover y rotar sprites.
+		:Introducción a la Programación con GDScript:
+		:Entender los conceptos básicos de GDScript.
+		:Crear scripts simples para objetos.
+		:Colisiones y Física:
+		:Configurar colisiones entre objetos.
+		:Aplicar física básica a objetos.
+		:Nivel Intermedio:
+		:Animaciones:
+		:Crear animaciones simples para personajes u objetos.
+		:Controlar animaciones mediante scripts.
+		:Controles de Usuario:
+		:Capturar la entrada del jugador (teclado, ratón, pantalla táctil).
+		:Implementar controles de usuario personalizados.
+		:Sistema de Partículas:
+		:Crear efectos visuales con sistemas de partículas.
+		:Sonido y Música:
+		:Agregar efectos de sonido y música a tu juego.
+		:Manejo de Escenas y Transiciones:
+		:Cambiar entre escenas.
+		:Crear transiciones suaves.
+		:Nivel Avanzado:
+		:Redes y Multijugador:
+		:Implementar funciones multijugador en línea.
+		:Sincronizar objetos y datos en red.
+		:Optimización del Rendimiento:
+		:Mejorar la eficiencia y el rendimiento de tu juego.
+		:Publicación y Distribución:
+		:Preparar tu juego para su lanzamiento en diferentes plataformas.
+		:Distribuir tu juego en tiendas en línea.
+		:Extensiones y Plugins:
+		:Explorar extensiones y plugins para ampliar las capacidades de Godot.
+		:Contribuir a la comunidad de Godot.
+		:Resolución de Problemas y Depuración:
+		:Aprender técnicas de depuración.
+		:Resolver problemas comunes.
+		:Proyecto Completo:
+		:Desarrollar un proyecto de juego completo desde cero hasta el lanzamiento.
+		:
+		:
+		:
+		:
+	*LENGUAJE
+		:Es muy parecido a pyton con algunas diferencias.
+		:Permite multilineas.
+		:Podemos terminar las sentencias con ; o si estan solas
+		:en la linea no poner nada.
+		:Usa <Tab> para los bloques de codigo.
+		:
+		:
+		:
+		:
+	*Primer contacto
+		ª10000
+		:El primer contacto te abre el editor en modo 3D.
+		:-
+		:En la parte central superior nos muestra las distintas plantillas.
+		:- 2D para juegos 2D o ventanas.
+		:- 3D para juegos 3D.
+		:- Script para programar la logica.
+		:- AssetLibs para librerias importadas.
+		:-
+		:En la parte derecha superior tenemos
+		:las opciones de ejecucion y renderizado.
+		:-
+		:En la parte izquierda superior tenemos
+		:los menus para editar crear modificar y configurar tanto
+		:el entorno como las escenas.
+		:-
+		:En la parte de la izquierda superior
+		:-Escena - Añadimos nodos a la escena.
+		:-Importar - Al selecionar un fichero importable nos
+		:mostrara las opciones para importarlo.
+		:-En la parte de la izquierda inferior.
+		:El Explorador de ficheros.
+		:-
+		:En la derecha
+		:-Inspector -Nos mostrara las opciones del nodo selecionado
+		:con sus propiedades.
+		:-Nodos - Cuando selecionemos un nodo nos mostrara dos sub pestañas.
+		:- - Señales - Son los eventos programados "alertas" que daremos a los nodos
+		:para que se comuniquen con el resto.
+		:- - Grupos - Nos permite agrupar nodos para luego buscarlos mejor
+		:pero consume muchos recursos.
+		:-Historial - Es la lista de las ultimas modificaciones realizadas.
+		:-
+		:En la parte inferior.
+		:-Salida - con los resultados de las operaciones
+		:-Depurador - Recursos consumidos por nuestro juego.
+		:-Resultados de la busqueda.
+		:-Audio - Los distintos canales de audio buscados.
+		:-Animacion - Creacion o edicion de animaciones importadas.
+		:-Editor de Shaders - son modulos encargados de efectos especiales
+		:o sombreados, se hace niebla fuego humo sombras brillos etc.
+		:Se trabajan directamente en la TGrafica lo que los hace muy rapidos.
+		:
+		:
+		:
+		:
+*01- EJEMPLOS
+	*04 Acceso a los nodos
+		:Para obtener acceso a los nodos tenemos dos modos.
+		:-
+		:Podemos usar el comando get_node("Nombre Nodo")
+		:o podemos usar $NombreNodo
+		:-
+		:Tambien puedes arrastrar un nodo y el godot te genera el acceso
+		:E incluso las propiedades de los nodos.
+		:
+		:
+		:
+		:
+	*04 ARRAYS y DICCIONARIOS
+		:Los ARRAYS,
+		:Son listas de datos, cada celda puede ser de un tipo
+		:de dato y guarda una posicion segun el orden de creacion.
+		:-
+		:var V_LstNom:Array=[
+		:_ "Pedro",
+		:_ 26,
+		:_ 10.20,
+		:_ 20.30,
+		:_ false,
+		:_ [
+		:_ _ "Fusco",
+		:_ _ "cuchillo",
+		:_ _ "ganzua"
 		:_ ]
-		:#byDark 231127 Si no existe el fichero de resoluciones,creamos uno por defecto.
-		:# se llama desde f_resoluciones_fileload;
-		:func f_resoluciones_savefile():
-		:_ var m_fname=save_path+"resolutions.conf";
-		:_ var m_q=0;
-		:_ DirAccess.remove_absolute(m_fname);
-		:_ var m_f = FileAccess.open(m_fname,FileAccess.WRITE);
-		:_ while (m_q<tab_resoluciones.size()):
-		:_ _ m_f.store_line(tab_resoluciones[m_q][0]+":"+tab_resoluciones[m_q][1]);
-		:_ _m_q=m_q+1;
-		:_ #m_f.store_var(tab_resoluciones);
-		:_ m_f.flush();
-		:_ m_f.close();
-		:_ m_f = null;
-		:_ f_log("Save Res:("+m_fname+")");
-		:#END f_resoluciones_savefile
-		:#byDark 231127 Si no existe el fichero de resoluciones,creamos uno por defecto.
-		:func f_resoluciones_fileload():
-		:_var m_fname=save_path+"resolutions.conf";
-		:_if(!FileAccess.file_exists(m_fname)):
-		:_ _ f_resoluciones_savefile();
-		:_else:
-		:_ _ var m_f= FileAccess.open(m_fname, FileAccess.READ)
-		:_ _ var m_l;
-		:_ _ var m_cels;
-		:_ _ tab_resoluciones.clear();
-		:_ _ while(!m_f.eof_reached()):
-		:_ _ _ _m_l=m_f.get_line();
-		:_ _ _ _m_cels=m_l.split(":");
-		:_ _ _ _if(m_cels.size()==2):
-		:_ _ _ _ _ tab_resoluciones.append(m_cels);
-		:_ _ #END While
-		:_ _ m_f.close();
-		:_ _ m_f=null;
-		:_#END if Else Save o Read
-		:_print("load res:",m_fname);
-		:_print("load res:",tab_resoluciones);
-		:#END f_resoluciones_fileload
+		:]
+		:-
+		:Para acceder a los datos del array se usan los [ ]
+		:print("Nombre ",V_LstNom[0]);# Nombre Pedro
+		:print("Arma ",V_LstNom[5][1]);# Arma Cuchillo
+		:-
+		:Los DICIONARIOS
+		:son como las arrays pero contienen "Clave Valor" ,
+		:En los arrays la clave es la posicon que ocupa el dato
+		:en el array y es atumatico.
+		:En los dicionarios se define un nombre como clave y
+		:se le da un valor.
+		:Las claves no se pueden repetir.
+		:-
+		:var diccionario_principal = {};# Crear un diccionario principal
+		:var mi_array = [1, 2, 3];# Crear un array
+		:diccionario_principal["array"] = mi_array ;#Añadimos a dicionario el array
+		:-
+		:var diccionario_interno = {};# Crear un diccionario interno
+		:diccionario_interno["nombre"] = "Ana"
+		:diccionario_interno["edad"] = 25
+		:-
+		:# Agregar el diccionario interno al diccionario principal
+		:diccionario_principal["diccionario"] = diccionario_interno
+		:-
+		:# Acceder a elementos dentro del diccionario principal
+		:var array_recuperado = diccionario_principal["array"]
+		:var diccionario_recuperado = diccionario_principal["diccionario"]
+		:-
+		:# Acceder a elementos dentro del diccionario interno
+		:var nombre = diccionario_recuperado["nombre"]
+		:var edad = diccionario_recuperado["edad"]
+		:-
+		:# Imprimir valores
+		:print("Array:", array_recuperado)
+		:print("Nombre:", nombre)
+		:print("Edad:", edad)
+		:-
+		:Para saber si un item pertenece a una colecion existen dos metodos
+		:con la funcion .has("KEY"); o con if("KEY" in Colecion):.
+		:-
 		:
-	*V4 Controlador Basico 3D
-		:https://www.youtube.com/watch?v=J5-0X9xPDVE
-		:- Controlador sencillo para personajes 3D
 		:
-	*SPACE SHOOTER 2D
-		:Por tratarse de un juego 2D usaremos el Renderizador
-		:de movio o compatibilidad.
-		:Crearemos un mata mata de navecitas con :
-		:Scrool horizontal paralax.
 		:
-		*CONFIGURACION
-			ª10086ª10084
-			:Entramos en la configuracion del proyecto y activamos
-			:"Configuraciones Avanzadas".
-			:-
-			:En Aplicacion definimos
-			:un nombre y un icono.
-			:-
-			:En Ejecutar definismos
-			:Una escena principal o la seteamos desde el Sistema de archivos .. es lo mismo.
-			:FPS maximos
-			:-
-			:En pantalla de splash
-			:Definiremos si queremos pantalla de inicio o no y cual
-			:-
-			:En Monitor
-			:Definimos un viewport de 272x160
-			:Modo ventana Wondowed. (O la que sea)
-			:Redimensionable = flaso (Es cutre que se pueda redimensionar.)
-			:En Sobreescribir Ancho y Alto lo ponemos en 816x480 para
-			:depuracion solo.
-			:En Estirar le decimos
-			:Modo (ViewPort.) y Ascecto (Keep) Modo de estirar que mantiene
-			:las proporciones pero puedes ajusta al alto al ancho o ambos.
-			:-
-			:Ahora como es un juego PixelArt le quitamos el subizado.
-			:Saltamos a Renderizado y en
-			:Texturas/Texturas del Lienzo/Filtro de texturas le decimos
-			:que Neadest que significa Mas cercano al original.
-			:
-		*ESTRUCTURA
-			:En este caso como es un proyecto simple es simple.
-			:Tenemos que tener en cuenta que todo en godot son
-			:escenas por lo que tenemos.
-			:Escena de Enemigos
-			:Escena de Game Over
-			:Escena de GUI
-			:Escena de LEVEL
-			:Escena de Menu
-			:Escena de Player
-			:Escena de Disparo.
-			:-
-			:Como puedes ver las escenas de
-			:Game over, level, menu
-			:son las principales
-			:el resto son objetos que se usan dentro de estas escenas.
-			:-
-			:Tambien necesitaremos un AutoLoad o script golbal
-			:para lo que necesitemos para todo el proyecto.
-			:-
-			:
+		:
+	*04 Comentarios
+		:En GDScript tenemos dos modos de comentarios.
+		:-
+		:De una sola linea.
+		:-_ #Esto es un comentario.
+		:Todo lo que este a la derecha del # es un comentario.
+		:Tambien se pueden poner al final de una cadena de
+		:instruciones.
+		:_ print("Hola mundo");#Comentario
+		:-
+		:De mas de una linea.
+		:En este caso se usan 3 comillas simples para abrir
+		:y otras 3 comillas simples para cerrar el comentario
+		:_ '''
+		:_ Esto es un comentario
+		:_ multilinea
+		:_ '''
+		:
+		:
+		:
+		:
 	*05 AUTOLOAD o SINGLETON
 		ª10018ª10019ª10020ª10023ª10021ª10022
 		:Son script con funciones o variables que se
@@ -824,6 +605,9 @@
 		:Lo Añadimos en el auto load como GLOBAL.
 		:y para usarlos solo necesitamos poner
 		:GLOBAL.V_SCORE=XX;
+		:
+		:
+		:
 		:
 	*06 LAS SEÑALES
 		:Las señales son EVENTOS.
@@ -918,404 +702,8 @@
 		:MODO DIRECTO
 		:-
 		:
-	*Acceso a los nodos
-		:Godos encapsula todo en nodos .
-		:Cada nodo tienen un script.
-		:Cada nodo ereda del tipo base nodo pero puede o no
-		:tener una segunda capa segun el tipo de accion que
-		:realize.
-		:-
-		:Podemos obtener acceso al nodo actual usando.
-		:self
-		:-
-		:Para acceder de modo directo usando :
-		:var nodo = $NombreNodo
-		:De este modo podemos acceder a los nodos directamente
-		:pero solo desde nuestro nivel en adelante, tambien a los
-		:de nuestro nivel.
-		:-
-		:Podemos obtener la referencia de un nodo usando.
-		:get_node("NombreNodo")
-		:-
-		:Tambien puedes acceder por medio de la estructura.
-		:Si tu nodo maestro se llama Root y dentro tiene otro
-		:llamado Player podrias acceder asi.
-		:var player_node = get_node("Root/Player")
-		:-
-		:Podemos añadir un nodo hijo al nodo actual con:
-		:self.add_child();
-		:-
-		:Podemos obtener una referencia al nodo padre con:
-		:var nodo_padre = self.get_parent()
-		:-
-		:Podemos obtener una tabla con las referencias a los
-		:nodos hijos con :
-		:var hijos = self.get_children()
-		:-
-		:En caso de que una referencia a un nodo no sea correcta
-		:o si una variable no tiene instancia se puede usar "null"
-		:como en C#.
-		:if (MiNodo==null):
-		:<tb>sentencias.
-		:else:
-		:<tb>sentencias.
 		:
-	*Instanciar Controles predefinidos
-		:Podemos crear controles predefinidos y preconfigurados.
-		:Para ello tenemos que añadirlos a una nueva escena.
-		:Los creamos y los configuramos.
-		:PreCargamos la escena.
-		:Buscamos el control en esa escena .
-		:Reasignamos el padre a donde queramos.
-		:EJ:
-		:func _ready():
-		:_ F_Tron("_ready");
-		:_ #Modifico el texto de un label creado
-		:_ var MLb:Label=$Lb_BtPulsado;
-		:_ MLb.text="Hola";
-		:_
-		:_ #- Precarga de forma rapida una escena.
-		:_ F_Tron("PRE-LOAD");
-		:_ var M_SCN_REPO=preload("res://SCN_REPO/SCN_REPO.tscn").instantiate();
-		:_ F_Tron("PRE-LOAD.. OK");
-		:_
-		:_ #- Carga todo lo necesario de la escena.
-		:_ #var M_SCN_REPO=load("res://SCN_REPO/SCN_REPO.tscn");
-		:_ #print("LOAD");
-		:_
-		:_ #-- Añadimos la escena instanciada a la escena actual.
-		:_ #get_tree().root.add_child(M_SCN_REPO)
-		:_ #F_Tron("ADDChild");
-		:_ #self.add_child(M_SCN_REPO);
-		:_ #F_Tron("ADDChild.. OK");
-		:_
-		:_ F_Tron("CLON BUTTON");
-		:_ var M_BtClon=M_SCN_REPO.get_node("REPO_BTBase");
-		:_ F_Tron("CLON BUTTON.. OK");
-		:_
-		:_ F_Tron("CLON BUTTON Instance");
-		:_ M_BtClon.reparent(self);
-		:_ #self.add_child(M_BtClon);
-		:_ F_Tron("CLON BUTTON Instance .. OK");
-		:_
 		:
-	*Crear Tabla de controles dinamicos
-		:Tras PreCargar la escena madre y
-		:obtener el control de esa escena.
-		:Rellenamos una tabla con colnes de ese boton
-		:y los añadimos a la escena actual.
-		:-EJ:
-		:F_Tron("PRE-LOAD");
-		:_ var M_SCN_REPO=preload("res://SCN_REPO/SCN_REPO.tscn").instantiate();
-		:_ F_Tron("PRE-LOAD.. OK");
-		:_
-		:_ F_Tron("CLON BUTTON");
-		:_ var M_BtClon=M_SCN_REPO.get_node("REPO_BTBase");
-		:_ F_Tron("CLON BUTTON.. OK");
-		:_
-		:_ F_Tron("Botones ADD2TABLE");
-		:_ V_TBt.clear();
-		:_ var M_q:int=0;
-		:_ var M_Pos:Vector2;
-		:_ var M_Size:Vector2;
-		:_ while (M_q<20):
-		:_ _ var M_Bt:Button=M_BtClon.duplicate();# Button.new();
-		:_ _ M_Bt.name="BT"+str(M_q);
-		:_ _ M_Bt.text=M_Bt.name;
-		:_ _ V_TBt.append(M_Bt);
-		:_ _ M_q+=1;
-		:_ #EndWhile
-		:_ F_Tron("Botones ADD2TABLE.. OK");
-		:_
-		:_ F_Tron("Botones CFG + ADD");
-		:_ M_q=0;M_Size.x=40;M_Size.y=20;
-		:_ while (M_q<20):
-		:_ _ var M_Bt:Button=V_TBt[M_q];
-		:_ _ self.add_child(M_Bt);
-		:_ _ M_Bt.set_size(M_Size,false);
-		:_ _ M_Bt.visible=true;
-		:_ _ M_Pos.x=M_q*50;
-		:_ _ M_Bt.set_position(M_Pos);
-		:_ _ M_q+=1;
-		:_ #EndWhile
-		:_ F_Tron("Botones CFG + ADD.. OK");
-		:#End Func _ready
-		:
-	*08 Movimiento Personalizado
-		:Para caputrar el movimiento es tan simple como:
-		:En el SCRIPT GLOBAL añadimos una funcion para obtener
-		:que tecla se ha pulsado y extraer la direcion.
-		:Esta direcion en 2 ejes la guardamos en una
-		:varible golbal tipo Vector2.
-		:-
-		:#Movimiento personalizado
-		:var V_Axis:Vector2;
-		:func F_GetAxis()->Vector2:
-		:_ V_Axis.x=int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"));
-		:_ V_Axis.y=int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"));
-		:_ #print(str(V_Axis.x)+" x "+str(V_Axis.y)+" y");
-		:_ return V_Axis.normalized();
-		:#Fin Fnc F_GetAxis
-		:-
-		:En el juego, en el SCRIPT del CHARACTER ya sea
-		:3D 2D o 2.5D añadimos una funcion que usando
-		:esta variable aplique el desplazamiento.
-		:OJO: no incorpora ni gravedad ni salto.
-		:-
-		:Copiamos la que viene por defecto a otra funcion.
-		:-
-		:#Esto viene de fabrica.
-		:const SPEED = 300.0
-		:const JUMP_VELOCITY = -400.0
-		:# Get the gravity from the project settings to be synced with RigidBody nodes.
-		:var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-		:-
-		:#Codigo por defecto en una funcion.
-		:func F_MotionDefault(delta)->void:
-		:_ #Add the gravity.
-		:_ if not is_on_floor():
-		:_ _ velocity.y += gravity * delta
-		:_ # Handle Jump.
-		:_ if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		:_ _ velocity.y = JUMP_VELOCITY
-		:_ # Get the input direction and handle the movement/deceleration.
-		:_ # As good practice, you should replace UI actions with custom gameplay actions.
-		:_ var direction = Input.get_axis("ui_left", "ui_right")
-		:_ if direction:
-		:_ _ velocity.x = direction * SPEED
-		:_ else:
-		:_ _ velocity.x = move_toward(velocity.x, 0, SPEED)
-		:_ move_and_slide()
-		:#End Func F_MotionDefault
-		:-
-		:#Mi funcion de desplazamiento.
-		:func F_MotionControl(delta)->void:
-		:_ velocity.x=V.F_GetAxis().x*SPEED;
-		:_ velocity.y=V.F_GetAxis().y*SPEED;
-		:_ move_and_slide();
-		:#End Fnc F_MotionControl
-		:-
-		:#El evento quedaria asi.
-		:func _physics_process(delta):
-		:_ F_MotionControl(delta);
-		:_ #F_MotionDefault(delta);
-		:#End func _physics_process
-		:
-	*EL NODO
-		:-PROPIEDADES
-		:String	<-	editor_description	""
-		:MultiplayerAPI	<-	multiplayer
-		:StringName	<-	name
-		:Node	<-	owner
-		:ProcessMode	<-	process_mode	0
-		:int	<-	process_physics_priority	0
-		:int	<-	process_priority	0
-		:ProcessThreadGroup	<-	process_thread_group	0
-		:int	<-	process_thread_group_order
-		:BitField<ProcessThreadMessages>	<-	process_thread_messages
-		:String	<-	scene_file_path
-		:bool	<-	unique_name_in_owner	false
-		:Methods¶
-		:void	<-	_enter_tree ( ) virtual
-		:void	<-	_exit_tree ( ) virtual
-		:PackedStringArray	<-	_get_configuration_warnings ( ) virtual const
-		:void	<-	_input ( InputEvent event ) virtual
-		:void	<-	_physics_process ( float delta ) virtual
-		:void	<-	_process ( float delta ) virtual
-		:void	<-	_ready ( ) virtual
-		:void	<-	_shortcut_input ( InputEvent event ) virtual
-		:void	<-	_unhandled_input ( InputEvent event ) virtual
-		:void	<-	_unhandled_key_input ( InputEvent event ) virtual
-		:void	<-	add_child ( Node node, bool force_readable_name=false, InternalMode internal=0 )
-		:void	<-	add_sibling ( Node sibling, bool force_readable_name=false )
-		:void	<-	add_to_group ( StringName group, bool persistent=false )
-		:Variant	<-	call_deferred_thread_group ( StringName method, ... ) vararg
-		:Variant	<-	call_thread_safe ( StringName method, ... ) vararg
-		:bool	<-	can_process ( ) const
-		:Tween	<-	create_tween ( )
-		:Node	<-	duplicate ( int flags=15 ) const
-		:Node	<-	find_child ( String pattern, bool recursive=true, bool owned=true ) const
-		:Node[]	<-	find_children ( String pattern, String type="", bool recursive=true, bool owned=true ) const
-		:Node	<-	find_parent ( String pattern ) const
-		:Node	<-	get_child ( int idx, bool include_internal=false ) const
-		:int	<-	get_child_count ( bool include_internal=false ) const
-		:Node[]	<-	get_children ( bool include_internal=false ) const
-		:StringName[]	<-	get_groups ( ) const
-		:int	<-	get_index ( bool include_internal=false ) const
-		:Window	<-	get_last_exclusive_window ( ) const
-		:int	<-	get_multiplayer_authority ( ) const
-		:Node	<-	get_node ( NodePath path ) const
-		:Array	<-	get_node_and_resource ( NodePath path )
-		:Node	<-	get_node_or_null ( NodePath path ) const
-		:Node	<-	get_parent ( ) const
-		:NodePath	<-	get_path ( ) const
-		:NodePath	<-	get_path_to ( Node node, bool use_unique_path=false ) const
-		:float	<-	get_physics_process_delta_time ( ) const
-		:float	<-	get_process_delta_time ( ) const
-		:bool	<-	get_scene_instance_load_placeholder ( ) const
-		:SceneTree	<-	get_tree ( ) const
-		:String	<-	get_tree_string ( )
-		:String	<-	get_tree_string_pretty ( )
-		:Viewport	<-	get_viewport ( ) const
-		:Window	<-	get_window ( ) const
-		:bool	<-	has_node ( NodePath path ) const
-		:bool	<-	has_node_and_resource ( NodePath path ) const
-		:bool	<-	is_ancestor_of ( Node node ) const
-		:bool	<-	is_displayed_folded ( ) const
-		:bool	<-	is_editable_instance ( Node node ) const
-		:bool	<-	is_greater_than ( Node node ) const
-		:bool	<-	is_in_group ( StringName group ) const
-		:bool	<-	is_inside_tree ( ) const
-		:bool	<-	is_multiplayer_authority ( ) const
-		:bool	<-	is_node_ready ( ) const
-		:bool	<-	is_physics_processing ( ) const
-		:bool	<-	is_physics_processing_internal ( ) const
-		:bool	<-	is_processing ( ) const
-		:bool	<-	is_processing_input ( ) const
-		:bool	<-	is_processing_internal ( ) const
-		:bool	<-	is_processing_shortcut_input ( ) const
-		:bool	<-	is_processing_unhandled_input ( ) const
-		:bool	<-	is_processing_unhandled_key_input ( ) const
-		:void	<-	move_child ( Node child_node, int to_index )
-		:void	<-	notify_deferred_thread_group ( int what )
-		:void	<-	notify_thread_safe ( int what )
-		:void	<-	print_orphan_nodes ( ) static
-		:void	<-	print_tree ( )
-		:void	<-	print_tree_pretty ( )
-		:void	<-	propagate_call ( StringName method, Array args=[], bool parent_first=false )
-		:void	<-	propagate_notification ( int what )
-		:void	<-	queue_free ( )
-		:void	<-	remove_child ( Node node )
-		:void	<-	remove_from_group ( StringName group )
-		:void	<-	reparent ( Node new_parent, bool keep_global_transform=true )
-		:void	<-	replace_by ( Node node, bool keep_groups=false )
-		:void	<-	request_ready ( )
-		:Error	<-	rpc ( StringName method, ... ) vararg
-		:void	<-	rpc_config ( StringName method, Variant config )
-		:Error	<-	rpc_id ( int peer_id, StringName method, ... ) vararg
-		:void	<-	set_deferred_thread_group ( StringName property, Variant value )
-		:void	<-	set_display_folded ( bool fold )
-		:void	<-	set_editable_instance ( Node node, bool is_editable )
-		:void	<-	set_multiplayer_authority ( int id, bool recursive=true )
-		:void	<-	set_physics_process ( bool enable )
-		:void	<-	set_physics_process_internal ( bool enable )
-		:void	<-	set_process ( bool enable )
-		:void	<-	set_process_input ( bool enable )
-		:void	<-	set_process_internal ( bool enable )
-		:void	<-	set_process_shortcut_input ( bool enable )
-		:void	<-	set_process_unhandled_input ( bool enable )
-		:void	<-	set_process_unhandled_key_input ( bool enable )
-		:void	<-	set_scene_instance_load_placeholder ( bool load_placeholder )
-		:void	<-	set_thread_safe ( StringName property, Variant value )
-		:void	<-	update_configuration_warnings ( )
-		:
-	*Enlazar con Blender
-		:El godot se puede enlazar con proyectos del Blender.
-		:Para ello tenemos que indicarle dos cosas.
-		:1- Indicarle donde tenemos instalado el blender.
-		:2- Decirle que use la importacion del Blender.
-		:-
-		:1- En Editor/Editor Settings
-		:- Buscamos Blender
-		:- En FileSystem/Import definimos la ruta donde
-		:- tenemos instalado el Blender.
-		:-
-		:2 - En Project/ProjectSeting
-		:- Activamos la Ver paramateros avanzados (Advanced)
-		:- Buscamos "Blender"
-		:- En FileSystem/Import lo ponemos como Enabled.
-		:-
-		:- Ahora Creamos una carpeta en el proyecto para
-		:- nuestros Blenders en el GODOT.
-		:- Guardamos nuestro Blend en esa carpeta.
-		:- Ahora nos permite añadir los objetos del Blend
-		:- al proyecto.
-		:-
-		:
-	*04 Comentarios
-		:En GDScript tenemos dos modos de comentarios.
-		:-
-		:De una sola linea.
-		:-_ #Esto es un comentario.
-		:Todo lo que este a la derecha del # es un comentario.
-		:Tambien se pueden poner al final de una cadena de
-		:instruciones.
-		:_ print("Hola mundo");#Comentario
-		:-
-		:De mas de una linea.
-		:En este caso se usan 3 comillas simples para abrir
-		:y otras 3 comillas simples para cerrar el comentario
-		:_ '''
-		:_ Esto es un comentario
-		:_ multilinea
-		:_ '''
-		:
-	*04 ARRAYS y DICCIONARIOS
-		:Los ARRAYS,
-		:Son listas de datos, cada celda puede ser de un tipo
-		:de dato y guarda una posicion segun el orden de creacion.
-		:-
-		:var V_LstNom:Array=[
-		:_ "Pedro",
-		:_ 26,
-		:_ 10.20,
-		:_ 20.30,
-		:_ false,
-		:_ [
-		:_ _ "Fusco",
-		:_ _ "cuchillo",
-		:_ _ "ganzua"
-		:_ ]
-		:]
-		:-
-		:Para acceder a los datos del array se usan los [ ]
-		:print("Nombre ",V_LstNom[0]);# Nombre Pedro
-		:print("Arma ",V_LstNom[5][1]);# Arma Cuchillo
-		:-
-		:Los DICIONARIOS
-		:son como las arrays pero contienen "Clave Valor" ,
-		:En los arrays la clave es la posicon que ocupa el dato
-		:en el array y es atumatico.
-		:En los dicionarios se define un nombre como clave y
-		:se le da un valor.
-		:Las claves no se pueden repetir.
-		:-
-		:var diccionario_principal = {};# Crear un diccionario principal
-		:var mi_array = [1, 2, 3];# Crear un array
-		:diccionario_principal["array"] = mi_array ;#Añadimos a dicionario el array
-		:-
-		:var diccionario_interno = {};# Crear un diccionario interno
-		:diccionario_interno["nombre"] = "Ana"
-		:diccionario_interno["edad"] = 25
-		:-
-		:# Agregar el diccionario interno al diccionario principal
-		:diccionario_principal["diccionario"] = diccionario_interno
-		:-
-		:# Acceder a elementos dentro del diccionario principal
-		:var array_recuperado = diccionario_principal["array"]
-		:var diccionario_recuperado = diccionario_principal["diccionario"]
-		:-
-		:# Acceder a elementos dentro del diccionario interno
-		:var nombre = diccionario_recuperado["nombre"]
-		:var edad = diccionario_recuperado["edad"]
-		:-
-		:# Imprimir valores
-		:print("Array:", array_recuperado)
-		:print("Nombre:", nombre)
-		:print("Edad:", edad)
-		:-
-		:Para saber si un item pertenece a una colecion existen dos metodos
-		:con la funcion .has("KEY"); o con if("KEY" in Colecion):.
-		:-
-		:
-	*04 Acceso a los nodos
-		:Para obtener acceso a los nodos tenemos dos modos.
-		:-
-		:Podemos usar el comando get_node("Nombre Nodo")
-		:o podemos usar $NombreNodo
-		:-
-		:Tambien puedes arrastrar un nodo y el godot te genera el acceso
-		:E incluso las propiedades de los nodos.
 		:
 	*06 LAS SEÑALES BASE
 		:En godot las SEÑALES son parecidas a los EVENTOS pero
@@ -1399,14 +787,71 @@
 		:func _process(delta):
 		:_ pass
 		:
-	*Numeros aleatorios
-		:Podemos obtener un numero aleatorio usando las funciones
-		:randif() o randi()
-		:randi() para enteros
-		:randf() para flotantes.
+		:
+		:
+		:
+	*08 Movimiento Personalizado
+		:Para caputrar el movimiento es tan simple como:
+		:En el SCRIPT GLOBAL añadimos una funcion para obtener
+		:que tecla se ha pulsado y extraer la direcion.
+		:Esta direcion en 2 ejes la guardamos en una
+		:varible golbal tipo Vector2.
 		:-
-		:var MNum = randi() * 10 + 5;
-		:Genera un numero entre 5 y 15.
+		:#Movimiento personalizado
+		:var V_Axis:Vector2;
+		:func F_GetAxis()->Vector2:
+		:_ V_Axis.x=int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"));
+		:_ V_Axis.y=int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"));
+		:_ #print(str(V_Axis.x)+" x "+str(V_Axis.y)+" y");
+		:_ return V_Axis.normalized();
+		:#Fin Fnc F_GetAxis
+		:-
+		:En el juego, en el SCRIPT del CHARACTER ya sea
+		:3D 2D o 2.5D añadimos una funcion que usando
+		:esta variable aplique el desplazamiento.
+		:OJO: no incorpora ni gravedad ni salto.
+		:-
+		:Copiamos la que viene por defecto a otra funcion.
+		:-
+		:#Esto viene de fabrica.
+		:const SPEED = 300.0
+		:const JUMP_VELOCITY = -400.0
+		:# Get the gravity from the project settings to be synced with RigidBody nodes.
+		:var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+		:-
+		:#Codigo por defecto en una funcion.
+		:func F_MotionDefault(delta)->void:
+		:_ #Add the gravity.
+		:_ if not is_on_floor():
+		:_ _ velocity.y += gravity * delta
+		:_ # Handle Jump.
+		:_ if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		:_ _ velocity.y = JUMP_VELOCITY
+		:_ # Get the input direction and handle the movement/deceleration.
+		:_ # As good practice, you should replace UI actions with custom gameplay actions.
+		:_ var direction = Input.get_axis("ui_left", "ui_right")
+		:_ if direction:
+		:_ _ velocity.x = direction * SPEED
+		:_ else:
+		:_ _ velocity.x = move_toward(velocity.x, 0, SPEED)
+		:_ move_and_slide()
+		:#End Func F_MotionDefault
+		:-
+		:#Mi funcion de desplazamiento.
+		:func F_MotionControl(delta)->void:
+		:_ velocity.x=V.F_GetAxis().x*SPEED;
+		:_ velocity.y=V.F_GetAxis().y*SPEED;
+		:_ move_and_slide();
+		:#End Fnc F_MotionControl
+		:-
+		:#El evento quedaria asi.
+		:func _physics_process(delta):
+		:_ F_MotionControl(delta);
+		:_ #F_MotionDefault(delta);
+		:#End func _physics_process
+		:
+		:
+		:
 		:
 	*10 Animationplayer
 		ª10035ª10032
@@ -1450,6 +895,9 @@
 		:Le indicamos donde esta la funcion, y
 		:Tambien podemos premarar Eventos o Alertas en fotogramas claves
 		:para que realize tareas especificas..
+		:
+		:
+		:
 		:
 	*11 AnimationTree
 		ª10033ª10030ª10027ª10029ª10031
@@ -1519,6 +967,9 @@
 		:@onready -> carga la variable cuando ya se ha ejecutado la
 		:burbuja de readys.
 		:
+		:
+		:
+		:
 	*12 TWEEN
 		ª10034
 		:TWEEN es como se llama el proceso por el cual
@@ -1572,6 +1023,9 @@
 		:func _process(delta):
 		:_ pass
 		:
+		:
+		:
+		:
 	*13 TILEMAP
 		ª10040ª10041ª10042ª10044ª10060
 		:Se trata de un modulo para pintar una cuadricula.
@@ -1607,6 +1061,82 @@
 		:si queremos otro tamaño tenemos que definirlo en las
 		:propiedade del TileMAP y en el TileSet y del Tile.
 		:
+		:
+		:
+		:
+		*AUTO TILE MAP
+			ª10052ª10053ª10054ª10055ª10056ª10057ª10058
+			:AUTO TILEMAP
+			:Esta es una herramienta para que el TileMap Autopinte
+			:terrenos.
+			:Otra vez en el TileSet definimos un nuevo TerrainSets.
+			:Definimos el modo de calculo que usara para ajustar
+			:los suelos (Esquinas , Suelos o los dos.)
+			:Y añadimos un Suelo, Le damos un color y un nombre
+			:descrictivo.
+			:NT: Dentro del TERRAIN SET podemos crear distintos
+			:elementos para cada tipo de suelo que tengamos en el
+			:TILE (Atlas de suelos y paredes.)
+			:NT: Tambien podemos Añadir distintos TERRAIN SET
+			:para que ajuste de otro modo el suelo. osea. tenemos
+			:uno para que ajuste por esquinas y otro por suelos
+			:Y el de esquinas solo tiene 1 tipo de mapa (serva)
+			:Y el de Suelos Tenemos 3 Ladrillo, Pantano, cienaga.
+			:-
+			:Ahora en el PAINT del TileSet en PROPERTIES elegimos
+			:TERRAIN selecionamos el TERRAIN Set (Tipo de ajuste)
+			:y dentro el TERRAIN (tipo de suelo).
+			:Y en cada Sprite pintamos dejando el suelo o las
+			:es quinas sin pintar. (Es muy util)
+			:-
+			:Despues en el TILEMAP en la seccion superior
+			:TERRAINS selecionamos el
+			:TERRAIN SET (Tipo de ajuste) y el
+			:SUB TERRAIN (Tipo de suelo) y pintamos. El
+			:propio motor colocara pared esquina o interior segun lo
+			:crea combeniente.
+			:
+			:
+			:
+			:
+		*COLLISION LAYERS
+			ª10043ª10044ª10045ª10046ª10047ª10048
+			:COLISIONES
+			:Tambien podemos definir colisiones en los Tiles que
+			:queramos, para ello tenemos que definir sus fisicas.
+			:En las propiedades del TileMap cuando creamos un TileSet
+			:Delante aparece icono con cuadros azules. si le pikamos
+			:nos muestra el TileSize para modifica el tamo de los Tiles y
+			:ajustar el grill y debajo.
+			:Phisics Layers, pinchamos en ADD Element y asi creamos un
+			:mapa de colisiones, le decimos el LAYER.
+			:Ahora en el TileSet.
+			:Tenemos que pintar las colisiones.
+			:En PAINT selecionamos el Phisical Layer que hemos creado
+			:y nos mostrara un recuadro donde al pinchar en cada uno de
+			:los Tiles nos lo mostrara y de forma vectorial le damos el
+			:poligono de colision.
+			:Por defecto pone 4 vertices pero podemos añadir mas si
+			:lo necesitamos.
+			:
+			:
+			:
+			:
+		*NAVIGATION LAYERS
+			ª10050ª10051ª10048
+			:CAPAS DE NAVEGACION
+			:Al igual que las colision Map, si queremos que un enemigo
+			:sepa por donde moverse le podemos indicar ese espacio.
+			:En el TileMap.TileSET. buscamos "Navigation Layer"
+			:y creamos un MavigationLayer
+			:Definimos el Layer.
+			:Ahora en la configuracion del TileSet PAINT y en
+			:Paint Properties , selecionamos que editaremos el
+			:Navigation Layer, y el resto es lo mismo.
+			:
+			:
+			:
+			:
 		*TILESET y CAPAS
 			ª10044ª10043
 			:TILESET
@@ -1646,69 +1176,8 @@
 			:capa a modificar en el comobo derecho..
 			:-
 			:
-		*COLLISION LAYERS
-			ª10043ª10044ª10045ª10046ª10047ª10048
-			:COLISIONES
-			:Tambien podemos definir colisiones en los Tiles que
-			:queramos, para ello tenemos que definir sus fisicas.
-			:En las propiedades del TileMap cuando creamos un TileSet
-			:Delante aparece icono con cuadros azules. si le pikamos
-			:nos muestra el TileSize para modifica el tamo de los Tiles y
-			:ajustar el grill y debajo.
-			:Phisics Layers, pinchamos en ADD Element y asi creamos un
-			:mapa de colisiones, le decimos el LAYER.
-			:Ahora en el TileSet.
-			:Tenemos que pintar las colisiones.
-			:En PAINT selecionamos el Phisical Layer que hemos creado
-			:y nos mostrara un recuadro donde al pinchar en cada uno de
-			:los Tiles nos lo mostrara y de forma vectorial le damos el
-			:poligono de colision.
-			:Por defecto pone 4 vertices pero podemos añadir mas si
-			:lo necesitamos.
 			:
-		*NAVIGATION LAYERS
-			ª10050ª10051ª10048
-			:CAPAS DE NAVEGACION
-			:Al igual que las colision Map, si queremos que un enemigo
-			:sepa por donde moverse le podemos indicar ese espacio.
-			:En el TileMap.TileSET. buscamos "Navigation Layer"
-			:y creamos un MavigationLayer
-			:Definimos el Layer.
-			:Ahora en la configuracion del TileSet PAINT y en
-			:Paint Properties , selecionamos que editaremos el
-			:Navigation Layer, y el resto es lo mismo.
 			:
-		*AUTO TILE MAP
-			ª10052ª10053ª10054ª10055ª10056ª10057ª10058
-			:AUTO TILEMAP
-			:Esta es una herramienta para que el TileMap Autopinte
-			:terrenos.
-			:Otra vez en el TileSet definimos un nuevo TerrainSets.
-			:Definimos el modo de calculo que usara para ajustar
-			:los suelos (Esquinas , Suelos o los dos.)
-			:Y añadimos un Suelo, Le damos un color y un nombre
-			:descrictivo.
-			:NT: Dentro del TERRAIN SET podemos crear distintos
-			:elementos para cada tipo de suelo que tengamos en el
-			:TILE (Atlas de suelos y paredes.)
-			:NT: Tambien podemos Añadir distintos TERRAIN SET
-			:para que ajuste de otro modo el suelo. osea. tenemos
-			:uno para que ajuste por esquinas y otro por suelos
-			:Y el de esquinas solo tiene 1 tipo de mapa (serva)
-			:Y el de Suelos Tenemos 3 Ladrillo, Pantano, cienaga.
-			:-
-			:Ahora en el PAINT del TileSet en PROPERTIES elegimos
-			:TERRAIN selecionamos el TERRAIN Set (Tipo de ajuste)
-			:y dentro el TERRAIN (tipo de suelo).
-			:Y en cada Sprite pintamos dejando el suelo o las
-			:es quinas sin pintar. (Es muy util)
-			:-
-			:Despues en el TILEMAP en la seccion superior
-			:TERRAINS selecionamos el
-			:TERRAIN SET (Tipo de ajuste) y el
-			:SUB TERRAIN (Tipo de suelo) y pintamos. El
-			:propio motor colocara pared esquina o interior segun lo
-			:crea combeniente.
 			:
 	*14 GRILLMAP
 		ª10080ª10079ª10061ª10082ª10081
@@ -1748,6 +1217,9 @@
 		:mesh con las opciones o teclas definidas para ello
 		:que aparecen en el editor 3d el boton GRIDMAP
 		:
+		:
+		:
+		:
 		*MESHLIBRARY
 			ª10073ª10072ª10071ª10070ª10069ª10068ª10067ª10066ª10065ª10064ª10063ª10062ª10061ª10078ª10077ª10076ª10075ª10074
 			:Para crear una MESHLIBRARY la creamos desde el
@@ -1785,285 +1257,9 @@
 			:Scene/Export As/MeshLibrary
 			:Le decimos donde y listo.
 			:
-	*CONFIGURAR ENTORNO
-		ª10089ª10088
-		:Un punto principal a la hora de crear un videojuego es la
-		:configuracion del entorno.
-		:-
-		:Es necesario poder definir parametros como:
-		:La resolucion, La caliad de sombra, La calidad de los efectos,
-		:La iluminacion etc
-		:-
-		:Muchos de estos parametros se configuran modificando
-		:directamente los parametros del motor.
-		:Otras se tienen que configurar directamente sobre los objetos.
-		:-
-		:Para configura el motor se usara el nodo
-		:"ProjectSettings.set_setting(KEY,VAL)"
-		:Estas claves se pueden obtener por medio de la pantalla de
-		:"Project/Project Setings".
-		:Si en el titulo de la propiedad pulsamos BtDer nos dara las
-		:opciones de copiar la KEY que se usa para configurar
-		:ese parametro.
-		:-
-		:func F_Settings_Set():
-		:_ var M_CfgKey="";
-		:_ #-----------------
-		:_ if(settings.has("aniso")==null):settings["aniso"]=0;
-		:_ M_CfgKey="rendering/textures/default_filters/anisotropic_filtering_level";
-		:_ F_Tron("F_Settings_Set(aniso)="+str(settings["aniso"]));
-		:_ #-----------------
-		:_ #Se ha mantenido disabled, Shadows acepta de 0 a 6,
-		:_ # En el settings = disable,0,1,2,3 etc
-		:_ # Si setting=Disable cfg=0 y si setting=0 tambien cfg=0
-		:_ if(settings.has("shadows")==null):
-		:_ _ settings["shadows"]="disabled";
-		:_ M_CfgKey="rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality";
-		:_ ProjectSettings.set_setting(M_CfgKey,0);
-		:_ if(settings["shadows"]!="disabled"):
-		:_ _ ProjectSettings.set_setting(M_CfgKey,int(settings["shadows"]));
-		:_ F_Tron("F_Settings_Set(shadows)="+str(settings["shadows"]));
-		:_ #-----------------
-		:_ if(settings.has("gi")==null):settings["gi"]="disabled";
-		:_ M_CfgKey="rendering/global_illumination/voxel_gi/quality";
-		:_ #Nt: el disabled desactiva directamente las luces
-		:_ #NT: El motro solo pilla dos valores 0=low y 1 high
-		:_ if(globals.settings["gi"]=="normal"):
-		:_ _ ProjectSettings.set_setting(M_CfgKey,0);
-		:_ if(globals.settings["gi"]=="high"):
-		:_ _ ProjectSettings.set_setting(M_CfgKey,1);
-		:_ F_Tron("F_Settings_Set(gi)="+str(settings["gi"]));
-		:_ #-----------------
-		:_ if(settings.has("text_lang")==null):settings["text_lang"]="en";
-		:_ TranslationServer.set_locale(settings["text_lang"]);
-		:_ F_Tron("F_Settings_Set(text_lang)="+str(settings["text_lang"]));
-		:_ #-----------------
-		:_ if(settings.has("msaa")==null):settings["msaa"]=0;
-		:_ M_CfgKey="rendering/anti_aliasing/quality/msaa_2d";
-		:_ ProjectSettings.set_setting(M_CfgKey,settings["msaa"]);
-		:_ F_Tron("F_Settings_Set(msaa)="+str(settings["msaa"]));
-		:_ #-----------------
-		:_ if(settings.has("msaa_3d")==null):settings["msaa_3d"]=0;
-		:_ M_CfgKey="rendering/anti_aliasing/quality/msaa_3d";
-		:_ ProjectSettings.set_setting(M_CfgKey,settings["msaa_3d"]);
-		:_ F_Tron("F_Settings_Set(msaa_3d)="+str(settings["msaa_3d"]));
-		:_ #-----------------
-		:#END F_Settings_Set
-		:
-	*FICHEROS
-		:GODOT trabaja los ficheros como otros lenguajes.
-		:1 - Se enlaza el fichero a una variable de un modo.
-		:2 - Se realizan las operaciones sobre el fichero dado.
-		:3 - Se Refresca el setado (propio al guardar.)
-		:4 - Se Cierra el fichero
-		:5 - Se desinstancia la variable (Para liberar la memoria.)
-		:-
-		:Para el enlace se usa el comando "FileAccess"
-		:Despues le decimos el tipo de Acceso .
-		:-
-		:func save_config():
-		:_ DirAccess.remove_absolute(save_path+"config.conf")
-		:_ var f = FileAccess.open(save_path+"config.conf",FileAccess.WRITE)
-		:_ f.store_var(settings)
-		:_ f.flush();#Fuerza la escritura del los datos del buffer al archivo.
-		:_ f.close();
-		:_ f = null
-		:_
-		:func load_config():
-		:_ var f= FileAccess.open(save_path+"config.conf", FileAccess.READ)
-		:_ settings = f.get_var();
-		:_ f.close();
-		:_ f=null;
-		:-
-		:Estas son algunas de las propiedades que se pueden hacer sobre
-		:los ficheros.
-		:f.store_var(settings)
-		:f.store_string("Texto");
-		:f.file_exists("FILE");
-		:f.get_error();
-		:f.get_file_as_bytes("FILE");
-		:f.get_file_as_string("FILE");
-		:f.get_modified_time("FILE");
-		:f.get_path();
-		:f.get_path_absolute();
-		:f.get_position();
-		:f.get_real();
-		:f.is_open();
-		:f.open_compressed("FILE",FileAccess.READ,FileAccess.COMPRESSION_GZIP);
-		:f.open_encrypted("FILE",FileAccess.READ,new key());
-		:f.READ();
-		:f.READ_WRITE();
-		:f.WRITE();
-		:f.WRITE_READ();
-		:f.connect("SEÑAL",Callable(),flags);
-		:f.disconnect("SEÑAL",Callable());
-		:f.emit_signal("SEÑAL");
-		:f.seek(20);
-		:f.seek_end();
-		:f.flush(); #Fuerza la escritura del los datos del buffer al archivo.
-		:f.close();
-		:
-	*TIEMPOS
-		:En godot podemos obtener temporizadores y las fechas y horas
-		:con distintas funciones:
-		:-
-		:Time.get_ticks_msec();
-		:#Obtiene en milisegundos el tiempo transcurrido desde que
-		:se ejecuto el juego.
-		:-
-		:Time.get_unix_time();
-		:#Devuelve el tiempo en segundos desde la época (por lo general, el 1 de enero de 1970).
-		:-
-		:Time.get_real_time();
-		:Devuelve el tiempo en segundos desde que se inició el sistema operativo, con alta precisión.
-		:-
-		:Time.time_passed();
-		:Propiedad que devuelve el tiempo transcurrido desde el último cuadro en segundos.
-		:-
-		:Time.delta();
-		:Propiedad que devuelve el tiempo transcurrido desde el último cuadro en segundos, ajustado por la escala del tiempo.
-		:-
-		:delta;
-		:en _process(delta): En el método _process(delta), delta representa el tiempo transcurrido desde el último cuadro en segundos.
-		:-
-		:Tambien tenemos los "Timer" que son contadores de tiempo
-		:que cada X disparan una señal o evento.
-		:-
-		:Por control.
-		:Creamos un nodo "TIMER" y lo configuramos y por codigo
-		:le decimos cuando comienza y para y en el control le decimos
-		:que funcion dispara con un evento.
-		:-
-		:# Esta función se ejecutará cuando el temporizador
-		:alcance el tiempo de espera
-		:func _on_Timer_timeout():
-		:_ print("¡El temporizador ha alcanzado el tiempo de espera!")
-		:func _process(delta):
-		:_ # Puedes iniciar el temporizador cuando sea necesario, por ejemplo, al presionar una tecla
-		:_ if Input.is_action_just_pressed("start_timer"): $Timer.start();
-		:_ # También puedes detener el temporizador si es necesario, por ejemplo, al presionar otra tecla
-		:_ if Input.is_action_just_pressed("stop_timer"): $Timer.stop();
-		:-
-		:Tambien podemos crear el contron "TIMER" por codigo.
-		:-
-		:func _ready():
-		:_ # Crea un nuevo nodo Timer
-		:_ var timer = Timer.new()
-		:_ # Configura el tiempo de espera en segundos
-		:_ timer.wait_time = 2.0
-		:_ # Conecta la señal timeout a una función
-		:_ timer.connect("timeout", self, "_on_CustomTimer_timeout")
-		:_ # Agrega el nodo Timer como hijo de este nodo
-		:_ add_child(timer)
-		:_ # Inicia el temporizador
-		:_ timer.start()
-		:func _on_CustomTimer_timeout():
-		:_ print("¡El temporizador ha alcanzado el tiempo")
-		:-
-		:Tambien podemos acceder al relog del sistema por medio
-		:del la clase "DateTime.Now".
-		:-
-		:var now = DateTime.now();# Obtiene la fecha y hora actual
-		:var year = now.get_year();# Año
-		:var month = now.get_month();#Mes 1-12
-		:var day = now.get_day();# Dia 1-31
-		:var hour = now.get_hour();# Hora 0-23
-		:var minute = now.get_minute();# Minutos 0-59
-		:var second = now.get_second();# Segundos 0-59
-		:var millisecond = now.get_millisecond();# Milisegundos
-		:-
-		:Si necesitamos la hora en formato 12h podemos usar
-		:-
-		:var now = DateTime.now()
-		:var hour = now.get_hour()
-		:var am_pm = "AM"
-		:# Ajusta la hora al formato de 12 horas y determina si es AM o PM
-		:if hour > 12:
-		:_ hour = hour % 12
-		:_ am_pm = "PM"
-		:# Asegura que la medianoche (00:00) se muestre como 12:00 AM
-		:if hour == 0:
-		:_ hour = 12
-		:print("Hora: ", hour)
-		:print("AM/PM: ", am_pm)
-		:
-	*NOTIFICACIONES
-		:Existe un evento que se dispara cuando ocurre algo y podemos
-		:capturar que ocurre por medio de constantes.
-		:Segun donde capturemos la notificacion significara una cosa.
-		:-
-		:En un fichero instanciado globals. capturaremos lo ultimo
-		:en ejecutarse y otros errores y mensajes.
-		:Algunos de ellos seran:
-		:-
-		:func _notification(msg):
-		:_ #Al cerrar entran.
-		:_ #6320>[main_menu]..Bt_Close
-		:_ #6321>[globals]._Notification=17 NOTIFICATION_PROCESS
-		:_ #6322>[globals]._Notification=11 NOTIFICATION_EXIT_TREE
-		:_ #6328>[globals]._Notification=19 NOTIFICATION_UNPARENTED
-		:_ #6328>[globals]._Notification=1 Nose
-		:_
-		:_ if(msg == NOTIFICATION_WM_CLOSE_REQUEST):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_WM_CLOSE_REQUEST",self,true);
-		:_ elif(msg == NOTIFICATION_CRASH):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_CRASH",self,true);
-		:_ elif(msg == NOTIFICATION_APPLICATION_FOCUS_IN):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_APPLICATION_FOCUS_IN",self,true);
-		:_ elif(msg == NOTIFICATION_WM_WINDOW_FOCUS_OUT):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_WM_WINDOW_FOCUS_OUT",self,true);
-		:_ elif(msg == NOTIFICATION_WM_SIZE_CHANGED):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_WM_SIZE_CHANGED",self,true);
-		:_ elif(msg == NOTIFICATION_OS_MEMORY_WARNING):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_OS_MEMORY_WARNING",self,true);
-		:_ elif(msg == NOTIFICATION_NODE_RECACHE_REQUESTED):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_NODE_RECACHE_REQUESTED",self,true);
-		:_ elif(msg == NOTIFICATION_WM_MOUSE_ENTER):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_WM_MOUSE_ENTER",self,true);
-		:_ elif(msg == NOTIFICATION_UNPARENTED):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_UNPARENTED",self,true);
-		:_ elif(msg == NOTIFICATION_EXIT_TREE):
-		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_EXIT_TREE",self,true);
-		:#END _notification
-		:
-	*MULTI IDIOMA
-		:El godot tiene un modo muy simple para trabajar el texto en
-		:multi idioma.
-		:Podemos usar el excel aunque el usa un fichero con campos
-		:separados por ",".
-		:El fichero tiene en la primera fila una columna con "id" y
-		:las siguientes columnas con los idiomas ("es","en")
-		:En el id tendremos el texto real que tiene el control.
-		:En la coumna de "es" el texto en español y
-		:en el texto en ingles a remplazar.
-		:Imagina que tienens un control que se llama
-		:"label_accion" y tiene el texto "KeyStr_comer"
-		:la tabla seria esta,
-		:-
-		:id,en,es
-		:KeyStr_Comer,Comer,Eat.
-		:-
-		:Este fichero se lo importas al godot.
-		:el lo trascibe a tantos ficheros como idiomas tengas en el fichero.
-		:El fichero que el genera esta comprimido y cifrado.
-		:Es posible definir si quieres que el texto este separado
-		:por "," por "tab" o por ";".
-		:-
-		:Despues en project settings/localization añadimos
-		:los ficheros ".transation" que ha generado para que
-		:godot sepa donde estan para todo el proyecto.
-		:-
-		:Dentro para indicarle cual es el "Texto_Key" usaremos
-		:lable_accion.text = TR("KyeStr_Comer");
-		:de ese modo le indicaremos que tienen que transcribir en ese
-		:control ese texto a los idiomas que tengas.
-		:-
-		:Para selecionar el idioma usaremos el comando:
-		:TranslationServer.set_locate("en")
-		:esto le indica que desde ese momento la columna/fichero
-		:que usara sera el de ingles, NT: en y es es el tiulo de las
-		:columnas con los idiomas.
-		:
+			:
+			:
+			:
 	*3D RPG Controler
 		ª10100ª10099ª10098ª10097ª10096ª10095ª10094ª10093ª10092ª10091ª10089ª10101ª10090
 		:https://www.youtube.com/watch?v=0T-FMkSru64
@@ -2176,6 +1372,9 @@
 		:#END _Ready
 		:-
 		:
+		:
+		:
+		:
 	*3D RPG Controler (Camara)
 		ª10102ª10103ª10106ª10105ª10104ª10109ª10110ª10108ª10107ª10111ª10112ª10113ª10114ª10115ª10116ª10117ª10118ª10119
 		:Ahora configuraremos la camara.
@@ -2287,28 +1486,1016 @@
 		:si ya esta la capa bien y solo modificarta una vez.
 		:-
 		:
-*SHADERS
+		:
+		:
+		:
+	*Acceder a un nodo y sus propiedades
+		ª10017
+		:Tenemos tres modos de acceder a las propiedades de un
+		:nodo.
+		:-
+		:Usando el comando get_node("Nombre Nodo");
+		:-
+		:Usando el simbolo $NOMBRENODO
+		:-
+		:Arrastra el nodo hasta el script para que el escriba el nombre.
+		:-
+		:- EJEMPLOS
+		:# Called when the node enters the scene tree for the first time.
+		:func _ready()->void:
+		:_ var M_Node=get_node("Ctr_Casa");
+		:_ $Ctr_Casa.LAYOUT.clip_contents=true;
+		:_ print(F_Calcula());
+		:_ pass # Replace with function body.
+		:#Fin Func _Ready
+		:# Called every frame. 'delta' is the elapsed time since the previous frame.
+		:func _process(delta):
+		:_ #print(delta);
+		:_ pass
+		:func F_Calcula()->Array:
+		:_ return [3,5,7];
+		:_ pass
+		:#Fin Funcion F_Calcula
+		:
+		:
+		:
+		:
+	*Acceso a los nodos
+		:Godos encapsula todo en nodos .
+		:Cada nodo tienen un script.
+		:Cada nodo ereda del tipo base nodo pero puede o no
+		:tener una segunda capa segun el tipo de accion que
+		:realize.
+		:-
+		:Podemos obtener acceso al nodo actual usando.
+		:self
+		:-
+		:Para acceder de modo directo usando :
+		:var nodo = $NombreNodo
+		:De este modo podemos acceder a los nodos directamente
+		:pero solo desde nuestro nivel en adelante, tambien a los
+		:de nuestro nivel.
+		:-
+		:Podemos obtener la referencia de un nodo usando.
+		:get_node("NombreNodo")
+		:-
+		:Tambien puedes acceder por medio de la estructura.
+		:Si tu nodo maestro se llama Root y dentro tiene otro
+		:llamado Player podrias acceder asi.
+		:var player_node = get_node("Root/Player")
+		:-
+		:Podemos añadir un nodo hijo al nodo actual con:
+		:self.add_child();
+		:-
+		:Podemos obtener una referencia al nodo padre con:
+		:var nodo_padre = self.get_parent()
+		:-
+		:Podemos obtener una tabla con las referencias a los
+		:nodos hijos con :
+		:var hijos = self.get_children()
+		:-
+		:En caso de que una referencia a un nodo no sea correcta
+		:o si una variable no tiene instancia se puede usar "null"
+		:como en C#.
+		:if (MiNodo==null):
+		:<tb>sentencias.
+		:else:
+		:<tb>sentencias.
+		:
+		:
+		:
+		:
+	*Botones Dinamicos y Eventos Dinamicos
+		:En este ejemplo creo 4 botones dinamicos y
+		:enlazo su evento Button_up a una funcion pasandole
+		:un valor.
+		:-
+		:Callable(Control,NomFuncion)
+		:Crea un objeto que indica una funcion en cualquier
+		:Control.Script y el el nombre de esa funcion.
+		:-
+		:Connect(NomEvento,Callable)
+		:Conecta un evento con un callable.
+		:Dice la funcion y donde esta el manejador
+		:de ese evento.
+		:-
+		:Otro modo mas simple y que permite mandar variables
+		:seria:
+		:NomControl.NomEvent.connect(NomFuncion.bind(Valor));
+		:No tiene mucho sentido bind = conectar pero...
+		:Conecta el NomEvent del NomControl con NomFuncion
+		:y le manda Valor como parametro.
+		:-
+		:func _ready():
+		:_ var Mq:int=0;
+		:_ while(Mq<4):
+		:_ _ var MBt=Button.new();
+		:_ _ MBt.name="BT_ResX"+str(Mq);
+		:_ _ MBt.set_size(Vector2(50,30));
+		:_ _ MBt.text=str(((Mq*200)+600));
+		:_ _ self.add_child(MBt);
+		:_ _ MBt.set_position(Vector2((100+(Mq*50)),0));
+		:_ _ var MCall=Callable(self,"F_Evt_MyButton_Up");
+		:_ _ #MBt.connect("button_up",MCall);
+		:_ _ MBt.button_down.connect(F_Evt_MyButton_Up.bind(MBt));
+		:_ _ V_ResX.append(MBt);#Añado Boton a mi tabla.
+		:_ _ Mq+=1;
+		:_ #End While Mq
+		:_ print("Botones:"+str(V_ResX.size()));
+		:_ pass # Replace with function body.
+		:#End Func _ready
+		:-
+		:func F_Evt_MyButton_Up(VAL):
+		:_ if (VAL is Button):
+		:_ _ print("MyBtPress"+str(VAL.name));
+		:_ else:
+		:_ _ print("MyBtPress"+str(VAL));
+		:#End Func F_Evt_MyButton_Up
+		:
+		:
+		:
+		:
+	*CONFIGURAR ENTORNO
+		ª10089ª10088
+		:Un punto principal a la hora de crear un videojuego es la
+		:configuracion del entorno.
+		:-
+		:Es necesario poder definir parametros como:
+		:La resolucion, La caliad de sombra, La calidad de los efectos,
+		:La iluminacion etc
+		:-
+		:Muchos de estos parametros se configuran modificando
+		:directamente los parametros del motor.
+		:Otras se tienen que configurar directamente sobre los objetos.
+		:-
+		:Para configura el motor se usara el nodo
+		:"ProjectSettings.set_setting(KEY,VAL)"
+		:Estas claves se pueden obtener por medio de la pantalla de
+		:"Project/Project Setings".
+		:Si en el titulo de la propiedad pulsamos BtDer nos dara las
+		:opciones de copiar la KEY que se usa para configurar
+		:ese parametro.
+		:-
+		:func F_Settings_Set():
+		:_ var M_CfgKey="";
+		:_ #-----------------
+		:_ if(settings.has("aniso")==null):settings["aniso"]=0;
+		:_ M_CfgKey="rendering/textures/default_filters/anisotropic_filtering_level";
+		:_ F_Tron("F_Settings_Set(aniso)="+str(settings["aniso"]));
+		:_ #-----------------
+		:_ #Se ha mantenido disabled, Shadows acepta de 0 a 6,
+		:_ # En el settings = disable,0,1,2,3 etc
+		:_ # Si setting=Disable cfg=0 y si setting=0 tambien cfg=0
+		:_ if(settings.has("shadows")==null):
+		:_ _ settings["shadows"]="disabled";
+		:_ M_CfgKey="rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality";
+		:_ ProjectSettings.set_setting(M_CfgKey,0);
+		:_ if(settings["shadows"]!="disabled"):
+		:_ _ ProjectSettings.set_setting(M_CfgKey,int(settings["shadows"]));
+		:_ F_Tron("F_Settings_Set(shadows)="+str(settings["shadows"]));
+		:_ #-----------------
+		:_ if(settings.has("gi")==null):settings["gi"]="disabled";
+		:_ M_CfgKey="rendering/global_illumination/voxel_gi/quality";
+		:_ #Nt: el disabled desactiva directamente las luces
+		:_ #NT: El motro solo pilla dos valores 0=low y 1 high
+		:_ if(globals.settings["gi"]=="normal"):
+		:_ _ ProjectSettings.set_setting(M_CfgKey,0);
+		:_ if(globals.settings["gi"]=="high"):
+		:_ _ ProjectSettings.set_setting(M_CfgKey,1);
+		:_ F_Tron("F_Settings_Set(gi)="+str(settings["gi"]));
+		:_ #-----------------
+		:_ if(settings.has("text_lang")==null):settings["text_lang"]="en";
+		:_ TranslationServer.set_locale(settings["text_lang"]);
+		:_ F_Tron("F_Settings_Set(text_lang)="+str(settings["text_lang"]));
+		:_ #-----------------
+		:_ if(settings.has("msaa")==null):settings["msaa"]=0;
+		:_ M_CfgKey="rendering/anti_aliasing/quality/msaa_2d";
+		:_ ProjectSettings.set_setting(M_CfgKey,settings["msaa"]);
+		:_ F_Tron("F_Settings_Set(msaa)="+str(settings["msaa"]));
+		:_ #-----------------
+		:_ if(settings.has("msaa_3d")==null):settings["msaa_3d"]=0;
+		:_ M_CfgKey="rendering/anti_aliasing/quality/msaa_3d";
+		:_ ProjectSettings.set_setting(M_CfgKey,settings["msaa_3d"]);
+		:_ F_Tron("F_Settings_Set(msaa_3d)="+str(settings["msaa_3d"]));
+		:_ #-----------------
+		:#END F_Settings_Set
+		:
+		:
+		:
+		:
+	*Crear Tabla de controles dinamicos
+		:Tras PreCargar la escena madre y
+		:obtener el control de esa escena.
+		:Rellenamos una tabla con colnes de ese boton
+		:y los añadimos a la escena actual.
+		:-EJ:
+		:F_Tron("PRE-LOAD");
+		:_ var M_SCN_REPO=preload("res://SCN_REPO/SCN_REPO.tscn").instantiate();
+		:_ F_Tron("PRE-LOAD.. OK");
+		:_
+		:_ F_Tron("CLON BUTTON");
+		:_ var M_BtClon=M_SCN_REPO.get_node("REPO_BTBase");
+		:_ F_Tron("CLON BUTTON.. OK");
+		:_
+		:_ F_Tron("Botones ADD2TABLE");
+		:_ V_TBt.clear();
+		:_ var M_q:int=0;
+		:_ var M_Pos:Vector2;
+		:_ var M_Size:Vector2;
+		:_ while (M_q<20):
+		:_ _ var M_Bt:Button=M_BtClon.duplicate();# Button.new();
+		:_ _ M_Bt.name="BT"+str(M_q);
+		:_ _ M_Bt.text=M_Bt.name;
+		:_ _ V_TBt.append(M_Bt);
+		:_ _ M_q+=1;
+		:_ #EndWhile
+		:_ F_Tron("Botones ADD2TABLE.. OK");
+		:_
+		:_ F_Tron("Botones CFG + ADD");
+		:_ M_q=0;M_Size.x=40;M_Size.y=20;
+		:_ while (M_q<20):
+		:_ _ var M_Bt:Button=V_TBt[M_q];
+		:_ _ self.add_child(M_Bt);
+		:_ _ M_Bt.set_size(M_Size,false);
+		:_ _ M_Bt.visible=true;
+		:_ _ M_Pos.x=M_q*50;
+		:_ _ M_Bt.set_position(M_Pos);
+		:_ _ M_q+=1;
+		:_ #EndWhile
+		:_ F_Tron("Botones CFG + ADD.. OK");
+		:#End Func _ready
+		:
+		:
+		:
+		:
+	*Crear un Boton dinamico con evento
+		:Con este codigo ejecutado en el nodo padre creamos
+		:un nodo button y le añadimos un evento al terminar el
+		:_ready();
+		:-
+		:extends Node
+		:func _ready():
+		:_ # Crear el botón
+		:_ var boton = Button.new()
+		:_ boton.text = "Mostrar Alerta"
+		:_ boton.rect_min_size = Vector2(200, 50)
+		:_ add_child(boton)
+		:_ # Conectar la señal "pressed" del botón a la función mostrar_alerta
+		:_ boton.connect("pressed", self, "mostrar_alerta")
+		:_
+		:func mostrar_alerta():
+		:_ # Crear la alerta (un cuadro de diálogo)
+		:_ var alerta = AcceptDialog.new()
+		:_ alerta.dialog_text = "¡Esto es una alerta personalizada!"
+		:_ alerta.add_button("Aceptar", true) # Botón para cerrar la alerta
+		:-
+		:_ # Agregar la alerta como un hijo del nodo principal
+		:_ add_child(alerta)
+		:_ alerta.popup_centered() # Mostrar la alerta en el centro de la pantalla
+		:
+		:
+		:
+		:
+	*EL NODO
+		:-PROPIEDADES
+		:String	<-	editor_description	""
+		:MultiplayerAPI	<-	multiplayer
+		:StringName	<-	name
+		:Node	<-	owner
+		:ProcessMode	<-	process_mode	0
+		:int	<-	process_physics_priority	0
+		:int	<-	process_priority	0
+		:ProcessThreadGroup	<-	process_thread_group	0
+		:int	<-	process_thread_group_order
+		:BitField<ProcessThreadMessages>	<-	process_thread_messages
+		:String	<-	scene_file_path
+		:bool	<-	unique_name_in_owner	false
+		:Methods¶
+		:void	<-	_enter_tree ( ) virtual
+		:void	<-	_exit_tree ( ) virtual
+		:PackedStringArray	<-	_get_configuration_warnings ( ) virtual const
+		:void	<-	_input ( InputEvent event ) virtual
+		:void	<-	_physics_process ( float delta ) virtual
+		:void	<-	_process ( float delta ) virtual
+		:void	<-	_ready ( ) virtual
+		:void	<-	_shortcut_input ( InputEvent event ) virtual
+		:void	<-	_unhandled_input ( InputEvent event ) virtual
+		:void	<-	_unhandled_key_input ( InputEvent event ) virtual
+		:void	<-	add_child ( Node node, bool force_readable_name=false, InternalMode internal=0 )
+		:void	<-	add_sibling ( Node sibling, bool force_readable_name=false )
+		:void	<-	add_to_group ( StringName group, bool persistent=false )
+		:Variant	<-	call_deferred_thread_group ( StringName method, ... ) vararg
+		:Variant	<-	call_thread_safe ( StringName method, ... ) vararg
+		:bool	<-	can_process ( ) const
+		:Tween	<-	create_tween ( )
+		:Node	<-	duplicate ( int flags=15 ) const
+		:Node	<-	find_child ( String pattern, bool recursive=true, bool owned=true ) const
+		:Node[]	<-	find_children ( String pattern, String type="", bool recursive=true, bool owned=true ) const
+		:Node	<-	find_parent ( String pattern ) const
+		:Node	<-	get_child ( int idx, bool include_internal=false ) const
+		:int	<-	get_child_count ( bool include_internal=false ) const
+		:Node[]	<-	get_children ( bool include_internal=false ) const
+		:StringName[]	<-	get_groups ( ) const
+		:int	<-	get_index ( bool include_internal=false ) const
+		:Window	<-	get_last_exclusive_window ( ) const
+		:int	<-	get_multiplayer_authority ( ) const
+		:Node	<-	get_node ( NodePath path ) const
+		:Array	<-	get_node_and_resource ( NodePath path )
+		:Node	<-	get_node_or_null ( NodePath path ) const
+		:Node	<-	get_parent ( ) const
+		:NodePath	<-	get_path ( ) const
+		:NodePath	<-	get_path_to ( Node node, bool use_unique_path=false ) const
+		:float	<-	get_physics_process_delta_time ( ) const
+		:float	<-	get_process_delta_time ( ) const
+		:bool	<-	get_scene_instance_load_placeholder ( ) const
+		:SceneTree	<-	get_tree ( ) const
+		:String	<-	get_tree_string ( )
+		:String	<-	get_tree_string_pretty ( )
+		:Viewport	<-	get_viewport ( ) const
+		:Window	<-	get_window ( ) const
+		:bool	<-	has_node ( NodePath path ) const
+		:bool	<-	has_node_and_resource ( NodePath path ) const
+		:bool	<-	is_ancestor_of ( Node node ) const
+		:bool	<-	is_displayed_folded ( ) const
+		:bool	<-	is_editable_instance ( Node node ) const
+		:bool	<-	is_greater_than ( Node node ) const
+		:bool	<-	is_in_group ( StringName group ) const
+		:bool	<-	is_inside_tree ( ) const
+		:bool	<-	is_multiplayer_authority ( ) const
+		:bool	<-	is_node_ready ( ) const
+		:bool	<-	is_physics_processing ( ) const
+		:bool	<-	is_physics_processing_internal ( ) const
+		:bool	<-	is_processing ( ) const
+		:bool	<-	is_processing_input ( ) const
+		:bool	<-	is_processing_internal ( ) const
+		:bool	<-	is_processing_shortcut_input ( ) const
+		:bool	<-	is_processing_unhandled_input ( ) const
+		:bool	<-	is_processing_unhandled_key_input ( ) const
+		:void	<-	move_child ( Node child_node, int to_index )
+		:void	<-	notify_deferred_thread_group ( int what )
+		:void	<-	notify_thread_safe ( int what )
+		:void	<-	print_orphan_nodes ( ) static
+		:void	<-	print_tree ( )
+		:void	<-	print_tree_pretty ( )
+		:void	<-	propagate_call ( StringName method, Array args=[], bool parent_first=false )
+		:void	<-	propagate_notification ( int what )
+		:void	<-	queue_free ( )
+		:void	<-	remove_child ( Node node )
+		:void	<-	remove_from_group ( StringName group )
+		:void	<-	reparent ( Node new_parent, bool keep_global_transform=true )
+		:void	<-	replace_by ( Node node, bool keep_groups=false )
+		:void	<-	request_ready ( )
+		:Error	<-	rpc ( StringName method, ... ) vararg
+		:void	<-	rpc_config ( StringName method, Variant config )
+		:Error	<-	rpc_id ( int peer_id, StringName method, ... ) vararg
+		:void	<-	set_deferred_thread_group ( StringName property, Variant value )
+		:void	<-	set_display_folded ( bool fold )
+		:void	<-	set_editable_instance ( Node node, bool is_editable )
+		:void	<-	set_multiplayer_authority ( int id, bool recursive=true )
+		:void	<-	set_physics_process ( bool enable )
+		:void	<-	set_physics_process_internal ( bool enable )
+		:void	<-	set_process ( bool enable )
+		:void	<-	set_process_input ( bool enable )
+		:void	<-	set_process_internal ( bool enable )
+		:void	<-	set_process_shortcut_input ( bool enable )
+		:void	<-	set_process_unhandled_input ( bool enable )
+		:void	<-	set_process_unhandled_key_input ( bool enable )
+		:void	<-	set_scene_instance_load_placeholder ( bool load_placeholder )
+		:void	<-	set_thread_safe ( StringName property, Variant value )
+		:void	<-	update_configuration_warnings ( )
+		:
+		:
+		:
+		:
+	*Enlazar con Blender
+		:El godot se puede enlazar con proyectos del Blender.
+		:Para ello tenemos que indicarle dos cosas.
+		:1- Indicarle donde tenemos instalado el blender.
+		:2- Decirle que use la importacion del Blender.
+		:-
+		:1- En Editor/Editor Settings
+		:- Buscamos Blender
+		:- En FileSystem/Import definimos la ruta donde
+		:- tenemos instalado el Blender.
+		:-
+		:2 - En Project/ProjectSeting
+		:- Activamos la Ver paramateros avanzados (Advanced)
+		:- Buscamos "Blender"
+		:- En FileSystem/Import lo ponemos como Enabled.
+		:-
+		:- Ahora Creamos una carpeta en el proyecto para
+		:- nuestros Blenders en el GODOT.
+		:- Guardamos nuestro Blend en esa carpeta.
+		:- Ahora nos permite añadir los objetos del Blend
+		:- al proyecto.
+		:-
+		:
+		:
+		:
+		:
+	*FICHEROS
+		:GODOT trabaja los ficheros como otros lenguajes.
+		:1 - Se enlaza el fichero a una variable de un modo.
+		:2 - Se realizan las operaciones sobre el fichero dado.
+		:3 - Se Refresca el setado (propio al guardar.)
+		:4 - Se Cierra el fichero
+		:5 - Se desinstancia la variable (Para liberar la memoria.)
+		:-
+		:Para el enlace se usa el comando "FileAccess"
+		:Despues le decimos el tipo de Acceso .
+		:-
+		:func save_config():
+		:_ DirAccess.remove_absolute(save_path+"config.conf")
+		:_ var f = FileAccess.open(save_path+"config.conf",FileAccess.WRITE)
+		:_ f.store_var(settings)
+		:_ f.flush();#Fuerza la escritura del los datos del buffer al archivo.
+		:_ f.close();
+		:_ f = null
+		:_
+		:func load_config():
+		:_ var f= FileAccess.open(save_path+"config.conf", FileAccess.READ)
+		:_ settings = f.get_var();
+		:_ f.close();
+		:_ f=null;
+		:-
+		:Estas son algunas de las propiedades que se pueden hacer sobre
+		:los ficheros.
+		:f.store_var(settings)
+		:f.store_string("Texto");
+		:f.file_exists("FILE");
+		:f.get_error();
+		:f.get_file_as_bytes("FILE");
+		:f.get_file_as_string("FILE");
+		:f.get_modified_time("FILE");
+		:f.get_path();
+		:f.get_path_absolute();
+		:f.get_position();
+		:f.get_real();
+		:f.is_open();
+		:f.open_compressed("FILE",FileAccess.READ,FileAccess.COMPRESSION_GZIP);
+		:f.open_encrypted("FILE",FileAccess.READ,new key());
+		:f.READ();
+		:f.READ_WRITE();
+		:f.WRITE();
+		:f.WRITE_READ();
+		:f.connect("SEÑAL",Callable(),flags);
+		:f.disconnect("SEÑAL",Callable());
+		:f.emit_signal("SEÑAL");
+		:f.seek(20);
+		:f.seek_end();
+		:f.flush(); #Fuerza la escritura del los datos del buffer al archivo.
+		:f.close();
+		:
+		:
+		:
+		:
+	*Importar objetos de Blender
+		:Teniendo el Blender el modelo con todos los objetos asociados
+		:a la armadura y las animaciones .
+		:Lo selecionamos todo .
+		:Exportamos a GLTF2.
+		:En las ultimas versiones de blender vienen como addons por
+		:lo que para exportar se tiene que añadir el addon GLTF2.
+		:Al exportar en blender selecionamos.
+		:-Selected Objects
+		:-+Y Up
+		:-Apply Modifiers.
+		:-UVs
+		:-Normals
+		:-VertexColors.
+		:-Material = Exports.
+		:-Images = Atumatic.
+		:-
+		:Guardamos el fichero en la carpeta configurada en el GODOT
+		:para las importaciones.
+		:-
+		:Ahora en GODOT
+		:-
+		:Creamos una nueva scena.
+		:Añadimos una Camera
+		:Tenemos que tener configurado una carpeta para los
+		:resources de blender donde pusimos el GLB
+		:Al abrir el GLB importado nos dira si que remos una escena heredada
+		:le decimos que si y la guardamos.
+		:La estrucutra sera.
+		:ESCENA
+		:_ _ AnimationPlayer
+		:_ _ Armature : Node3D
+		:_ _ _ Skeleton3D : Skeleton3D
+		:_ _ _ _ Mesh1 :MeshInstance3D
+		:_ _ _ _ MeshX :MeshInstance3D
+		:
+		:
+		:
+		:
+	*Instanciar Controles predefinidos
+		:Podemos crear controles predefinidos y preconfigurados.
+		:Para ello tenemos que añadirlos a una nueva escena.
+		:Los creamos y los configuramos.
+		:PreCargamos la escena.
+		:Buscamos el control en esa escena .
+		:Reasignamos el padre a donde queramos.
+		:EJ:
+		:func _ready():
+		:_ F_Tron("_ready");
+		:_ #Modifico el texto de un label creado
+		:_ var MLb:Label=$Lb_BtPulsado;
+		:_ MLb.text="Hola";
+		:_
+		:_ #- Precarga de forma rapida una escena.
+		:_ F_Tron("PRE-LOAD");
+		:_ var M_SCN_REPO=preload("res://SCN_REPO/SCN_REPO.tscn").instantiate();
+		:_ F_Tron("PRE-LOAD.. OK");
+		:_
+		:_ #- Carga todo lo necesario de la escena.
+		:_ #var M_SCN_REPO=load("res://SCN_REPO/SCN_REPO.tscn");
+		:_ #print("LOAD");
+		:_
+		:_ #-- Añadimos la escena instanciada a la escena actual.
+		:_ #get_tree().root.add_child(M_SCN_REPO)
+		:_ #F_Tron("ADDChild");
+		:_ #self.add_child(M_SCN_REPO);
+		:_ #F_Tron("ADDChild.. OK");
+		:_
+		:_ F_Tron("CLON BUTTON");
+		:_ var M_BtClon=M_SCN_REPO.get_node("REPO_BTBase");
+		:_ F_Tron("CLON BUTTON.. OK");
+		:_
+		:_ F_Tron("CLON BUTTON Instance");
+		:_ M_BtClon.reparent(self);
+		:_ #self.add_child(M_BtClon);
+		:_ F_Tron("CLON BUTTON Instance .. OK");
+		:_
+		:
+		:
+		:
+		:
+	*Materiales
+	*MULTI IDIOMA
+		:El godot tiene un modo muy simple para trabajar el texto en
+		:multi idioma.
+		:Podemos usar el excel aunque el usa un fichero con campos
+		:separados por ",".
+		:El fichero tiene en la primera fila una columna con "id" y
+		:las siguientes columnas con los idiomas ("es","en")
+		:En el id tendremos el texto real que tiene el control.
+		:En la coumna de "es" el texto en español y
+		:en el texto en ingles a remplazar.
+		:Imagina que tienens un control que se llama
+		:"label_accion" y tiene el texto "KeyStr_comer"
+		:la tabla seria esta,
+		:-
+		:id,en,es
+		:KeyStr_Comer,Comer,Eat.
+		:-
+		:Este fichero se lo importas al godot.
+		:el lo trascibe a tantos ficheros como idiomas tengas en el fichero.
+		:El fichero que el genera esta comprimido y cifrado.
+		:Es posible definir si quieres que el texto este separado
+		:por "," por "tab" o por ";".
+		:-
+		:Despues en project settings/localization añadimos
+		:los ficheros ".transation" que ha generado para que
+		:godot sepa donde estan para todo el proyecto.
+		:-
+		:Dentro para indicarle cual es el "Texto_Key" usaremos
+		:lable_accion.text = TR("KyeStr_Comer");
+		:de ese modo le indicaremos que tienen que transcribir en ese
+		:control ese texto a los idiomas que tengas.
+		:-
+		:Para selecionar el idioma usaremos el comando:
+		:TranslationServer.set_locate("en")
+		:esto le indica que desde ese momento la columna/fichero
+		:que usara sera el de ingles, NT: en y es es el tiulo de las
+		:columnas con los idiomas.
+		:
+		:
+		:
+		:
+	*NOTIFICACIONES
+		:Existe un evento que se dispara cuando ocurre algo y podemos
+		:capturar que ocurre por medio de constantes.
+		:Segun donde capturemos la notificacion significara una cosa.
+		:-
+		:En un fichero instanciado globals. capturaremos lo ultimo
+		:en ejecutarse y otros errores y mensajes.
+		:Algunos de ellos seran:
+		:-
+		:func _notification(msg):
+		:_ #Al cerrar entran.
+		:_ #6320>[main_menu]..Bt_Close
+		:_ #6321>[globals]._Notification=17 NOTIFICATION_PROCESS
+		:_ #6322>[globals]._Notification=11 NOTIFICATION_EXIT_TREE
+		:_ #6328>[globals]._Notification=19 NOTIFICATION_UNPARENTED
+		:_ #6328>[globals]._Notification=1 Nose
+		:_
+		:_ if(msg == NOTIFICATION_WM_CLOSE_REQUEST):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_WM_CLOSE_REQUEST",self,true);
+		:_ elif(msg == NOTIFICATION_CRASH):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_CRASH",self,true);
+		:_ elif(msg == NOTIFICATION_APPLICATION_FOCUS_IN):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_APPLICATION_FOCUS_IN",self,true);
+		:_ elif(msg == NOTIFICATION_WM_WINDOW_FOCUS_OUT):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_WM_WINDOW_FOCUS_OUT",self,true);
+		:_ elif(msg == NOTIFICATION_WM_SIZE_CHANGED):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_WM_SIZE_CHANGED",self,true);
+		:_ elif(msg == NOTIFICATION_OS_MEMORY_WARNING):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_OS_MEMORY_WARNING",self,true);
+		:_ elif(msg == NOTIFICATION_NODE_RECACHE_REQUESTED):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_NODE_RECACHE_REQUESTED",self,true);
+		:_ elif(msg == NOTIFICATION_WM_MOUSE_ENTER):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_WM_MOUSE_ENTER",self,true);
+		:_ elif(msg == NOTIFICATION_UNPARENTED):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_UNPARENTED",self,true);
+		:_ elif(msg == NOTIFICATION_EXIT_TREE):
+		:_ _ f_log("_Notification=("+str(msg)+")NOTIFICATION_EXIT_TREE",self,true);
+		:#END _notification
+		:
+		:
+		:
+		:
+	*Numeros aleatorios
+		:Podemos obtener un numero aleatorio usando las funciones
+		:randif() o randi()
+		:randi() para enteros
+		:randf() para flotantes.
+		:-
+		:var MNum = randi() * 10 + 5;
+		:Genera un numero entre 5 y 15.
+		:
+		:
+		:
+		:
+	*SAVE_LOAD Tabla Arrays
+		:En este ejemplo tengo un array de 2 dimensiones con cadenas
+		:y lo cargo y guardo en un fichero de texto plano separado
+		:por : y donde cada linea es un row.
+		:_
+		:#byDark 231201 Tabla para las resoluciones.
+		:#Se carga desde el fichero.
+		:var tab_resoluciones=[
+		:_ ["640","480"],["800","600"],["1024","768"],
+		:_ ["1152","864"],["1280","720"],["1280","768"],
+		:_ ["1280","800"],["1280","960"],["1280","1024"],
+		:_ ["1600","1200"],["1920","1080"],["2048","1536"],
+		:_ ["2560","1440"],["2560","1600"],["3840","2160"],
+		:_ ["4096","2160"],["5120","2880"],["7680","4320"],
+		:_ ["10240","4320"]
+		:_ ]
+		:#byDark 231127 Si no existe el fichero de resoluciones,creamos uno por defecto.
+		:# se llama desde f_resoluciones_fileload;
+		:func f_resoluciones_savefile():
+		:_ var m_fname=save_path+"resolutions.conf";
+		:_ var m_q=0;
+		:_ DirAccess.remove_absolute(m_fname);
+		:_ var m_f = FileAccess.open(m_fname,FileAccess.WRITE);
+		:_ while (m_q<tab_resoluciones.size()):
+		:_ _ m_f.store_line(tab_resoluciones[m_q][0]+":"+tab_resoluciones[m_q][1]);
+		:_ _m_q=m_q+1;
+		:_ #m_f.store_var(tab_resoluciones);
+		:_ m_f.flush();
+		:_ m_f.close();
+		:_ m_f = null;
+		:_ f_log("Save Res:("+m_fname+")");
+		:#END f_resoluciones_savefile
+		:#byDark 231127 Si no existe el fichero de resoluciones,creamos uno por defecto.
+		:func f_resoluciones_fileload():
+		:_var m_fname=save_path+"resolutions.conf";
+		:_if(!FileAccess.file_exists(m_fname)):
+		:_ _ f_resoluciones_savefile();
+		:_else:
+		:_ _ var m_f= FileAccess.open(m_fname, FileAccess.READ)
+		:_ _ var m_l;
+		:_ _ var m_cels;
+		:_ _ tab_resoluciones.clear();
+		:_ _ while(!m_f.eof_reached()):
+		:_ _ _ _m_l=m_f.get_line();
+		:_ _ _ _m_cels=m_l.split(":");
+		:_ _ _ _if(m_cels.size()==2):
+		:_ _ _ _ _ tab_resoluciones.append(m_cels);
+		:_ _ #END While
+		:_ _ m_f.close();
+		:_ _ m_f=null;
+		:_#END if Else Save o Read
+		:_print("load res:",m_fname);
+		:_print("load res:",tab_resoluciones);
+		:#END f_resoluciones_fileload
+		:
+		:
+		:
+		:
+	*SPACE SHOOTER 2D
+		:Por tratarse de un juego 2D usaremos el Renderizador
+		:de movio o compatibilidad.
+		:Crearemos un mata mata de navecitas con :
+		:Scrool horizontal paralax.
+		:
+		:
+		:
+		:
+		*CONFIGURACION
+			ª10086ª10084
+			:Entramos en la configuracion del proyecto y activamos
+			:"Configuraciones Avanzadas".
+			:-
+			:En Aplicacion definimos
+			:un nombre y un icono.
+			:-
+			:En Ejecutar definismos
+			:Una escena principal o la seteamos desde el Sistema de archivos .. es lo mismo.
+			:FPS maximos
+			:-
+			:En pantalla de splash
+			:Definiremos si queremos pantalla de inicio o no y cual
+			:-
+			:En Monitor
+			:Definimos un viewport de 272x160
+			:Modo ventana Wondowed. (O la que sea)
+			:Redimensionable = flaso (Es cutre que se pueda redimensionar.)
+			:En Sobreescribir Ancho y Alto lo ponemos en 816x480 para
+			:depuracion solo.
+			:En Estirar le decimos
+			:Modo (ViewPort.) y Ascecto (Keep) Modo de estirar que mantiene
+			:las proporciones pero puedes ajusta al alto al ancho o ambos.
+			:-
+			:Ahora como es un juego PixelArt le quitamos el subizado.
+			:Saltamos a Renderizado y en
+			:Texturas/Texturas del Lienzo/Filtro de texturas le decimos
+			:que Neadest que significa Mas cercano al original.
+			:
+			:
+			:
+			:
+		*ESTRUCTURA
+			:En este caso como es un proyecto simple es simple.
+			:Tenemos que tener en cuenta que todo en godot son
+			:escenas por lo que tenemos.
+			:Escena de Enemigos
+			:Escena de Game Over
+			:Escena de GUI
+			:Escena de LEVEL
+			:Escena de Menu
+			:Escena de Player
+			:Escena de Disparo.
+			:-
+			:Como puedes ver las escenas de
+			:Game over, level, menu
+			:son las principales
+			:el resto son objetos que se usan dentro de estas escenas.
+			:-
+			:Tambien necesitaremos un AutoLoad o script golbal
+			:para lo que necesitemos para todo el proyecto.
+			:-
+			:
+			:
+			:
+			:
+	*Test For While
+		:"_ " = <TAB>
+		:Este Test revisa el uso de memoria y la velocidad de
+		:los bucles FOR y WHILE
+		:-
+		:Conclusion, Para Fores pequeños es mejor el for
+		:pero al crecer el for aumenta el uso de memoria y de
+		:ciclos siendo mas rapido y mejor el while.
+		:- RESULTADOS
+		:Repeticiones X 1000
+		:REP1: 1000000 REP2: 1000000 REP3: 1000000
+		:MEM0:49144563 MEM1:49207191 MEM2:49207191 MEM3:49207191
+		:MEMT1:62628 MEMT2:0 MEMT3:0
+		:TBas=815 TFor1=875 TWhile=938 TFor2=998
+		:TFor1-TBas=60 TWhile-TFor1=63 TFor2-TWhile=60
+		:----
+		:Repeticiones X 10000
+		:REP1: 100000000 REP2: 100000000 REP3: 100000000
+		:MEM0:49144563 MEM1:49665943 MEM2:49665943 MEM3:49665943
+		:MEMT1:521380 MEMT2:0 MEMT3:0
+		:TBas=806 TFor1=6578 TWhile=12791 TFor2=18773
+		:TFor1-TBas=5772 TWhile-TFor1=6213 TFor2-TWhile=5982
+		:-----
+		:Repeticiones X 15000
+		:REP1: 225000000 REP2: 225000000 REP3: 225000000
+		:MEM0:49144563 MEM1:50190231 MEM2:50190231 MEM3:50190231
+		:MEMT1:1045668 MEMT2:0 MEMT3:0
+		:TBas=913 TFor1=14364 TWhile=28680 TFor2=41975
+		:TFor1-TBas=13451 TWhile-TFor1=14316 TFor2-TWhile=13295
+		:-------
+		:Repeticiones X 22000
+		:REP1: 484000000 REP2: 484000000 REP3: 484000000
+		:MEM0:49144563 MEM1:51238807 MEM2:51238807 MEM3:51238807
+		:MEMT1:2094244 MEMT2:0 MEMT3:0
+		:TBas=820 TFor1=31757 TWhile=62000 TFor2=94092
+		:TFor1-TBas=30937 TWhile-TFor1=30243 TFor2-TWhile=32092
+		:-------
+		:Repeticiones X 30000
+		:REP1: 900000000 REP2: 900000000 REP3: 900000000
+		:MEM0:49144563 MEM1:51238807 MEM2:51238807 MEM3:51238807
+		:MEMT1:2094244 MEMT2:0 MEMT3:0
+		:TBas=918 TFor1=57982 TWhile=114198 TFor2=171330
+		:TFor1-TBas=57064 TWhile-TFor1=56216 TFor2-TWhile=57132
+		:------------
+		:Repeticiones X 30000
+		:REP1: 0 REP2: 900000000 REP3: 0
+		:MEM0:49139803 MEM1:49139803 MEM2:49136887 MEM3:49136887
+		:MEMT1:0 MEMT2:-2916 MEMT3:0
+		:TBas=911 TFor1=911 TWhile=56806 TFor2=56806
+		:TFor1-TBas=0 TWhile-TFor1=55895 TFor2-TWhile=0
+		:-
+		:-CODIGO
+		:print("Hola Mundo");
+		:var V_Rang:int=30000;
+		:var V_Tim0_int:int=0;var V_Tim1_int:int=0;
+		:var V_Tim2_int:int=0;var V_Tim3_int:int=0;
+		:var Mq:int=0;var Mq1:int=0;
+		:var V0:float =0;var V1:float =0;var V2:float =0;
+		:var M0:float =0;var M1:float =0;var M2:float =0;var M3:float =0;
+		:# - - Del For1
+		:V_Tim0_int=Time.get_ticks_msec();
+		:M0=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:# - - Del For1
+		:V_Tim0_int=Time.get_ticks_msec();
+		:M0=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:for MqX in range(V_Rang):
+		:_ for MqY in range(V_Rang):
+		:_ _ V0+=1;
+		:_ #Fin For MqY
+		:#Fin For MqX
+		:#----- WHILES
+		:V_Tim1_int=Time.get_ticks_msec();
+		:M1=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:while (Mq<V_Rang):
+		:_ Mq+=1;Mq1=0;
+		:_ while (Mq1<V_Rang):
+		:_ _ Mq1+=1;
+		:_ _ V1+=1;
+		:_ #Fin del While
+		:#Fin del While
+		:#----- FOR 2
+		:V_Tim2_int=Time.get_ticks_msec();
+		:M2=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:for MqR in range(V_Rang):
+		:_ for MqT in range(V_Rang):
+		:_ _ V2+=1;
+		:_ #Fin For MqY
+		:#Fin For MqX
+		:V_Tim3_int=Time.get_ticks_msec();
+		:M3=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:#--Resultados
+		:print("Repeticiones X ",V_Rang);
+		:print("REP1: ",V0," REP2: ",V1," REP3: ",V2);
+		:print("MEM0:",M0," MEM1:",M1," MEM2:",M2," MEM3:",M3);
+		:print("MEMT1:",(M1-M0)," MEMT2:",(M2-M1)," MEMT3:",(M3-M2));
+		:print("TBas=",V_Tim0_int," TFor1=",V_Tim1_int," TWhile=",V_Tim2_int," TFor2=",V_Tim3_int);
+		:print("TFor1-TBas=",(V_Tim1_int-V_Tim0_int)," TWhile-TFor1=",(V_Tim2_int-V_Tim1_int),
+		:" TFor2-TWhile=",(V_Tim3_int-V_Tim2_int));
+		:-
+		:
+		:
+		:
+		:
+	*TIEMPOS
+		:En godot podemos obtener temporizadores y las fechas y horas
+		:con distintas funciones:
+		:-
+		:Time.get_ticks_msec();
+		:#Obtiene en milisegundos el tiempo transcurrido desde que
+		:se ejecuto el juego.
+		:-
+		:Time.get_unix_time();
+		:#Devuelve el tiempo en segundos desde la época (por lo general, el 1 de enero de 1970).
+		:-
+		:Time.get_real_time();
+		:Devuelve el tiempo en segundos desde que se inició el sistema operativo, con alta precisión.
+		:-
+		:Time.time_passed();
+		:Propiedad que devuelve el tiempo transcurrido desde el último cuadro en segundos.
+		:-
+		:Time.delta();
+		:Propiedad que devuelve el tiempo transcurrido desde el último cuadro en segundos, ajustado por la escala del tiempo.
+		:-
+		:delta;
+		:en _process(delta): En el método _process(delta), delta representa el tiempo transcurrido desde el último cuadro en segundos.
+		:-
+		:Tambien tenemos los "Timer" que son contadores de tiempo
+		:que cada X disparan una señal o evento.
+		:-
+		:Por control.
+		:Creamos un nodo "TIMER" y lo configuramos y por codigo
+		:le decimos cuando comienza y para y en el control le decimos
+		:que funcion dispara con un evento.
+		:-
+		:# Esta función se ejecutará cuando el temporizador
+		:alcance el tiempo de espera
+		:func _on_Timer_timeout():
+		:_ print("¡El temporizador ha alcanzado el tiempo de espera!")
+		:func _process(delta):
+		:_ # Puedes iniciar el temporizador cuando sea necesario, por ejemplo, al presionar una tecla
+		:_ if Input.is_action_just_pressed("start_timer"): $Timer.start();
+		:_ # También puedes detener el temporizador si es necesario, por ejemplo, al presionar otra tecla
+		:_ if Input.is_action_just_pressed("stop_timer"): $Timer.stop();
+		:-
+		:Tambien podemos crear el contron "TIMER" por codigo.
+		:-
+		:func _ready():
+		:_ # Crea un nuevo nodo Timer
+		:_ var timer = Timer.new()
+		:_ # Configura el tiempo de espera en segundos
+		:_ timer.wait_time = 2.0
+		:_ # Conecta la señal timeout a una función
+		:_ timer.connect("timeout", self, "_on_CustomTimer_timeout")
+		:_ # Agrega el nodo Timer como hijo de este nodo
+		:_ add_child(timer)
+		:_ # Inicia el temporizador
+		:_ timer.start()
+		:func _on_CustomTimer_timeout():
+		:_ print("¡El temporizador ha alcanzado el tiempo")
+		:-
+		:Tambien podemos acceder al relog del sistema por medio
+		:del la clase "DateTime.Now".
+		:-
+		:var now = DateTime.now();# Obtiene la fecha y hora actual
+		:var year = now.get_year();# Año
+		:var month = now.get_month();#Mes 1-12
+		:var day = now.get_day();# Dia 1-31
+		:var hour = now.get_hour();# Hora 0-23
+		:var minute = now.get_minute();# Minutos 0-59
+		:var second = now.get_second();# Segundos 0-59
+		:var millisecond = now.get_millisecond();# Milisegundos
+		:-
+		:Si necesitamos la hora en formato 12h podemos usar
+		:-
+		:var now = DateTime.now()
+		:var hour = now.get_hour()
+		:var am_pm = "AM"
+		:# Ajusta la hora al formato de 12 horas y determina si es AM o PM
+		:if hour > 12:
+		:_ hour = hour % 12
+		:_ am_pm = "PM"
+		:# Asegura que la medianoche (00:00) se muestre como 12:00 AM
+		:if hour == 0:
+		:_ hour = 12
+		:print("Hora: ", hour)
+		:print("AM/PM: ", am_pm)
+		:
+		:
+		:
+		:
+	*V4 Controlador Basico 3D
+		:https://www.youtube.com/watch?v=J5-0X9xPDVE
+		:- Controlador sencillo para personajes 3D
+		:
+		:
+		:
+		:
+*02- SHADERS
 	ª10120
 	:https://www.youtube.com/watch?v=kgGhJujTHM8&list=PLMiJk3nm2SG_p968uOTiOEPHXcdT9CPaP
-	:-
-	:Se ejecutan en la GPU.
-	:Pensemos en un cubo donde su X su Y y su Z se usan como
-	:colores G=Y B=X y R=Z (red, green,blue) de modo que
+	:
+	:Son pequeños programas que se ejecutan en la GPU.
+	:
+	:Tenemos 3 Tipos de SHADERS
+	:-shader_type particles;
+	:-shader_type canvas_item;
+	:-shader_type spatial;
+	:
+	:Tenemos tres tipos de procesado
+	:-void vertex() {}
+	:-void fragment() {}
+	:-void light() {}
+	:
+	:Toman como referencia datos de la imagen procesada y
+	:la reprocesan, permitiendo por ejemplo:
+	:Pasar una imagen a blanco y negro.
+	:Aplicar trasparencia y opacidad a zonas de la imagen.
+	:Añadir grano o partes negras a una imagen.
+	:Poner solo en gris los colores que no sean rojos.
+	:
+	:Estos programas estan creados en C++ y toman como
+	:base los colores , coordenadas, el tiempo y otros parametros
+	:para modificar los colores de los pixels de salida final.
+	:RENDER -> ESCALADO -> SHADERS -> IMAGEN
+	:
+	:Pensemos en un cubo donde su X su Y y su Z se usan
+	:como colores Y=Geen X=Blue  y Z=Red de modo que
 	:tenemos un cubo de los colores del arcoiris.
+	:Un Vector3 o un Vector4 si tomamos el alpha
+	:
 	:La posicion 0,0,0 seria el negro.
 	:Los colores serian hasta 225 y se alejan del centro.
 	:Y hacia arriba, X hacia la izquierda y Z hacia el frente.
 	:-
 	:Los sombreadores o shaders son para posprocesar las
-	:imagenes.
-	:En godot se crean por medio de un nuevo material tipo shader.
-	:y se aplican a nivel de SubViewPortContainer ya que son
-	:una capa de modificacion de render.
-	:Los shaders se ejecutan en la grafica y son calculos
-	:matematicos para modificar los colores de la salida
-	:de un render.
+	:imagenes finales antes de la representacion.
 	:
-	*Mezcla de colores
+	:En godot se crean por medio de un nuevo material tipo SHADER
+	:y se aplican a nivel de SUBVIEWPORTCONTAINER ya que son
+	:una capa de modificacion de render.
+	:
+	:Los SHADERS se ejecutan en la Tarjeta Grafica y son calculos
+	:matematicos que modificar los colores de la salida a la pantalla.
+	:
+	:
+	*00-Mezcla de colores
 		ª10120
 		:Una vez creado el material tipo shader le damos un nombre
 		:y en la parte central inferior nos aparecera el editor
@@ -2318,57 +2505,109 @@
 		:Primero definiremos el tipo de shader o a que afecta.
 		:-
 		://- Tendremos dos opciones. "camvas_item" o "particles".
-		:shader_type particles;
 		:shader_type canvas_item;
+		:
 		://- Creamos 2 constantes Vector3D para dos colores.
 		:const vec3 V_ColorA=vec3(0.1,0.1,1.0);
 		:const vec3 V_ColorB=vec3(1.0,0.5,0.3);
+		:
 		:// Called for every vertex the material is visible on.
 		:void vertex() {
 		:}
+		:
 		:// Called for every pixel the material is visible on.
 		:void fragment() {
-		:vec3 M_Color= vec3(0.0);//- Creamos un vector3D para un color
-		://- Esto obtienen un float de un arco usando el TIME
-		://- y lo pasamos a absoluto positivo.
-		:float M_Pct= abs(sin(TIME));
-		://- Mezclamos el color1 con el color 2 en el % anterior.
-		:M_Color=mix(V_ColorA,V_ColorB,M_Pct);
-		://- Retornamos el color del Pixel en un Vector4
-		://- el 4º valor es el alpha.
-		:COLOR=vec4(M_Color,1.0);
+		:·t//- Creamos un vector3D para un color
+		:·tvec3 M_Color= vec3(0.0);
+		:·t//- Esto obtienen un float de un arco usando el TIME
+		:·t//- y lo pasamos a absoluto positivo.
+		:·tfloat M_Pct= abs(sin(TIME));
+		:·t//- Mezclamos el color1 con el color 2 en el % anterior.
+		:·tM_Color=mix(V_ColorA,V_ColorB,M_Pct);
+		:·t//- Definimos el color del Pixel en un Vector4
+		:·t//- el 4º valor es el alpha.
+		:·tCOLOR=vec4(M_Color,1.0);
 		:}
+		:
 		:// Called for every pixel for every light affecting the CanvasItem.
 		:void light() {
 		:}
 		:-
 		:
-	*Editando el alpha
-		ª10123ª10122
+		:
+	*01-Imagen en grises
+		ª10122ª10123
 		:Ahora despues del render , recorreremos cada pixel
-		:Obtenemos su color y modificamos su alpha.
+		:Obtenemos su color y su tono para pasarlos a grises.
 		:-
 		://- Le indico que sera un shader para canvas.
 		:shader_type canvas_item;
+		:
 		://- Genero un vector de color negro.
 		:const vec3 V_ColorB=vec3(0.0,0.0,0.0);
+		:
 		:// Called for every vertex the material is visible on.
-		:void vertex() {}
+		:void vertex() {
+		:}
+		:
 		:// Called for every pixel the material is visible on.
 		:void fragment() {
-		:// - Obtengo el color de la textura
-		:vec3 M_ColorA=texture(TEXTURE,UV).rgb;
-		:// - Creo un color
-		:vec3 M_Color=vec3(0.0);
-		:// - obtengo un % (un arco)
-		:float M_Pc=abs(sin(TIME));
-		://- Mezclo el color del pixel objenido con mi color base.
-		:M_Color=mix(M_ColorA,V_ColorB,M_Pc);
-		://-modifico el color del pixel analizado.
-		:COLOR=vec4(M_Color,1.0);
+		:·t// - Obtengo el color de la textura
+		:·tvec3 M_ColorA=texture(TEXTURE,UV).rgb;
+		:·t// - Creo un color
+		:·tvec3 M_Color=vec3(0.0);
+		:·t// - obtengo un % (un arco)
+		:·tfloat M_Pc=abs(sin(TIME));
+		:·t//- Mezclo el color del pixel objenido con mi color base.
+		:·tM_Color=mix(M_ColorA,V_ColorB,M_Pc);
+		:·t//-modifico el color del pixel analizado.
+		:·tCOLOR=vec4(M_Color,1.0);
 		:}
+		:
 		:// Called for every pixel for every light affecting the CanvasItem.
-		:void light() {}
+		:void light() {
+		:}
 		:-
 		:
-
+		:
+	*02-Brillo y Saturacion
+		ª10123ª10124ª10125
+		:El brillo de un color es la interpolacion entre
+		:el color negro (0,0,0) hasta el color actual.
+		:
+		:El contraste es la interpolacion entre el centro de
+		:los colores hasta el color actual.
+		:
+		:La Saturacion es la intepolacion entre el gris del
+		:color hasta el color.
+		:
+		://-Tipo de Shader
+		:shader_type canvas_item;
+		:
+		://- Publica variables
+		:// para permitir su modificacion fuera
+		:uniform float V_Brillo=0.1;
+		:uniform float V_Contrate=0.1;
+		:uniform float V_Saturacion=0.1;
+		:
+		:void fragment() {
+		:·t//- Obtengo el color de TEXTURE de la cord UV y bias 0.0
+		:·tvec3 M_Color=texture(TEXTURE,UV,0.0).rgb;
+		:·t//- Obtengo la interpolacion entre negro
+		:·t// y COLOR en V_Brillo%
+		:·tM_Color.rgb=mix(vec3(0.0),M_Color.rgb,V_Brillo);
+		:·t//- Obtengo la interpolacion entre el medio de los colores
+		:·t// y COLOR en V_Contraste%
+		:·tM_Color.rgb=mix(vec3(0.5),M_Color.rgb,V_Contrate);
+		:·t
+		:·t//- Paso mi color a escala de grises
+		:·tfloat M_Gris=((M_Color.r+M_Color.g+M_Color.b)/3.0);
+		:·t//- Ahora interpolo entre el color gris y
+		:·t// mi color en Saturacion%
+		:·tM_Color.rgb=mix(vec3(M_Gris),M_Color.rgb,V_Saturacion);
+		:·t
+		:·t//-Modifico el color del pixel
+		:·tCOLOR.rgb=M_Color;
+		:}
+*CONTROLES
+	*
