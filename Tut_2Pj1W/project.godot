@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tut_2Pj1W"
-run/main_scene="res://Scn_Shaders/Scn_Shader_N3D.tscn"
+run/main_scene="res://SCN/Scn_MAPA.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -25,25 +25,117 @@ window/per_pixel_transparency/allowed=true
 
 [input]
 
-ACT_FRONT={
+ACT1_FRONT={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"echo":false,"script":null)
-]
+"events": []
 }
-ACT_BACK={
+ACT2_FRONT={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"echo":false,"script":null)
-]
+"events": []
 }
-ACT_LEFT={
+ACT1_BACK={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"echo":false,"script":null)
-]
+"events": []
 }
-ACT_RIGHT={
+ACT2_BACK={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"echo":false,"script":null)
-]
+"events": []
+}
+ACT1_LEFT={
+"deadzone": 0.5,
+"events": [null]
+}
+ACT2_LEFT={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_RIGHT={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_RIGHT={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_JUMP={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_JUMP={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_TOUCH={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_TOUCH={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_DOWN={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_DOWN={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_LIGHT={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_LIGHT={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_RUN={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_RUN={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_MENU={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_MENU={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_PUNCH1={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_PUNCH1={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_PUNCH2={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_PUNCH2={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_PUNCH3={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_PUNCH3={
+"deadzone": 0.5,
+"events": []
+}
+ACT1_PUNCH4={
+"deadzone": 0.5,
+"events": []
+}
+ACT2_PUNCH4={
+"deadzone": 0.5,
+"events": []
 }
 
 [rendering]

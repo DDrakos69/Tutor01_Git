@@ -4,6 +4,10 @@ extends CharacterBody3D
 const SPEED = 1.6
 const JUMP_VELOCITY = 3.5
 
+@onready var V_lb_10 = $Control/VBoxContainer/Lb_10;
+
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -13,7 +17,10 @@ var V_IsWalking:bool=false; #- guardara cuando el keko este caminando.
 
 
 func _ready():
-
+	var Mfloat=123456.123;
+	print(str(Mfloat).format("%07.2f",Mfloat));
+	
+	
 	#- Compartimos este propio player
 	V.F_PlayerSet(self);
 	V.F_PlayerCamPointSet($CamPoint_N3D);
@@ -55,6 +62,7 @@ func _physics_process(delta):
 		
 		
 		
+		
 		if M_Dir_V3d:
 			velocity.x = M_Dir_V3d.x * SPEED
 			velocity.z = M_Dir_V3d.z * SPEED
@@ -85,4 +93,43 @@ func _physics_process(delta):
 				V_IsWalking=false;
 				V_anim_player.play("idle");
 	#END if IsInfloor
+	F_PAD_GetKey();
 	move_and_slide()
+#END _physics_process;
+
+func F_PAD_GetKey():
+	var M_Evt;
+	# Itera sobre todos los eventos de entrada en la cola de eventos		
+	var M_Pads=Input.get_connected_joypads();
+	V_lb_10.text="PADS="+str(M_Pads.size())+"\n";
+	
+	var M_PadName=Input.get_joy_name(0);
+	V_lb_10.text+=" Name:"+str(M_PadName)+"\n";
+	
+	var M_PadInf=Input.get_joy_info(0);
+	V_lb_10.text+=" Info:"+str(M_PadInf)+"\n";
+	
+	var M_PadGuid=Input.get_joy_guid(0);
+	#V_lb_10.text+=" Guid:"+str(M_PadGuid);
+	
+	var M_PadAxisVal;
+	V_lb_10.text+=" Axis:";
+	for M_q in 12:
+		M_PadAxisVal=Input.get_joy_axis(0,M_q);
+		if(M_PadAxisVal>0):M_PadAxisVal=1;
+		if(M_PadAxisVal<0):M_PadAxisVal=-1;
+		V_lb_10.text+=str(M_PadAxisVal)+",";
+	#END For
+	
+	V_lb_10.text+=" Bt:";
+	for M_q in 20:
+		if(Input.is_joy_button_pressed(0,M_q)):
+			V_lb_10.text+="1,";
+		else:
+			V_lb_10.text+="0,";
+
+	#END For
+	
+	
+	
+#END F_PAD_GetKey

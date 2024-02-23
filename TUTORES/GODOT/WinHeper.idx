@@ -1,16 +1,20 @@
 {WinHelper V2.00 by FNX A1 2024}
-{WIN_W}00466
+{WIN_W}00407
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00530
 {WIN_DESC_PIC_H}00109
-{WIN_EDT_GRP_H}00221
+{WIN_EDT_GRP_H}00321
 {WIN_ALING_LEFT}00001
 {WIN_IMG_CFG}.0199.0254.0586.0583.0055
 {LAT_H}00030
 {LAT_W}00010
 {LAT_C}255255000
 *00- GODOT
+	:
+	:Cursos Online
+	:https://godottutorials.com/
+	:
 	:Video Tutorial.
 	:https://www.youtube.com/watch?v=L3pFEk1HPCQ&list=PL5PTqiCIVoiVyA2qed1NE4uKejXEWM60e
 	:https://docs.godotengine.org/es/4.x/classes/class_performance.html
@@ -35,238 +39,190 @@
 	:print(self.name);
 	:
 	:
-	:
-	:
-	*04 BUCLES
-		:Los bucles son bloques de codigo que se repiten hasta
-		:que una condicion o mientras una condicion se cumpla.
-		:Tenemos dos tipos principalmente.
-		:-
-		:for VARIABLE in rangue(INI,FIN):
-		:Este bucle se repite recorriendo una colecion para todos
-		:los miembros de un grupo.
-		:El comando range(1,10) genera un grupo de X elementos
-		:que luego se recorren y dando a VARIABLE el valor del grupo.
-		:La variable de control es creada no se puede predefinir y
-		:se elimina fuera del for.
-		:-
-		:#Se puede usar para numeros
-		:for V_PosX in range(1,10):
-		:_ print("PosX = ",V_PosX);
-		:#Fin For PosX.
-		:-
-		:#Se puede usar con arrais para recorrerlos
-		:var T_Frutas = ["Manzana","Pera","etc"];
-		:for V_Fruta in T_Frutas:
-		:_ print(V_Fruta);
-		:#Fin For Frutas.
-		:-
-		:Bucle WHILE (condicion)
-		:Este bucle no recorre lista
-		:Este bucle ejecuta un bloque de sentencias mientras que la
-		:condicion se cumpla.
-		:Para salir del bucle podemos o establecer la CONDICION a FALSA
-		:o usar la sentencia BREAK
-		:var Mq:int=0;
-		:while (Mq<10):
-		:_ print("Wile ",Mq);
-		:_ Mq+=1;
-		:#Fin del While
+	*00-Strings (Funciones)
+		:
+		:Operaciones a realizar con cadenas.
+		:
+		:#Obtiene de TEXTO los caracters entre 0 y 5
+		:-TEXTO.substr(0,5)
+		:
+		:#Elimina los caracteres en blando del inicio y del final
+		:#del TEXTO
+		:-TEXTO.strip_edges()
+		:
+		:#Separa la cadena en subcadenas usando "," como el
+		:#separador.
+		:-TEXTO.split(",")
+		:
+		:#Devuelve TEXTO quitando los espacios al principio,
+		:-TEXTO.lstrip()
+		:
+		:#Devuelve TEXTO quitando los espacios al Final,
+		:-TEXTO.rstrip()
+		:
+		:#Devuelve el Caracter 10 de TEXTO
+		:-TEXTO[10]
+		:
+		:-#Devuelve el numero de caracteres de una cadena.
+		:TEXTO.length()
+		:
+		:# Convertir la cadena a mayúsculas
+		:-TXT.to_upper()
+		:
+		:# Convertir la cadena a minúsculas
+		:-TEXT.to_lower()
+		:
+		:
+	*00-INDICE (Aprendizaje)
+		:
+		:
+		:
+		:Nivel Principiante
+		:Instalación y Configuración:
+		:Descargar e instalar Godot.
+		:Explorar la interfaz de usuario.
+		:Crear tu Primer Proyecto:
+		:Crear un nuevo proyecto.
+		:Familiarizarse con la estructura de carpetas del proyecto.
+		:Introducción a las Escenas:
+		:Aprender sobre las escenas en Godot.
+		:Crear una escena básica.
+		:Sprites y Texturas:
+		:Importar y usar sprites y texturas.
+		:Mover y rotar sprites.
+		:Introducción a la Programación con GDScript:
+		:Entender los conceptos básicos de GDScript.
+		:Crear scripts simples para objetos.
+		:Colisiones y Física:
+		:Configurar colisiones entre objetos.
+		:Aplicar física básica a objetos.
+		:Nivel Intermedio:
+		:Animaciones:
+		:Crear animaciones simples para personajes u objetos.
+		:Controlar animaciones mediante scripts.
+		:Controles de Usuario:
+		:Capturar la entrada del jugador (teclado, ratón, pantalla táctil).
+		:Implementar controles de usuario personalizados.
+		:Sistema de Partículas:
+		:Crear efectos visuales con sistemas de partículas.
+		:Sonido y Música:
+		:Agregar efectos de sonido y música a tu juego.
+		:Manejo de Escenas y Transiciones:
+		:Cambiar entre escenas.
+		:Crear transiciones suaves.
+		:Nivel Avanzado:
+		:Redes y Multijugador:
+		:Implementar funciones multijugador en línea.
+		:Sincronizar objetos y datos en red.
+		:Optimización del Rendimiento:
+		:Mejorar la eficiencia y el rendimiento de tu juego.
+		:Publicación y Distribución:
+		:Preparar tu juego para su lanzamiento en diferentes plataformas.
+		:Distribuir tu juego en tiendas en línea.
+		:Extensiones y Plugins:
+		:Explorar extensiones y plugins para ampliar las capacidades de Godot.
+		:Contribuir a la comunidad de Godot.
+		:Resolución de Problemas y Depuración:
+		:Aprender técnicas de depuración.
+		:Resolver problemas comunes.
+		:Proyecto Completo:
+		:Desarrollar un proyecto de juego completo desde cero hasta el lanzamiento.
 		:
 		:
 		:
 		:
-	*04 CLASES
-		:Podemos definir que un script sea una CLASE
-		:Usaremos la sentencia.
-		:-
-		:class_name NombreClase
-		:-
-		:De este modo le decimos que todo el script se considera
-		:una clase con sus funciones y variables.
-		:No es necesaria.
-		:-
-		:Tambien podemos definir si esta clase HEREDA de otra clase
-		:con el comando extends.
-		:-
-		:_ exteds CharacterBody2D
-		:_ class_name Personaje.
-		:-
-		:De este modo le decimos que la clase Personaje contenga
-		:todas las funciones y variables de la clase CharacterBody2D.
-		:-
-		:Es el equivalente en C# a
-		:_ Public Class MyClase:ClasePadre
-		:-
-		:Para definir dentro de la clase variables o funciones
-		:privadas usaremos el "_" delante de la variable.
-		:Pero es solo una convicion ya que no es privada real mente
-		:pero indica al programador que son de uso interno.
-		:_
-		:var _VAR1:int=2; # Esto es una variable privada
-		:func _FncPrivada (): #esto es una funcion privada.
-		:-
-		:Para instanciar una clase a una variable se usa el comando "new"
-		:var NombreVar=cls_file.new(Para1,Para2,ParaX);
+	*00-Primer contacto
+		ª10000
 		:
 		:
 		:
 		:
-	*04 COMENTARIOS
-		:Son textos que no se ejecutan y nos permiten añadir
-		:descripciones al codigo o comentarios.
+		:
+		:
+		:
+		:
+		:
+		:El primer contacto te abre el editor en modo 3D.
 		:-
-		:Existen dos modos de hacer comentarios.
-		:De una sola linea o Multilinea.
+		:En la parte central superior nos muestra las distintas plantillas.
+		:- 2D para juegos 2D o ventanas.
+		:- 3D para juegos 3D.
+		:- Script para programar la logica.
+		:- AssetLibs para librerias importadas.
 		:-
-		:#Comentario de una linea.
+		:En la parte derecha superior tenemos
+		:las opciones de ejecucion y renderizado.
 		:-
-		:'''
-		:Comentario
-		:multilinea
-		:'''
+		:En la parte izquierda superior tenemos
+		:los menus para editar crear modificar y configurar tanto
+		:el entorno como las escenas.
 		:-
-		:
-		:
-		:
-		:
-	*04 CONDICIONALES IF y MACTH
-		:Son sentencias de control de flujo que solo ejecutan
-		:su bloque de comandos si la o las condiciones son correctas.
-		:-Operadores logicos.
-		:Son los simbolos encargados de indicar que tipo de
-		:comparacion realizar.
-		:== = Igual que.
-		:=== = Exactamente igual que.
-		:!= = Distinto que.
-		:> = Mayor que
-		:< = Menor que
-		:>= = Mayor o igual que
-		:<= = Menor o igual que.
-		:and o && = todas sentencias son verdaderas (A y B)
-		:or o || = Alguna de las sentencias es verdadera (A o B)
-		:not o ! = La sentencia no es verdadera ( A no es verdadera)
-		:NT ! o not tambien se pueden usar para complementar
-		:una variable (if (A && !B): )=( Si A es verdad y B NO es verdad)
+		:En la parte de la izquierda superior
+		:-Escena - Añadimos nodos a la escena.
+		:-Importar - Al selecionar un fichero importable nos
+		:mostrara las opciones para importarlo.
+		:-En la parte de la izquierda inferior.
+		:El Explorador de ficheros.
 		:-
-		:- IF (Comparacion) : Comandos.
+		:En la derecha
+		:-Inspector -Nos mostrara las opciones del nodo selecionado
+		:con sus propiedades.
+		:-Nodos - Cuando selecionemos un nodo nos mostrara dos sub pestañas.
+		:- - Señales - Son los eventos programados "alertas" que daremos a los nodos
+		:para que se comuniquen con el resto.
+		:- - Grupos - Nos permite agrupar nodos para luego buscarlos mejor
+		:pero consume muchos recursos.
+		:-Historial - Es la lista de las ultimas modificaciones realizadas.
 		:-
-		:Las condiciones pueden o no estar entre ().
-		:El inicio del codigo se define con :
-		:El codigo tiene que estar tabulado por encima del nivel del if.
-		:- (_ =<tab>)
-		:func F_Print(M_DELTA):
-		:_ var M_Q:int=2;
-		:_ _ if (M_DELTA > 1 && M_Q==2):
-		:_ _ _ print ("Delta > 1",M_DELTA);
-		:_ _ elif (M_DELTA < 1 && M_Q==2):
-		:_ _ _ print ("Delta < 1",M_DELTA);
-		:_ _ else:
-		:_ _ _ print ("Delta = 1",M_DELTA);
-		:_ _ #endif
-		:#Fin Funcion F_Print
-		:-
-		:- MATCH VARIABLE: CASO1: CASO2: CASOX: _:
-		:Funciona con un IF elIF donde se evalua el valor de la VARIABLE.
-		:en este caso el _: funciona como el ELSE:
-		:-
-		:match (M_DELTA):
-		:_ (1):
-		:_ _ print("Delta =1");
-		:_ (2):
-		:_ _ print("Delta =2");
-		:_ _: #Case Else
-		:_ _ print("Delta ni 1 ni 2");
-		:#Fin del MATCH
+		:En la parte inferior.
+		:-Salida - con los resultados de las operaciones
+		:-Depurador - Recursos consumidos por nuestro juego.
+		:-Resultados de la busqueda.
+		:-Audio - Los distintos canales de audio buscados.
+		:-Animacion - Creacion o edicion de animaciones importadas.
+		:-Editor de Shaders - son modulos encargados de efectos especiales
+		:o sombreados, se hace niebla fuego humo sombras brillos etc.
+		:Se trabajan directamente en la TGrafica lo que los hace muy rapidos.
 		:
 		:
 		:
 		:
-	*04 ENUMS
-		:En GODOT no existen los ENUMS como tal.
-		:En su lugar podemos usar LISTAS.
-		:-
-		:var ELista = {
-		:_ "Rojo":0,
-		:_ "Verde":1,
-		:_ "Azul":2
-		:}
-		:-
-		:O usar una clase (Mejor una clase.).
-		:_
-		:class ClsELista:
-		:_ var Rojo=0;
-		:_ var Verde=1;
-		:_ var Azul=2;
-		:#END Class
-		:var Elista:ClsELista;
 		:
 		:
 		:
 		:
-	*04 FUNCIONES y METODOS
-		:Los METODOS y FUNCIONES son lo mismo.
-		:La unica diferencia es el alcance.
-		:Un metodo solo esta disponible dentro de una clase.
-		:Una funcion esta disponible para todo el programa.
-		:Los Metodos son funciones que pertenecen a una clase
-		:y solo pueden ser llamados dentro de esa clase.
-		:-
-		:Las Funciones se pueden llamar desde cualquier
-		:parte del prgrama.
-		:-
-		:Se usa la palabra func mas nombredefuncion entre
-		:parentesis los parametros y con : indicamos que comienzan
-		:las sentencias.
-		:Recordemos que las sentencias dentro de bloques han de estar
-		:tabuladas. (Aqui uso "_ " para indicar el tabulado)
-		:-
-		:-Esta funcion admite 3 parametros y devuelve 2 parametros.
-		:func NombreFuncion(Par1,Par2,ParX):
-		:_ Sentencia1
-		:_ Sentencia2
-		:_ SentenciaX
-		:_ return DatoDevuelto,DatoDevuelto
-		:_ #pass Esto permite definir dunciones sin contenido.
-		:-
-		:-Esta funcion admite 1 o 2 parametros , si no se pasa el
-		:parametro 2 lo autogenera con valor 21 y devuelve 2 parametros.
-		:func NomFunc(Par1,Par2=21):
-		:_ Sentencia1
-		:_ Sentencia2
-		:_ SentenciaX
-		:_ return DatoDevuelto,DatoDevuelto
-		:-
-		:-Esta funcion admite 1 parametro y le indicamos que
-		:no devuelve nada o que devuelve bacio (void)
-		:func NomFunc(Par1)->void:
-		:_ Sentencia1
-		:_ Sentencia2
-		:_ SentenciaX
 		:
 		:
 		:
 		:
-	*04 OPERADORES MATEMATICOS
-		:Son los simbolos que indican al motor que realizar
-		:con los datos o variables.
-		:-Los basicos serian:
-		:+ = sumar
-		:- = Restar
-		:* = Multiplicacion
-		:/ = Divison
-		:-
-		:-Los avanzados serian:
-		:** = Obtiene el Exponente
-		:% = Obtiene el Modulo
-		:// = Obtienen una division entera.
-		:+= = Incrementa en X una variable o numero.
-		:-= = Decrementa en X una variable o numero.
 		:
 		:
 		:
 		:
-	*04 VARIABLES y CONSTANTES
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+	*01-LENGUAJE
+		:
+		:
+		:
+		:Es muy parecido a pyton con algunas diferencias.
+		:Permite multilineas.
+		:Podemos terminar las sentencias con ; o si estan solas
+		:en la linea no poner nada.
+		:Usa <Tab> para los bloques de codigo.
+		:
+		:
+		:
+		:
+	*01-VARIABLES y CONSTANTES
+		:
+		:
+		:
 		:Godot es fuertemente tipado.
 		:Una variable de un tipo solo acepta ese tipo.
 		:Godot es caseSensitive. (Diferencia entre mayusculas y minusculas.)
@@ -325,7 +281,294 @@
 		:
 		:
 		:
-	*Escenas y Nodos
+	*02-COMENTARIOS
+		:
+		:
+		:
+		:Son textos que no se ejecutan y nos permiten añadir
+		:descripciones al codigo o comentarios.
+		:-
+		:Existen dos modos de hacer comentarios.
+		:De una sola linea o Multilinea.
+		:-
+		:#Comentario de una linea.
+		:-
+		:'''
+		:Comentario
+		:multilinea
+		:'''
+		:-
+		:
+		:
+		:
+		:
+	*03-CONDICIONALES IF y MACTH
+		:
+		:
+		:
+		:Son sentencias de control de flujo que solo ejecutan
+		:su bloque de comandos si la o las condiciones son correctas.
+		:-Operadores logicos.
+		:Son los simbolos encargados de indicar que tipo de
+		:comparacion realizar.
+		:== = Igual que.
+		:=== = Exactamente igual que.
+		:!= = Distinto que.
+		:> = Mayor que
+		:< = Menor que
+		:>= = Mayor o igual que
+		:<= = Menor o igual que.
+		:and o && = todas sentencias son verdaderas (A y B)
+		:or o || = Alguna de las sentencias es verdadera (A o B)
+		:not o ! = La sentencia no es verdadera ( A no es verdadera)
+		:NT ! o not tambien se pueden usar para complementar
+		:una variable (if (A && !B): )=( Si A es verdad y B NO es verdad)
+		:-
+		:- IF (Comparacion) : Comandos.
+		:-
+		:Las condiciones pueden o no estar entre ().
+		:El inicio del codigo se define con :
+		:El codigo tiene que estar tabulado por encima del nivel del if.
+		:- (_ =<tab>)
+		:func F_Print(M_DELTA):
+		:_ var M_Q:int=2;
+		:_ _ if (M_DELTA > 1 && M_Q==2):
+		:_ _ _ print ("Delta > 1",M_DELTA);
+		:_ _ elif (M_DELTA < 1 && M_Q==2):
+		:_ _ _ print ("Delta < 1",M_DELTA);
+		:_ _ else:
+		:_ _ _ print ("Delta = 1",M_DELTA);
+		:_ _ #endif
+		:#Fin Funcion F_Print
+		:-
+		:- MATCH VARIABLE: CASO1: CASO2: CASOX: _:
+		:Funciona con un IF elIF donde se evalua el valor de la VARIABLE.
+		:en este caso el _: funciona como el ELSE:
+		:-
+		:match (M_DELTA):
+		:_ (1):
+		:_ _ print("Delta =1");
+		:_ (2):
+		:_ _ print("Delta =2");
+		:_ _: #Case Else
+		:_ _ print("Delta ni 1 ni 2");
+		:#Fin del MATCH
+		:
+		:
+		:
+		:
+	*04-BUCLES
+		:
+		:
+		:
+		:Los bucles son bloques de codigo que se repiten hasta
+		:que una condicion o mientras una condicion se cumpla.
+		:Tenemos dos tipos principalmente.
+		:-
+		:for VARIABLE in rangue(INI,FIN):
+		:Este bucle se repite recorriendo una colecion para todos
+		:los miembros de un grupo.
+		:El comando range(1,10) genera un grupo de X elementos
+		:que luego se recorren y dando a VARIABLE el valor del grupo.
+		:La variable de control es creada no se puede predefinir y
+		:se elimina fuera del for.
+		:-
+		:#Se puede usar para numeros
+		:for V_PosX in range(1,10):
+		:_ print("PosX = ",V_PosX);
+		:#Fin For PosX.
+		:-
+		:#Se puede usar con arrais para recorrerlos
+		:var T_Frutas = ["Manzana","Pera","etc"];
+		:for V_Fruta in T_Frutas:
+		:_ print(V_Fruta);
+		:#Fin For Frutas.
+		:-
+		:Bucle WHILE (condicion)
+		:Este bucle no recorre lista
+		:Este bucle ejecuta un bloque de sentencias mientras que la
+		:condicion se cumpla.
+		:Para salir del bucle podemos o establecer la CONDICION a FALSA
+		:o usar la sentencia BREAK
+		:var Mq:int=0;
+		:while (Mq<10):
+		:_ print("Wile ",Mq);
+		:_ Mq+=1;
+		:#Fin del While
+		:
+		:
+		:
+		:
+	*05-CLASES
+		:
+		:
+		:-Podemos definir que un script sea una CLASE
+		:Usaremos la sentencia.
+		:class_name NombreClase
+		:
+		:-De este modo le decimos que todo el script se considera
+		:una clase con sus funciones y variables.
+		:Pero no es necesario, tambien podemos
+		:en un solo script crear distintas clases usando "class"
+		:
+		:-Tambien podemos definir si esta clase HEREDA de otra clase
+		:con el comando "extends"
+		:Es el equivalente en C# a Public Class MyClase:ClasePadre
+		:
+		:-Para definir dentro de la clase variables o funciones
+		:privadas usaremos el "_" delante de la variable.
+		:Pero es solo una convicion ya que no es privada real mente
+		:pero indica al programador que son de uso interno.
+		:
+		:Para instanciar una clase a una variable se usa el comando "new"
+		:var NombreVar=cls_file.new(Para1,Para2,ParaX);
+		:
+		:# Script con multiples clases.
+		:exteds CharacterBody2D
+		:class NombreClase:
+		:
+		:·t# Esto es una variable privada
+		:·tvar _VAR1:int=2;
+		:
+		:·tfunc _init(Parametros):
+		:·t·tpass
+		:·t#END _Init
+		:
+		:·t #esto es una funcion privada.
+		:·tfunc _FncPrivada ():
+		:·t·tpass;
+		:·t#END _FncPrivada
+		:
+		:#END Clase
+		:
+		:# Todo el script es una clase.
+		:exteds CharacterBody2D
+		:class_Name NombreClase;
+		:
+		:# Esto es una variable privada
+		:var _VAR1:int=2;
+		:
+		:func _init(Parametros):
+		:·tpass
+		:#END _Init
+		:
+		:#esto es una funcion privada.
+		:func _FncPrivada ():
+		:·tpass;
+		:#END _FncPrivada
+		:
+		:
+		:
+	*06-GSCRIPT BASICO
+		ª10005ª10006ª10008ª10007ª10009
+		:
+		:
+		:
+		:-Clases Metodos y funciones.
+		:Todos los controles eredan del objeto node.
+		:al crear un script nos genera por defecto dos
+		:funciones
+		:extends Node
+		:-Este script hereda del objeto base "Node."
+		:func _ready():
+		:-Se ejecuta cuando se activa el nodo
+		:func _process(delta)
+		:-Se ejecuta cada vez que se dibuja la pantalla.
+		:-El tiempo transcurrido entre refrescos es delta.
+		:
+		:
+		:
+		:
+	*07-ENUMS
+		:
+		:
+		:
+		:En su lugar podemos usar LISTAS.
+		:
+		:enum ETipos{
+		:·t_Teclado=0,
+		:·t_MouseBt=1,
+		:·t_MouseAxis=2,
+		:·t_PadBt=3,
+		:·t_PadAxis=4
+		:}
+		:@onready var Tipo:ETipos=ETipos._Teclado;
+		:
+		:
+		:
+		:
+	*08-FUNCIONES y METODOS
+		:
+		:
+		:
+		:Los METODOS y FUNCIONES son lo mismo.
+		:La unica diferencia es el alcance.
+		:Un metodo solo esta disponible dentro de una clase.
+		:Una funcion esta disponible para todo el programa.
+		:Los Metodos son funciones que pertenecen a una clase
+		:y solo pueden ser llamados dentro de esa clase.
+		:-
+		:Las Funciones se pueden llamar desde cualquier
+		:parte del prgrama.
+		:-
+		:Se usa la palabra func mas nombredefuncion entre
+		:parentesis los parametros y con : indicamos que comienzan
+		:las sentencias.
+		:Recordemos que las sentencias dentro de bloques han de estar
+		:tabuladas. (Aqui uso "_ " para indicar el tabulado)
+		:-
+		:-Esta funcion admite 3 parametros y devuelve 2 parametros.
+		:func NombreFuncion(Par1,Par2,ParX):
+		:_ Sentencia1
+		:_ Sentencia2
+		:_ SentenciaX
+		:_ return DatoDevuelto,DatoDevuelto
+		:_ #pass Esto permite definir dunciones sin contenido.
+		:-
+		:-Esta funcion admite 1 o 2 parametros , si no se pasa el
+		:parametro 2 lo autogenera con valor 21 y devuelve 2 parametros.
+		:func NomFunc(Par1,Par2=21):
+		:_ Sentencia1
+		:_ Sentencia2
+		:_ SentenciaX
+		:_ return DatoDevuelto,DatoDevuelto
+		:-
+		:-Esta funcion admite 1 parametro y le indicamos que
+		:no devuelve nada o que devuelve bacio (void)
+		:func NomFunc(Par1)->void:
+		:_ Sentencia1
+		:_ Sentencia2
+		:_ SentenciaX
+		:
+		:
+		:
+		:
+	*09-OPERADORES MATEMATICOS
+		:
+		:
+		:
+		:Son los simbolos que indican al motor que realizar
+		:con los datos o variables.
+		:-Los basicos serian:
+		:+ = sumar
+		:- = Restar
+		:* = Multiplicacion
+		:/ = Divison
+		:-
+		:-Los avanzados serian:
+		:** = Obtiene el Exponente
+		:% = Obtiene el Modulo
+		:// = Obtienen una division entera.
+		:+= = Incrementa en X una variable o numero.
+		:-= = Decrementa en X una variable o numero.
+		:
+		:
+		:
+		:
+	*10-ESCENAS Y NODOS
+		:
+		:
+		:
 		:Godot se estructura con escenas y nodos
 		:Una escena seria un objeto que tiene distintos nodos
 		:Cada escena tiene un solo script.
@@ -355,137 +598,147 @@
 		:
 		:
 		:
-	*GScript Basico
-		ª10005ª10006ª10008ª10007ª10009
-		:-Clases Metodos y funciones.
-		:Todos los controles eredan del objeto node.
-		:al crear un script nos genera por defecto dos
-		:funciones
-		:extends Node
-		:-Este script hereda del objeto base "Node."
-		:func _ready():
-		:-Se ejecuta cuando se activa el nodo
-		:func _process(delta)
-		:-Se ejecuta cada vez que se dibuja la pantalla.
-		:-El tiempo transcurrido entre refrescos es delta.
-		:
-		:
-		:
-		:
-	*INDICE (Aprendizaje)
-		:Nivel Principiante
-		:Instalación y Configuración:
-		:Descargar e instalar Godot.
-		:Explorar la interfaz de usuario.
-		:Crear tu Primer Proyecto:
-		:Crear un nuevo proyecto.
-		:Familiarizarse con la estructura de carpetas del proyecto.
-		:Introducción a las Escenas:
-		:Aprender sobre las escenas en Godot.
-		:Crear una escena básica.
-		:Sprites y Texturas:
-		:Importar y usar sprites y texturas.
-		:Mover y rotar sprites.
-		:Introducción a la Programación con GDScript:
-		:Entender los conceptos básicos de GDScript.
-		:Crear scripts simples para objetos.
-		:Colisiones y Física:
-		:Configurar colisiones entre objetos.
-		:Aplicar física básica a objetos.
-		:Nivel Intermedio:
-		:Animaciones:
-		:Crear animaciones simples para personajes u objetos.
-		:Controlar animaciones mediante scripts.
-		:Controles de Usuario:
-		:Capturar la entrada del jugador (teclado, ratón, pantalla táctil).
-		:Implementar controles de usuario personalizados.
-		:Sistema de Partículas:
-		:Crear efectos visuales con sistemas de partículas.
-		:Sonido y Música:
-		:Agregar efectos de sonido y música a tu juego.
-		:Manejo de Escenas y Transiciones:
-		:Cambiar entre escenas.
-		:Crear transiciones suaves.
-		:Nivel Avanzado:
-		:Redes y Multijugador:
-		:Implementar funciones multijugador en línea.
-		:Sincronizar objetos y datos en red.
-		:Optimización del Rendimiento:
-		:Mejorar la eficiencia y el rendimiento de tu juego.
-		:Publicación y Distribución:
-		:Preparar tu juego para su lanzamiento en diferentes plataformas.
-		:Distribuir tu juego en tiendas en línea.
-		:Extensiones y Plugins:
-		:Explorar extensiones y plugins para ampliar las capacidades de Godot.
-		:Contribuir a la comunidad de Godot.
-		:Resolución de Problemas y Depuración:
-		:Aprender técnicas de depuración.
-		:Resolver problemas comunes.
-		:Proyecto Completo:
-		:Desarrollar un proyecto de juego completo desde cero hasta el lanzamiento.
-		:
-		:
-		:
-		:
-	*LENGUAJE
-		:Es muy parecido a pyton con algunas diferencias.
-		:Permite multilineas.
-		:Podemos terminar las sentencias con ; o si estan solas
-		:en la linea no poner nada.
-		:Usa <Tab> para los bloques de codigo.
-		:
-		:
-		:
-		:
-	*Primer contacto
-		ª10000
-		:El primer contacto te abre el editor en modo 3D.
-		:-
-		:En la parte central superior nos muestra las distintas plantillas.
-		:- 2D para juegos 2D o ventanas.
-		:- 3D para juegos 3D.
-		:- Script para programar la logica.
-		:- AssetLibs para librerias importadas.
-		:-
-		:En la parte derecha superior tenemos
-		:las opciones de ejecucion y renderizado.
-		:-
-		:En la parte izquierda superior tenemos
-		:los menus para editar crear modificar y configurar tanto
-		:el entorno como las escenas.
-		:-
-		:En la parte de la izquierda superior
-		:-Escena - Añadimos nodos a la escena.
-		:-Importar - Al selecionar un fichero importable nos
-		:mostrara las opciones para importarlo.
-		:-En la parte de la izquierda inferior.
-		:El Explorador de ficheros.
-		:-
-		:En la derecha
-		:-Inspector -Nos mostrara las opciones del nodo selecionado
-		:con sus propiedades.
-		:-Nodos - Cuando selecionemos un nodo nos mostrara dos sub pestañas.
-		:- - Señales - Son los eventos programados "alertas" que daremos a los nodos
-		:para que se comuniquen con el resto.
-		:- - Grupos - Nos permite agrupar nodos para luego buscarlos mejor
-		:pero consume muchos recursos.
-		:-Historial - Es la lista de las ultimas modificaciones realizadas.
-		:-
-		:En la parte inferior.
-		:-Salida - con los resultados de las operaciones
-		:-Depurador - Recursos consumidos por nuestro juego.
-		:-Resultados de la busqueda.
-		:-Audio - Los distintos canales de audio buscados.
-		:-Animacion - Creacion o edicion de animaciones importadas.
-		:-Editor de Shaders - son modulos encargados de efectos especiales
-		:o sombreados, se hace niebla fuego humo sombras brillos etc.
-		:Se trabajan directamente en la TGrafica lo que los hace muy rapidos.
-		:
-		:
-		:
-		:
 *01- EJEMPLOS
+	*01-Third Person Controller
+		:
+		:
+		:
+		:
+		:
+		:
+		:https://www.youtube.com/watch?v=EP5AYllgHy8
+		:
+		:Controlador de personaje para tercera persona.
+		:Camara en el hombro.
+		:Andar
+		:Correr
+		:Patada.
+		:Rotar camara
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+	*02- Pausar Nodos
+		:
+		:
+		:
+		:
+		:
+		:# Pausar la escena completa
+		:get_tree().paused = true
+		:
+		:# Pausar un nodo específico y sus hijos
+		:mi_nodo.paused = true
+		:
+		:# Pausar una parte de la lógica del juego
+		:func _process(delta):
+		:if not pausado:
+		:# Ejecutar lógica del juego normalmente
+		:# ...
+		:
+		:# Llamar a esta función para pausar o reanudar la lógica del juego
+		:func pausar_juego(pausado):
+		:if get_tree().paused != pausado:
+		:get_tree().paused = pausado
+		:
+		:
+		:
+		:
+		:
+		:
+	*03- Definir teclas a acciones de forma manual
+		:
+		:
+		:
+		:
+		:
+		:-
+		:Listar las acciones creadas en un juego.
+		:Acciones es una lista de strings.
+		:-
+		:
+		:# Obtén la instancia de InputMap
+		:var input_map = InputMap.get_singleton()
+		:
+		:# Obtiene la lista de todas las acciones definidas en el InputMap
+		:var acciones = input_map.get_actions()
+		:
+		:# Itera sobre la lista de acciones y las imprime en la consola
+		:for accion in acciones:
+		:print(accion)
+		:-
+		:Modificar añadir o eliminar una tecla asignada a una accion.
+		:-
+		:# Obtén la instancia de InputMap
+		:var input_map = InputMap.get_singleton()
+		:
+		:# Define la nueva tecla para la acción "saltar" (por ejemplo, la tecla "Z")
+		:# Elimina la tecla existente asociada a la acción
+		:input_map.action_erase_event("saltar")
+		:# Asigna la nueva tecla a la acción
+		:input_map.action_add_event("saltar", InputEventKey.new(KEY_Z, true))
+		:
+		:-
+		:Listar acciones y teclas asignadas a cada accion
+		:-
+		:# Obtén la instancia de InputMap
+		:var input_map = InputMap.get_singleton()
+		:
+		:# Obtén la lista de acciones
+		:var acciones = input_map.get_actions()
+		:
+		:# Itera sobre cada acción
+		:for accion in acciones:
+		:# Obtén la lista de teclas asociadas a la acción
+		:var teclas = input_map.get_action_list(accion)
+		:
+		:# Imprime el nombre de la acción y las teclas asignadas a ella
+		:print("Acción:", accion)
+		:print("Teclas asignadas:", teclas)
+		:print()
+		:-
+		:obtener todos los datos de una tecla asignada.
+		:-
+		:
+		:# Obtén la instancia de InputMap
+		:var input_map = InputMap.get_singleton()
+		:
+		:# Define el nombre de la acción de la que quieres obtener más detalles
+		:var accion = "saltar"
+		:
+		:# Obtén la lista de teclas y otros eventos asociados a la acción
+		:var eventos = input_map.get_action_list(accion)
+		:
+		:# Itera sobre cada evento de entrada en la lista
+		:for evento in eventos:
+		:# Imprime el tipo de evento y cualquier otro parámetro relevante
+		:print("Tipo de evento:", evento.type)
+		:print("Tecla pulsada:", evento.scancode)
+		:print("Modificadores de teclado:", evento.modifiers)
+		:print("Dirección del scroll:", evento.direction)
+		:# Agrega más propiedades según sea necesario
+		:
+		:# Imprime un separador entre cada evento
+		:print("---")
+		:
+		:
+		:
+		:
+		:
+		:
 	*04 Acceso a los nodos
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Para obtener acceso a los nodos tenemos dos modos.
 		:-
 		:Podemos usar el comando get_node("Nombre Nodo")
@@ -497,7 +750,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*04 ARRAYS y DICCIONARIOS
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Los ARRAYS,
 		:Son listas de datos, cada celda puede ser de un tipo
 		:de dato y guarda una posicion segun el orden de creacion.
@@ -558,7 +839,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*04 Comentarios
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:En GDScript tenemos dos modos de comentarios.
 		:-
 		:De una sola linea.
@@ -579,8 +888,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*05 AUTOLOAD o SINGLETON
 		ª10018ª10019ª10020ª10023ª10021ª10022
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Son script con funciones o variables que se
 		:cargan de forma automatica al iniciar un proyecto.
 		:-
@@ -609,7 +946,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*06 LAS SEÑALES
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Las señales son EVENTOS.
 		:Son mensajes que se mandan al juego cuando algo ocurre.
 		:Cuando se presiona un boton, cuando se suelta, cuando
@@ -705,7 +1070,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*06 LAS SEÑALES BASE
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:En godot las SEÑALES son parecidas a los EVENTOS pero
 		:un poco mas flexibles.
 		:Es un poco lioso.
@@ -790,7 +1183,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*08 Movimiento Personalizado
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Para caputrar el movimiento es tan simple como:
 		:En el SCRIPT GLOBAL añadimos una funcion para obtener
 		:que tecla se ha pulsado y extraer la direcion.
@@ -853,8 +1274,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*10 Animationplayer
 		ª10035ª10032
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Este nodo se enlaza a otro nodo sobre el que puede animar
 		:cualquier propiedad de cualquier nodo.
 		:Podemos por ejemplo crear las animaciones de unos
@@ -899,8 +1348,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*11 AnimationTree
 		ª10033ª10030ª10027ª10029ª10031
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:AnimationTree o Arblo de animaciones.
 		:Este nodo nos permite enlazar un AnimationPlayer con
 		:una maquina de estados.
@@ -970,8 +1447,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*12 TWEEN
 		ª10034
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:TWEEN es como se llama el proceso por el cual
 		:una animacion pasa del FTG-A al FTG-B.
 		:Tambien sele conoce como interpolacion.
@@ -1026,8 +1531,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*13 TILEMAP
 		ª10040ª10041ª10042ª10044ª10060
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Se trata de un modulo para pintar una cuadricula.
 		:El propio control se encarga de colisiones, mapa
 		:de navegacion y mucho mas.
@@ -1064,8 +1597,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		*AUTO TILE MAP
 			ª10052ª10053ª10054ª10055ª10056ª10057ª10058
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 			:AUTO TILEMAP
 			:Esta es una herramienta para que el TileMap Autopinte
 			:terrenos.
@@ -1099,8 +1660,36 @@
 			:
 			:
 			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 		*COLLISION LAYERS
 			ª10043ª10044ª10045ª10046ª10047ª10048
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 			:COLISIONES
 			:Tambien podemos definir colisiones en los Tiles que
 			:queramos, para ello tenemos que definir sus fisicas.
@@ -1122,8 +1711,36 @@
 			:
 			:
 			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 		*NAVIGATION LAYERS
 			ª10050ª10051ª10048
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 			:CAPAS DE NAVEGACION
 			:Al igual que las colision Map, si queremos que un enemigo
 			:sepa por donde moverse le podemos indicar ese espacio.
@@ -1137,8 +1754,36 @@
 			:
 			:
 			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 		*TILESET y CAPAS
 			ª10044ª10043
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 			:TILESET
 			:(Configuramos los suelos)
 			:En el centro inferior selecionamos el TileSet y arrastramos
@@ -1179,8 +1824,36 @@
 			:
 			:
 			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 	*14 GRILLMAP
 		ª10080ª10079ª10061ª10082ª10081
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Al igual que con el TILEMAP este nodo presenta una
 		:cuadricula pero en 3D.
 		:Este control como es logico funciona solo en nodos
@@ -1220,8 +1893,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		*MESHLIBRARY
 			ª10073ª10072ª10071ª10070ª10069ª10068ª10067ª10066ª10065ª10064ª10063ª10062ª10061ª10078ª10077ª10076ª10075ª10074
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 			:Para crear una MESHLIBRARY la creamos desde el
 			:GRILLMAP.
 			:Pero ahora tenemos que editarla para añadirle
@@ -1260,8 +1961,36 @@
 			:
 			:
 			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 	*3D RPG Controler
 		ª10100ª10099ª10098ª10097ª10096ª10095ª10094ª10093ª10092ª10091ª10089ª10101ª10090
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:https://www.youtube.com/watch?v=0T-FMkSru64
 		:-
 		:Creamos un manejador para un juego con el PJ
@@ -1375,8 +2104,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*3D RPG Controler (Camara)
 		ª10102ª10103ª10106ª10105ª10104ª10109ª10110ª10108ª10107ª10111ª10112ª10113ª10114ª10115ª10116ª10117ª10118ª10119
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Ahora configuraremos la camara.
 		:Lo que queremos es que la linea entre la camara y el
 		:PJ siempre este visible por lo que tendremos que ocultar
@@ -1489,8 +2246,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Acceder a un nodo y sus propiedades
 		ª10017
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Tenemos tres modos de acceder a las propiedades de un
 		:nodo.
 		:-
@@ -1520,7 +2305,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Acceso a los nodos
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Godos encapsula todo en nodos .
 		:Cada nodo tienen un script.
 		:Cada nodo ereda del tipo base nodo pero puede o no
@@ -1565,7 +2378,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Botones Dinamicos y Eventos Dinamicos
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:En este ejemplo creo 4 botones dinamicos y
 		:enlazo su evento Button_up a una funcion pasandole
 		:un valor.
@@ -1615,8 +2456,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*CONFIGURAR ENTORNO
 		ª10089ª10088
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Un punto principal a la hora de crear un videojuego es la
 		:configuracion del entorno.
 		:-
@@ -1683,7 +2552,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Crear Tabla de controles dinamicos
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Tras PreCargar la escena madre y
 		:obtener el control de esa escena.
 		:Rellenamos una tabla con colnes de ese boton
@@ -1728,7 +2625,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Crear un Boton dinamico con evento
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Con este codigo ejecutado en el nodo padre creamos
 		:un nodo button y le añadimos un evento al terminar el
 		:_ready();
@@ -1756,7 +2681,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*EL NODO
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:-PROPIEDADES
 		:String	<-	editor_description	""
 		:MultiplayerAPI	<-	multiplayer
@@ -1867,7 +2820,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Enlazar con Blender
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:El godot se puede enlazar con proyectos del Blender.
 		:Para ello tenemos que indicarle dos cosas.
 		:1- Indicarle donde tenemos instalado el blender.
@@ -1893,7 +2874,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*FICHEROS
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:GODOT trabaja los ficheros como otros lenguajes.
 		:1 - Se enlaza el fichero a una variable de un modo.
 		:2 - Se realizan las operaciones sobre el fichero dado.
@@ -1949,7 +2958,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Importar objetos de Blender
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Teniendo el Blender el modelo con todos los objetos asociados
 		:a la armadura y las animaciones .
 		:Lo selecionamos todo .
@@ -1988,7 +3025,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Instanciar Controles predefinidos
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Podemos crear controles predefinidos y preconfigurados.
 		:Para ello tenemos que añadirlos a una nueva escena.
 		:Los creamos y los configuramos.
@@ -2030,8 +3095,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Materiales
 	*MULTI IDIOMA
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:El godot tiene un modo muy simple para trabajar el texto en
 		:multi idioma.
 		:Podemos usar el excel aunque el usa un fichero con campos
@@ -2072,7 +3165,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*NOTIFICACIONES
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Existe un evento que se dispara cuando ocurre algo y podemos
 		:capturar que ocurre por medio de constantes.
 		:Segun donde capturemos la notificacion significara una cosa.
@@ -2114,7 +3235,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*Numeros aleatorios
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Podemos obtener un numero aleatorio usando las funciones
 		:randif() o randi()
 		:randi() para enteros
@@ -2126,7 +3275,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*SAVE_LOAD Tabla Arrays
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:En este ejemplo tengo un array de 2 dimensiones con cadenas
 		:y lo cargo y guardo en un fichero de texto plano separado
 		:por : y donde cada linea es un row.
@@ -2184,7 +3361,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*SPACE SHOOTER 2D
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Por tratarse de un juego 2D usaremos el Renderizador
 		:de movio o compatibilidad.
 		:Crearemos un mata mata de navecitas con :
@@ -2193,8 +3398,36 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		*CONFIGURACION
 			ª10086ª10084
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 			:Entramos en la configuracion del proyecto y activamos
 			:"Configuraciones Avanzadas".
 			:-
@@ -2226,7 +3459,35 @@
 			:
 			:
 			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 		*ESTRUCTURA
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 			:En este caso como es un proyecto simple es simple.
 			:Tenemos que tener en cuenta que todo en godot son
 			:escenas por lo que tenemos.
@@ -2250,7 +3511,35 @@
 			:
 			:
 			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
+			:
 	*Test For While
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:"_ " = <TAB>
 		:Este Test revisa el uso de memoria y la velocidad de
 		:los bucles FOR y WHILE
@@ -2353,7 +3642,35 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*TIEMPOS
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:En godot podemos obtener temporizadores y las fechas y horas
 		:con distintas funciones:
 		:-
@@ -2440,15 +3757,71 @@
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*V4 Controlador Basico 3D
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:https://www.youtube.com/watch?v=J5-0X9xPDVE
 		:- Controlador sencillo para personajes 3D
 		:
 		:
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 *02- SHADERS
 	ª10120
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
 	:https://www.youtube.com/watch?v=kgGhJujTHM8&list=PLMiJk3nm2SG_p968uOTiOEPHXcdT9CPaP
 	:
 	:Son pequeños programas que se ejecutan en la GPU.
@@ -2495,8 +3868,36 @@
 	:matematicos que modificar los colores de la salida a la pantalla.
 	:
 	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
+	:
 	*00-Mezcla de colores
 		ª10120
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Una vez creado el material tipo shader le damos un nombre
 		:y en la parte central inferior nos aparecera el editor
 		:del codigo para el Shader.
@@ -2535,8 +3936,36 @@
 		:-
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*01-Imagen en grises
 		ª10122ª10123
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:Ahora despues del render , recorreremos cada pixel
 		:Obtenemos su color y su tono para pasarlos a grises.
 		:-
@@ -2570,8 +3999,36 @@
 		:-
 		:
 		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 	*02-Brillo y Saturacion
 		ª10123ª10124ª10125
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 		:El brillo de un color es la interpolacion entre
 		:el color negro (0,0,0) hasta el color actual.
 		:
@@ -2609,5 +4066,390 @@
 		:·t//-Modifico el color del pixel
 		:·tCOLOR.rgb=M_Color;
 		:}
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+	*03-Blanco y Negro
+		ª10121
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:En este Shader pasaremos una imagen a blanco y negro.
+		:Creamos un nuevo shader de tipo CANVAS_ITEM
+		:y lo llamamos BlancoNegro
+		:-
+		:shader_type canvas_item;
+		:
+		:// Called for every pixel the material is visible on.
+		:void fragment() {
+		:·t//Obtenemos el color del pixel.
+		:·tvec3 M_Clr=texture(TEXTURE,UV).rgb;
+		:·t// Pasamos el color a tonos de grises.
+		:·tfloat M_BW=((M_Clr.r + M_Clr.g +M_Clr.b)/3.0);
+		:·t// Pasamos el gris a 0 o a 1 si esta por encima o debajo de 0.4
+		:·tM_BW=step(0.4,M_BW);
+		:·t// Modificamos el color de salida del pixel
+		:·tCOLOR.rgb=vec3(M_BW);
+		:}
+		:// Called for every vertex the material is visible on.
+		:void vertex() {
+		:}
+		:// Called for every pixel for every light affecting the CanvasItem.
+		:void light() {
+		:}
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+	*04-Color Inverso
+		ª10126
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:La historia consiste en restar a mi vector de color el
+		:color blanco. el Negro es (0.0,0.0,0.0) el blanco es (1.0,1.0,1.0)
+		:-
+		:shader_type canvas_item;
+		:// Called for every pixel the material is visible on.
+		:void fragment() {
+		:·t// Obtengo el color del pixel
+		:·tvec3 M_Clr=texture(TEXTURE,UV).rgb;
+		:·t//el color esta entre 0.0 Negro y 1.0 Blanco al restar
+		:·t//a mi color el blanco Obtengo la inversion de la gama.
+		:·tM_Clr=vec3(1.0)-M_Clr.rgb;
+		:·t//Modifico el color de salida.
+		:·tCOLOR.rgb=M_Clr;
+		:}
+		:// Called for every vertex the material is visible on.
+		:void vertex() {
+		:·t
+		:}
+		:// Called for every pixel for every light affecting the CanvasItem.
+		:void light() {
+		:·t
+		:}
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+	*05-Marcar Bordes
+		ª10128
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:En este caso analizamos los colores contiguos
+		:y si su hipotenusa3D es menor que el valor
+		:que damos marcara en blanco o negro ese pixel.
+		:Esto quema el color negro o blanco segun queramos.
+		:-
+		:// Shader tipo Canvas
+		:shader_type canvas_item;
+		:// Distancia de busqueda de pixels.
+		:uniform float V_Distancia=0.7;
+		:// Called for every pixel the material is visible on.
+		:void fragment() {
+		:·t//Obtengo el color del pixel
+		:·tvec3 M_Clr = texture(TEXTURE,UV).rgb;
+		:·t//Obtengo el color del pixel X+1
+		:·tvec3 M_ClrR = texture(TEXTURE,UV+vec2(1,0)).rgb;
+		:·t//Obtengo el color del pixel Y-1 (Abajo)
+		:·tvec3 M_ClrD = texture(TEXTURE,UV-vec2(0,1)).rgb;
+		:·t// Obtengo la hipotenusa en 3D desde 0,0,0 hasta Color Right.
+		:·tfloat M_DistR=length(M_ClrR-M_Clr);
+		:·t// Obtengo la hipotenusa en 3D desde 0,0,0 hasta Color Down.
+		:·tfloat M_DistD=length(M_ClrD-M_Clr);
+		:·t//Si la hipotenusa3D es mayor de VDistancia pongo blanco
+		:·t// Si no pongo negro.
+		:·tif(M_DistD >V_Distancia || M_DistR>V_Distancia){
+		:·t·tCOLOR.rgb=M_Clr+vec3(1,1,1);
+		:·t}else{
+		:·t·tCOLOR.rgb=M_Clr-vec3(0,0,0);
+		:·t}
+		:·t
+		:}
+		:// Called for every vertex the material is visible on.
+		:void vertex() {}
+		:// Called for every pixel for every light affecting the CanvasItem.
+		:void light() {}
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+	*06-Marcar Bordes con Matriz de Convolucion
+		ª10127ª10129ª10130ª10131
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:Esta es la forma correcta de marcar los bordes usando
+		:una matriz para saber los colores de todo lo que
+		:rodea al pixel central incluido el propio pixel.
+		:Segun el tamaño de la matriz y los calculos realizado
+		:sobre cada valor de la tabla podemos obtener distintos
+		:efectos.
+		:Podemos ver una lisa en la wikipedia buscando
+		:Kernel Image processing.
+		:https://en.wikipedia.org/wiki/Kernel_(image_processing)
+		:Tambien tenemos mas ejemplos en
+		:https://docs.godotengine.org/en/stable/tutorials/shaders/custom_postprocessing.html
+		:Tenemos que tener en cuenta que muchos claculos
+		:ya estan incorporados en las gpus por lo que no
+		:tendremos que implementarlos.
+		:-
+		:shader_type canvas_item;
+		:
+		:// Called for every pixel the material is visible on.
+		:void fragment() {
+		:·tfloat M_x=SCREEN_PIXEL_SIZE.x;
+		:·tfloat M_y=SCREEN_PIXEL_SIZE.y;
+		:·t
+		:·tvec3 M_Crl1 =-8.0*texture(TEXTURE,UV).xyz ;
+		:·tM_Crl1 += texture(TEXTURE, UV + vec2(0.0, M_y)).xyz;
+		:·tM_Crl1 += texture(TEXTURE, UV + vec2(0.0, -M_y)).xyz;
+		:·tM_Crl1 += texture(TEXTURE, UV + vec2(M_x, 0.0)).xyz;
+		:·tM_Crl1 += texture(TEXTURE, UV + vec2(-M_x,0.0)).xyz;
+		:·tM_Crl1 += texture(TEXTURE, UV + SCREEN_PIXEL_SIZE.xy).xyz;
+		:·tM_Crl1 += texture(TEXTURE, UV - SCREEN_PIXEL_SIZE.xy).xyz;
+		:·tM_Crl1 += texture(TEXTURE, UV + vec2(-M_x,M_y)).xyz;
+		:·tM_Crl1 += texture(TEXTURE, UV + vec2(M_x,-M_y)).xyz;
+		:·tCOLOR.xyz = M_Crl1;
+		:}
+		:// Called for every vertex the material is visible on.
+		:void vertex() {}
+		:// Called for every pixel for every light affecting the CanvasItem.
+		:void light() {}
+		:
+		:-
+		:Este es el ejemplo de la wikipedia para todos los filtros.
+		:-
+		:// author : csblo
+		:// Work made just by consulting :
+		:// https://en.wikipedia.org/wiki/Kernel_(image_processing)
+		:
+		:// Define kernels
+		:#define identity mat3(0, 0, 0, 0, 1, 0, 0, 0, 0)
+		:#define edge0 mat3(1, 0, -1, 0, 0, 0, -1, 0, 1)
+		:#define edge1 mat3(0, 1, 0, 1, -4, 1, 0, 1, 0)
+		:#define edge2 mat3(-1, -1, -1, -1, 8, -1, -1, -1, -1)
+		:#define sharpen mat3(0, -1, 0, -1, 5, -1, 0, -1, 0)
+		:#define box_blur mat3(1, 1, 1, 1, 1, 1, 1, 1, 1) * 0.1111
+		:#define gaussian_blur mat3(1, 2, 1, 2, 4, 2, 1, 2, 1) * 0.0625
+		:#define emboss mat3(-2, -1, 0, -1, 1, 1, 0, 1, 2)
+		:
+		:// Find coordinate of matrix element from index
+		:vec2 kpos(int index)
+		:{
+		:return vec2[9] (
+		:vec2(-1, -1), vec2(0, -1), vec2(1, -1),
+		:vec2(-1, 0), vec2(0, 0), vec2(1, 0),
+		:vec2(-1, 1), vec2(0, 1), vec2(1, 1)
+		:)[index] / iResolution.xy;
+		:}
+		:
+		:
+		:// Extract region of dimension 3x3 from sampler centered in uv
+		:// sampler : texture sampler
+		:// uv : current coordinates on sampler
+		:// return : an array of mat3, each index corresponding with a color channel
+		:mat3[3] region3x3(sampler2D sampler, vec2 uv)
+		:{
+		:// Create each pixels for region
+		:vec4[9] region;
+		:
+		:for (int i = 0; i < 9; i++)
+		:region[i] = texture(sampler, uv + kpos(i));
+		:
+		:// Create 3x3 region with 3 color channels (red, green, blue)
+		:mat3[3] mRegion;
+		:
+		:for (int i = 0; i < 3; i++)
+		:mRegion[i] = mat3(
+		:·tregion[0][i], region[1][i], region[2][i],
+		:·tregion[3][i], region[4][i], region[5][i],
+		:·tregion[6][i], region[7][i], region[8][i]
+		:·t);
+		:
+		:return mRegion;
+		:}
+		:
+		:// Convolve a texture with kernel
+		:// kernel : kernel used for convolution
+		:// sampler : texture sampler
+		:// uv : current coordinates on sampler
+		:vec3 convolution(mat3 kernel, sampler2D sampler, vec2 uv)
+		:{
+		:vec3 fragment;
+		:
+		:// Extract a 3x3 region centered in uv
+		:mat3[3] region = region3x3(sampler, uv);
+		:
+		:// for each color channel of region
+		:for (int i = 0; i < 3; i++)
+		:{
+		:// get region channel
+		:mat3 rc = region[i];
+		:// component wise multiplication of kernel by region channel
+		:mat3 c = matrixCompMult(kernel, rc);
+		:// add each component of matrix
+		:float r = c[0][0] + c[1][0] + c[2][0]
+		:+ c[0][1] + c[1][1] + c[2][1]
+		:+ c[0][2] + c[1][2] + c[2][2];
+		:
+		:// for fragment at channel i, set result
+		:fragment[i] = r;
+		:}
+		:
+		:return fragment;
+		:}
+		:
+		:void mainImage( out vec4 fragColor, in vec2 fragCoord )
+		:{
+		:// Normalized pixel coordinates (from 0 to 1)
+		:vec2 uv = fragCoord/iResolution.xy;
+		:// Convolve kernel with texture
+		:vec3 col = convolution(emboss, iChannel0, uv);
+		:
+		:// Output to screen
+		:fragColor = vec4(col, 1.0);
+		:}
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+	*07-Blending , Fusion
+		ª10132
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:Ahora realizaremos una fusion basica.
+		:Existen muchos shader en
+		:https://godotshaders.com/shader/2d-waterfall/
+		:NT: Las funciones usadas han de estar antes
+		:de donde se usan.
+		:-
+		:shader_type canvas_item;
+		:// Creamos la importacion de una imagen y
+		:// la pongo en negro por def
+		:uniform sampler2D V_Image:hint_default_black;
+		:
+		:vec4 F_Multiply(vec4 Base,vec4 Blend){
+		:·treturn Base * Blend;
+		:}
+		:
+		:·t// Called for every pixel the material is visible on.
+		:void fragment() {
+		:·tvec4 M_Clr=texture(TEXTURE,UV);
+		:·tvec4 M_Clr1=texture(V_Image,vec2(UV.x,UV.y));
+		:·tCOLOR=F_Multiply(M_Clr,M_Clr1);
+		:}
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
+		:
 *CONTROLES
 	*

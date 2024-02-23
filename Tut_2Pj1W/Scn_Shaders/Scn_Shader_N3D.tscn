@@ -1,14 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf036kia2wr7j"]
+[gd_scene load_steps=6 format=3 uid="uid://bf036kia2wr7j"]
 
 [ext_resource type="Script" path="res://Scn_Shaders/Scn_Shader_N3D.gd" id="1_opfbn"]
-[ext_resource type="Shader" path="res://Scn_Shaders/SatBrillContras.gdshader" id="2_24sq8"]
+[ext_resource type="Shader" path="res://Scn_Shaders/Blending.gdshader" id="2_6pt8c"]
 [ext_resource type="PackedScene" uid="uid://dyy0gtqrv4mw8" path="res://Scn_Shaders/Scn_keko_n3d.tscn" id="3_8eu7y"]
+[ext_resource type="Texture2D" uid="uid://devg2k5yoikv2" path="res://icon.svg" id="3_r7022"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_btouv"]
-shader = ExtResource("2_24sq8")
-shader_parameter/V_Brillo = 1.0
-shader_parameter/V_Contrate = 1.0
-shader_parameter/V_Saturacion = 1.0
+shader = ExtResource("2_6pt8c")
+shader_parameter/V_Image = ExtResource("3_r7022")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_opfbn")
