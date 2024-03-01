@@ -25,8 +25,11 @@ enum E_Tipos{
 @onready var V_GetValue:float=0;
 
 # llamado al iniciar el constructor de la clase
-func _init():
-	pass
+func _init(MTipo:E_Tipos,MKey:int,MValue:float,MIsOn:bool):
+	V_IsOn=MIsOn;
+	V_Tipo=MTipo;
+	V_Value=MValue;
+	V_Key=MKey;
 #End _init():
 
 #Cargo de una cadena esta key
@@ -34,12 +37,33 @@ func FTxtSet(MTxt:String):
 	#if(MTxt.len()==5):
 	#	if(MTx.substr(0.5)=="[KEY]")
 	pass
-	
 
 # llamado siempre y obtiene los eventos de entrada.
 func _input(event):
-	print(str(event));
+	if(V_IsOn):
+		print(str(V_Tipo));
+		
+		if(V_Tipo==E_Tipos.V_MouseBt && (event is InputEventMouseButton)):
+			print(str(V_Tipo)+str(event.position));
+		#END if Tipo MouseBt
+		
+		if(V_Tipo==E_Tipos.V_MouseAxis && (event is InputEventMouseMotion)):
+			print(str(V_Tipo)+str(event.position));
+		#END if Tipo MouseBt		
+	#END If IsOn
+	
+	
+	## Mouse in viewport coordinates.
+	#if event is InputEventMouseButton:
+		#print("Mouse Click/Unclick at: ", event.position)
+	#elif event is InputEventMouseMotion:
+		#print("Mouse Motion at: ", event.position)
+	## Print the size of the viewport.
+	#print("Viewport Resolution is: ", get_viewport().get_visible_rect().size)
+	#print(str(event));
 #End _input(event):
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

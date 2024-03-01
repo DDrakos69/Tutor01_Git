@@ -9,8 +9,13 @@ res://Scn_Shaders/ColorInverse.gdshader
 res://Scn_Shaders/Edges.gdshader
 res://Scn_Shaders/EdgesMatrix.gdshader
 res://Scn_Shaders/Blending.gdshader
-res://SCN/M_Player.tscn
-res://CLS/CLS_KEYS.gd
-res://SCN/M_Player.gd
 res://CLS/Cls_Key.gd
+res://SCN/M_Player.tscn
 res://CLS/Cls_Keys.gd
+res://SCN/M_Player.gd
+res://SCN/Scn_Ui_Inputs.tscn
+res://SCN/Scn_Ui_Inputs.gd
+res://TRANS/Trans.xml
+res://GLOBALS/GLOBALS.gd
+res://GLOBALS/GLOBALS_KEYS.gd
+res://GLOBALS/CLS_GLOBALS_KEYS.gd

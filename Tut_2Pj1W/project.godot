@@ -27,7 +27,8 @@ window/per_pixel_transparency/allowed=true
 
 ACT1_FRONT={
 "deadzone": 0.5,
-"events": []
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":87,"physical_keycode":87,"key_label":87,"unicode":119,"echo":false,"script":null)
+]
 }
 ACT2_FRONT={
 "deadzone": 0.5,
@@ -35,7 +36,8 @@ ACT2_FRONT={
 }
 ACT1_BACK={
 "deadzone": 0.5,
-"events": []
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
+]
 }
 ACT2_BACK={
 "deadzone": 0.5,
@@ -43,7 +45,8 @@ ACT2_BACK={
 }
 ACT1_LEFT={
 "deadzone": 0.5,
-"events": [null]
+"events": [null, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
+]
 }
 ACT2_LEFT={
 "deadzone": 0.5,
@@ -51,7 +54,8 @@ ACT2_LEFT={
 }
 ACT1_RIGHT={
 "deadzone": 0.5,
-"events": []
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+]
 }
 ACT2_RIGHT={
 "deadzone": 0.5,
