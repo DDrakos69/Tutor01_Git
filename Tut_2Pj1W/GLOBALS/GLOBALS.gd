@@ -1,12 +1,12 @@
 extends Node
 
-var V_ClsKeys:Cls_Globals_Keys=Cls_Globals_Keys.new();
+@onready var V_ClsKeys:Cls_Globals_Keys=Cls_Globals_Keys.new();
 
-var V_Player:CharacterBody3D;#Node;
-var V_PlayerCamPoint:Node3D;
+@onready var V_Player:CharacterBody3D;#Node;
+@onready var V_PlayerCamPoint:Node3D;
 
-var V_CamFront:Camera3D;
-var V_CamBack:Camera3D;
+@onready var V_CamFront:Camera3D;
+@onready var V_CamBack:Camera3D;
 
 #Ruta Base de la aplicacion
 @onready var V_Path_App:String="";
@@ -44,7 +44,7 @@ func F_log(MScn:String,MTxt:String,MAcc:int=2):
 		str(Time.get_datetime_dict_from_system().second) +
 		"]:"+
 		M_Rama +
-		"("+MScn+")."+
+		"<"+MScn+">."+
 		MTxt
 		);
 	if(MAcc==0):M_LogRama=M_LogRama-1;
@@ -53,16 +53,22 @@ func F_log(MScn:String,MTxt:String,MAcc:int=2):
 
 
 func _ready():
+	TranslationServer.set_locale("ES");
 	
-	#V.V_Path_Datos=OS.get_user_data_dir()+"/"+"GAME1";
-	V.V_Path_Datos=OS.get_data_dir()+"/"+"GAME1";
-	F_log("<BASE>",V.V_Path_Datos,0);
+	#V.V_Path_Datos=OS.get_data_dir();#+"/"+"GAME1";
+	#F_log("<DATA DIR>",V.V_Path_Datos,0);
+	V.V_Path_Datos=OS.get_user_data_dir();
+	F_log("<USER DATA DIR>",V.V_Path_Datos,0);
+	V.V_Path_Datos=V.V_Path_Datos+"/GAME1";
+	F_log("<PathDatos>",V.V_Path_Datos,0);
 	
+	#Si el directorio no existe lo intento crear
 	if (!DirAccess.dir_exists_absolute(V.V_Path_Datos)):
 		F_log("<BASE>","APP_PTH_ADD:"+V.V_Path_Datos,0);
 		DirAccess.make_dir_absolute(V.V_Path_Datos);
 	#END IF Creo USER DIR
-		
+	
+	#Si SI lo he creado definos los ficheros save si no SALGO
 	if (DirAccess.dir_exists_absolute(V.V_Path_Datos)):
 		F_log("<BASE>","APP_PTH_OK:"+V.V_Path_Datos,0);
 		V_Path_FileSave1=V.V_Path_Datos+"/Save1.db";
@@ -71,7 +77,7 @@ func _ready():
 		V_Path_FileSave4=V.V_Path_Datos+"/Save4.db";
 		F_log("<BASE>","SAVES_PTH_OK:"+V.V_Path_FileSave1,0);
 	else:
-		get_tree().quit(69);
+		get_tree().quit(69);#Codigo de error propio retornado por salida no normal
 	#END IF ELSE USER DIR Creado/Existe
 	
 	#V.V_Path_App=ProjectSettings.get_setting("application/config/name");

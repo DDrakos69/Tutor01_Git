@@ -1,0 +1,142 @@
+[gd_scene load_steps=9 format=3 uid="uid://boen7ukvt4dyd"]
+
+[ext_resource type="Script" path="res://SCN/MN_BASE/ScnMenuCfg.gd" id="1_pjt6d"]
+[ext_resource type="PackedScene" uid="uid://dpfclheeetva2" path="res://SCN/MN_BASE/MN_INTERIOR/ScnMenuAudio.tscn" id="2_6g3jq"]
+[ext_resource type="PackedScene" uid="uid://cl3cbe43se51t" path="res://SCN/MN_BASE/MN_INTERIOR/ScnMenuLoad.tscn" id="2_inlwx"]
+[ext_resource type="PackedScene" uid="uid://h77s4dclhyim" path="res://SCN/MN_BASE/MN_INTERIOR/ScnMenuVer.tscn" id="2_lniy2"]
+[ext_resource type="PackedScene" uid="uid://c5vjfimjob27k" path="res://SCN/MN_BASE/MN_INTERIOR/ScnMenuInputs.tscn" id="2_xai3k"]
+[ext_resource type="PackedScene" uid="uid://d188ovnw7ku67" path="res://SCN/MN_BASE/MN_INTERIOR/ScnMenuSave.tscn" id="3_ssyo6"]
+[ext_resource type="PackedScene" uid="uid://b74v1jvrwmk66" path="res://SCN/MN_BASE/MN_INTERIOR/ScnMenuGrf.tscn" id="4_g7do6"]
+[ext_resource type="PackedScene" uid="uid://dbjncfagpdshx" path="res://SCN/MN_BASE/MN_INTERIOR/ScnMenuLeng.tscn" id="5_1qo28"]
+
+[node name="ScnMenuCfg" type="Control"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+script = ExtResource("1_pjt6d")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -277.0
+offset_right = 277.0
+offset_bottom = 400.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="LbTitGame" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+text = "MnCfg_LbTitGame"
+horizontal_alignment = 1
+
+[node name="BtLoad" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MnCfg_BtLoad"
+alignment = 0
+
+[node name="BtSave" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MnCfg_BtSave"
+alignment = 0
+
+[node name="LbSpc2" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BtExit" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MnCfg_BtExit	"
+alignment = 0
+
+[node name="LbTitCfg" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "MnCfg_LbTitCfg"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BtTeclado" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MnCfg_BtTeclado"
+alignment = 0
+
+[node name="BtIdioma" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MnCfg_BtIdioma"
+alignment = 0
+
+[node name="BtGrafico" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MnCfg_BtGrafico"
+alignment = 0
+
+[node name="BtAudio" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MnCfg_BtAudio"
+alignment = 0
+
+[node name="LbSpc1" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BtRegresar" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MnCfg_BtRegresar"
+alignment = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 400)
+layout_mode = 2
+
+[node name="ScnMenuVer" parent="PanelContainer/HBoxContainer/PanelContainer" instance=ExtResource("2_lniy2")]
+visible = false
+layout_mode = 2
+
+[node name="ScnMenuLoad" parent="PanelContainer/HBoxContainer/PanelContainer" instance=ExtResource("2_inlwx")]
+visible = false
+layout_mode = 2
+
+[node name="ScnMenuSave" parent="PanelContainer/HBoxContainer/PanelContainer" instance=ExtResource("3_ssyo6")]
+visible = false
+layout_mode = 2
+
+[node name="ScnMenuAudio" parent="PanelContainer/HBoxContainer/PanelContainer" instance=ExtResource("2_6g3jq")]
+visible = false
+layout_mode = 2
+
+[node name="ScnMenuInputs" parent="PanelContainer/HBoxContainer/PanelContainer" instance=ExtResource("2_xai3k")]
+visible = false
+layout_mode = 2
+
+[node name="ScnMenuGrf" parent="PanelContainer/HBoxContainer/PanelContainer" instance=ExtResource("4_g7do6")]
+visible = false
+layout_mode = 2
+
+[node name="ScnMenuLeng" parent="PanelContainer/HBoxContainer/PanelContainer" instance=ExtResource("5_1qo28")]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="PanelContainer/HBoxContainer/VBoxContainer/LbTitGame" to="." method="_on_LbTitGame_mouse_entered"]
+[connection signal="button_up" from="PanelContainer/HBoxContainer/VBoxContainer/BtLoad" to="." method="_on_BtLoad_button_up"]
+[connection signal="button_up" from="PanelContainer/HBoxContainer/VBoxContainer/BtSave" to="." method="_on_BtSave_button_up"]
+[connection signal="button_up" from="PanelContainer/HBoxContainer/VBoxContainer/BtExit" to="." method="_on_BtExit_button_up"]
+[connection signal="button_up" from="PanelContainer/HBoxContainer/VBoxContainer/BtTeclado" to="." method="_on_BtTeclado_button_up"]
+[connection signal="button_up" from="PanelContainer/HBoxContainer/VBoxContainer/BtIdioma" to="." method="_on_BtIdioma_button_up"]
+[connection signal="button_up" from="PanelContainer/HBoxContainer/VBoxContainer/BtGrafico" to="." method="_on_BtGrafico_button_up"]
+[connection signal="button_up" from="PanelContainer/HBoxContainer/VBoxContainer/BtAudio" to="." method="_on_BtAudio_button_up"]
+[connection signal="button_up" from="PanelContainer/HBoxContainer/VBoxContainer/BtRegresar" to="." method="_on_BtRegresar_button_up"]

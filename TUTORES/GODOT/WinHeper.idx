@@ -1,5 +1,5 @@
 {WinHelper V2.00 by FNX A1 2024}
-{WIN_W}00492
+{WIN_W}00337
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00530
@@ -362,29 +362,28 @@
 		:Las condiciones pueden o no estar entre ().
 		:El inicio del codigo se define con :
 		:El codigo tiene que estar tabulado por encima del nivel del if.
-		:- (_ =<tab>)
 		:func F_Print(M_DELTA):
-		:_ var M_Q:int=2;
-		:_ _ if (M_DELTA > 1 && M_Q==2):
-		:_ _ _ print ("Delta > 1",M_DELTA);
-		:_ _ elif (M_DELTA < 1 && M_Q==2):
-		:_ _ _ print ("Delta < 1",M_DELTA);
-		:_ _ else:
-		:_ _ _ print ("Delta = 1",M_DELTA);
-		:_ _ #endif
+		:·tvar M_Q:int=2;
+		:·t·tif (M_DELTA > 1 && M_Q==2):
+		:·t·t·tprint ("Delta > 1",M_DELTA);
+		:·t·telif (M_DELTA < 1 && M_Q==2):
+		:·t·t·tprint ("Delta < 1",M_DELTA);
+		:·t·telse:
+		:·t·t·tprint ("Delta = 1",M_DELTA);
+		:·t·t#endif
 		:#Fin Funcion F_Print
 		:-
-		:- MATCH VARIABLE: CASO1: CASO2: CASOX: _:
+		:MATCH VARIABLE: CASO1: CASO2: CASOX: _:
+		:-
 		:Funciona con un IF elIF donde se evalua el valor de la VARIABLE.
 		:en este caso el _: funciona como el ELSE:
 		:-
 		:match (M_DELTA):
-		:_ (1):
-		:_ _ print("Delta =1");
-		:_ (2):
-		:_ _ print("Delta =2");
-		:_ _: #Case Else
-		:_ _ print("Delta ni 1 ni 2");
+		:·t(1):
+		:·t·tprint("Delta =1");
+		:·t(2): print("Delta =2");
+		:·t_: #Case Else
+		:·t·tprint("Delta ni 1 ni 2");
 		:#Fin del MATCH
 	*04-BUCLES
 		:Los bucles son bloques de codigo que se repiten hasta
@@ -1626,6 +1625,53 @@
 		:f.seek_end();
 		:f.flush(); #Fuerza la escritura del los datos del buffer al archivo.
 		:f.close();
+	*FUNCION F_LOG()
+		:Esta funcion creada para estar en el global
+		:muestra un log en rama de las operaciones realizadas.
+		:-
+		:var M_LogRama:int=0;
+		:# MAcc genera=1 , comenta=2 o sale=0 de una rama
+		:func F_log(MScn:String,MTxt:String,MAcc:int=2):
+		:·tvar M_Rama:String="|- |- |- |- |- |- |- |- |- |- |- |- |- |- |- ";
+		:·tif(MAcc==1):M_LogRama=M_LogRama+1;
+		:·tM_Rama=M_Rama.substr(0,(M_LogRama*3));
+		:·tprint(
+		:·t·t"["+
+		:·t·tstr(Time.get_datetime_dict_from_system().hour) +":"+
+		:·t·tstr(Time.get_datetime_dict_from_system().minute) +":"+
+		:·t·tstr(Time.get_datetime_dict_from_system().second) +
+		:·t·t"]:"+
+		:·t·tM_Rama +
+		:·t·t"("+MScn+")."+
+		:·t·tMTxt
+		:·t·t);
+		:·tif(MAcc==0):M_LogRama=M_LogRama-1;
+		:·tif(M_LogRama<0):M_LogRama=0;
+		:#END F_Log
+		:-
+		:En cada ESCENA podemos crear estas funcioens
+		:para hacer todo mas comodo.
+		:-
+		:extends Control
+		:func F_LogAdd(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,1);
+		:func F_LogDel(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,0);
+		:func F_LogCom(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,2);
+		:func F_Log_(MTxt:String,MVisible:bool=true,MAcc:int=2):
+		:·tif(MVisible):V.F_log("NOMBRE ESCENA",MTxt,MAcc);
+		:-
+		:En cada funcion o evento lo usaremos asi.
+		:de ese modo una funcion revisada solo ponemos LogVis a false
+		:y listo. o si
+		:-
+		:var M_LogVis:bool=false;
+		:F_LogAdd("TEXTO CABECERA",M_LogVis);
+		:F_LogCom("TEXTO COMENTARIO",M_LogVis);
+		:F_LogDel("TEXTO CIERRE",M_LogVis);
+		:-
+		:La evolucion de esta funcion permite guardar en un fichero
+		:el log mostrado o no mostrado.
+		:PENDIENTE
+		:-
 	*GRILLMAP
 		ª10080ª10079ª10061ª10082ª10081
 		:Al igual que con el TILEMAP este nodo presenta una
@@ -2112,30 +2158,62 @@
 		:var MNum = randi() * 10 + 5;
 		:Genera un numero entre 5 y 15.
 	*PATHs DE LA APP y DEL PERFIL
-		:#V.V_Path_Datos=OS.get_user_data_dir()+"/"+"GAME1";
-		:V.V_Path_Datos=OS.get_data_dir()+"/"+"GAME1";
-		:F_log("<BASE>",V.V_Path_Datos,0);
-		:if (!DirAccess.dir_exists_absolute(V.V_Path_Datos)):
-		:·tF_log("<BASE>","APP_PTH_ADD:"+V.V_Path_Datos,0);
-		:·tDirAccess.make_dir_absolute(V.V_Path_Datos);
-		:#END IF Creo USER DIR
-		:if (DirAccess.dir_exists_absolute(V.V_Path_Datos)):
-		:·tF_log("<BASE>","APP_PTH_OK:"+V.V_Path_Datos,0);
-		:·tV_Path_FileSave1=V.V_Path_Datos+"/Save1.db";
-		:·tV_Path_FileSave2=V.V_Path_Datos+"/Save2.db";
-		:·tV_Path_FileSave3=V.V_Path_Datos+"/Save3.db";
-		:·tV_Path_FileSave4=V.V_Path_Datos+"/Save4.db";
-		:·tF_log("<BASE>","SAVES_PTH_OK:"+V.V_Path_FileSave1,0);
-		:else:
-		:·tget_tree().quit(69);
-		:#END IF ELSE USER DIR Creado/Existe
-		:#V.V_Path_App=ProjectSettings.get_setting("application/config/name");
-		:#V.V_Path_App=ProjectSettings.globalize_path("");
-		:#OS.get_executable_path(); #Retorna la ruta completa + el ejecutable
-		:F_log("<BASE>","PTH_APP:"+V.V_Path_App,0);
-		:#OS.get_executable_path().get_base_dir(); # Retorna solo la ruta sin el ultimo /
-		:V.V_Path_App=OS.get_executable_path().get_base_dir()#.path_join("hello.txt")
-		:F_log("<BASE>","PTH_APP:"+V.V_Path_App,0);
+		:Para obtener la ruta donde el sistema guarda los ficheros
+		:de las aplicaciones del usuario logueado usaremos la
+		:Clase OS.
+		:-
+		:OS.get_data_dir();
+		:#C:/Users/<USR>/AppData/Roaming
+		:-
+		:OS.get_user_data_dir();
+		:#C:/Users/<USR>/AppData/Roaming/Godot/app_userdata/<JUEGO>
+		:-
+		:Si queremos saber donde esta el ejecutable del juego
+		:usaremos tambien la clase OS
+		:-
+		:OS.get_executable_path();
+		:#G:/[PRJS]/GODOT/Godot_v4.2-stable_win64/odot_v4.2-stable_win64.exe
+		:-
+		:OS.get_executable_path().get_base_dir();
+		:#G:/[PRJS]/GODOT/Godot_v4.2-stable_win64
+		:-
+		:En este ejemplo guado las dos rutas
+		:y creo en la ruta del usuario una carpeta
+		:para guardar los saves.
+		:Si no puedo crear la carpeta para los saves
+		:cierro el juego con error.
+		:-
+		:func _ready():
+		:·t#V.V_Path_Datos=OS.get_data_dir();#+"/"+"GAME1";
+		:·t#F_log("<DATA DIR>",V.V_Path_Datos,0);
+		:·tV.V_Path_Datos=OS.get_user_data_dir();
+		:·tF_log("<USER DATA DIR>",V.V_Path_Datos,0);
+		:·tV.V_Path_Datos=V.V_Path_Datos+"/GAME1";
+		:·tF_log("<PathDatos>",V.V_Path_Datos,0);
+		:·t#Si el directorio no existe lo intento crear
+		:·tif (!DirAccess.dir_exists_absolute(V.V_Path_Datos)):
+		:·t·tF_log("<BASE>","APP_PTH_ADD:"+V.V_Path_Datos,0);
+		:·t·tDirAccess.make_dir_absolute(V.V_Path_Datos);
+		:·t#END IF Creo USER DIR
+		:·t#Si SI lo he creado definos los ficheros save si no SALGO
+		:·tif (DirAccess.dir_exists_absolute(V.V_Path_Datos)):
+		:·t·tF_log("<BASE>","APP_PTH_OK:"+V.V_Path_Datos,0);
+		:·t·tV_Path_FileSave1=V.V_Path_Datos+"/Save1.db";
+		:·t·tV_Path_FileSave2=V.V_Path_Datos+"/Save2.db";
+		:·t·tV_Path_FileSave3=V.V_Path_Datos+"/Save3.db";
+		:·t·tV_Path_FileSave4=V.V_Path_Datos+"/Save4.db";
+		:·t·tF_log("<BASE>","SAVES_PTH_OK:"+V.V_Path_FileSave1,0);
+		:·telse:
+		:·t·tget_tree().quit(69);#Codigo de error propio retornado por salida no normal
+		:·t#END IF ELSE USER DIR Creado/Existe
+		:·t#V.V_Path_App=ProjectSettings.get_setting("application/config/name");
+		:·t#V.V_Path_App=ProjectSettings.globalize_path("");
+		:·t#OS.get_executable_path(); #Retorna la ruta completa + el ejecutable
+		:·tF_log("<BASE>","PTH_APP:"+V.V_Path_App,0);
+		:·t#OS.get_executable_path().get_base_dir(); # Retorna solo la ruta sin el ultimo /
+		:·tV.V_Path_App=OS.get_executable_path().get_base_dir()+"/"; #.path_join("hello.txt")
+		:·tF_log("<BASE>","PTH_APP:"+V.V_Path_App,0);
+		:#END _Ready
 	*Pausar Nodos
 		:# Pausar la escena completa
 		:get_tree().paused = true
@@ -2582,6 +2660,103 @@
 			:Luego para dibujar el mapa solo tenemos que selecionar la
 			:capa a modificar en el comobo derecho..
 			:-
+	*TRADUCIONES
+		:Para añadir traduciones a nuestros juegos usaremos ficheros con
+		:una clave y por columna los distintos idiomas.
+		:-
+		:Ejemplo de Fichero "Trans_UI.csv"
+		:-
+		:KEYs,es,en
+		:UIKEYS_TitWin,"Configuracion de teclado","Config Keys"
+		:UIKEYS_PressKey,"Pulse una tecla","Press Key"
+		:-
+		:El godot usara ES o EN para filtrar la columna con el idioma a usar.
+		:La primera columna "KEY" identifica el texto a remplazar no
+		:tiene por que ser KEY ya que a godot le da igual el usa la
+		:columna 0 para localizar el texto a remplazar con la columna del
+		:idioma.
+		:NT: Key no es el nombre del control es el TEXTO del control.
+		:-
+		:Las claves delos idiomas las puedes encontrar en
+		:https://docs.godotengine.org/es/4.x/tutorials/i18n/locales.html#doc-locales
+		:-
+		:Selecionado el fichero .CSV y REIMPORTAMOS
+		:definiendo que caracter separa las columnas y
+		:si queremos que comprima el texto.
+		:Reimportamos el fichero y asi nos generara X
+		:ficheros segun el numero de idiomas.
+		:-
+		:Trans_UI.EN.translation
+		:Trans_UI.ES.translation
+		:-
+		:Una vez realizado esto 1 vez y si la estructura es correcta
+		:en cuanto modifiquemos algo en el CSV reimportara de
+		:forma automatica.
+		:-
+		:Por ultimo tendremos que añadir en
+		:Project Setings/Localization / Translations
+		:los ficheros .translation
+		:-
+		:Tambien podemos añadir distintos recursos para los
+		:idiomas del mismo tipo pero añadiendolas en
+		:Project Setings/Localization / Rempas
+		:Esto permitiria añadir anuncios o audios segun el pais.
+		:-
+		:Las traduciones son a tiempo real de modo que en cuanto
+		:modifiquemos el texto de un control godot lo buscara y traducira
+		:al idioma indicado.
+		:Esto lo podemos bloquear por medio de las propiedades LOCALIZATION
+		:de cada control.
+		:-
+		:Tambien podemos traducir algo a mano usando la funcion TR()
+		:level.text = tr("LEVEL_5_NAME")
+		:-
+		:Podemos definir el idioma que usara por medio de.
+		:TranslationServer.set_locale("EN");
+		:El codigo de idioma esta definido por godot.
+		:-
+		:Las traduciones se hacen por medio de
+		:la clase TranslationServer
+		:-
+		:TranslationServer <- Object
+		:- PROPIEDADES
+		:bool·tpseudolocalization_enabled [default: false]
+		:- METODOS
+		:void·t·tadd_translation(translation: Translation)
+		:void·t·tclear()intcompare_locales(locale_a: String, locale_b: String) const
+		:PackedString·tArrayget_all_countries() const
+		:PackedString·tArrayget_all_languages() const
+		:PackedString·tArrayget_all_scripts() const
+		:String·t·tget_country_name(country: String) const
+		:String·t·tget_language_name(language: String) const
+		:PackedString·tArrayget_loaded_locales() const
+		:String·t·tget_locale() constStringget_locale_name(locale: String) const
+		:String·t·tget_script_name(script: String) const
+		:String·t·tget_tool_locale()Translationget_translation_object(locale: String)
+		:String·t·tNamepseudolocalize(message: StringName) const
+		:void·t·treload_pseudolocalization()
+		:void·t·tremove_translation(translation: Translation)
+		:void·t·tset_locale(locale: String)
+		:String·t·tstandardize_locale(locale: String) const
+		:String·t·tNametranslate(message: StringName, context: StringName = "") const
+		:String·t·tNametranslate_plural(message: StringName, plural_message: StringName, n: int, context: StringName = "") const
+		:-
+		:Tambien usara la clase TRANSLATION
+		:-
+		:Translation < Resource < RefCounted < Object
+		:- - PROPIEDADES
+		:Stringlocale [default: "en"]
+		:- - METODOS
+		:String·t·tName_get_message(src_message: StringName, context: StringName) virtual const
+		:String·t·tName_get_plural_message(src_message: StringName, src_plural_message: StringName, n: int, context: StringName) virtual const
+		:void·t·tadd_message(src_message: StringName, xlated_message: StringName, context: StringName = "")
+		:void·t·tadd_plural_message(src_message: StringName, xlated_messages: PackedStringArray, context: StringName = "")
+		:void·t·terase_message(src_message: StringName, context: StringName = "")
+		:String·t·tNameget_message(src_message: StringName, context: StringName = "") const
+		:int·t·tget_message_count() const
+		:PackedString·tArrayget_message_list() const
+		:String·t·tNameget_plural_message(src_message: StringName, src_plural_message: StringName, n: int, context: StringName = "") const
+		:PackedString·tArrayget_translated_message_list() const
 	*TWEEN
 		ª10034
 		:TWEEN es como se llama el proceso por el cual
