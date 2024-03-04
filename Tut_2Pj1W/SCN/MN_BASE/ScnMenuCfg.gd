@@ -7,12 +7,15 @@ var V_MouseInCount=0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	#-- TES Al iniciar una partida comienzo a contar el tiempo.
+	V.V_Game_Cab.F_Set_MSegIniPartida();
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	$PanelContainer/HBoxContainer/VBoxContainer/LbTitGame.text=V.V_Game_Cab.F_Get_HoraMinJugados();
+	
 
 
 

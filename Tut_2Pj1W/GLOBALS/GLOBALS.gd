@@ -1,12 +1,17 @@
 extends Node
 
-@onready var V_ClsKeys:Cls_Globals_Keys=Cls_Globals_Keys.new();
+
 
 @onready var V_Player:CharacterBody3D;#Node;
 @onready var V_PlayerCamPoint:Node3D;
 
 @onready var V_CamFront:Camera3D;
 @onready var V_CamBack:Camera3D;
+
+
+
+
+
 
 #Ruta Base de la aplicacion
 @onready var V_Path_App:String="";
@@ -22,6 +27,18 @@ extends Node
 @onready var V_Path_FileSave3:String="";
 #Ruta completa del fichero Save1 (V_Path_Perf + "Save4.db");
 @onready var V_Path_FileSave4:String="";
+
+
+
+# Datos de la cabecera del juego.
+@onready var V_Game_Cab:CLS_GLOBALS_CAB=CLS_GLOBALS_CAB.new();
+@onready var V_Game_Player1:CLS_GLOBALS_PLAYER=CLS_GLOBALS_PLAYER.new();
+@onready var V_Game_Player2:CLS_GLOBALS_PLAYER=CLS_GLOBALS_PLAYER.new();
+@onready var V_ClsKeys:Cls_Globals_Keys=Cls_Globals_Keys.new();
+
+
+
+
 
 
 func F_PlayerSet(Player_Node):

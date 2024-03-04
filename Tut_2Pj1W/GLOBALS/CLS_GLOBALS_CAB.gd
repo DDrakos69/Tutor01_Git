@@ -1,70 +1,113 @@
 extends Node
-class_name  Cls_Globals_Keys
-#Cls Globals Keys
+
+class_name  CLS_GLOBALS_CAB
+#Cls Globals CAB
 # Se carga en GLOBALS
 # No responde a eventos del motor solo son funciones de utilidad.
-# Se encarga de generar o configurar las acciones y sus eventos
-# Para guardar en fichero y cargar de el la configuracion de teclado.
+# Se encarga de Generar el array y cargar el array con datos de 
+# la cabecera de la partida configuracion de entorno.
 
 func F_LogAdd(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,1);
 func F_LogDel(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,0);
 func F_LogCom(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,2);
-func F_Log_(MTxt:String,MVisible:bool=true,MAcc:int=2):if(MVisible):V.F_log("ClsGbKey",MTxt,MAcc);
+func F_Log_(MTxt:String,MVisible:bool=true,MAcc:int=2):if(MVisible):V.F_log("ClsGbCab",MTxt,MAcc);
 
 
+@onready var V_Is2Player:bool=false;# Es una partida a 2 Players
+@onready var V_IdCuartoSave:int=-1;# ID Cuarto donde se guarda
+@onready var V_IdNivel:int=-1;#ID Nivel Actual
+@onready var V_IdSubNivel:int=-1;#ID SubNivel Actual
+
+@onready var V_HorasJugadas:int=0;#Horas Jugadas Calculadas
+@onready var V_MinutosJugados:int=0;#Horas Jugadas Calculadas
+
+# Fecha y hora del inicio de la partida.
+@onready var V_DateTimeInicioPartida:String;
+
+#Milisegundos del systema del inicio de la partida actual
+@onready var V_MSegGameIni:int=999999999;
+
+
+#Dictionary get_datetime_dict_from_system ( bool utc=false ) const
+#Returns the current date as a dictionary of keys: year, month, day, weekday, hour, minute, second, and dst (Daylight Savings Time).
+
+#int get_ticks_usec ( ) const
+#Returns the amount of time passed in microseconds since the engine started.
+
+
+
+
+# Defino la fecha y hora del inicio de la partida.
+func F_Set_DateTimeIniPartida():
+	V_DateTimeInicioPartida=Time.get_datetime_string_from_system();
+#END F_Set_DateTimeIniPartida
+
+
+
+
+# Defino los milisegundos al iniciar la partida.
+func F_Set_MSegIniPartida():
+	V_MSegGameIni=Time.get_ticks_msec();
+#END F_Set_MSegIniPartida
+
+
+
+
+
+
+# Calculo y añado las horas y los minutos totales jugados.
+# Y Reseteo los milisegundos acutales.
+func F_Set_HoraMinJugados():
+	var M_MSeg=Time.get_ticks_msec()-V_MSegGameIni;
+	var M_S:int=(M_MSeg/1000);
+	var M_M:int=(M_S/60)+V_MinutosJugados;
+	var M_H:int=(M_M/60);
+	M_M=M_M-(M_H*60);
+	M_H=M_H+V_HorasJugadas;
+	V_HorasJugadas=M_H;
+	V_MinutosJugados=M_M;
+	V_MSegGameIni=Time.get_ticks_msec();
+#END F_Set_HoraMinJugados
+
+
+
+
+
+# Obtengo un string con las Horas y Minutos sin modificarlos.
+func F_Get_HoraMinJugados()->String:
+	var M_MSeg=Time.get_ticks_msec()-V_MSegGameIni;
+	var M_S:int=(M_MSeg/1000);
+	var M_M:int=(M_S/60)+V_MinutosJugados;
+	var M_H:int=(M_M/60);
+	M_M=M_M-(M_H*60);
+	M_H=M_H+V_HorasJugadas;
+	return "H:"+str(M_H)+" M:"+str(M_M);
+#END F_Set_HoraMinJugados
 
 
 
 # Generamos un array con la confiracion del teclado para guardar en fichero.
-func F_KeysGetArray()->Array:
-	var M_LogVis:bool=true;F_LogAdd("F_KeysGetArray()>",M_LogVis);
-	var M_TAcc:Array=[];
-	var M_TEvt:Array=[];
-	var M_Evt;
-	var M_LstAcc:Array=InputMap.get_actions();
-	var M_Acc:String="";
+func F_GetArray()->Array:
+	var M_LogVis:bool=true;
+	F_LogAdd("F_GetArray()>",M_LogVis);
+	var M_T:Array=[];
 	
-	F_LogCom("Accs:"+str(M_LstAcc.size()),M_LogVis);
-	for Mq in M_LstAcc.size():
-		M_Acc=M_LstAcc[Mq]
-		
-		if(str(M_Acc).substr(0,5)=="ACT1_"|| str(M_Acc).substr(0,5)=="ACT2_"):
-			M_Evt=InputMap.action_get_events(M_Acc);
-			F_LogCom("Acc:"+M_Acc+" Evts:"+str(M_Evt.size()),M_LogVis);
-			#Sin Eventos =-1
-			if(M_Evt.size()==0):
-				M_TEvt=[M_Acc,-1];
-			#Con Eventos
-			if(M_Evt.size()>0):
-				M_Evt=M_Evt[0];
-				#Else JoyPadBt=1
-				if(M_Evt is InputEventJoypadButton):
-					var M_EvtB:InputEventJoypadButton=M_Evt;
-					M_TEvt=[M_Acc,1,M_EvtB.device,M_EvtB.button_index];
-					F_LogCom("Tipe:JPB:"+str(M_TEvt),M_LogVis);
-				#Else JoyPadMot=2
-				elif(M_Evt is InputEventJoypadMotion):
-					var M_EvtM:InputEventJoypadMotion=M_Evt;
-					M_TEvt=[M_Acc,2,M_EvtM.device,M_EvtM.axis,M_EvtM.axis_value];
-					F_LogCom("Tipe:JPM:"+str(M_TEvt),M_LogVis);
-				#Else Key =3
-				elif(M_Evt is InputEventKey):
-					var M_EvtK:InputEventKey=M_Evt;
-					M_TEvt=[M_Acc,3,M_EvtK.keycode];
-					F_LogCom("Tipe:KEY:"+str(M_TEvt),M_LogVis);
-			#END if Tipos Eventos
-			M_TAcc.append(M_TEvt);
-		#END If Con Acciones ACT1_ y ACT2_
-	#END For Todas las acciones
-	F_LogCom("Res:"+str(M_TAcc),M_LogVis);
-	return M_TAcc;
+	M_T.append(V_Is2Player);
+	M_T.append(V_IdCuartoSave);
+	M_T.append(V_IdNivel);
+	M_T.append(V_IdSubNivel);
+	M_T.append(V_HorasJugadas);
+	M_T.append(V_MinutosJugados);
+	
+	F_LogCom("Res:"+str(M_T),M_LogVis);
+	return M_T;
 #END F_KeysGetArray()
 
 
 
 
 #Analizamos el Array pasado de Keys y configuro las Acciones y sus eventos.
-func F_KeysSetArray(ArrayCfg:Array):
+func F_SetArray(ArrayCfg:Array):
 	var M_LogVis:bool=true;
 	F_LogAdd("F_KeysSetArray()",M_LogVis);
 	# Seria [ [NomAcc,TipoAcc,Par1,Par2,Parx],[NomAcc,TipoAcc,Par1,Par2,Parx],..]
@@ -129,3 +172,4 @@ func F_KeysSetArray(ArrayCfg:Array):
 	#END For Acciones totales
 	F_LogDel("F_KeysSetArray()",M_LogVis); 
 #END F_KeysSetArray
+

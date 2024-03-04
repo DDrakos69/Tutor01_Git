@@ -10,7 +10,7 @@ func F_Log_(MTxt:String,MVisible:bool=true,MAcc:int=2):if(MVisible):V.F_log("UI_
 @onready var V_LbPressKey =$PanelContainer/VBoxContainer/PanelContainer/LbPressKey
 @onready var V_ScrlCont = $PanelContainer/VBoxContainer/PanelContainer/ScrlCont
 @onready var V_VBoxContainer =$PanelContainer/VBoxContainer/PanelContainer/ScrlCont/VBoxContainer
-
+@onready var V_TButtons:Array[Button];
 
 #Sera el boton de la accion selecionado para definir su evento.
 #Tras Capturar la tecla o eje se modifica el texto de dicho boton.
@@ -51,6 +51,7 @@ func F_AddAcc():
 	var M_Acc:String="";
 	var M_h=30;
 	var M_HBC:HBoxContainer;
+	var M_Button:Button;
 	#Cab Play1
 	M_HBC=HBoxContainer.new();
 	
@@ -69,7 +70,9 @@ func F_AddAcc():
 			V_VBoxContainer.add_child(M_HBC);
 			M_Txt=str(M_Acc).substr(5);
 			F_GetLb("LbP1_"+M_Txt,M_Txt,100,M_h,M_HBC).mouse_filter=Control.MOUSE_FILTER_IGNORE;
-			F_GetBt("Bt1_"+M_Acc,M_Txt,200,M_h,M_HBC).text=F_GetAccTxt(M_Acc);
+			M_Button=F_GetBt("Bt1_"+M_Acc,M_Txt,200,M_h,M_HBC)
+			M_Button.text=F_GetAccTxt(M_Acc);
+			V_TButtons.append(M_Button);
 			
 	#Cab Play2
 	M_HBC=HBoxContainer.new();
@@ -84,8 +87,9 @@ func F_AddAcc():
 			V_VBoxContainer.add_child(M_HBC);
 			M_Txt=str(M_Acc).substr(5);
 			F_GetLb("LbP2_"+M_Txt,M_Txt,100,M_h,M_HBC).mouse_filter=Control.MOUSE_FILTER_IGNORE;
-			F_GetBt("Bt1_"+M_Acc,M_Txt,200,M_h,M_HBC).text=F_GetAccTxt(M_Acc);
-			
+			M_Button=F_GetBt("Bt1_"+M_Acc,M_Txt,200,M_h,M_HBC)
+			M_Button.text=F_GetAccTxt(M_Acc);
+			V_TButtons.append(M_Button);
 	F_LogDel("<..ok>",M_LogVis);
 #END F_AddAcc()
 
@@ -330,7 +334,7 @@ func _input(event):
 			" KC:"+str(M_EvtIn.keycode)+
 			" KCL:"+str(M_EvtIn.key_label)+
 			" KCLs:"+str(M_EvtIn.to_string() ) ,M_LogVis);
-			
+			F_DelEvt(M_EvtNew);
 			InputMap.action_add_event(V_AccName2Scan, M_EvtNew);
 			F_LogCom("Add Evt:"+str(M_Evts.size()) ,M_LogVis);
 			V_ButtonSell.text=F_GetAccTxt(V_AccName2Scan);
@@ -343,13 +347,13 @@ func _input(event):
 		elif event is InputEventJoypadButton:
 			F_LogAdd("<_input(JPB)>",M_LogVis);
 			var M_EvtJoyBt:InputEventJoypadButton = event;
-			var M_Evt:InputEventJoypadButton=InputEventJoypadButton.new();
+			var M_EvtNew:InputEventJoypadButton=InputEventJoypadButton.new();
 			InputMap.action_erase_events(V_AccName2Scan);
 			F_LogCom("Dell Accs:"+str(V_AccName2Scan) ,M_LogVis);
-			M_Evt.device=event.device;
-			M_Evt.button_index=M_EvtJoyBt.button_index;
-			InputMap.action_add_event(V_AccName2Scan,M_Evt);
-			
+			M_EvtNew.device=event.device;
+			M_EvtNew.button_index=M_EvtJoyBt.button_index;
+			F_DelEvt(M_EvtNew);
+			InputMap.action_add_event(V_AccName2Scan,M_EvtNew);
 			V_ButtonSell.text=F_GetAccTxt(V_AccName2Scan);
 			V_AccName2Scan = "";
 			V_LbPressKey.visible=false;
@@ -360,15 +364,14 @@ func _input(event):
 			F_LogAdd("<_input(JPM)>",M_LogVis);
 			var M_EvtJoyMot:InputEventJoypadMotion = event;
 			if(M_EvtJoyMot.axis_value==-1 || M_EvtJoyMot.axis_value==+1):
-				var M_Evt:InputEventJoypadMotion=InputEventJoypadMotion.new();
+				var M_EvtNew:InputEventJoypadMotion=InputEventJoypadMotion.new();
 				InputMap.action_erase_events(V_AccName2Scan);
 				F_LogCom("Dell Accs:"+str(V_AccName2Scan) ,M_LogVis);
-				
-				M_Evt.device=event.device;
-				M_Evt.axis=M_EvtJoyMot.axis;
-				M_Evt.axis_value=M_EvtJoyMot.axis_value;
-				InputMap.action_add_event(V_AccName2Scan,M_Evt);
-				
+				M_EvtNew.device=event.device;
+				M_EvtNew.axis=M_EvtJoyMot.axis;
+				M_EvtNew.axis_value=M_EvtJoyMot.axis_value;
+				F_DelEvt(M_EvtNew);
+				InputMap.action_add_event(V_AccName2Scan,M_EvtNew);
 				V_ButtonSell.text=F_GetAccTxt(V_AccName2Scan);
 				V_AccName2Scan = "";
 				V_LbPressKey.visible=false;
@@ -381,3 +384,71 @@ func _input(event):
 #END _input()
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+# Buscamos en las acciones si tengo este evento y lo borro.
+func F_DelEvt(MEvt):
+	var M_Accs=InputMap.get_actions();
+	var M_Evts:Array[InputEvent];
+	var M_Bt:Button;
+	var M_Str:String;
+	for Mq in M_Accs.size():
+		M_Evts=InputMap.action_get_events(M_Accs[Mq]);
+		if(M_Evts.size()>0):
+			#If InEvKey
+			if(M_Evts[0] is InputEventKey) && (MEvt is InputEventKey):
+				var M_Evt1:InputEventKey=MEvt;
+				var M_Evt:InputEventKey=M_Evts[0];
+				if(M_Evt1.keycode==M_Evt.keycode):
+					InputMap.action_erase_events(M_Accs[Mq]);
+					M_Str="Bt1_"+M_Accs[Mq];
+					M_Bt=F_GetButton(M_Str);
+					if(M_Bt!=null):M_Bt.text="";
+					
+			#ElIf InputJPNB
+			elif((M_Evts[0] is InputEventJoypadButton) && (MEvt is InputEventJoypadButton)):
+				var M_Evt1:InputEventJoypadButton=MEvt;
+				var M_Evt:InputEventJoypadButton=M_Evts[0];
+				if(M_Evt1.device==M_Evt.device):
+					if(M_Evt1.button_index==M_Evt.button_index):
+						InputMap.action_erase_events(M_Accs[Mq]);
+						M_Str="Bt1_"+M_Accs[Mq];
+						M_Bt=F_GetButton(M_Str);
+						if(M_Bt!=null):M_Bt.text="";
+						
+			#ElIf InputJPM
+			elif((M_Evts[0] is InputEventJoypadMotion) && (MEvt is InputEventJoypadMotion)):
+				var M_Evt1:InputEventJoypadMotion=MEvt;
+				var M_Evt:InputEventJoypadMotion=M_Evts[0];
+				if(M_Evt1.device==M_Evt.device):
+					if(M_Evt1.axis==M_Evt.axis):
+						if(M_Evt1.axis_value==M_Evt.axis_value):
+							InputMap.action_erase_events(M_Accs[Mq]);
+							M_Str="Bt1_"+M_Accs[Mq];
+							M_Bt=F_GetButton(M_Str);
+							if(M_Bt!=null):M_Bt.text="";
+							
+			#END IfElse Distintos tipos de eventos.
+		#END If Con Evtentos
+	#END For Accs
+	
+
+# Retorna el boton de la lista de botones con el nombre dado
+func F_GetButton(M_Name:String)->Button:
+	var MRes:Button=null;
+	for Mq in V_TButtons.size():
+		if(V_TButtons[Mq].name==M_Name):
+			MRes=V_TButtons[Mq];
+			break;
+	return MRes;
+#END F_GetButton
