@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ci5wbh7i2p3ox"
+
+[deps]
+
+files=["res://TRANS/Mapas.ES.translation", "res://TRANS/Mapas.EN.translation"]
+
+source_file="res://TRANS/Mapas.csv"
+dest_files=["res://TRANS/Mapas.ES.translation", "res://TRANS/Mapas.EN.translation"]
+
+[params]
+
+compress=true
+delimiter=0

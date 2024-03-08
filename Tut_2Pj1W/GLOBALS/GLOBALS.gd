@@ -40,6 +40,14 @@ extends Node
 
 
 
+# Datos de los MAPAS /BASES/NIVELES/ZONAS
+@onready var V_Bases:Cls_Mapas=Cls_Mapas.new();
+@onready var V_BaseSell:Cls_Mapas;#Mapa Selecionado.
+
+
+
+
+
 
 func F_PlayerSet(Player_Node):
 	V_Player=Player_Node;
@@ -48,6 +56,14 @@ func F_PlayerCamPointSet(PlayerCam_N3D):
 	V_PlayerCamPoint=PlayerCam_N3D;
 	
 
+
+
+
+
+func F_LogAdd(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,1);
+func F_LogDel(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,0);
+func F_LogCom(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,2);
+func F_Log_(MTxt:String,MVisible:bool=true,MAcc:int=2):if(MVisible):F_log("ClsGbPlay",MTxt,MAcc);
 var M_LogRama:int=0;
 # MAcc genera=1 , comenta=2 o sale=0 de una rama
 func F_log(MScn:String,MTxt:String,MAcc:int=2):
@@ -105,6 +121,13 @@ func _ready():
 	#OS.get_executable_path().get_base_dir(); # Retorna solo la ruta sin el ultimo /
 	V.V_Path_App=OS.get_executable_path().get_base_dir()+"/"; #.path_join("hello.txt")
 	F_log("<BASE>","PTH_APP:"+V.V_Path_App,0);
+	
+	#Cargo la lista de BASES,NIVELES,ZONAS
+	#De este modo una vez cargada la DB la clase contenedora se puede descargar.
+	var M_Db:Cls_DbBases=Cls_DbBases.new();
+	M_Db.F_DB_BasesCrea();
+	M_Db=null;
+	F_LogCom("DB_MAPS"+str(V_Bases.V_Lista.size()));
 	
 #END _Ready
 

@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://brdjv132bkrtk"]
+
+[ext_resource type="Script" path="res://SCN/MN_BASE/MN_INTERIOR/MN_Ucs/ScnUcSaveGameRow.gd" id="1_70b3g"]
+
+[node name="ScnUcSaveGameRow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_70b3g")
+
+[node name="PC" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(300, 140)
+layout_mode = 0
+offset_right = 304.0
+offset_bottom = 140.0
+
+[node name="VBC" type="VBoxContainer" parent="PC"]
+layout_mode = 2
+
+[node name="LbNivel" type="Label" parent="PC/VBC"]
+custom_minimum_size = Vector2(300, 10)
+layout_mode = 2
+auto_translate = false
+text = "UcSGameRw_Nivel"
+
+[node name="LbSubNivel" type="Label" parent="PC/VBC"]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+auto_translate = false
+text = "SubNivel"
+
+[node name="HBC0" type="HBoxContainer" parent="PC/VBC"]
+layout_mode = 2
+
+[node name="LbFIni" type="Label" parent="PC/VBC/HBC0"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+auto_translate = false
+text = "2009-12-31 24:60"
+
+[node name="LbTGame" type="Label" parent="PC/VBC/HBC0"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+auto_translate = false
+text = "10h 20m"
+
+[node name="HBC1" type="HBoxContainer" parent="PC/VBC"]
+layout_mode = 2
+
+[node name="LbP1" type="Label" parent="PC/VBC/HBC1"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+auto_translate = false
+text = "Player 1"
+
+[node name="LbP2" type="Label" parent="PC/VBC/HBC1"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+auto_translate = false
+text = "Player 1"
+
+[node name="HBC2" type="HBoxContainer" parent="PC/VBC"]
+layout_mode = 2
+
+[node name="LbLv1" type="Label" parent="PC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+auto_translate = false
+text = "Nivel1"
+
+[node name="LbLV2" type="Label" parent="PC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+auto_translate = false
+text = "Nivel2	"
