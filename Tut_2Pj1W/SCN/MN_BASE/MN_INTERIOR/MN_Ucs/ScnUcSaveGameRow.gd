@@ -1,8 +1,16 @@
 extends Control
+#ScnUcSaveGameRow
+# User Control Save game Row
+# Es solo un Row de una partida guardada.
+# En la pantalla de guardar o cargar partida
+# Se muestran estos rows como tabla de Rows
 
-@onready var V_Player1:CLS_GLOBALS_PLAYER;
-@onready var V_Player2:CLS_GLOBALS_PLAYER;
-@onready var V_GameCab:CLS_GLOBALS_CAB;
+var CLog:Cls_LogLine=Cls_LogLine.new("UcCtrl");
+
+
+@onready var V_Player1:Cls_Player;
+@onready var V_Player2:Cls_Player;
+@onready var V_GameCab:Cls_Player_Cab;
 
 
 # Called when the node enters the scene tree for the first time.

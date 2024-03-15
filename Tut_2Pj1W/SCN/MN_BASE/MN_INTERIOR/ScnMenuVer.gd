@@ -1,6 +1,9 @@
 extends Control
 
 
+var CLog:Cls_LogLine=Cls_LogLine.new("ScnMnVer");
+
+
 @onready var V_VBox = $PanelContainer/VBoxContainer/PanelContainer/ScrlCont/VBoxContainer
 
 

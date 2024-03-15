@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+var CLog:Cls_LogLine=Cls_LogLine.new("MPlayer");
+
+
 const SPEED = 1.6
 const JUMP_VELOCITY = 3.5
 

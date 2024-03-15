@@ -21,11 +21,11 @@ class_name  Cls_Mapas;
 @onready var V_ZonaLucha:bool=false;#Permite Luchar
 @onready var V_ZonaFabrica:bool=false;#Permite Fabricar
 
-@onready var V_Lista:Array;#Array con las BASES/NIVELES/ZONAS segun el caso
+@onready var V_Lista:Array[Cls_Mapas];#Array con las BASES/NIVELES/ZONAS segun el caso
 
 
 
-func F_GetStr()->Array:
+func F_GetStr():
 	pass;
 #END F_GetStr
 

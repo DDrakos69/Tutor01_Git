@@ -1,4 +1,39 @@
 extends Node
+#Globals.gb
+
+
+#Clase Fichero para el log generico.
+var V_CLogFile:Cls_Log_File;
+#(Usado para guardar el TXT log generado , optimizacion recursos)
+var V_Log_Txt="";
+var M_LogRama:int=0;
+var CLog:Cls_LogLine=Cls_LogLine.new("G");
+# MAcc genera=1 , comenta=2 o sale=0 de una rama
+func F_log(MScn:String,MTxt:String,MAcc:int=2):
+	var M_Rama:String="|- |- |- |- |- |- |- |- |- |- |- |- |- |- |- ";
+	if(MAcc==1):M_LogRama=M_LogRama+1;
+	M_Rama=M_Rama.substr(0,(M_LogRama*3));
+	V_Log_Txt="["+str(Time.get_datetime_dict_from_system().hour);
+	V_Log_Txt+=":"+str(Time.get_datetime_dict_from_system().minute);
+	V_Log_Txt+=":"+str(Time.get_datetime_dict_from_system().second);
+	V_Log_Txt+="]:"+M_Rama+"<"+MScn+">."+MTxt;
+	
+	print(V_Log_Txt);
+	if(V_CLogFile != null):V_CLogFile.F_Save2File(V_Log_Txt);
+	
+	if(MAcc==0):M_LogRama=M_LogRama-1;
+	if(M_LogRama<0):M_LogRama=0;
+#END F_Log
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -7,6 +42,20 @@ extends Node
 
 @onready var V_CamFront:Camera3D;
 @onready var V_CamBack:Camera3D;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -30,21 +79,29 @@ extends Node
 
 
 
-# Datos de la cabecera del juego.
-@onready var V_Game_Cab:CLS_GLOBALS_CAB=CLS_GLOBALS_CAB.new();
-@onready var V_Game_Player1:CLS_GLOBALS_PLAYER=CLS_GLOBALS_PLAYER.new();
-@onready var V_Game_Player2:CLS_GLOBALS_PLAYER=CLS_GLOBALS_PLAYER.new();
-@onready var V_ClsKeys:Cls_Globals_Keys=Cls_Globals_Keys.new();
+# Datos de la cabecera del juego Actual
+#NT: Player_Cab estan dentro de Game_Cab
+@onready var V_ClsGame_Cab:Cls_Game_Cab=Cls_Game_Cab.new();
 
+# Datos de las teclas configuradas (Se guardan por fichero Save)
+@onready var V_ClsKeys:Cls_Keys=Cls_Keys.new();
 
-
+# Datos de las partidas Guardadas.
+# Las cargo desde siempre ya que tendria que entrar cada  vez que 
+# carga la pantalla mejor cargar los datos basicos desde el inicio y
+# actualizar segun se necesite.
+@onready var V_ClsGameCab_Save1:Cls_Game_Cab=Cls_Game_Cab.new();
+@onready var V_ClsGameCab_Save2:Cls_Game_Cab=Cls_Game_Cab.new();
+@onready var V_ClsGameCab_Save3:Cls_Game_Cab=Cls_Game_Cab.new();
+@onready var V_ClsGameCab_Save4:Cls_Game_Cab=Cls_Game_Cab.new();
 
 
 # Datos de los MAPAS /BASES/NIVELES/ZONAS
-@onready var V_Bases:Cls_Mapas=Cls_Mapas.new();
-@onready var V_BaseSell:Cls_Mapas;#Mapa Selecionado.
+@onready var V_ClsMapas:Cls_Mapas=Cls_Mapas.new();
+@onready var V_ClsMapa_Sell:Cls_Mapas;#Mapa Selecionado.
 
-
+# Clase controladora de los ficheros SAVE
+@onready var V_ClsGameFiles:Cls_Game_File=Cls_Game_File.new();
 
 
 
@@ -58,57 +115,59 @@ func F_PlayerCamPointSet(PlayerCam_N3D):
 
 
 
+func _init():
+	V_ClsGameFiles=Cls_Game_File.new();
 
 
-func F_LogAdd(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,1);
-func F_LogDel(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,0);
-func F_LogCom(MTxt:String,MVisible:bool=true):F_Log_(MTxt,MVisible,2);
-func F_Log_(MTxt:String,MVisible:bool=true,MAcc:int=2):if(MVisible):F_log("ClsGbPlay",MTxt,MAcc);
-var M_LogRama:int=0;
-# MAcc genera=1 , comenta=2 o sale=0 de una rama
-func F_log(MScn:String,MTxt:String,MAcc:int=2):
-	var M_Rama:String="|- |- |- |- |- |- |- |- |- |- |- |- |- |- |- ";
-	if(MAcc==1):M_LogRama=M_LogRama+1;
-	M_Rama=M_Rama.substr(0,(M_LogRama*3));
-	print(
-		"["+
-		str(Time.get_datetime_dict_from_system().hour) +":"+
-		str(Time.get_datetime_dict_from_system().minute) +":"+
-		str(Time.get_datetime_dict_from_system().second) +
-		"]:"+
-		M_Rama +
-		"<"+MScn+">."+
-		MTxt
-		);
-	if(MAcc==0):M_LogRama=M_LogRama-1;
-	if(M_LogRama<0):M_LogRama=0;
-#END F_Log
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 func _ready():
+	CLog.V_Visible=false;
+	CLog.Add("_ready()");
 	TranslationServer.set_locale("ES");
 	
 	#V.V_Path_Datos=OS.get_data_dir();#+"/"+"GAME1";
-	#F_log("<DATA DIR>",V.V_Path_Datos,0);
 	V.V_Path_Datos=OS.get_user_data_dir();
-	F_log("<USER DATA DIR>",V.V_Path_Datos,0);
+	CLog.Com("<USER DATA DIR>");
 	V.V_Path_Datos=V.V_Path_Datos+"/GAME1";
-	F_log("<PathDatos>",V.V_Path_Datos,0);
+	CLog.Com("<PathDatos>"+V.V_Path_Datos);
 	
 	#Si el directorio no existe lo intento crear
 	if (!DirAccess.dir_exists_absolute(V.V_Path_Datos)):
-		F_log("<BASE>","APP_PTH_ADD:"+V.V_Path_Datos,0);
+		CLog.Com("APP_PTH_ADD:"+V.V_Path_Datos);
 		DirAccess.make_dir_absolute(V.V_Path_Datos);
 	#END IF Creo USER DIR
 	
 	#Si SI lo he creado definos los ficheros save si no SALGO
 	if (DirAccess.dir_exists_absolute(V.V_Path_Datos)):
-		F_log("<BASE>","APP_PTH_OK:"+V.V_Path_Datos,0);
+		CLog.Com("APP_PTH_OK:"+V.V_Path_Datos);
+		# Fichero para el log.
+		V_CLogFile=Cls_Log_File.new(V.V_Path_Datos+"/Log.txt");
+		V_CLogFile.V_On=true;
+		# Ficheros Save
 		V_Path_FileSave1=V.V_Path_Datos+"/Save1.db";
 		V_Path_FileSave2=V.V_Path_Datos+"/Save2.db";
 		V_Path_FileSave3=V.V_Path_Datos+"/Save3.db";
 		V_Path_FileSave4=V.V_Path_Datos+"/Save4.db";
-		F_log("<BASE>","SAVES_PTH_OK:"+V.V_Path_FileSave1,0);
+		CLog.Com("SAVES_PTH_OK:"+V.V_Path_FileSave1);
 	else:
 		get_tree().quit(69);#Codigo de error propio retornado por salida no normal
 	#END IF ELSE USER DIR Creado/Existe
@@ -117,21 +176,55 @@ func _ready():
 	#V.V_Path_App=ProjectSettings.globalize_path("");
 	
 	#OS.get_executable_path(); #Retorna la ruta completa + el ejecutable
-	F_log("<BASE>","PTH_APP:"+V.V_Path_App,0);
+	CLog.Com("PTH_APP:"+V.V_Path_App);
 	#OS.get_executable_path().get_base_dir(); # Retorna solo la ruta sin el ultimo /
 	V.V_Path_App=OS.get_executable_path().get_base_dir()+"/"; #.path_join("hello.txt")
-	F_log("<BASE>","PTH_APP:"+V.V_Path_App,0);
+	CLog.Com("PTH_APP:"+V.V_Path_App);
 	
 	#Cargo la lista de BASES,NIVELES,ZONAS
 	#De este modo una vez cargada la DB la clase contenedora se puede descargar.
 	var M_Db:Cls_DbBases=Cls_DbBases.new();
 	M_Db.F_DB_BasesCrea();
 	M_Db=null;
-	F_LogCom("DB_MAPS"+str(V_Bases.V_Lista.size()));
+	CLog.Com("DB_MAPS"+str(V_ClsMapas.V_Lista.size()));
 	
+	#Defino el teclado por defecto
+	var m_TKeys:Array=[["ACT1_FRONT", 3, 87], ["ACT2_FRONT", -1], ["ACT1_BACK", 3, 83], ["ACT2_BACK", -1], ["ACT1_LEFT", 3, 65], ["ACT2_LEFT", -1], ["ACT1_RIGHT", 3, 68], ["ACT2_RIGHT", -1], ["ACT1_JUMP", 3, 32], ["ACT2_JUMP", -1], ["ACT1_TOUCH", 3, 69], ["ACT2_TOUCH", -1], ["ACT1_DOWN", 3, 67], ["ACT2_DOWN", -1], ["ACT1_LIGHT", 3, 76], ["ACT2_LIGHT", -1], ["ACT1_RUN", 3, 4194325], ["ACT2_RUN", -1], ["ACT1_MENU", 3, 81], ["ACT2_MENU", -1], ["ACT1_PUNCH1", 3, 82], ["ACT2_PUNCH1", -1], ["ACT1_PUNCH2", 3, 84], ["ACT2_PUNCH2", -1], ["ACT1_PUNCH3", 3, 89], ["ACT2_PUNCH3", -1], ["ACT1_PUNCH4", 3, 85], ["ACT2_PUNCH4", -1]];
+	V_ClsKeys.F_SetArray(m_TKeys);
+	
+	
+	#TESTE DE SAVE
+	V_ClsGameFiles.V_Ref_ClsGameCab=V_ClsGame_Cab;
+	V_ClsGameFiles.V_Ref_ClsKeys=V_ClsKeys;
+	V_ClsGame_Cab.V_IdBase=666;
+	V_ClsGame_Cab.V_IdNivel=6;
+	V_ClsGame_Cab.V_IdZona=69;
+	V_ClsGame_Cab.V_Is2Player=true;
+	CLog.Com("- - - - - - - - - -SAVE - - - - - - - - - - - - - - - - - ");
+	CLog.Com(str(V_ClsGameFiles.V_Ref_ClsGameCab.F_GetArray()));
+	V_ClsGameFiles.F_SaveGame(V_Path_FileSave1);
+	CLog.Com("- - - - - - - - - -NEW - - - - - - - - - - - - - - - - - ");
+	V_ClsGame_Cab=Cls_Game_Cab.new();
+	V_ClsKeys=Cls_Keys.new();
+	V_ClsGameFiles.V_Ref_ClsGameCab=V_ClsGame_Cab;
+	V_ClsGameFiles.V_Ref_ClsKeys=V_ClsKeys;
+	CLog.Com(str(V_ClsGameFiles.V_Ref_ClsGameCab.F_GetArray()));
+	CLog.Com("- - - - - - - - - -LOAD - - - - - - - - - - - - - - - - - - ");
+	V_ClsGameFiles.F_LoadGame(V_Path_FileSave1);
+	CLog.Com(str(V_ClsGameFiles.V_Ref_ClsGameCab.F_GetArray()));
+	
+	CLog.Del("_ready()");
 #END _Ready
 
 
+
+
+
+
+
 func _notification(what):
+	CLog.Com("Notifi:"+str(what));
+	if(V_CLogFile!=null): V_CLogFile.F_FileClose();
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		get_tree().quit(0) # default behavior
+#END _Notification

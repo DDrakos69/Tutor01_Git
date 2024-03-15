@@ -1,5 +1,7 @@
 extends Node3D
 
+var CLog:Cls_LogLine=Cls_LogLine.new("ScnCamera");
+
 @onready var V_BackG_SubViewPort =$Base_Cam3D/BackGC1_SubViewPortCont/BackGC1_SubViewPort;
 @onready var V_Front_SubViewPort = $Base_Cam3D/FrontC2_SubViewPortCont/FrontC2_SubViewPort;
 

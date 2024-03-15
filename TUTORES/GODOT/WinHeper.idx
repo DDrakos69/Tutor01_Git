@@ -1,5 +1,5 @@
 {WinHelper V2.00 by FNX A1 2024}
-{WIN_W}00337
+{WIN_W}00411
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00530
@@ -483,6 +483,17 @@
 		:-Se ejecuta cada vez que se dibuja la pantalla.
 		:-El tiempo transcurrido entre refrescos es delta.
 	*07-ENUMS
+		:Podemos obtener el tamaño o cantidad de items de un
+		:enum con :
+		:- -
+		:eHabBasic.size()
+		:- -
+		:Podemos acceder tanto al valor como al texto por medio
+		:del las funciones en el propio Enum.
+		:- -
+		:var M_Val = eHabBasic.values()[Pos];
+		:var M_Key = eHabBasic.keys()[Pos];
+		:- -
 		:En su lugar podemos usar LISTAS.
 		:enum ETipos{
 		:·t_Teclado=0,
@@ -492,6 +503,17 @@
 		:·t_PadAxis=4
 		:}
 		:@onready var Tipo:ETipos=ETipos._Teclado;
+		:-
+		:Por defecto Godot asigna a la KEY un numero comenzando
+		:desde el 0
+		:Pero tambien le podemos nosotros dar un numero o ID.
+		:Para optener el id solo tenemos que llamar al enum.
+		:-
+		:var M_ID = ETipos._Teclado
+		:-
+		:Para tener el TEXTO de un enum usaremos
+		:-
+		:var M_TXT = ETipos.toString(ETipos._Teclado);
 	*08-FUNCIONES y METODOS
 		:Los METODOS y FUNCIONES son lo mismo.
 		:La unica diferencia es el alcance.
@@ -573,6 +595,405 @@
 		:[GENERICOS]
 		:Se pueden usar tanto en 3D como en 2D
 	*11-Evento (_input(event)
+	*12-NODOS 2D
+		:Los NODOS es es componente basico de GODOT.
+		:El NODO tiene propiedades basicas a las que
+		:se le añaden otras propiedades para formar de
+		:este modo por capas otros nodos.
+		:Ejemplo:
+		:el NODO basico tiene
+		:PROCESS
+		:SCRIPT
+		:-
+		:El NODO 2D tiene lo del NODO mas
+		:TRANSFORM
+		:VISIBILITY
+		:ORDERING
+		:TEXTURE
+		:MATERIAL
+		:-
+		:El NODO 3D tiene lo del NODO mas
+		:TRANSFORM
+		:VISIBILITY
+		:-
+		:En GODOT tenemos 3 tipos de nodos.
+		:Node2D de tipo Canvas
+		:Control de tipo Canvas
+		:Node3D
+		:-
+		:Tambien tenemos otros nodos que sirven de ayudantes para
+		:controlar audio, multiplayer, conexion http y los que instalemos
+		:para propositos especificos.
+		:-
+		:LISTA DE NODOS Y RESUMEN.
+		:-
+		:- NODE2D
+		:Realiza operaciones basicas para colorar un objeto 2D un Sprite.
+		:- CAMERA2D
+		:Controla el marco de vision 2D para hacer scrool y aplicar algun filtro.
+		:-Sprite2D
+		:Representa un grafico o textura en pantalla con propiedades basicas.
+		:-AnimatedSprite2D
+		:Representa una secuencia de Sprite2D haciendo una animacion
+		:-CollisionShape2D
+		:Controla las colisiones de un objeto 2D, Tambien maneja las fisicas del objeto.
+		:Necesita estar en un contenedor.
+		:-StaticBody2D
+		:Agrupa en un cuerpo estatico otros nodos como un sprite2D y un CollisionShape2D
+		:Este "Contenedor" NO es mobible
+		:-AnimatableBody2D
+		:Agrupa en un cuerpo estatico otros nodos como un sprite2D y un CollisionShape2D
+		:Este "Contenedor" SI es mobible afectando las fisicas de los otros nodos.
+		:-RigidBody2D
+		:Es igual que StaticBody2D pero afecta y es afectado por otros nodos
+		:Tiene mas fisicas pudiendo no solo tener grabedad , tambien permite rotar y empujar.
+		:-CharacterBody2D
+		:Tambien es un contenedor pero tiene las funciones propias para
+		:controlar un personaje , acepta entrada del teclado y tiene las funciones
+		:para desplazar al personaje etc.
+		:-GrooveJoin2D
+		:Conecta dos nodos y solo deja  que se desplace uno al empujarlo en un eje.
+		:-DanpedSpringjoin2D
+		:Conecta dos nodos y les aplica fisicas de resorte,(Atados por cuerda o goma)
+		:-PinJoint
+		:Conecta dos nodos y permite que uno rote como puerta sobre el eje.
+		:-Area2D
+		:Intercepta que nodos estan o atrabiesan ese area."Caja de colision"
+		:-AudioListener2D
+		:Permite definir desde donde sale un sonido.
+		:-GPUParticles2D
+		:-CPUParticles2D
+		:Permiten generar y emitir particulas.
+		:-TileMap
+		:Genera una cuadricula para colocar mapas 2D "grill"
+		:Tiene erramientas propias para definir los sprites, animaciones etc.
+		:-CanvasModulate
+		:Permite configurar efectos en los mapas 2D, dando sombras o tiñendo
+		:el mapa.
+		:-Light2D
+		:Simula un punto de luz en el mundo 2D pudieno dar brillo ofuerza de
+		:color.
+		:-PointLight2D
+		:Simula un punto de luz, es necesario darte una textura para que
+		:sepa aplicar sombras de forma radial
+		:-DirectionalLight2D
+		:Simula un punto de luz, es necesario darte una textura para que
+		:sepa aplicar sombras de forma lineal
+		:-LightOccluder2D
+		:Es un bloque que poryecta sombras .
+		:-Line2D
+		:Permite añadir lineas vectoriales
+		:-Marker2D
+		:Es solo una marca 2D es un ayudante con una posicion y una rotacion.
+		:-MeshInstance2D
+		:Representa un objeto 3D en 2D
+		:-MultiMeshInstance2D
+		:Lo mismo que MeshInstance2D pero con muchas mayas.
+		:-NavigationRegion2D
+		:Permite definir un mapa para que personajes solo se desplacen
+		:por esa region
+		:-ParalaxBackGrouns
+		:-ParalaxLayer
+		:Definen un grafico para que sea la capa de fondo y se scroole
+		:segun se desplace la camra.
+		:-Path2D
+		:-PathFollow2D
+		:Definen unas lineas vectoriales para que luego otro nodo las recorra
+		:punto a punto, podemos definir las subdibisiones y demas.
+		:-Poligon 2D
+		:Permite crear un nodo con poligonos podemos deformar el poligono
+		:tanto como queramos.
+		:-RayCast2D
+		:Es una linea que se dispara cuando algun nodo colisiona con
+		:dicha linea.
+		:-ShapeCast2D
+		:Es un grupo de lineas que se dispara cuando un nodo
+		:colisiona con alguna de las lineas
+		:-RemoteTransform2D
+		:Es un nodo capaz de manipular las porpiedades de otro nodo.
+		:-Skeleton2D
+		:-PhysicalBone2D
+		:-Bone2D
+		:Esto se usa para hacer esqueletos en 2D Brazos, Piernas Cabeza
+		:y asi crear un muñeco animado.
+		:-VisibleOnScreenNotifier2D
+		:-VisibleOnScreenEnabled2D
+		:Son disparadores que indican si un determinado nodo esta visible
+		:en la pantalla, segun la camara.
+		:-CanvasGroup
+		:Permite agrupar distintas Canvas o texturas y trabajarlas como si
+		:fuesen un grupo con una sola colision y demas.
+		:-BackBufferCopy
+		:Permite copiar parte de la pantalla y crear una textura para
+		:usarla donde queramos.
+	*12-NODOS 3D
+		:-Node3D
+		:Contiene las propiedades mas basicas de un nodo en 3D
+		:Seria como un pixel en 3D
+		:-Marker3D
+		:Es una marca en 3D se usa como ayudante.
+		:-VisualInstance3D
+		:Permite agrupar Marcacores.
+		:-GeometryInstance3D
+		:Permite agrupar geometria pudiendo modificar sus
+		:texturas, iluminaciones,lods y posprocesados.
+		:-MeshInstance3D
+		:Permite definir una maya o un poligono con sus
+		:propiedades.
+		:-MultiMeshInstance3D
+		:Permite agrumar muchas mayas como pelo o cesped.
+		:Es complejo y tiene su editor.
+		:-Label3D
+		:Permite definir un texto en 3D.
+		:-Decal
+		:Permite poryectar una textura sobre un objeto
+		:a modo de calcomania.
+		:-AnimatedSprite3D
+		:-Sprite3D
+		:Permite añadir Sprites o animaciones de sprites en
+		:el mundo 3D
+		:-WorldEnvironment
+		:Permite definir y configurar la iluminacion del entorno
+		:Tambien puede aplicar efectos y filtros.
+		:-FogVolume
+		:Permite aplicar niebla a un espacio.
+		:-GPUParticles3D
+		:Es un generador de particulas por GPU
+		:Esta muy relacionado con el WorldEnvironment
+		:-GPUParticlesAttractor3D
+		:-GPUParticlesCollision3D
+		:Junto con las particulas estos nodos son un
+		:bolumen colisionador y Atractor (atrae) las particulas.
+		:-Light3D
+		:Es un configurador de las propiedades de la luz.
+		:No es una luz en si misma.
+		:-OmniLight3D
+		:Es un emisor de luz tipo esfera.
+		:-SpotLight3D
+		:Es un emisor de luz tipo cono.
+		:-DirectionalLight3D
+		:Es un emisor de luz tipo sol. No ajusta una posicon
+		:Es mas bien la luz y sombras en posicion del sol .
+		:-CSGShape3D
+		:Son poligonos que deforman otros poligonos aplicando
+		:operaciones booleanas para su deformacion,
+		:Union, Sustracion y diferencia.
+		:Son muy practicas para trabajar colisiones.
+		:-SoftBody3D
+		:o Cuerpo blando permite simular telas.
+		:-CollisionObject3D
+		:Trabaja junto con otros nodos y permite definir o
+		:actuar cuando otro nodo colisione con este
+		:-PhisicsBody3D
+		:Trabaja junto con otros nodos y permite dotar a
+		:sus hijos de propiedades fisicas pudiendo limitar
+		:rotaciones o dar grabedad etc.
+		:-CollisionPoligon3D
+		:-CollisionShape3D
+		:Trabaja junto con otro nodo y permite detectar
+		:colisiones sobre un poligono dado o sobre una
+		:maya dada.
+		:-StaticBody3D
+		:Permite crear cuerpos estaticos que no se podran
+		:mover ni seran afectados por otros objetos.
+		:(Se muede mover pero no afectara las fisicas de otros objetos)
+		:-AnimatableBody3D
+		:Este objeto si se puede mover y afecta a las fisicas
+		:de otros objetos.
+		:-RigidBody3D
+		:Estos objetos se afectan y son afectados por otros objetos
+		:y tienen fisicas.
+		:-CharacterBody3D
+		:Es el objeto creado para ser controlado y tiene ya las
+		:fisicas propias de un personaje.
+		:-Area3D
+		:Detecta cuando un objeto esta dentro o sale
+		:y Permite definir areas y zonas con sonidos y efectos especiales
+		:(debajo del agua, una cueba etc)
+		:-Camera3D
+		:Permite representar distintos puntos de vista en el espacio 3D
+		:-VehicleWheel3D
+		:-VehicleBody3D
+		:Al igual que el CharacterBody3D tiene las fisicas propieas para
+		:simular un coche.
+		:-Join3D
+		:Permite hacer uniones de objetos
+		:-HingeJoin3D
+		:Permite simular las fisicas de una bisagra.
+		:-ConeTwistJoin3D
+		:Permite simular las fisicas de un pivote.
+		:-SliderJoin3D
+		:Permite el desplazamiento de un objeto sobre otro en un
+		:solo eje como un piston
+		:-PinJoin3D
+		:Permite unir dos objetos dando fisica a uno sobre otro como
+		:si estubiesen atados por una cuerda.
+		:-Generic6DOFjoin3D
+		:Como todos los anteriores permite definir todos los
+		:parametros de union y flexibilidad de un objeto sobre otro.
+		:-Skeleton3D
+		:Es un esqueleto, maneja uniones complejas entre muchos
+		:objetos y sus relaciones con otros.
+		:-BoneAttachment3D
+		:Permite atar otro objeto a un hueso de un skeleto
+		:-RootMotionView
+		:Es solo un ayudante que muestra una rejilla.
+		:-VoxelGI
+		:Es el mas pesado y calcula todo a tiempo real, una vez
+		:creada la escena
+		:-LightMapProbe
+		:-LightMapGI
+		:-
+		:-ReflectionProbe
+		:Captura los objetos a su alrededor y genera un mapa
+		:de feflejos sobre el objeto simulando un espejo.
+		:-ImporterMeshInstance3D
+		:Aun no se sabe que hace.
+		:-VisibleOnScreenNotifier3D
+		:-VisibleOnScreenEnabled3D
+		:Detecta cuando un nodo es visible por la camara en un
+		:area dada.
+		:-GridMap
+		:Genera una rejilla en 3D para colocar Meshes y construir
+		:un mapa.
+		:-AudioListener3D
+		:Le indica al juego cual sera el punto de escucha
+		:del sonido . por defecto es la camara.
+		:-AudioStreamPlayer3D
+		:Proyecta un sonido o musica en un punto 3D
+		:-NavigationRegion3D
+		:Es un objeto que genera un mapa de navegacion para que
+		:la ia sepa por donde moverse.
+		:-OccluderInstance3D
+		:Permite ocultar objetos que no son visibles por estar ocultos
+		:detras de otros.
+		:-Path3D
+		:-PathFollow3D
+		:Permite crear una linea dividida y recorrera en un tiempo.
+		:-RayCast3D
+		:Traza una linea y captura que objetos cortan esa linea.
+		:-ShapeCast3D
+		:Traza un rombo donde caputra que objetos entran y salen.
+		:-SpringArm3D
+		:Es un RayCast3D pero ajusta su tamaño si encuentra una
+		:colision de modo que el largo del brazo es el maximo que
+		:pueda sin colisionar.
+		:-RemoteTransform3D
+		:Permite copiar las transformaciones de un nodo a otro nodo.
+		:-XROrigin3D
+		:-XRAnchor3D
+		:-XRController3D
+		:-XRNode3D
+		:Se usan para controlar juegos VR
+	*12-NODOS CONTROL
+		:-Container
+		:Contenedor Basico (panel)
+		:-TextureRect
+		:Una textura rectangular, La extura se ajusta en tamaño
+		:-VBOXContainer
+		:-BoxContainer
+		:-HBoxContainer
+		:Cajas columnas y filas automaticas.
+		:-CenterContainer
+		:Ajusta el contenido en el centro conservando el tamaño
+		:-FlowContainer
+		:-HFlowContainer
+		:-VFlowContainer
+		:Ajusta el contenido segun el tamaño de los objetos.
+		:Si es muy ancho lo salta de linea y si entra en la
+		:linea anterior los sube.
+		:-GridContainer
+		:Ajusta los objetos contenidos segun una configuracion
+		:de columnas. 3Columnas X XFilas.
+		:-SplitContainer
+		:-HSplitContainer
+		:-VSplitContainer
+		:Es una barra que permite ajustar el tamaño de los paneles
+		:de los lados .
+		:-MarginContainer
+		:Es un panel que permite definir un espaciado.
+		:-PanelContainer
+		:Es el panel mas basico.
+		:-ScrollContainer
+		:Es un panel que permite mostrar mas de lo que se muestra
+		:mostrando barras de scrool.
+		:-TabContainer
+		:Permite mostrar distintos paneles segun el boton pinchado
+		:(Un Tab Basico)
+		:-Label
+		:Es un texto simple.
+		:-RichTextLabel
+		:Permite mostrar texto enriquezido con negritas subrallados.
+		:-ColorRect
+		:Un cuadro de un color
+		:-TextureRect
+		:Es un grafico dibujo o textura
+		:-VideoStreamPlayer
+		:Permite mostrar un video o animacion en un recuadro.
+		:-HSeparator
+		:-VSeparator
+		:Es una linea de separacion entre dos controles
+		:-Panel
+		:Es un panel contenedor que se puede poner en cualquier sitio
+		:-NinePathRect
+		:Es un panel que permite configurar texturas para esquinas,
+		:bordes y fondo pudiendo reescalarlo y conservando los
+		:bordes bien.
+		:-Button
+		:-BaseButton
+		:-TextureButton
+		:Un control con texto que permite acciones de entrada como
+		:click
+		:-LinkButton
+		:Es un texto al estilo de los link del Internet Explorer
+		:que lanza el navegador web a una direcion
+		:-ChekBox
+		:-CheckButton
+		:Permite y mantiene el estado de un chek On Off
+		:-MenuButton
+		:Al pulsarlo mostrara un menu desplegable para
+		:que se pueda decidir entre una u otra opcion
+		:-OptionButton
+		:Tambien muestra una lista pero en este caso
+		:permite chekear una opcion que pasa a ser la opcion
+		:selecionada. (La opcion Selecionada)
+		:-ColorPickerButton
+		:Boton que lanza un panel de selecion de colores y lo
+		:establece.
+		:-LineEdit
+		:Es un cuadro donde introducir un texto. (TextBox)
+		:-TextEdit
+		:-CodeEdit
+		:Es un cuadro de texto con o sin codigo donde se
+		:edita gcode
+		:-Range
+		:Es una barra donde se define un valor al desplazarla.
+		:-ProgresBar
+		:-TextureProgresBarr
+		:Mostrara una barra iluminada X% o un grafico X%
+		:-SpinBox
+		:Es un cuadro de texto con dos flechas para subir o bajar el valor
+		:-HScrollBar
+		:-VScrollBar
+		:Barras de Scroll para decidir un valor.Muestra solo un punto
+		:-HSlider
+		:-VSlider
+		:Igual que la HScrollBar pero mostranod el rango de 0 a X
+		:-ItemList
+		:Muestra una lista de elementos
+		:-MenuBar
+		:Configura una barra de menus con submenus
+		:-TabBar
+		:Muestra una fila de botones o barra de Tabs.
+		:-ReferenceRect
+		:Permite separar en Recuadros y poner notas a las cosas.
+		:-Tree
+		:Permite generar un arbol de controles .
+		:-GraphNode
+		:-GraphEdit
+		:Pendienes de revision
+		:-TouchScreenButton
+		:Es un boton que acepta touch de la pantalla tactil.
 	*CLASE OS
 		:Da acceso a datos del systema operativo.
 		:-
@@ -1625,6 +2046,53 @@
 		:f.seek_end();
 		:f.flush(); #Fuerza la escritura del los datos del buffer al archivo.
 		:f.close();
+		:- -
+		:Tambien se puede guardar o cargar todo el texto
+		:del fichero directamente.
+		:Y podemos usar su libreria JSON para normalizar los
+		:datos de la tabla a formato Texto.
+		:- - -
+		:# Guardo las tablas en el fichero Cifrando y JSONeando las tablas a texto
+		:func F_SaveGame(M_FileName:String):
+		:·t# Genero la tabla que unifica todos los datos
+		:·tvar M_t:Array;
+		:·tM_t.append(V_Ref_ClsGameCab.F_GetArray());
+		:·tM_t.append(V_Ref_ClsKeys.F_GetArray());
+		:·t# Borro el fichero si existe.
+		:·tDirAccess.remove_absolute(M_FileName);
+		:·tvar M_File =  FileAccess.open(M_FileName,FileAccess.WRITE);
+		:·t# Paso la tabla a formato JSON
+		:·tvar M_Str:String=JSON.stringify(M_t);
+		:·t# Cifro la cadena JSoneada
+		:·tM_Str=V_ClsCrypto.F_Cifra(M_Str);
+		:·t# Guardo el fichero
+		:·tM_File.store_string(M_Str);
+		:·t# Guardo Buffer, Cierro y Libero
+		:·tM_File.flush();
+		:·tM_File.close();
+		:·tM_File = null;
+		:#END F_SaveGame
+		:- - -
+		:# Cargo un fichero y destripo con JSON las tablas de datos (Descifra)
+		:func F_LoadGame(M_FileName:String):
+		:·tif(FileAccess.file_exists(M_FileName)):
+		:·t·tvar M_t:Array;
+		:·t·tvar M_File =  FileAccess.open(M_FileName,FileAccess.READ);
+		:·t·t# Cargo todo el texto del fichero
+		:·t·tvar M_Str = M_File.get_as_text();
+		:·t·t# Cierro y libero el fichero
+		:·t·tM_File.close();
+		:·t·tM_File=null;
+		:·t·t# Descifro el texto cargado.
+		:·t·tM_Str=V_ClsCrypto.F_DesCifra(M_Str);
+		:·t·t# Reviso el texto y genero Genero la tabla usando JSON
+		:·t·tM_t=JSON.parse_string(M_Str);
+		:·t·t#- Separo la tabla en sus secciones.
+		:·t·tif(M_t.size()==2):
+		:·t·t·tV_Ref_ClsGameCab.F_SetArray(M_t[0]);
+		:·t·t·tV_Ref_ClsKeys.F_SetArray(M_t[1]);
+		:·t#END If FileExist
+		:#END F_LoadGame
 	*FUNCION F_LOG()
 		:Esta funcion creada para estar en el global
 		:muestra un log en rama de las operaciones realizadas.
@@ -2014,6 +2482,96 @@
 		:func EVT_on_button_up(SELF:Button):
 		:·tprint("ES BUTTON"+SELF.name);
 		:#END _on_button_up
+	*LIBRERIA DE ANIMACIONES
+		:https://www.youtube.com/watch?v=xGHgA5oftxY
+		:- -
+		:NT: El renombrar huesos y animaciones del final
+		:Mejor hacerlo cuando tengas ya todas las animaciones
+		:luego da problemas.
+		:- -
+		:Godot tiene la posibilidad de crear una libreria de
+		:animaciones para , si nuestras armaduras tiene
+		:los nombres de los huesos y los grupos de
+		:vertices iguales , se puedan asignar facilmente.
+		:- -
+		:Para ello lo primero es depurarlas en blender.
+		:Podemos obtenerlas desde la web de mixamo.
+		:Pero siempre que los nombres de los huesos sean
+		:iguales podemos tomar un esqueleto y animarlo
+		:nosotros mismos.
+		:- -
+		:Obtenemos desde mixamo las animaciones en .fbx,
+		:Las importamos a blender y las depuramos y renombramos.
+		:- -
+		:Por defecto creara un esqueleto con cada animacion.
+		:Podemos selecionar nuestro esqueleto y en el
+		:"NoLinealAnimation" asignarla a nuestro esqueleto de
+		:ese modo podremos borrar el esqueleto importado y
+		:la animacion no se perdera.
+		:- -
+		:Cuando la importemos recomiendo poner al final
+		:del nombre de la animacion la biblioteca de donde
+		:salio ya que podemos tener distintos Run o Walking.
+		:- -
+		:Ahora que ya tenemos un monton de esqueletos cada
+		:uno con una animacion .
+		:Selecionamos NUESTRO esqueleto y le asignamos
+		:cada animacion de cada esqueleto importado.
+		:Para lo cual,
+		:Selecionamos nuestro esqueleto.
+		:En la ventana de "Action Editor" buscamos la animacion.
+		:NT: Si pusimos la libreria podemos filtrar.
+		:y pulsamos en el boton "PushDown" de ese modo
+		:Aladira a la lista de animaciones de nuestro esqueleto
+		:esa animacion.
+		:- -
+		:Ahora que ya tenemos todas las animaciones asociadas
+		:a nuestro esqueleto podemos eliminar las armaduras
+		:importadas.
+		:- -
+		:Ten en cuenta que los nombres de los
+		:huesos de la animacion modificados tienen que
+		:corresponder con Huesos y Grupos de vertices.
+		:- -
+		:Para correjir si no te gustan los nombres puedes
+		:usar este script en blender.
+		:- -
+		:import bpy
+		:#__ FNC_FiltraTexto
+		:def F_FiltraTexto(M_texto):
+		:·tM_Res=M_texto;
+		:·tM_Res=M_Res.replace("mixamorig:", "");
+		:·tif ("mixamorig:" in M_Res):
+		:·t·tM_Res=M_Res.replace("mixamorig:", "");
+		:·tif ("Left" in M_Res):
+		:·t·tM_Res=M_Res.replace("Left", "L_");
+		:·tif ("Right" in M_Res):
+		:·t·tM_Res=M_Res.replace("Right", "R_");
+		:·treturn M_Res;
+		:#__ FNC_FiltraTexto FIN
+		:def F_Bones_Rename(V_ArmatureName):
+		:·t# Obtenemos el objeto del esqueleto
+		:·tM_Armature = bpy.data.objects.get(V_ArmatureName)
+		:·tif (M_Armature is None or M_Armature.type != 'ARMATURE'):
+		:·t·tprint("No se encontró el objeto de esqueleto o el objeto no es un esqueleto.")
+		:·t·treturn
+		:·t# Renombramos los huesos en todas las acciones
+		:·tfor M_Action in bpy.data.actions:
+		:·t·tfor fcurve in M_Action.fcurves:
+		:·t·t·tM_data_path = fcurve.data_path;
+		:·t·t·tM_data_path = F_FiltraTexto(M_data_path);
+		:·t# Renombramos los huesos
+		:·tfor M_Bone in M_Armature.data.bones:
+		:·t·tM_Bone.name = F_FiltraTexto(M_Bone.name);
+		:·t# Renombramos los grupos de vértices de la malla asociada al esqueleto
+		:·tM_Malla_asociada = bpy.data.meshes.get(V_ArmatureName)  # Reemplaza esto con el nombre de tu malla asociada
+		:·tif M_Malla_asociada:
+		:·t·tfor V_Group in M_Malla_asociada.vertex_groups:
+		:·t·t·tV_Group.name= F_FiltraTexto(V_Group.name);
+		:# - - EJECUTAMOS
+		:if __name__ == "__main__":
+		:·tF_Bones_Rename("ArmatureBaseFemaleT")
+		:- - -
 	*Materiales
 	*Movimiento Personalizado
 		:Para caputrar el movimiento es tan simple como:

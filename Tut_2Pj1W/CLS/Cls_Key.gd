@@ -1,6 +1,13 @@
 extends Node
 class_name ClsKey
 
+
+var CLog:Cls_LogLine=Cls_LogLine.new("ClsKey");
+
+
+
+
+
 enum E_Tipos{
 	V_Teclado=0,
 	V_MouseBt=1,
@@ -41,15 +48,16 @@ func FTxtSet(MTxt:String):
 # llamado siempre y obtiene los eventos de entrada.
 func _input(event):
 	if(V_IsOn):
-		print(str(V_Tipo));
+		var M_Log:bool=false;
+		CLog.Com("_input("+str(V_Tipo)+").IsOn",M_Log);
 		
 		if(V_Tipo==E_Tipos.V_MouseBt && (event is InputEventMouseButton)):
-			print(str(V_Tipo)+str(event.position));
+			CLog.Com(str(V_Tipo)+str(event.position),M_Log);
 		#END if Tipo MouseBt
 		
 		if(V_Tipo==E_Tipos.V_MouseAxis && (event is InputEventMouseMotion)):
-			print(str(V_Tipo)+str(event.position));
-		#END if Tipo MouseBt		
+			CLog.Com(str(V_Tipo)+str(event.position),M_Log);
+		#END if Tipo MouseBt
 	#END If IsOn
 	
 	

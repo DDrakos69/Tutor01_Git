@@ -1,6 +1,9 @@
 extends Control
 
 
+var CLog:Cls_LogLine=Cls_LogLine.new("ScnMnCfg");
+
+
 # Contara las veces que entras en el tit para mostrar las versiones
 var V_MouseInCount=0;
 

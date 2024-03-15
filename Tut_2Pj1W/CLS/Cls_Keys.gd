@@ -1,87 +1,150 @@
 extends Node
+class_name  Cls_Keys
+#Cls Globals Keys
+# Se carga en GLOBALS
+# No responde a eventos del motor solo son funciones de utilidad.
+# Se encarga de generar o configurar las acciones y sus eventos
+# Para guardar en fichero y cargar de el la configuracion de teclado.
 
-class_name ClsKeys
-
-enum E_Acciones{
-	V_Front=0,
-	V_Back=1,
-	V_Left=2,
-	V_Right=3,
-	V_Jump=4,
-	V_Down=5
-}
-@onready var V_Keys:Array=[];
-
-func _init(MPredef:int):
-	if(MPredef==0):F_SetDefP1();
-	if(MPredef==1):F_SetDefP2();
-	if(MPredef==2):F_SetDefP3();
-	if(MPredef==3):F_SetDefP4();
-#END _init():
+var CLog:Cls_LogLine=Cls_LogLine.new("ClsKeys");
 
 
-func F_GetKey(Tipo:ClsKey.E_Tipos,key:int,val:float,IsOn:bool)->ClsKey:
-	var MK:ClsKey=ClsKey.new(Tipo,key,val,IsOn);
-	return MK;
-#ENDfunc F_GetKey
 
-func F_SetDefP1():
-	#V_Front=0,
-	V_Keys.append(F_GetKey(ClsKey.E_Tipos.V_Teclado,10,1,true));
-	#V_Back=1,
-	V_Keys.append(F_GetKey(ClsKey.E_Tipos.V_Teclado,11,1,true));
-	#V_Left=2,
-	V_Keys.append(F_GetKey(ClsKey.E_Tipos.V_Teclado,12,1,true));
-	#V_Right=3,
-	V_Keys.append(F_GetKey(ClsKey.E_Tipos.V_Teclado,13,1,true));
-	#V_Jump=4,
-	V_Keys.append(F_GetKey(ClsKey.E_Tipos.V_Teclado,14,1,true));
-	#V_Down=5
-	V_Keys.append(F_GetKey(ClsKey.E_Tipos.V_Teclado,15,1,true));
+
+
+
+
+
+
+
+
+
+
+
+
+# Generamos un array con la confiracion del teclado para guardar en fichero.
+func F_GetArray()->Array:
+	var M_LogVis:bool=true;
+	CLog.Add("F_KeysGetArray()>",M_LogVis);
+	var M_TAcc:Array=[];
+	var M_TEvt:Array=[];
+	var M_Evt;
+	var M_LstAcc:Array=InputMap.get_actions();
+	var M_Acc:String="";
 	
-#END F_SetDefP1
-
-func F_SetDefP2():
-	pass
-#END F_SetDefP2
-
-func F_SetDefP3():
-	pass
-#END F_SetDefP3
-
-func F_SetDefP4():
-	pass
-#END F_SetDefP4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-func _input(event):
-	pass
-
-
-
-
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+	CLog.Com("Accs:"+str(M_LstAcc.size()),M_LogVis);
+	for Mq in M_LstAcc.size():
+		M_Acc=M_LstAcc[Mq]
+		
+		if(str(M_Acc).substr(0,5)=="ACT1_"|| str(M_Acc).substr(0,5)=="ACT2_"):
+			M_Evt=InputMap.action_get_events(M_Acc);
+			CLog.Com("Acc:"+M_Acc+" Evts:"+str(M_Evt.size()),M_LogVis);
+			#Sin Eventos =-1
+			if(M_Evt.size()==0):
+				M_TEvt=[M_Acc,-1];
+			#Con Eventos
+			if(M_Evt.size()>0):
+				M_Evt=M_Evt[0];
+				#Else JoyPadBt=1
+				if(M_Evt is InputEventJoypadButton):
+					var M_EvtB:InputEventJoypadButton=M_Evt;
+					M_TEvt=[M_Acc,1,M_EvtB.device,M_EvtB.button_index];
+					CLog.Com("Tipe:JPB:"+str(M_TEvt),M_LogVis);
+				#Else JoyPadMot=2
+				elif(M_Evt is InputEventJoypadMotion):
+					var M_EvtM:InputEventJoypadMotion=M_Evt;
+					M_TEvt=[M_Acc,2,M_EvtM.device,M_EvtM.axis,M_EvtM.axis_value];
+					CLog.Com("Tipe:JPM:"+str(M_TEvt),M_LogVis);
+				#Else Key =3
+				elif(M_Evt is InputEventKey):
+					var M_EvtK:InputEventKey=M_Evt;
+					M_TEvt=[M_Acc,3,M_EvtK.keycode];
+					CLog.Com("Tipe:KEY:"+str(M_TEvt),M_LogVis);
+			#END if Tipos Eventos
+			M_TAcc.append(M_TEvt);
+		#END If Con Acciones ACT1_ y ACT2_
+	#END For Todas las acciones
+	CLog.Del("Res:"+str(M_TAcc),M_LogVis);
+	return M_TAcc;
+#END F_KeysGetArray()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Analizamos el Array pasado de Keys y configuro las Acciones y sus eventos.
+func F_SetArray(ArrayCfg:Array):
+	var M_LogVis:bool=true;
+	CLog.Add("F_KeysSetArray()",M_LogVis);
+	# Seria [ [NomAcc,TipoAcc,Par1,Par2,Parx],[NomAcc,TipoAcc,Par1,Par2,Parx],..]
+	var M_TAccs:Array=ArrayCfg;
+	var M_TEvt:Array=[];
+	var M_LstAcc:Array=InputMap.get_actions();
+	var M_Acc:String="";
+	var M_PosAcc:int=-1;
+	var M_EvtJPB:InputEventJoypadButton;
+	var M_EvtJPM:InputEventJoypadMotion;
+	var M_EvtKEY:InputEventKey;
+	
+	CLog.Com("Array:"+str(ArrayCfg),M_LogVis);
+	CLog.Com("Accs:"+str(M_LstAcc.size()),M_LogVis);
+	
+	for Mq in M_LstAcc.size():
+		M_Acc=M_LstAcc[Mq]
+		if(str(M_Acc).substr(0,5)=="ACT1_" || str(M_Acc).substr(0,5)=="ACT2_"):
+			
+			#Busco la posicion donde esta esa CFG.
+			for Mq1 in M_TAccs.size():
+				if(M_TAccs[Mq1][0]==M_Acc):
+					M_PosAcc=Mq1;
+					break;
+			#END For Busco ACCION
+			CLog.Com("ACC:"+M_Acc+" PosAcc:"+str(M_PosAcc),M_LogVis);
+			
+			#Si tengo esta Accion en la tabla la analizo.
+			if(M_PosAcc>-1):
+				M_TEvt=M_TAccs[M_PosAcc];# Cargo el Array de las acciones (Solo sera 1)
+				if(M_TEvt.size()>1):
+					#Col0=Nombre Accion
+					#Col1=TipoAccion (-1=NoDef 1=JoyPadBt 2=JoyPadMot 3=Key)
+					if(M_TEvt[1]==-1):#NoDef [M_Acc,-1];
+						InputMap.action_erase_events(M_Acc);
+					elif(M_TEvt[1]==1):#JoyPadBt [M_Acc,1,M_EvtB.device,M_EvtB.button_index];
+						CLog.Com("Set JPB:"+str(M_TEvt),M_LogVis);
+						InputMap.action_erase_events(M_Acc);
+						M_EvtJPB=InputEventJoypadButton.new();
+						M_EvtJPB.device=M_TEvt[2];
+						M_EvtJPB.button_index=M_TEvt[3];
+						InputMap.action_add_event(M_Acc,M_EvtJPB);
+					elif(M_TEvt[1]==2):#JoyPadMt [M_Acc,2,M_EvtM.device,M_EvtM.axis,M_EvtM.axis_value];
+						CLog.Com("Set JPM:"+str(M_TEvt),M_LogVis);
+						InputMap.action_erase_events(M_Acc);
+						M_EvtJPM=InputEventJoypadMotion.new();
+						M_EvtJPM.device=M_TEvt[2];
+						M_EvtJPM.axis=M_TEvt[3];
+						M_EvtJPM.axis_value=M_TEvt[4];
+						InputMap.action_add_event(M_Acc,M_EvtJPM);
+					elif(M_TEvt[1]==3):#Key [M_Acc,3,M_EvtK.keycode];
+						M_EvtKEY=InputEventKey.new();
+						M_EvtKEY.keycode=M_TEvt[2];
+						CLog.Com("Set KEY:("+M_Acc+"):" +str(M_EvtKEY),M_LogVis);
+						InputMap.action_erase_events(M_Acc);
+						InputMap.action_add_event(M_Acc,M_EvtKEY);
+						CLog.Com("=("+str(InputMap.action_get_events(M_Acc)[0])+"):",M_LogVis);
+					#END If Else Tipos de Eventos.
+				#END If con almenos 2 Cols
+			#END If Con Accion en el Array
+		#End if La Accion es ACT1_ o ACT2_
+	#END For Acciones totales
+	CLog.Del("F_KeysSetArray()",M_LogVis); 
+#END F_KeysSetArray

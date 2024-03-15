@@ -1,5 +1,7 @@
 extends CSGBox3D
 
+var CLog:Cls_LogLine=Cls_LogLine.new("ParedBox3D");
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

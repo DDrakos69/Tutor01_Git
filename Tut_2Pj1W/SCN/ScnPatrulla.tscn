@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://by1atim4leavx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xnlam"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4lrhe"]
+radius = 0.7
+height = 2.2
+
+[node name="ScnPatrulla" type="Node3D"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_xnlam")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_4lrhe")
