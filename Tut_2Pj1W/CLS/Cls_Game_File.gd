@@ -24,6 +24,8 @@ var V_Ref_ClsGameCab:Cls_Game_Cab;
 
 var V_Ref_ClsKeys:Cls_Keys;
 
+var V_Ref_ClsObjs:Cls_Objs;
+
 
 
 
@@ -42,13 +44,15 @@ func F_SaveGame(M_FileName:String):
 	var M_t:Array;
 	M_t.append(V_Ref_ClsGameCab.F_GetArray());
 	M_t.append(V_Ref_ClsKeys.F_GetArray());
+	M_t.append(V_Ref_ClsObjs.F_GetArray());
+	
 	# Borro el fichero si existe.
 	DirAccess.remove_absolute(M_FileName);
 	var M_File =  FileAccess.open(M_FileName,FileAccess.WRITE);
 	# Paso la tabla a formato JSON
 	var M_Str:String=JSON.stringify(M_t);
 	# Cifro la cadena JSoneada
-	M_Str=V_ClsCrypto.F_Cifra(M_Str);
+	#M_Str=V_ClsCrypto.F_Cifra(M_Str);
 	# Guardo el fichero
 	M_File.store_string(M_Str);
 	# Guardo Buffer, Cierro y Libero

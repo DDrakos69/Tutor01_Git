@@ -1,21 +1,12 @@
 extends Node
 class_name  Cls_Player_Cab
+var CLog:Cls_LogLine=Cls_LogLine.new("ClsPlayerCab");
+
 
 # Clase de Datos para la cabecera de los datos del player
 # Se usa tanto para PJs como PNJs
 # Se carga en Cls_Globals_Player y para los Saves en GLOBALS
 # No responde a eventos solo es una clase de datos
-
-var CLog:Cls_LogLine=Cls_LogLine.new("ClsPlayerCab");
-
-
-
-
-
-
-
-
-
 
 
 enum eTipoPlayer {NoDefinido=0,Capitan=1,Armero=2,Ordenadores=3,Mecanica=4};
@@ -51,7 +42,7 @@ func _init():
 
 # Obtenemos un array con los datos de la clase.
 func F_GetArray()->Array:
-	var M_LogVis:bool=true;
+	var M_LogVis:bool=false;
 	CLog.Add("F_GetArray",M_LogVis);
 	var M_T:Array;
 	M_T.append(V_Nombre);
@@ -79,7 +70,7 @@ func F_GetArray()->Array:
 
 # Analizamos el Array y cojemos los datos del array a la clase tras analizarlos.
 func F_SetArray(ArrayCfg:Array):
-	var M_LogVis:bool=true;
+	var M_LogVis:bool=false;
 	CLog.Add("F_SetArray",M_LogVis);
 	var Mq:int=0;
 	if(ArrayCfg.size()==5):

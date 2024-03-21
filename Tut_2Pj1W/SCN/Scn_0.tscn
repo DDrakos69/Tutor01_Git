@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://coamrkg8x6u28"]
+
+[ext_resource type="PackedScene" uid="uid://bkv6rm4teg2ik" path="res://SCN/UIS/Scn_UI_Marco.tscn" id="1_7hhqa"]
+[ext_resource type="Script" path="res://SCN/Scn_0.gd" id="1_sjcq7"]
+[ext_resource type="PackedScene" uid="uid://e8omwotcfhuw" path="res://SCN/MAPAS/Scn_MAP_B01.tscn" id="2_okm8t"]
+[ext_resource type="PackedScene" uid="uid://bmu1e538v1jnn" path="res://SCN/MAPAS/Scn_MAP_A01.tscn" id="3_5n2ho"]
+[ext_resource type="PackedScene" uid="uid://buv7teqc4w08k" path="res://SCN/M_Player.tscn" id="4_pppoe"]
+[ext_resource type="PackedScene" uid="uid://cyi5hph2arjvd" path="res://SCN/Scn_Camera.tscn" id="5_ps1v1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gukoa"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_iaept"]
+sky_material = SubResource("ProceduralSkyMaterial_gukoa")
+
+[sub_resource type="Environment" id="Environment_ray8f"]
+background_mode = 2
+sky = SubResource("Sky_iaept")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Scn_0" type="Node3D"]
+script = ExtResource("1_sjcq7")
+
+[node name="ScnMapB01" parent="." instance=ExtResource("2_okm8t")]
+
+[node name="ScnMapA01" parent="." instance=ExtResource("3_5n2ho")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ray8f")
+
+[node name="Player" parent="." instance=ExtResource("4_pppoe")]
+transform = Transform3D(0.700785, 0, 0.713373, 0, 1, 0, -0.713373, 0, 0.700785, 0, 0.521428, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.460138, 0.887847, 0, -0.887847, 0.460138, 0.328262, 9.88676, 5.41004)
+visible = false
+layers = 3
+light_energy = 5.23
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 5.0
+spot_range = 13.273
+spot_angle = 83.87
+
+[node name="Scn_Camera" parent="." instance=ExtResource("5_ps1v1")]
+
+[node name="ScnUiMarco" parent="." instance=ExtResource("1_7hhqa")]

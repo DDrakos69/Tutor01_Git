@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ci5wbh7i2p3ox"
+
+[deps]
+
+files=["res://SCN/TRADUCCIONES/Mapas.ES.translation", "res://SCN/TRADUCCIONES/Mapas.EN.translation"]
+
+source_file="res://SCN/TRADUCCIONES/Mapas.csv"
+dest_files=["res://SCN/TRADUCCIONES/Mapas.ES.translation", "res://SCN/TRADUCCIONES/Mapas.EN.translation"]
+
+[params]
+
+compress=true
+delimiter=0

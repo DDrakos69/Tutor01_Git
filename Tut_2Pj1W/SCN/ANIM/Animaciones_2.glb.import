@@ -1,0 +1,47 @@
+[remap]
+
+importer="animation_library"
+importer_version=1
+type="AnimationLibrary"
+uid="uid://qfx7mj06x2cq"
+path="res://.godot/imported/Animaciones_2.glb-604a68adb386d344e8e2c12d4acdee6c.res"
+
+[deps]
+
+source_file="res://SCN/ANIM/Animaciones_2.glb"
+dest_files=["res://.godot/imported/Animaciones_2.glb-604a68adb386d344e8e2c12d4acdee6c.res"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Armature/Skeleton3D": {
+"retarget/bone_map": Object(BoneMap,"resource_local_to_scene":false,"resource_name":"","profile":Object(SkeletonProfileHumanoid,"resource_local_to_scene":false,"resource_name":"","root_bone":&"Root","scale_base_bone":&"Hips","group_size":4,"bone_size":56,"script":null)
+,"bonemap":null,"bone_map/Root":&"","bone_map/Hips":&"","bone_map/Spine":&"","bone_map/Chest":&"","bone_map/UpperChest":&"","bone_map/Neck":&"","bone_map/Head":&"","bone_map/LeftEye":&"","bone_map/RightEye":&"","bone_map/Jaw":&"","bone_map/LeftShoulder":&"","bone_map/LeftUpperArm":&"","bone_map/LeftLowerArm":&"","bone_map/LeftHand":&"","bone_map/LeftThumbMetacarpal":&"mixamorig_LeftHandThumb2","bone_map/LeftThumbProximal":&"mixamorig_LeftHandThumb3","bone_map/LeftThumbDistal":&"mixamorig_LeftHandThumb4","bone_map/LeftIndexProximal":&"mixamorig_LeftHandIndex2","bone_map/LeftIndexIntermediate":&"mixamorig_LeftHandIndex3","bone_map/LeftIndexDistal":&"mixamorig_LeftHandIndex4","bone_map/LeftMiddleProximal":&"mixamorig_LeftHandMiddle2","bone_map/LeftMiddleIntermediate":&"mixamorig_LeftHandMiddle3","bone_map/LeftMiddleDistal":&"mixamorig_LeftHandMiddle4","bone_map/LeftRingProximal":&"mixamorig_LeftHandRing2","bone_map/LeftRingIntermediate":&"mixamorig_LeftHandRing3","bone_map/LeftRingDistal":&"mixamorig_LeftHandRing4","bone_map/LeftLittleProximal":&"mixamorig_LeftHandPinky2","bone_map/LeftLittleIntermediate":&"mixamorig_LeftHandPinky3","bone_map/LeftLittleDistal":&"mixamorig_LeftHandPinky4","bone_map/RightShoulder":&"","bone_map/RightUpperArm":&"","bone_map/RightLowerArm":&"","bone_map/RightHand":&"","bone_map/RightThumbMetacarpal":&"mixamorig_RightHandThumb2","bone_map/RightThumbProximal":&"mixamorig_RightHandThumb3","bone_map/RightThumbDistal":&"mixamorig_RightHandThumb4","bone_map/RightIndexProximal":&"mixamorig_RightHandIndex2","bone_map/RightIndexIntermediate":&"mixamorig_RightHandIndex3","bone_map/RightIndexDistal":&"mixamorig_RightHandIndex4","bone_map/RightMiddleProximal":&"mixamorig_RightHandMiddle2","bone_map/RightMiddleIntermediate":&"mixamorig_RightHandMiddle3","bone_map/RightMiddleDistal":&"mixamorig_RightHandMiddle4","bone_map/RightRingProximal":&"mixamorig_RightHandRing2","bone_map/RightRingIntermediate":&"mixamorig_RightHandRing3","bone_map/RightRingDistal":&"mixamorig_RightHandRing4","bone_map/RightLittleProximal":&"mixamorig_RightHandPinky2","bone_map/RightLittleIntermediate":&"mixamorig_RightHandPinky3","bone_map/RightLittleDistal":&"mixamorig_RightHandPinky4","bone_map/LeftUpperLeg":&"","bone_map/LeftLowerLeg":&"","bone_map/LeftFoot":&"","bone_map/LeftToes":&"","bone_map/RightUpperLeg":&"","bone_map/RightLowerLeg":&"","bone_map/RightFoot":&"","bone_map/RightToes":&"","script":null)
+
+},
+"PATH:Armature_T/Skeleton3D": {
+"retarget/bone_map": Object(BoneMap,"resource_local_to_scene":false,"resource_name":"","profile":Object(SkeletonProfileHumanoid,"resource_local_to_scene":false,"resource_name":"","root_bone":&"Root","scale_base_bone":&"Hips","group_size":4,"bone_size":56,"script":null)
+,"bonemap":null,"bone_map/Root":&"","bone_map/Hips":&"Hips","bone_map/Spine":&"Spine","bone_map/Chest":&"Spine1","bone_map/UpperChest":&"Spine2","bone_map/Neck":&"Neck","bone_map/Head":&"Head","bone_map/LeftEye":&"","bone_map/RightEye":&"","bone_map/Jaw":&"","bone_map/LeftShoulder":&"L_Shoulder","bone_map/LeftUpperArm":&"L_Arm","bone_map/LeftLowerArm":&"L_ForeArm","bone_map/LeftHand":&"L_Hand","bone_map/LeftThumbMetacarpal":&"L_HandThumb2","bone_map/LeftThumbProximal":&"L_HandThumb3","bone_map/LeftThumbDistal":&"L_HandThumb4","bone_map/LeftIndexProximal":&"L_HandIndex2","bone_map/LeftIndexIntermediate":&"L_HandIndex3","bone_map/LeftIndexDistal":&"L_HandIndex4","bone_map/LeftMiddleProximal":&"L_HandMiddle2","bone_map/LeftMiddleIntermediate":&"L_HandMiddle3","bone_map/LeftMiddleDistal":&"L_HandMiddle4","bone_map/LeftRingProximal":&"L_HandRing2","bone_map/LeftRingIntermediate":&"L_HandRing3","bone_map/LeftRingDistal":&"L_HandRing4","bone_map/LeftLittleProximal":&"L_HandPinky2","bone_map/LeftLittleIntermediate":&"L_HandPinky3","bone_map/LeftLittleDistal":&"L_HandPinky4","bone_map/RightShoulder":&"R_Shoulder","bone_map/RightUpperArm":&"R_Arm","bone_map/RightLowerArm":&"R_ForeArm","bone_map/RightHand":&"R_Hand","bone_map/RightThumbMetacarpal":&"R_HandThumb2","bone_map/RightThumbProximal":&"R_HandThumb3","bone_map/RightThumbDistal":&"R_HandThumb4","bone_map/RightIndexProximal":&"R_HandIndex2","bone_map/RightIndexIntermediate":&"R_HandIndex3","bone_map/RightIndexDistal":&"R_HandIndex4","bone_map/RightMiddleProximal":&"R_HandMiddle2","bone_map/RightMiddleIntermediate":&"R_HandMiddle3","bone_map/RightMiddleDistal":&"R_HandMiddle4","bone_map/RightRingProximal":&"R_HandRing2","bone_map/RightRingIntermediate":&"R_HandRing3","bone_map/RightRingDistal":&"R_HandRing4","bone_map/RightLittleProximal":&"R_HandPinky2","bone_map/RightLittleIntermediate":&"R_HandPinky3","bone_map/RightLittleDistal":&"R_HandPinky4","bone_map/LeftUpperLeg":&"L_UpLeg","bone_map/LeftLowerLeg":&"L_Leg","bone_map/LeftFoot":&"L_Foot","bone_map/LeftToes":&"L_ToeBase","bone_map/RightUpperLeg":&"R_UpLeg","bone_map/RightLowerLeg":&"R_Leg","bone_map/RightFoot":&"R_Foot","bone_map/RightToes":&"R_ToeBase","script":null)
+
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

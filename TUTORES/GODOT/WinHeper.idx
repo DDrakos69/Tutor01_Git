@@ -1,8 +1,8 @@
 {WinHelper V2.00 by FNX A1 2024}
-{WIN_W}00576
+{WIN_W}00550
 {JPG_SIZE}00068
 {IMG_AUTO}10000
-{WIN_DESC_H}00530
+{WIN_DESC_H}00488
 {WIN_DESC_PIC_H}00109
 {WIN_EDT_GRP_H}00306
 {WIN_ALING_LEFT}00001
@@ -563,6 +563,24 @@
 	:func _FncPrivada ():
 	:·tpass;
 	:#END _FncPrivada
+	:- -
+	:ENCAPSULACION
+	:- -
+	:Podemos encapsular variables en una clase usando la el comando
+	:PROPERTY y asociando el get y el set a funciones especificas.
+	:- -
+	:# Para la version del godo 4.2
+	:var _BasID:String;
+	:@export var V_BasID: String="":
+	:·tget:return _BasID;
+	:·tset(value):_BasID = value;
+	:- -
+	:# Para otra version
+	:@export var m_vecSize:Vector3 = Vector3(1,1,1) : set = setSize, get = getSize
+	:func getSize():
+	:·treturn m_vecSize
+	:func setSize(a):
+	:·tm_vecSize = a
 *COMENTARIOS
 	:Son textos que no se ejecutan y nos permiten añadir
 	:descripciones al codigo o comentarios.
@@ -909,6 +927,139 @@
 	:_ #self.add_child(M_BtClon);
 	:_ F_Tron("CLON BUTTON Instance .. OK");
 	:_
+*EJ - Libreria de Animaciones
+	ª10154ª10153ª10152ª10151ª10150ª10149ª10148ª10147ª10146ª10145ª10144ª10143ª10142ª10141ª10140ª10139ª10138ª10137ª10155ª10156ª10157ª10158
+	:https://www.youtube.com/watch?v=xGHgA5oftxY
+	:- -
+	:Nos descargamos el zip del video y lo instalamos en el blender en
+	:la seccion addons.
+	:En un proyecto del blender nuevo borramos todo.
+	:En el addom que aparece en la barra derecha pinchamos en
+	:"insert root", y en "animation files/soure" selecionamos la carpeta
+	:con las animaciones.
+	:Presionamos en "Inport Animations" del addon y nos traera todos los
+	:FBX de la carpeta.
+	:(Podemos aplicar el filtro de nombres de mas a bajo)
+	:Borramos en el OUTLINER del blender todas las ARMATURES  menos
+	:la primera que ya tienen todas las ANIMACIONES
+	:Entramos en la pestaña de "ANIMACIOENS"
+	:Modificamos el panel inferior a "Dope Shet" y le decimos que edite
+	:el "Action Editor"
+	:Ahora cuando ya estan todas bien (Aplicando o no el filtro de renombre)
+	:Exportamos la armadura a formato ".glb"
+	:Ahora en GODOT colocamos los .GLB a una carpeta y en la pestaña
+	:superior en IMPORT selecionamos que queremos importar una
+	:ANIMATION LIBRERY y le damos a REIMPORT
+	:Es posible que pida o tengamos que guardar y reiniciar GODOT
+	:segun la version.
+	:- -
+	:Reentramos al GODOT y pikamos dos veces sobre el fichero importado.
+	:Nos mostrara la lista de animacions pero tendremos que decirle
+	:el tipo de esqueleto ya que no lo importa.
+	:Selecionamos el ESQUELETO y en la derecha creamos un nuevo
+	:BONEMAP de tipo "SkeletoProfileHunamoid" y REIMPORTAMOS
+	:- -
+	:Tenemos que tener tambien en GLB las armaduras con los huesos y demas
+	:pero sin animaciones .
+	:NT: Para exportarla tenemos que selecionar todo incluso lo de dentro del la
+	:armadura, si no solo exportara la estructura.
+	:Ahora en GODOT para el KEKO le pikamos dos veces y le decimos al igual
+	:que el tipo de esqueleto es humanoide y REIMPORTAMOS
+	:Luego tenemos que decirle que cree una escena basada en ese KEKO
+	:por medio del menu en el GLB del KEKO "New Inherited Escene"
+	:- -
+	:Por ultimo al crear el objeto ESCENA para el KEKO añade una control
+	:ANIMATION PLAYER , si no ha cogido por defecto la biblioteca de
+	:animaciones tendremos que cerar una y asociarla a la ANIMACIONES que
+	:hemos creado antes .
+	:- -
+	:NT: El renombrar huesos y animaciones del final
+	:Mejor hacerlo cuando tengas ya todas las animaciones
+	:luego da problemas.
+	:- -
+	:Godot tiene la posibilidad de crear una libreria de
+	:animaciones para , si nuestras armaduras tiene
+	:los nombres de los huesos y los grupos de
+	:vertices iguales , se puedan asignar facilmente.
+	:- -
+	:Para ello lo primero es depurarlas en blender.
+	:Podemos obtenerlas desde la web de mixamo.
+	:Pero siempre que los nombres de los huesos sean
+	:iguales podemos tomar un esqueleto y animarlo
+	:nosotros mismos.
+	:- -
+	:Obtenemos desde mixamo las animaciones en .fbx,
+	:Las importamos a blender y las depuramos y renombramos.
+	:- -
+	:Por defecto creara un esqueleto con cada animacion.
+	:Podemos selecionar nuestro esqueleto y en el
+	:"NoLinealAnimation" asignarla a nuestro esqueleto de
+	:ese modo podremos borrar el esqueleto importado y
+	:la animacion no se perdera.
+	:- -
+	:Cuando la importemos recomiendo poner al final
+	:del nombre de la animacion la biblioteca de donde
+	:salio ya que podemos tener distintos Run o Walking.
+	:- -
+	:Ahora que ya tenemos un monton de esqueletos cada
+	:uno con una animacion .
+	:Selecionamos NUESTRO esqueleto y le asignamos
+	:cada animacion de cada esqueleto importado.
+	:Para lo cual,
+	:Selecionamos nuestro esqueleto.
+	:En la ventana de "Action Editor" buscamos la animacion.
+	:NT: Si pusimos la libreria podemos filtrar.
+	:y pulsamos en el boton "PushDown" de ese modo
+	:Aladira a la lista de animaciones de nuestro esqueleto
+	:esa animacion.
+	:- -
+	:Ahora que ya tenemos todas las animaciones asociadas
+	:a nuestro esqueleto podemos eliminar las armaduras
+	:importadas.
+	:- -
+	:Ten en cuenta que los nombres de los
+	:huesos de la animacion modificados tienen que
+	:corresponder con Huesos y Grupos de vertices.
+	:- -
+	:Para correjir si no te gustan los nombres puedes
+	:usar este script en blender.
+	:- -
+	:import bpy
+	:#__ FNC_FiltraTexto
+	:def F_FiltraTexto(M_texto):
+	:·tM_Res=M_texto;
+	:·tM_Res=M_Res.replace("mixamorig:", "");
+	:·tif ("mixamorig:" in M_Res):
+	:·t·tM_Res=M_Res.replace("mixamorig:", "");
+	:·tif ("Left" in M_Res):
+	:·t·tM_Res=M_Res.replace("Left", "L_");
+	:·tif ("Right" in M_Res):
+	:·t·tM_Res=M_Res.replace("Right", "R_");
+	:·treturn M_Res;
+	:#__ FNC_FiltraTexto FIN
+	:def F_Bones_Rename(V_ArmatureName):
+	:·t# Obtenemos el objeto del esqueleto
+	:·tM_Armature = bpy.data.objects.get(V_ArmatureName)
+	:·tif (M_Armature is None or M_Armature.type != 'ARMATURE'):
+	:·t·tprint("No se encontró el objeto de esqueleto o el objeto no es un esqueleto.")
+	:·t·treturn
+	:·t# Renombramos los huesos en todas las acciones
+	:·tfor M_Action in bpy.data.actions:
+	:·t·tfor fcurve in M_Action.fcurves:
+	:·t·t·tM_data_path = fcurve.data_path;
+	:·t·t·tM_data_path = F_FiltraTexto(M_data_path);
+	:·t# Renombramos los huesos
+	:·tfor M_Bone in M_Armature.data.bones:
+	:·t·tM_Bone.name = F_FiltraTexto(M_Bone.name);
+	:·t# Renombramos los grupos de vértices de la malla asociada al esqueleto
+	:·tM_Malla_asociada = bpy.data.meshes.get(V_ArmatureName)  # Reemplaza esto con el nombre de tu malla asociada
+	:·tif M_Malla_asociada:
+	:·t·tfor V_Group in M_Malla_asociada.vertex_groups:
+	:·t·t·tV_Group.name= F_FiltraTexto(V_Group.name);
+	:# - - EJECUTAMOS
+	:if __name__ == "__main__":
+	:·tF_Bones_Rename("ArmatureBaseFemaleT")
+	:- - -
 *EJ - Movimiento Personalizado
 	:Para caputrar el movimiento es tan simple como:
 	:En el SCRIPT GLOBAL añadimos una funcion para obtener
@@ -1756,96 +1907,6 @@
 	:Podemos terminar las sentencias con ; o si estan solas
 	:en la linea no poner nada.
 	:Usa <Tab> para los bloques de codigo.
-*LIBRERIA DE ANIMACIONES
-	:https://www.youtube.com/watch?v=xGHgA5oftxY
-	:- -
-	:NT: El renombrar huesos y animaciones del final
-	:Mejor hacerlo cuando tengas ya todas las animaciones
-	:luego da problemas.
-	:- -
-	:Godot tiene la posibilidad de crear una libreria de
-	:animaciones para , si nuestras armaduras tiene
-	:los nombres de los huesos y los grupos de
-	:vertices iguales , se puedan asignar facilmente.
-	:- -
-	:Para ello lo primero es depurarlas en blender.
-	:Podemos obtenerlas desde la web de mixamo.
-	:Pero siempre que los nombres de los huesos sean
-	:iguales podemos tomar un esqueleto y animarlo
-	:nosotros mismos.
-	:- -
-	:Obtenemos desde mixamo las animaciones en .fbx,
-	:Las importamos a blender y las depuramos y renombramos.
-	:- -
-	:Por defecto creara un esqueleto con cada animacion.
-	:Podemos selecionar nuestro esqueleto y en el
-	:"NoLinealAnimation" asignarla a nuestro esqueleto de
-	:ese modo podremos borrar el esqueleto importado y
-	:la animacion no se perdera.
-	:- -
-	:Cuando la importemos recomiendo poner al final
-	:del nombre de la animacion la biblioteca de donde
-	:salio ya que podemos tener distintos Run o Walking.
-	:- -
-	:Ahora que ya tenemos un monton de esqueletos cada
-	:uno con una animacion .
-	:Selecionamos NUESTRO esqueleto y le asignamos
-	:cada animacion de cada esqueleto importado.
-	:Para lo cual,
-	:Selecionamos nuestro esqueleto.
-	:En la ventana de "Action Editor" buscamos la animacion.
-	:NT: Si pusimos la libreria podemos filtrar.
-	:y pulsamos en el boton "PushDown" de ese modo
-	:Aladira a la lista de animaciones de nuestro esqueleto
-	:esa animacion.
-	:- -
-	:Ahora que ya tenemos todas las animaciones asociadas
-	:a nuestro esqueleto podemos eliminar las armaduras
-	:importadas.
-	:- -
-	:Ten en cuenta que los nombres de los
-	:huesos de la animacion modificados tienen que
-	:corresponder con Huesos y Grupos de vertices.
-	:- -
-	:Para correjir si no te gustan los nombres puedes
-	:usar este script en blender.
-	:- -
-	:import bpy
-	:#__ FNC_FiltraTexto
-	:def F_FiltraTexto(M_texto):
-	:·tM_Res=M_texto;
-	:·tM_Res=M_Res.replace("mixamorig:", "");
-	:·tif ("mixamorig:" in M_Res):
-	:·t·tM_Res=M_Res.replace("mixamorig:", "");
-	:·tif ("Left" in M_Res):
-	:·t·tM_Res=M_Res.replace("Left", "L_");
-	:·tif ("Right" in M_Res):
-	:·t·tM_Res=M_Res.replace("Right", "R_");
-	:·treturn M_Res;
-	:#__ FNC_FiltraTexto FIN
-	:def F_Bones_Rename(V_ArmatureName):
-	:·t# Obtenemos el objeto del esqueleto
-	:·tM_Armature = bpy.data.objects.get(V_ArmatureName)
-	:·tif (M_Armature is None or M_Armature.type != 'ARMATURE'):
-	:·t·tprint("No se encontró el objeto de esqueleto o el objeto no es un esqueleto.")
-	:·t·treturn
-	:·t# Renombramos los huesos en todas las acciones
-	:·tfor M_Action in bpy.data.actions:
-	:·t·tfor fcurve in M_Action.fcurves:
-	:·t·t·tM_data_path = fcurve.data_path;
-	:·t·t·tM_data_path = F_FiltraTexto(M_data_path);
-	:·t# Renombramos los huesos
-	:·tfor M_Bone in M_Armature.data.bones:
-	:·t·tM_Bone.name = F_FiltraTexto(M_Bone.name);
-	:·t# Renombramos los grupos de vértices de la malla asociada al esqueleto
-	:·tM_Malla_asociada = bpy.data.meshes.get(V_ArmatureName)  # Reemplaza esto con el nombre de tu malla asociada
-	:·tif M_Malla_asociada:
-	:·t·tfor V_Group in M_Malla_asociada.vertex_groups:
-	:·t·t·tV_Group.name= F_FiltraTexto(V_Group.name);
-	:# - - EJECUTAMOS
-	:if __name__ == "__main__":
-	:·tF_Bones_Rename("ArmatureBaseFemaleT")
-	:- - -
 *Materiales
 *MULTI IDIOMA
 	:El godot tiene un modo muy simple para trabajar el texto en
@@ -1884,6 +1945,113 @@
 	:esto le indica que desde ese momento la columna/fichero
 	:que usara sera el de ingles, NT: en y es es el tiulo de las
 	:columnas con los idiomas.
+*NODO
+	:-PROPIEDADES
+	:String·t<-·teditor_description·t""
+	:MultiplayerAPI·t<-·tmultiplayer
+	:StringName·t<-·tname
+	:Node·t<-·towner
+	:ProcessMode·t<-·tprocess_mode·t0
+	:int·t<-·tprocess_physics_priority·t0
+	:int·t<-·tprocess_priority·t0
+	:ProcessThreadGroup·t<-·tprocess_thread_group·t0
+	:int·t<-·tprocess_thread_group_order
+	:BitField<ProcessThreadMessages>·t<-·tprocess_thread_messages
+	:String·t<-·tscene_file_path
+	:bool·t<-·tunique_name_in_owner·tfalse
+	:Methods¶
+	:void·t<-·t_enter_tree ( ) virtual
+	:void·t<-·t_exit_tree ( ) virtual
+	:PackedStringArray·t<-·t_get_configuration_warnings ( ) virtual const
+	:void·t<-·t_input ( InputEvent event ) virtual
+	:void·t<-·t_physics_process ( float delta ) virtual
+	:void·t<-·t_process ( float delta ) virtual
+	:void·t<-·t_ready ( ) virtual
+	:void·t<-·t_shortcut_input ( InputEvent event ) virtual
+	:void·t<-·t_unhandled_input ( InputEvent event ) virtual
+	:void·t<-·t_unhandled_key_input ( InputEvent event ) virtual
+	:void·t<-·tadd_child ( Node node, bool force_readable_name=false, InternalMode internal=0 )
+	:void·t<-·tadd_sibling ( Node sibling, bool force_readable_name=false )
+	:void·t<-·tadd_to_group ( StringName group, bool persistent=false )
+	:Variant·t<-·tcall_deferred_thread_group ( StringName method, ... ) vararg
+	:Variant·t<-·tcall_thread_safe ( StringName method, ... ) vararg
+	:bool·t<-·tcan_process ( ) const
+	:Tween·t<-·tcreate_tween ( )
+	:Node·t<-·tduplicate ( int flags=15 ) const
+	:Node·t<-·tfind_child ( String pattern, bool recursive=true, bool owned=true ) const
+	:Node[]·t<-·tfind_children ( String pattern, String type="", bool recursive=true, bool owned=true ) const
+	:Node·t<-·tfind_parent ( String pattern ) const
+	:Node·t<-·tget_child ( int idx, bool include_internal=false ) const
+	:int·t<-·tget_child_count ( bool include_internal=false ) const
+	:Node[]·t<-·tget_children ( bool include_internal=false ) const
+	:StringName[]·t<-·tget_groups ( ) const
+	:int·t<-·tget_index ( bool include_internal=false ) const
+	:Window·t<-·tget_last_exclusive_window ( ) const
+	:int·t<-·tget_multiplayer_authority ( ) const
+	:Node·t<-·tget_node ( NodePath path ) const
+	:Array·t<-·tget_node_and_resource ( NodePath path )
+	:Node·t<-·tget_node_or_null ( NodePath path ) const
+	:Node·t<-·tget_parent ( ) const
+	:NodePath·t<-·tget_path ( ) const
+	:NodePath·t<-·tget_path_to ( Node node, bool use_unique_path=false ) const
+	:float·t<-·tget_physics_process_delta_time ( ) const
+	:float·t<-·tget_process_delta_time ( ) const
+	:bool·t<-·tget_scene_instance_load_placeholder ( ) const
+	:SceneTree·t<-·tget_tree ( ) const
+	:String·t<-·tget_tree_string ( )
+	:String·t<-·tget_tree_string_pretty ( )
+	:Viewport·t<-·tget_viewport ( ) const
+	:Window·t<-·tget_window ( ) const
+	:bool·t<-·thas_node ( NodePath path ) const
+	:bool·t<-·thas_node_and_resource ( NodePath path ) const
+	:bool·t<-·tis_ancestor_of ( Node node ) const
+	:bool·t<-·tis_displayed_folded ( ) const
+	:bool·t<-·tis_editable_instance ( Node node ) const
+	:bool·t<-·tis_greater_than ( Node node ) const
+	:bool·t<-·tis_in_group ( StringName group ) const
+	:bool·t<-·tis_inside_tree ( ) const
+	:bool·t<-·tis_multiplayer_authority ( ) const
+	:bool·t<-·tis_node_ready ( ) const
+	:bool·t<-·tis_physics_processing ( ) const
+	:bool·t<-·tis_physics_processing_internal ( ) const
+	:bool·t<-·tis_processing ( ) const
+	:bool·t<-·tis_processing_input ( ) const
+	:bool·t<-·tis_processing_internal ( ) const
+	:bool·t<-·tis_processing_shortcut_input ( ) const
+	:bool·t<-·tis_processing_unhandled_input ( ) const
+	:bool·t<-·tis_processing_unhandled_key_input ( ) const
+	:void·t<-·tmove_child ( Node child_node, int to_index )
+	:void·t<-·tnotify_deferred_thread_group ( int what )
+	:void·t<-·tnotify_thread_safe ( int what )
+	:void·t<-·tprint_orphan_nodes ( ) static
+	:void·t<-·tprint_tree ( )
+	:void·t<-·tprint_tree_pretty ( )
+	:void·t<-·tpropagate_call ( StringName method, Array args=[], bool parent_first=false )
+	:void·t<-·tpropagate_notification ( int what )
+	:void·t<-·tqueue_free ( )
+	:void·t<-·tremove_child ( Node node )
+	:void·t<-·tremove_from_group ( StringName group )
+	:void·t<-·treparent ( Node new_parent, bool keep_global_transform=true )
+	:void·t<-·treplace_by ( Node node, bool keep_groups=false )
+	:void·t<-·trequest_ready ( )
+	:Error·t<-·trpc ( StringName method, ... ) vararg
+	:void·t<-·trpc_config ( StringName method, Variant config )
+	:Error·t<-·trpc_id ( int peer_id, StringName method, ... ) vararg
+	:void·t<-·tset_deferred_thread_group ( StringName property, Variant value )
+	:void·t<-·tset_display_folded ( bool fold )
+	:void·t<-·tset_editable_instance ( Node node, bool is_editable )
+	:void·t<-·tset_multiplayer_authority ( int id, bool recursive=true )
+	:void·t<-·tset_physics_process ( bool enable )
+	:void·t<-·tset_physics_process_internal ( bool enable )
+	:void·t<-·tset_process ( bool enable )
+	:void·t<-·tset_process_input ( bool enable )
+	:void·t<-·tset_process_internal ( bool enable )
+	:void·t<-·tset_process_shortcut_input ( bool enable )
+	:void·t<-·tset_process_unhandled_input ( bool enable )
+	:void·t<-·tset_process_unhandled_key_input ( bool enable )
+	:void·t<-·tset_scene_instance_load_placeholder ( bool load_placeholder )
+	:void·t<-·tset_thread_safe ( StringName property, Variant value )
+	:void·t<-·tupdate_configuration_warnings ( )
 *NODOS - ANIMATION PLAYER
 	ª10035ª10032
 	:Este nodo se enlaza a otro nodo sobre el que puede animar
@@ -1993,113 +2161,6 @@
 	:-
 	:@onready -> carga la variable cuando ya se ha ejecutado la
 	:burbuja de readys.
-*NODOS - EL NODO
-	:-PROPIEDADES
-	:String	<-	editor_description	""
-	:MultiplayerAPI	<-	multiplayer
-	:StringName	<-	name
-	:Node	<-	owner
-	:ProcessMode	<-	process_mode	0
-	:int	<-	process_physics_priority	0
-	:int	<-	process_priority	0
-	:ProcessThreadGroup	<-	process_thread_group	0
-	:int	<-	process_thread_group_order
-	:BitField<ProcessThreadMessages>	<-	process_thread_messages
-	:String	<-	scene_file_path
-	:bool	<-	unique_name_in_owner	false
-	:Methods¶
-	:void	<-	_enter_tree ( ) virtual
-	:void	<-	_exit_tree ( ) virtual
-	:PackedStringArray	<-	_get_configuration_warnings ( ) virtual const
-	:void	<-	_input ( InputEvent event ) virtual
-	:void	<-	_physics_process ( float delta ) virtual
-	:void	<-	_process ( float delta ) virtual
-	:void	<-	_ready ( ) virtual
-	:void	<-	_shortcut_input ( InputEvent event ) virtual
-	:void	<-	_unhandled_input ( InputEvent event ) virtual
-	:void	<-	_unhandled_key_input ( InputEvent event ) virtual
-	:void	<-	add_child ( Node node, bool force_readable_name=false, InternalMode internal=0 )
-	:void	<-	add_sibling ( Node sibling, bool force_readable_name=false )
-	:void	<-	add_to_group ( StringName group, bool persistent=false )
-	:Variant	<-	call_deferred_thread_group ( StringName method, ... ) vararg
-	:Variant	<-	call_thread_safe ( StringName method, ... ) vararg
-	:bool	<-	can_process ( ) const
-	:Tween	<-	create_tween ( )
-	:Node	<-	duplicate ( int flags=15 ) const
-	:Node	<-	find_child ( String pattern, bool recursive=true, bool owned=true ) const
-	:Node[]	<-	find_children ( String pattern, String type="", bool recursive=true, bool owned=true ) const
-	:Node	<-	find_parent ( String pattern ) const
-	:Node	<-	get_child ( int idx, bool include_internal=false ) const
-	:int	<-	get_child_count ( bool include_internal=false ) const
-	:Node[]	<-	get_children ( bool include_internal=false ) const
-	:StringName[]	<-	get_groups ( ) const
-	:int	<-	get_index ( bool include_internal=false ) const
-	:Window	<-	get_last_exclusive_window ( ) const
-	:int	<-	get_multiplayer_authority ( ) const
-	:Node	<-	get_node ( NodePath path ) const
-	:Array	<-	get_node_and_resource ( NodePath path )
-	:Node	<-	get_node_or_null ( NodePath path ) const
-	:Node	<-	get_parent ( ) const
-	:NodePath	<-	get_path ( ) const
-	:NodePath	<-	get_path_to ( Node node, bool use_unique_path=false ) const
-	:float	<-	get_physics_process_delta_time ( ) const
-	:float	<-	get_process_delta_time ( ) const
-	:bool	<-	get_scene_instance_load_placeholder ( ) const
-	:SceneTree	<-	get_tree ( ) const
-	:String	<-	get_tree_string ( )
-	:String	<-	get_tree_string_pretty ( )
-	:Viewport	<-	get_viewport ( ) const
-	:Window	<-	get_window ( ) const
-	:bool	<-	has_node ( NodePath path ) const
-	:bool	<-	has_node_and_resource ( NodePath path ) const
-	:bool	<-	is_ancestor_of ( Node node ) const
-	:bool	<-	is_displayed_folded ( ) const
-	:bool	<-	is_editable_instance ( Node node ) const
-	:bool	<-	is_greater_than ( Node node ) const
-	:bool	<-	is_in_group ( StringName group ) const
-	:bool	<-	is_inside_tree ( ) const
-	:bool	<-	is_multiplayer_authority ( ) const
-	:bool	<-	is_node_ready ( ) const
-	:bool	<-	is_physics_processing ( ) const
-	:bool	<-	is_physics_processing_internal ( ) const
-	:bool	<-	is_processing ( ) const
-	:bool	<-	is_processing_input ( ) const
-	:bool	<-	is_processing_internal ( ) const
-	:bool	<-	is_processing_shortcut_input ( ) const
-	:bool	<-	is_processing_unhandled_input ( ) const
-	:bool	<-	is_processing_unhandled_key_input ( ) const
-	:void	<-	move_child ( Node child_node, int to_index )
-	:void	<-	notify_deferred_thread_group ( int what )
-	:void	<-	notify_thread_safe ( int what )
-	:void	<-	print_orphan_nodes ( ) static
-	:void	<-	print_tree ( )
-	:void	<-	print_tree_pretty ( )
-	:void	<-	propagate_call ( StringName method, Array args=[], bool parent_first=false )
-	:void	<-	propagate_notification ( int what )
-	:void	<-	queue_free ( )
-	:void	<-	remove_child ( Node node )
-	:void	<-	remove_from_group ( StringName group )
-	:void	<-	reparent ( Node new_parent, bool keep_global_transform=true )
-	:void	<-	replace_by ( Node node, bool keep_groups=false )
-	:void	<-	request_ready ( )
-	:Error	<-	rpc ( StringName method, ... ) vararg
-	:void	<-	rpc_config ( StringName method, Variant config )
-	:Error	<-	rpc_id ( int peer_id, StringName method, ... ) vararg
-	:void	<-	set_deferred_thread_group ( StringName property, Variant value )
-	:void	<-	set_display_folded ( bool fold )
-	:void	<-	set_editable_instance ( Node node, bool is_editable )
-	:void	<-	set_multiplayer_authority ( int id, bool recursive=true )
-	:void	<-	set_physics_process ( bool enable )
-	:void	<-	set_physics_process_internal ( bool enable )
-	:void	<-	set_process ( bool enable )
-	:void	<-	set_process_input ( bool enable )
-	:void	<-	set_process_internal ( bool enable )
-	:void	<-	set_process_shortcut_input ( bool enable )
-	:void	<-	set_process_unhandled_input ( bool enable )
-	:void	<-	set_process_unhandled_key_input ( bool enable )
-	:void	<-	set_scene_instance_load_placeholder ( bool load_placeholder )
-	:void	<-	set_thread_safe ( StringName property, Variant value )
-	:void	<-	update_configuration_warnings ( )
 *NODOS 2D
 	:Los NODOS es es componente basico de GODOT.
 	:El NODO tiene propiedades basicas a las que

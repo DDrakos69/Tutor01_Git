@@ -24,7 +24,7 @@ var CLog:Cls_LogLine=Cls_LogLine.new("ClsKeys");
 
 # Generamos un array con la confiracion del teclado para guardar en fichero.
 func F_GetArray()->Array:
-	var M_LogVis:bool=true;
+	var M_LogVis:bool=false;
 	CLog.Add("F_KeysGetArray()>",M_LogVis);
 	var M_TAcc:Array=[];
 	var M_TEvt:Array=[];
@@ -84,7 +84,7 @@ func F_GetArray()->Array:
 
 #Analizamos el Array pasado de Keys y configuro las Acciones y sus eventos.
 func F_SetArray(ArrayCfg:Array):
-	var M_LogVis:bool=true;
+	var M_LogVis:bool=false;
 	CLog.Add("F_KeysSetArray()",M_LogVis);
 	# Seria [ [NomAcc,TipoAcc,Par1,Par2,Parx],[NomAcc,TipoAcc,Par1,Par2,Parx],..]
 	var M_TAccs:Array=ArrayCfg;

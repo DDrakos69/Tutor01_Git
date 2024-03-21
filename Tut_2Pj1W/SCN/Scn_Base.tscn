@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://du5vg0eyg0xrf"]
+[gd_scene load_steps=2 format=3 uid="uid://bvbcn84gvfn8w"]
 
-[ext_resource type="Script" path="res://SCN/Scn_Base.gd" id="1_flpp6"]
+[sub_resource type="GDScript" id="GDScript_mcn32"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="ScnBase" type="Node3D"]
-script = ExtResource("1_flpp6")
+script = SubResource("GDScript_mcn32")

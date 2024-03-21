@@ -131,7 +131,7 @@ func F_Get_HoraMinJugados()->String:
 
 # Generamos un array con la confiracion del teclado para guardar en fichero.
 func F_GetArray()->Array:
-	var M_LogVis:bool=true;
+	var M_LogVis:bool=false;
 	CLog.Add("F_GetArray()>",M_LogVis);
 	var M_T:Array;
 	var M_T1:Array;
@@ -165,7 +165,7 @@ func F_GetArray()->Array:
 
 #Analizamos el Array pasado de Keys y configuro las Acciones y sus eventos.
 func F_SetArray(ArrayCfg:Array):
-	var M_LogVis:bool=true;
+	var M_LogVis:bool=false;
 	CLog.Add("F_KeysSetArray()",M_LogVis);
 	var Mq:int=0;
 	

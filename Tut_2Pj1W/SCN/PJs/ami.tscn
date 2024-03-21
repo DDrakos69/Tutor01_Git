@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://t6j6qwpwftsh"]
+
+[ext_resource type="PackedScene" uid="uid://dwi2y1gc5ho0k" path="res://SCN/PJs/Ami.glb" id="1_gseic"]
+
+[node name="Ami" instance=ExtResource("1_gseic")]

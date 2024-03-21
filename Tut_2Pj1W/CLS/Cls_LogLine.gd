@@ -4,14 +4,15 @@ class_name  Cls_LogLine
 # Se llama en la cabecera de todos los nodos que necesiten log.
 
 
-func Add(MTxt:String,V_Visible:bool=true):Log_(MTxt,V_Visible,1);
-func Del(MTxt:String,V_Visible:bool=true):Log_(MTxt,V_Visible,0);
-func Com(MTxt:String,V_Visible:bool=true):Log_(MTxt,V_Visible,2);
-func Log_(MTxt:String,MVisible:bool=true,MAcc:int=2):
-	if(V_Visible):V.F_log(V_NameCls,MTxt,MAcc);
+func Add(MTxt:String,MVisible:bool=V_Visible):Log_(MTxt,MVisible,1);
+func Del(MTxt:String,MVisible:bool=V_Visible):Log_(MTxt,MVisible,0);
+func Com(MTxt:String,MVisible:bool=V_Visible):Log_(MTxt,MVisible,2);
+func Log_(MTxt:String,MVisible:bool=V_Visible,MAcc:int=2):
+	if(MVisible):V.F_log(V_NameCls,MTxt,MAcc);
 	
 var V_Visible:bool=false;
 var V_NameCls:String="";
 
 func _init(NameCls:String):
+	V_Visible=false;
 	V_NameCls=NameCls;

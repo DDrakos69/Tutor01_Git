@@ -1,6 +1,7 @@
 extends Node
 
 class_name  Cls_Player
+var CLog:Cls_LogLine=Cls_LogLine.new("ClsPlayer");
 
 # Cls_Globals_Player
 # Se carga en GLOBALS
@@ -8,7 +9,7 @@ class_name  Cls_Player
 # Los de las misiones y objetos se gestionan a parte.
 # Aqui solo los propios del jugador.
 
-var CLog:Cls_LogLine=Cls_LogLine.new("ClsPlayer");
+
 
 
 #NT: El Player Bab esta en el Game Cab ya que se usa para los ficheros Save

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://e8omwotcfhuw"]
+
+[ext_resource type="Script" path="res://SCN/MAPAS/Scn_MAP_B01.gd" id="1_x6yyw"]
+[ext_resource type="Material" uid="uid://bmu6yr1gepw4h" path="res://SCN/MATS/Floor_Mat3D.tres" id="2_u7t7o"]
+[ext_resource type="Material" uid="uid://msdt7l61eaeh" path="res://SCN/MATS/Wall_Mat3D.tres" id="3_njsma"]
+[ext_resource type="Script" path="res://SCN/Pared_Box3D_Auto.gd" id="4_886xk"]
+
+[node name="ScnMapB01" type="Node3D"]
+script = ExtResource("1_x6yyw")
+
+[node name="Map_Nd3D" type="Node3D" parent="."]
+
+[node name="Suelo_Box3D" type="CSGBox3D" parent="Map_Nd3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+material_override = ExtResource("2_u7t7o")
+use_collision = true
+size = Vector3(18, 1, 10)
+
+[node name="Pared_Box3D1" type="CSGBox3D" parent="Map_Nd3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5173, 1.99553, 0)
+material_override = ExtResource("3_njsma")
+use_collision = true
+size = Vector3(1, 3, 10)
+
+[node name="Pared_Box3D2" type="CSGBox3D" parent="Map_Nd3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4827, 1.99553, 0)
+layers = 2
+material_override = ExtResource("3_njsma")
+use_collision = true
+size = Vector3(1, 3, 10)
+
+[node name="Pared_Box3D_Auto" type="CSGBox3D" parent="Map_Nd3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4827, 1.99553, -2)
+layers = 2
+material_override = ExtResource("3_njsma")
+use_collision = true
+size = Vector3(1, 3, 6)
+script = ExtResource("4_886xk")
+
+[node name="Pared_Box3D3" type="CSGBox3D" parent="Map_Nd3D"]
+transform = Transform3D(-4.37114e-08, 0, -2.09, 0, 1, 0, 1, 0, -9.13568e-08, 3.9827, 1.99553, -4.5)
+material_override = ExtResource("3_njsma")
+use_collision = true
+size = Vector3(1, 3, 8)
+
+[node name="Pared_Box3D4" type="CSGBox3D" parent="Map_Nd3D"]
+transform = Transform3D(-4.37114e-08, 0, -2.09, 0, 1, 0, 1, 0, -9.13568e-08, 3.9827, 1.99553, 4.5)
+layers = 2
+material_override = ExtResource("3_njsma")
+use_collision = true
+size = Vector3(1, 3, 8)
