@@ -15,7 +15,7 @@ var V_Nombre:String;# Nombre
 var V_Tipo:eTipoPlayer;
 var V_NV:int;# Nivel
 var V_Monedas:int;# Monedas
-var V_PX:Cls_Player_Habilidad;
+var V_PX:Cls_Player_Talentos;
 
 
 
@@ -24,7 +24,7 @@ func _init():
 	V_Tipo=eTipoPlayer.NoDefinido;
 	V_NV=0;# Nivel
 	V_Monedas=0;# Monedas
-	V_PX=Cls_Player_Habilidad.new();
+	V_PX=Cls_Player_Talentos.new();
 #END _init()
 
 

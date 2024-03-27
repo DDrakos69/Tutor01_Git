@@ -62,20 +62,6 @@ func _init():
 
 
 
-func F_Bool2Int(MBool:bool)->int:
-	if(MBool):
-		return 1;
-	else:
-		return 0;
-#END func Bool2Int
-
-func F_Int2Bool(MInt:int)->bool:
-	if(MInt!=0):
-		return true;
-	else:
-		return false;
-#END func Int2Bool
-
 
 
 

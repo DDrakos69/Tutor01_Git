@@ -7,6 +7,10 @@ var CLog:Cls_LogLine=Cls_LogLine.new("ClsCrypt");
 var V_TK:Array;
 var V_KEY:String;
 
+
+
+
+# Esta funcion Cifra de modo basico un string en otro string
 func F_Cifra(MStr:String)->String:
 	var M_Res:String="";	
 	var M_PosText:int=0;
@@ -41,18 +45,14 @@ func F_Cifra(MStr:String)->String:
 	#END For Keys
 	return M_Res;
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+# Esta funcion DesCifra de modo basico. un String en otro String.
 func F_DesCifra(MStr:String)->String:
 	var M_Res:String="";
 	var M_PosText:int=0;
@@ -88,24 +88,13 @@ func F_DesCifra(MStr:String)->String:
 	return M_Res;
 	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+# En el init genero las cadenas bases de cifrado descifrado.
 func _init():
 	V_KEY="Achilipu";
 	V_TK.append("5}P%]$4lyvTXQSVcYC7xo+wzA&·3;Z|6:M BE0WqtiUDI@hRmerg.(,L8Os)H{Fud!fK-aÑ1GñNjk*2#9pnb[_J");
@@ -177,12 +166,3 @@ func _init():
 # END _Init()
 
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

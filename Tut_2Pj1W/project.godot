@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 V="*res://GLOBALS/GLOBALS.gd"
+F="*res://GLOBALS/FUNCIONES.gd"
 
 [display]
 

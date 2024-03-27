@@ -48,7 +48,7 @@ func F_SaveGame(M_FileName:String):
 	
 	# Borro el fichero si existe.
 	DirAccess.remove_absolute(M_FileName);
-	var M_File =  FileAccess.open(M_FileName,FileAccess.WRITE);
+	var M_File = FileAccess.open(M_FileName,FileAccess.WRITE);
 	# Paso la tabla a formato JSON
 	var M_Str:String=JSON.stringify(M_t);
 	# Cifro la cadena JSoneada
@@ -108,7 +108,7 @@ func F_LoadGame(M_FileName:String):
 		M_File.close();
 		M_File=null;
 		# Descifro el texto cargado.
-		M_Str=V_ClsCrypto.F_DesCifra(M_Str);
+		M_Str=F.DesCifra(M_Str);
 		# Reviso el texto y genero Genero la tabla usando JSON
 		M_t=JSON.parse_string(M_Str);
 		#- Separo la tabla en sus secciones.

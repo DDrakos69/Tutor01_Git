@@ -1,5 +1,5 @@
 extends Node
-#Globals.gb
+#Globals.gb (G)
 
 
 #Clase Fichero para el log generico.
@@ -31,31 +31,11 @@ func F_log(MScn:String,MTxt:String,MAcc:int=2):
 
 
 
-
-
-
-
-
-
-
-
-
 @onready var V_Player:CharacterBody3D;#Node;
 @onready var V_PlayerCamPoint:Node3D;
 
 @onready var V_CamFront:Camera3D;
 @onready var V_CamBack:Camera3D;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -119,12 +99,36 @@ var V_ClsItems:Cls_Items=Cls_Items.new();
 var V_ClsObjs:Cls_Objs=Cls_Objs.new();
 
 
+
+
+# Tabla de Habilidades  BASICAS(Por punto) para cada Player ()
+# Estan las Hablididades COMPLEJAS(Por Valor) pero no se usan en este tipo de juego
+var V_ClsHabil_Play1:Cls_Habilidades;
+var V_ClsHabil_Play2:Cls_Habilidades;
+
+
+
+
+
+
+
 func F_PlayerSet(Player_Node):
 	V_Player=Player_Node;
 	
+
+
+
+
+
+
 func F_PlayerCamPointSet(PlayerCam_N3D):
 	V_PlayerCamPoint=PlayerCam_N3D;
 	
+
+
+
+
+
 
 
 
@@ -136,14 +140,12 @@ func _init():
 	V_ClsGameFiles=Cls_Game_File.new();
 	V_ClsObjs=Cls_Objs.new();
 	V_ClsItems=Cls_Items.new();
+	
+	V_ClsHabil_Play1=Cls_Habilidades.new();
+	V_ClsHabil_Play2=Cls_Habilidades.new();
+
 	F_log("BAS","_init",0)
 #END _INIT
-
-
-
-
-
-
 
 
 
@@ -163,17 +165,20 @@ func _ready():
 	CLog.Add("_ready()");
 	TranslationServer.set_locale("ES");
 	
+	
 	#V.V_Path_Datos=OS.get_data_dir();#+"/"+"GAME1";
 	V.V_Path_Datos=OS.get_user_data_dir();
 	CLog.Com("<USER DATA DIR>");
 	V.V_Path_Datos=V.V_Path_Datos+"/GAME1";
 	CLog.Com("<PathDatos>"+V.V_Path_Datos);
 	
+	
 	#Si el directorio no existe lo intento crear
 	if (!DirAccess.dir_exists_absolute(V.V_Path_Datos)):
 		CLog.Com("APP_PTH_ADD:"+V.V_Path_Datos);
 		DirAccess.make_dir_absolute(V.V_Path_Datos);
 	#END IF Creo USER DIR
+	
 	
 	#Si SI lo he creado definos los ficheros save si no SALGO
 	if (DirAccess.dir_exists_absolute(V.V_Path_Datos)):
@@ -201,10 +206,6 @@ func _ready():
 	CLog.Com("PTH_APP:"+V.V_Path_App);
 	
 	
-	
-	
-	
-	
 	#Cargo la lista de BASES,NIVELES,ZONAS
 	#De este modo una vez cargada la DB la clase contenedora se puede descargar.
 	var M_Db:Cls_DbBases=Cls_DbBases.new();
@@ -212,44 +213,41 @@ func _ready():
 	M_Db=null;
 	CLog.Com("DB_MAPS"+str(V_ClsMapas.V_Lista.size()));
 	
+	
 	# Creamos los items del juego.
 	# De momento la DB es interna en el EXE.
 	var M_CIDb:Cls_Items_DB=Cls_Items_DB.new();
 	M_CIDb.F_Make_Items(V_ClsItems);
 	M_CIDb=null;
 	CLog.Com("DB_ITEMS"+str(V_ClsItems.V_Lista.size()));
-
-	
 	
 	
 	#Defino el teclado por defecto
 	var m_TKeys:Array=[["ACT1_FRONT", 3, 87], ["ACT2_FRONT", -1],
-	 ["ACT1_BACK", 3, 83], ["ACT2_BACK", -1], ["ACT1_LEFT", 3, 65],
-	 ["ACT2_LEFT", -1], ["ACT1_RIGHT", 3, 68], ["ACT2_RIGHT", -1],
-	 ["ACT1_JUMP", 3, 32], ["ACT2_JUMP", -1], ["ACT1_TOUCH", 3, 69],
-	 ["ACT2_TOUCH", -1], ["ACT1_DOWN", 3, 67], ["ACT2_DOWN", -1],
-	 ["ACT1_LIGHT", 3, 76], ["ACT2_LIGHT", -1], ["ACT1_RUN", 3, 4194325],
-	 ["ACT2_RUN", -1], ["ACT1_MENU", 3, 81], ["ACT2_MENU", -1], 
+	["ACT1_BACK", 3, 83], ["ACT2_BACK", -1], ["ACT1_LEFT", 3, 65],
+	["ACT2_LEFT", -1], ["ACT1_RIGHT", 3, 68], ["ACT2_RIGHT", -1],
+	["ACT1_JUMP", 3, 32], ["ACT2_JUMP", -1], ["ACT1_TOUCH", 3, 69],
+	["ACT2_TOUCH", -1], ["ACT1_DOWN", 3, 67], ["ACT2_DOWN", -1],
+	["ACT1_LIGHT", 3, 76], ["ACT2_LIGHT", -1], ["ACT1_RUN", 3, 4194325],
+	["ACT2_RUN", -1], ["ACT1_MENU", 3, 81], ["ACT2_MENU", -1], 
 	["ACT1_PUNCH1", 3, 82], ["ACT2_PUNCH1", -1], ["ACT1_PUNCH2", 3, 84],
-	 ["ACT2_PUNCH2", -1], ["ACT1_PUNCH3", 3, 89], ["ACT2_PUNCH3", -1],
-	 ["ACT1_PUNCH4", 3, 85], ["ACT2_PUNCH4", -1]];
+	["ACT2_PUNCH2", -1], ["ACT1_PUNCH3", 3, 89], ["ACT2_PUNCH3", -1],
+	["ACT1_PUNCH4", 3, 85], ["ACT2_PUNCH4", -1]];
 	V_ClsKeys.F_SetArray(m_TKeys);
 	
 	
-	
 	# - TEST - Carga de la carga OBJ Test
-	F_TEST_ObjsCarga();
-	
-	
-	
-
-	
+	#F_TEST_ObjsCarga();
 	
 	
 	CLog.Del("_ready()");
-	
-	
 #END _Ready
+
+
+
+
+
+
 
 
 
@@ -273,6 +271,11 @@ func F_TEST_SaveGame():
 	#V_ClsGameFiles.F_LoadGame(V_Path_FileSave1);
 	#CLog.Com(str(V_ClsGameFiles.V_Ref_ClsGameCab.F_GetArray()));
 #END F_TEST_SaveGame
+
+
+
+
+
 
 
 
@@ -310,6 +313,8 @@ func F_TEST_ObjsCarga():
 	#END For Carga
 	CLog.Del("F_TEST_ObjsCarga()..ADD("+str(M_Max)+")",M_LogOn);
 #END F_OBJS_Carga
+
+
 
 
 

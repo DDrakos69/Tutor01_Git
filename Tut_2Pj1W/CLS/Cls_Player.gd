@@ -16,8 +16,8 @@ var CLog:Cls_LogLine=Cls_LogLine.new("ClsPlayer");
 # Como se usa para la cabecera de los ficheros sabe y para no duplicar esan en GameCab
 # Pendiente de meter aqui una referencia pero no se "puede ser confuso."
 
-@onready var V_TabClsHabilBas:Array[Cls_Player_Habilidad];#Habilidades Basicas
-@onready var V_TabClsHabilSec:Array[Cls_Player_Habilidad];#Habilidades Secundarias
+@onready var V_TabClsHabilBas:Array[Cls_Player_Talentos];#Habilidades Basicas
+@onready var V_TabClsHabilSec:Array[Cls_Player_Talentos];#Habilidades Secundarias
 
 
 
@@ -32,21 +32,21 @@ func _init():
 	CLog.F_Add("_init()");
 	
 	#Creo tantas rows en la tabla como habilidades basicas tengo en Enum (8)
-	CLog.Com(" BasSize:"+str(Cls_Player_Habilidad.eHabBasic.size()));
-	for M_q in Cls_Player_Habilidad.eHabBasic.size():
-		V_TabClsHabilBas.append(Cls_Player_Habilidad.new());
+	CLog.Com(" BasSize:"+str(Cls_Player_Talentos.eHabBasic.size()));
+	for M_q in Cls_Player_Talentos.eHabBasic.size():
+		V_TabClsHabilBas.append(Cls_Player_Talentos.new());
 		CLog.Com(str(M_q)+
-		" K:"+str(Cls_Player_Habilidad.eHabSecun.keys()[M_q])+
-		" V:"+str(Cls_Player_Habilidad.eHabSecun.values()[M_q]),V_Log);
+		" K:"+str(Cls_Player_Talentos.eHabSecun.keys()[M_q])+
+		" V:"+str(Cls_Player_Talentos.eHabSecun.values()[M_q]),V_Log);
 	#END For Basicas
 	
 	#Creo tantas rows en la tabla como habilidades Secundarias tengo en Enum (70)
-	CLog.Com(" SecSize:"+str(Cls_Player_Habilidad.eHabSecun.size()));
-	for M_q in Cls_Player_Habilidad.eHabSecun.size():
-		V_TabClsHabilSec.append(Cls_Player_Habilidad.new());
+	CLog.Com(" SecSize:"+str(Cls_Player_Talentos.eHabSecun.size()));
+	for M_q in Cls_Player_Talentos.eHabSecun.size():
+		V_TabClsHabilSec.append(Cls_Player_Talentos.new());
 		CLog.Com(str(M_q)+
-		" K:"+str(Cls_Player_Habilidad.eHabSecun.keys()[M_q])+
-		" V:"+str(Cls_Player_Habilidad.eHabSecun.values()[M_q]),V_Log);
+		" K:"+str(Cls_Player_Talentos.eHabSecun.keys()[M_q])+
+		" V:"+str(Cls_Player_Talentos.eHabSecun.values()[M_q]),V_Log);
 	#END For Basicas
 	CLog.Del("_init()");
 #END _Init
@@ -70,13 +70,13 @@ func F_GetArray()->Array:
 	var M_T:Array;
 	
 	#Creo tantas rows en la tabla como habilidades basicas tengo en Enum
-	for M_q in Cls_Player_Habilidad.eHabBasic:
+	for M_q in Cls_Player_Talentos.eHabBasic:
 		M_T.append(V_TabClsHabilBas[M_q].F_GetArray() );
 		CLog.Com(str(M_q)+" B:"+str(M_T[M_q]));
 	#END For Basicas
 	
 	#Creo tantas rows en la tabla como habilidades Secundarias tengo en Enum
-	for M_q in Cls_Player_Habilidad.eHabSecun:
+	for M_q in Cls_Player_Talentos.eHabSecun:
 		M_T.append(V_TabClsHabilSec[M_q].F_GetArray() );
 		CLog.Com(str(M_q)+" S:"+str(M_T[M_q]));
 	#END For Basicas
@@ -99,7 +99,7 @@ func F_GetArray()->Array:
 func F_SetArray(ArrayCfg:Array):
 	var M_LogVis:bool=true;
 	CLog.Add("F_SetArray()>",M_LogVis);
-	var M_ClsHabil:Cls_Player_Habilidad;
+	var M_ClsHabil:Cls_Player_Talentos;
 	var M_Row=0;
 	
 	# Limpiamos las tablas
@@ -107,11 +107,11 @@ func F_SetArray(ArrayCfg:Array):
 	V_TabClsHabilSec.clear();
 
 	#Reviso que el tamaño del array pasado sea igual a las habilidades del juego
-	if(ArrayCfg.size()==(Cls_Player_Habilidad.eHabBasic.size()+Cls_Player_Habilidad.eHabSecun.size())):
+	if(ArrayCfg.size()==(Cls_Player_Talentos.eHabBasic.size()+Cls_Player_Talentos.eHabSecun.size())):
 		
 		#Cargo las Basicas
-		for M_q in Cls_Player_Habilidad.eHabBasic:
-			M_ClsHabil=Cls_Player_Habilidad.new();
+		for M_q in Cls_Player_Talentos.eHabBasic:
+			M_ClsHabil=Cls_Player_Talentos.new();
 			M_ClsHabil.F_SetArray(ArrayCfg[M_Row]);
 			M_Row+=1;
 			V_TabClsHabilBas.append(M_ClsHabil);
@@ -119,8 +119,8 @@ func F_SetArray(ArrayCfg:Array):
 		#END For Basicas
 	
 		#Cargo las Secundarias
-		for M_q in Cls_Player_Habilidad.eHabBasic:
-			M_ClsHabil=Cls_Player_Habilidad.new();
+		for M_q in Cls_Player_Talentos.eHabBasic:
+			M_ClsHabil=Cls_Player_Talentos.new();
 			M_ClsHabil.F_SetArray(ArrayCfg[M_Row]);
 			M_Row+=1;
 			V_TabClsHabilSec.append(M_ClsHabil);

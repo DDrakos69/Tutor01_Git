@@ -1,12 +1,16 @@
 extends Node
-class_name  Cls_Player_Habilidad
+class_name  Cls_Player_Talentos
 
-# Clase de Datos para una habilidad.
+# Clase de Datos para los Talentos (Distribucion por puntos.).
 # Se usa tanto para PJs como PNJs
 # Se carga en Cls_Globals_Player
 # No responde a eventos solo es una clase de datos
+# Modo complejo de habilidades con distribucion de puntos.
 
-var CLog:Cls_LogLine=Cls_LogLine.new("ClsPlayerHabilidad");
+# NT: No usado , En este juego se usa el modo simple
+#Cls_Habilidades.Cls_Habilidad (Puntos por nivel no puntos por talento)
+
+var CLog:Cls_LogLine=Cls_LogLine.new("ClsPlayerTalentos");
 
 
 

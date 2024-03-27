@@ -63,7 +63,7 @@ var _BasNodoName:String;
 
 #- - Loteo
 @export var V_BasOnOffSaveLot:bool;# Necesita Almacenar Loteo
-@export var V_Lot:Array[Cls_ObjCant];# Loteo (Esto son ITEMS.. )
+@export var V_Lot:Array[Cls_StrInt];# Loteo (Esto son ITEMS.. )
 
 
 
@@ -73,20 +73,6 @@ func _init():
 
 
 
-
-func F_Bool2Int(MBool:bool)->int:
-	if(MBool):
-		return 1;
-	else:
-		return 0;
-#END func Bool2Int
-
-func F_Int2Bool(MInt:int)->bool:
-	if(MInt!=0):
-		return true;
-	else:
-		return false;
-#END func Int2Bool
 
 
 
@@ -102,14 +88,14 @@ func F_GetArray()->Array:
 	#CLog.Add("F_GetArray",M_LogVis);
 	var M_T:Array;
 	M_T.append(V_BasID);
-	M_T.append(F_Bool2Int(V_BasDinamico));
+	M_T.append(F.Bool2Int(V_BasDinamico));
 	M_T.append(V_BasTipo);
 	M_T.append(V_BasNodoName);
 	M_T.append(V_BasDesc);
 	M_T.append(V_BasSubTipo);
-	M_T.append(F_Bool2Int(V_BasOnOffSavePos));
-	M_T.append(F_Bool2Int(V_BasOnOffSaveStats));
-	M_T.append(F_Bool2Int(V_BasOnOffSaveLot));
+	M_T.append(F.Bool2Int(V_BasOnOffSavePos));
+	M_T.append(F.Bool2Int(V_BasOnOffSaveStats));
+	M_T.append(F.Bool2Int(V_BasOnOffSaveLot));
 	
 	if(V_BasOnOffSavePos):
 		M_T.append(V_PosMapaId);
@@ -124,8 +110,8 @@ func F_GetArray()->Array:
 	if(V_BasOnOffSaveStats):
 		M_T.append(V_StatVida);
 		M_T.append(V_StatTiempo);
-		M_T.append(F_Bool2Int(V_StatVisible));
-		M_T.append(F_Bool2Int(V_StatHabierto));
+		M_T.append(F.Bool2Int(V_StatVisible));
+		M_T.append(F.Bool2Int(V_StatHabierto));
 		M_T.append(V_StatEstado);
 
 	#END if Stats
@@ -157,14 +143,14 @@ func F_SetArray(ArrayCfg:Array):
 	if(ArrayCfg.size()==4):
 		
 		V_BasID=ArrayCfg[Mq];Mq=Mq+1;
-		V_BasDinamico=F_Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
+		V_BasDinamico=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
 		V_BasTipo=ArrayCfg[Mq];Mq=Mq+1;
 		V_BasNodoName=ArrayCfg[Mq];Mq=Mq+1;
 		V_BasDesc=ArrayCfg[Mq];Mq=Mq+1;
 		V_BasSubTipo=ArrayCfg[Mq];Mq=Mq+1;
-		V_BasOnOffSavePos=F_Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
-		V_BasOnOffSaveStats=F_Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
-		V_BasOnOffSaveLot=F_Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
+		V_BasOnOffSavePos=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
+		V_BasOnOffSaveStats=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
+		V_BasOnOffSaveLot=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
 		
 		if(V_BasOnOffSavePos):
 			V_PosMapaId=ArrayCfg[Mq];Mq=Mq+1;
@@ -179,18 +165,18 @@ func F_SetArray(ArrayCfg:Array):
 		if(V_BasOnOffSaveStats):
 			V_StatVida=ArrayCfg[Mq];Mq=Mq+1;
 			V_StatTiempo=ArrayCfg[Mq];Mq=Mq+1;
-			V_StatVisible=F_Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
-			V_StatHabierto=F_Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
+			V_StatVisible=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
+			V_StatHabierto=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
 			V_StatEstado=ArrayCfg[Mq];Mq=Mq+1;
 		#END if Stats
 		
 		if(V_BasOnOffSaveLot):
 			var M_TLot:Array=ArrayCfg[Mq];Mq=Mq+1;
-			var M_ClsObjCant:Cls_ObjCant;
+			var M_ClsStrInt:Cls_StrInt;
 			for M_q in M_TLot.size():
-				M_ClsObjCant=Cls_ObjCant.new()
-				M_ClsObjCant.F_SetArray(M_TLot[M_q]);
-				V_Lot.append(M_ClsObjCant);
+				M_ClsStrInt=Cls_StrInt.new()
+				M_ClsStrInt.F_SetArray(M_TLot[M_q]);
+				V_Lot.append(Cls_StrInt);
 			#END For Loteo
 		#END If Loteo
 		

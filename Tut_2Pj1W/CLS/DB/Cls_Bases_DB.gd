@@ -9,6 +9,10 @@ func F_Bn()->String:
 	V_Bi=V_Bi+1;
 	return "Bs"+str(V_Bi);
 #END F_Bn
+
+
+
+
 	
 var V_Nn:String;#Nombre Nivel
 var V_Ni:int=-1;#Id Nivel
@@ -18,6 +22,10 @@ func F_Nn()->String:
 	return "Nv"+str(V_Ni);
 #END F_Bn
 
+
+
+
+
 var V_Zn:String;#Nombre Zona
 var V_Zi:int=-1;#Id Zona
 #Creo el nombre de la siguiente Zona(V_Zn="Zn"+"020" y Zi++)
@@ -25,6 +33,10 @@ func F_Zn()->String:
 	V_Zi=V_Zi+1;
 	return "Zn"+str(V_Zi);
 #END F_Bn
+
+
+
+
 
 
 	
@@ -95,6 +107,12 @@ func F_DB_BasesCrea():
 	#Base
 	M_CBase=F_MapaAdd(M_Base,F_Bn(),"Carcel 3",false,false,false);
 #END F_DB_BasesCrea
+
+
+
+
+
+
 
 
 

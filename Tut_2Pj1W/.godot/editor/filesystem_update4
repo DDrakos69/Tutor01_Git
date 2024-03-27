@@ -7,11 +7,9 @@ res://Scn_Shaders/ColorInverse.gdshader
 res://Scn_Shaders/Edges.gdshader
 res://Scn_Shaders/EdgesMatrix.gdshader
 res://Scn_Shaders/Blending.gdshader
+res://CLS/Cls_Habilidades.gd
 res://CLS/Cls_Obj.gd
+res://CLS/Cls_Player.gd
+res://CLS/DB/Cls_Habilidades_Db.gd
 res://GLOBALS/GLOBALS.gd
-res://CLS/Cls_Objs.gd
-res://SCN/Scn_0.gd
-res://SCN/MAPAS/Scn_MAP_B01.gd
-res://CLS/Cls_Game_File.gd
-res://CLS/Cls_Bases_DB.gd
-res://CLS/Cls_Items.gd
+res://CLS/Cls_Habilidad.gd
