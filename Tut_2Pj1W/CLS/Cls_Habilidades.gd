@@ -22,11 +22,12 @@ var V_Lista:Array[Cls_Habilidad];
 
 
 
+
+
+
 func _init():
 	CLog=Cls_LogLine.new("ClsHabilidades");
 #END _init()
-
-
 
 
 
@@ -40,15 +41,11 @@ func _init():
 func F_BuscaId(M_Id:String)->Cls_Habilidad:
 	var M_C:Cls_Habilidad=null;
 	for M_q in V_Lista.size():
-		if(V_Lista[M_q].V_Id==M_Id):
+		if(V_Lista[M_q].V_ID==M_Id):
 			M_C=V_Lista[M_q];
 			break;
 	return M_C;
 #END F_BuscaTit
-
-
-
-
 
 
 
@@ -75,17 +72,12 @@ func F_File_PlayGetArray()->Array[bool]:
 
 
 
-
-
-
-
-
 # Pasamos del Array del fichero a la Cfg interna
-func F_File_PlayerSetArray(M_t:Array[bool])->bool:
+func F_File_PlayerSetArray(M_t:Array[int])->bool:
 	var M_Res:bool=false;
 	if(M_t.size()==V_Lista.size()):
 		for M_q in V_Lista.size():
-			if(M_t[M_q]):F_Point_Set(V_Lista[M_q].V_ID);
+			if(F.Int2Bool(M_t[M_q])):F_Point_Set(V_Lista[M_q].V_ID);
 		#END For Habilidade
 		M_Res=true;
 	#END If Tamaño Ok
@@ -97,15 +89,16 @@ func F_File_PlayerSetArray(M_t:Array[bool])->bool:
 
 
 
+
+
 # Obtenemos el Array con el estado de las Hablididades.
-func F_File_PlayerGetArray()->Array[bool]:
-	var M_Res:Array[bool];
+func F_File_PlayerGetArray()->Array[int]:
+	var M_Res:Array[int];
 	for M_q in V_Lista.size():
-		M_Res.append(V_Lista[M_q].V_Activo);
+		M_Res.append(F.Bool2Int(V_Lista[M_q].V_Activo));
 	#END For Habilidade
 	return M_Res;
 #END F_File_PlayGetArray()
-
 
 
 
@@ -125,10 +118,9 @@ func F_Reset():
 		M_c.V_Visible_Actual=M_c.V_Visible_Inicial;
 		M_c.V_Bloqueado_Actual=M_c.V_Bloqueado_Inicial;
 		M_c.V_Activo=false;
-		
+		M_c.V_NeedUpdate=true;
 	#END For Habilidades
 #END F_Reset()
-
 
 
 
@@ -146,28 +138,43 @@ func F_Point_Set(M_Id:String)->bool:
 	var M_Res:bool=false;
 	if(M_c!=null):
 		M_c.V_Activo=true;
-		# Mostramos IDs
-		for M_q in M_c.V_Muestra_Ids.size():
-			M_c1=F_BuscaId(M_c.V_Muestra_Ids[M_q]);
-			if(M_c1!=null):M_c1.V_Visible=true;
-		#END For Visibles
-		# Bloqueamos IDs
-		for M_q in M_c.V_Bloquea_Ids.size():
-			M_c1=F_BuscaId(M_c.V_Bloquea_Ids[M_q]);
-			if(M_c1!=null):M_c1.V_Bloqueado=true;
+		M_c.V_NeedUpdate=true;
+
+		# DesBloqueamos IDs
+		for M_q in M_c.V_DesBloq_Ids.size():
+			M_c1=F_BuscaId(M_c.V_DesBloq_Ids[M_q]);
+			if(M_c1!=null):
+				M_c1.V_Bloqueado_Actual=false;
+				M_c1.V_NeedUpdate=true;
 		#END For Bloquea
+
+		# Bloqueamos IDs
+		for M_q in M_c.V_Bloq_Ids.size():
+			M_c1=F_BuscaId(M_c.V_Bloq_Ids[M_q]);
+			if(M_c1!=null):
+				M_c1.V_Bloqueado_Actual=true;
+				M_c1.V_NeedUpdate=true;
+		#END For Bloquea
+		
+		# Mostramos IDs
+		for M_q in M_c.V_Mostrar_Ids.size():
+			M_c1=F_BuscaId(M_c.V_Mostrar_Ids[M_q]);
+			if(M_c1!=null):
+				M_c1.V_Visible_Actual=true;
+				M_c1.V_NeedUpdate=true;
+		#END For Visibles
+		
 		# Ocultamos IDs
-		for M_q in M_c.V_Oculta_Ids.size():
-			M_c1=F_BuscaId(M_c.V_Oculta_Ids[M_q]);
-			if(M_c1!=null):M_c1.V_Visible=false;
+		for M_q in M_c.V_Ocultar_Ids.size():
+			M_c1=F_BuscaId(M_c.V_Ocultar_Ids[M_q]);
+			if(M_c1!=null):
+				M_c1.V_Visible_Actual=false;
+				M_c1.V_NeedUpdate=true;
 		#END For Ocultamos
 		
 	#END If Encontrada
 	return M_Res
 #END F_Point_Set
-
-
-
 
 
 
@@ -186,20 +193,38 @@ func F_Point_UnSet(M_Id:String)->bool:
 	var M_Res:bool=false;
 	if(M_c!=null):
 		M_c.V_Activo=false;
-		# Mostramos IDs
-		for M_q in M_c.V_Muestra_Ids.size():
-			M_c1=F_BuscaId(M_c.V_Muestra_Ids[M_q]);
-			if(M_c1!=null):M_c1.V_Visible=false;
-		#END For Visibles
+		M_c.V_NeedUpdate=true;
+		
+		# DesBloqueamos IDs
+		for M_q in M_c.V_DesBloq_Ids.size():
+			M_c1=F_BuscaId(M_c.V_DesBloq_Ids[M_q]);
+			if(M_c1!=null):
+				M_c1.V_Bloqueado=false;
+				M_c1.V_NeedUpdate=true;
+		#END For Bloquea
+		
 		# Bloqueamos IDs
 		for M_q in M_c.V_Bloquea_Ids.size():
 			M_c1=F_BuscaId(M_c.V_Bloquea_Ids[M_q]);
-			if(M_c1!=null):M_c1.V_Bloqueado=true;
+			if(M_c1!=null):
+				M_c1.V_Bloqueado=true;
+				M_c1.V_NeedUpdate=true;
 		#END For Bloquea
+		
+		# Mostramos IDs
+		for M_q in M_c.V_Mostrar_Ids.size():
+			M_c1=F_BuscaId(M_c.V_Mostrar_Ids[M_q]);
+			if(M_c1!=null):
+				M_c1.V_Visible=false;
+				M_c1.V_NeedUpdate=true;
+		#END For Visibles
+		
 		# Ocultamos IDs
 		for M_q in M_c.V_Oculta_Ids.size():
 			M_c1=F_BuscaId(M_c.V_Oculta_Ids[M_q]);
-			if(M_c1!=null):M_c1.V_Visible=false;
+			if(M_c1!=null):
+				M_c1.V_Visible=false;
+				M_c1.V_NeedUpdate=true;
 		#END For Ocultamos
 		
 	#END If Encontrada
@@ -208,3 +233,15 @@ func F_Point_UnSet(M_Id:String)->bool:
 
 
 
+
+
+func F_Refresh(Forzado:bool):
+	if(Forzado):
+		for M_q in V_Lista.size():
+			V_Lista[M_q].V_NeedUpdate=true;
+	#END If Forzado
+	for M_q in V_Lista.size():
+		if(V_Lista[M_q].V_Node!=null):
+			V_Lista[M_q].V_Node.F_Refresh();
+	
+#END  F_Refresh

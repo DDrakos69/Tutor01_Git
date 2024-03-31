@@ -48,9 +48,9 @@ var V_Des:String;
 # No Necesaria usada para saber si se dropea por nivel
 var V_Lv:int;
 #Items y cantidad para Crear
-var V_TMake:Array[Cls_ObjCant];
+var V_TMake:Array[Cls_StrInt];
 #Items y cantidad para Reciclar
-var V_TDell:Array[Cls_ObjCant];
+var V_TDell:Array[Cls_StrInt];
 
 
 

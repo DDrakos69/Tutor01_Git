@@ -106,6 +106,12 @@ var V_ClsObjs:Cls_Objs=Cls_Objs.new();
 var V_ClsHabil_Play1:Cls_Habilidades;
 var V_ClsHabil_Play2:Cls_Habilidades;
 
+# Cabecera de cada jugador con los datos basicos.
+var V_ClsPlayerCab1:Cls_Player_Cab;
+var V_ClsPlayerCab2:Cls_Player_Cab;
+
+
+
 
 
 
@@ -115,9 +121,6 @@ var V_ClsHabil_Play2:Cls_Habilidades;
 func F_PlayerSet(Player_Node):
 	V_Player=Player_Node;
 	
-
-
-
 
 
 
@@ -131,18 +134,34 @@ func F_PlayerCamPointSet(PlayerCam_N3D):
 
 
 
-
+# Iniciamos las variables y cargamos las DBS
 func _init():
 	var M_LogOn:bool=true;
 	CLog=Cls_LogLine.new("G");
 	F_log("BAS","_init",1);#Aqui aun no tengo instanciada CLog
 	
 	V_ClsGameFiles=Cls_Game_File.new();
+	# - - Creamos la tabla de los Objetos del juego (Armas Escudos etc)
 	V_ClsObjs=Cls_Objs.new();
+	
+	# - - Creamos la tabla de los Items del juego (Materiales,minerales etc.)
 	V_ClsItems=Cls_Items.new();
 	
+	# - - Creamos las cabeceras de cada PLAYER
+	V_ClsPlayerCab1=Cls_Player_Cab.new();
+	V_ClsPlayerCab2=Cls_Player_Cab.new();
+		
+	# - - Creamos y configuramos las habilidades (Basicas)
 	V_ClsHabil_Play1=Cls_Habilidades.new();
 	V_ClsHabil_Play2=Cls_Habilidades.new();
+	
+	# - - Cargamos el arbol de las habilidades basicas para cada PLAYER
+	var M_Cdb:Cls_Habilidades_Db=Cls_Habilidades_Db.new();
+	M_Cdb.F_MAKE(V_ClsHabil_Play1);
+	M_Cdb.F_MAKE(V_ClsHabil_Play2);
+	M_Cdb=null;
+	
+	
 
 	F_log("BAS","_init",0)
 #END _INIT
@@ -254,9 +273,17 @@ func _ready():
 
 
 func F_TEST_SaveGame():
-		#TESTE DE SAVE
+	# - - TESTE DE SAVE
+	# - - Asocio Clases
 	V_ClsGameFiles.V_Ref_ClsGameCab=V_ClsGame_Cab;
 	V_ClsGameFiles.V_Ref_ClsKeys=V_ClsKeys;
+	
+	V_ClsGameFiles.V_Ref_ClsPlayer1Cab=V_ClsPlayerCab1;
+	V_ClsGameFiles.V_Ref_ClsPlayer2Cab=V_ClsPlayerCab2;
+	
+	V_ClsGameFiles.V_Ref_ClsHabP1=V_ClsHabil_Play1;
+	V_ClsGameFiles.V_Ref_ClsHabP2=V_ClsHabil_Play2;
+	# - - Añado un ejemplo
 	V_ClsGame_Cab.V_IdBase=666;
 	V_ClsGame_Cab.V_IdNivel=6;
 	V_ClsGame_Cab.V_IdZona=69;

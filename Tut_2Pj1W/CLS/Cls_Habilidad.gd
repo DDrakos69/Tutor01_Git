@@ -22,6 +22,12 @@ var CLog:Cls_LogLine=Cls_LogLine.new("ClsHabilidad");
 
 
 
+
+
+
+
+
+
 # ROW (Posicion que ocupa en el ARRAY, Auto Generado.)
 var V_ROW:int;
 # ID (Manual y Unico)
@@ -44,11 +50,25 @@ var V_Desc:String;
 # Padre ID
 var V_Padre_ID:String;
 # Bloquea ID (Si bloquea algun nodo al tener un punto.)
-var V_Bloquea_Ids:Array[String];
+var V_Bloq_Ids:Array[String];
+# Bloquea ID (Si bloquea algun nodo al tener un punto.)
+var V_DesBloq_Ids:Array[String];
 # Visiblea ID (Si esta activo este punto pone en visible estos nodos)
-var V_Muestra_Ids:Array[String];
+var V_Mostrar_Ids:Array[String];
 # Oculta ID (Si esta activo este punto pone en visible estos nodos)
-var V_Oculta_Ids:Array[String];
+var V_Ocultar_Ids:Array[String];
+
+# Posicion X e Y
+var V_X:int;
+var V_Y:int;
+# Nodo Asociado.
+var V_Node:Node2D;
+# Indica que se tienen que refrescar 
+#por que ha sido modificado algon dato
+var V_NeedUpdate:bool;
+
+
+
 
 
 
@@ -57,15 +77,25 @@ var V_Oculta_Ids:Array[String];
 
 
 func _init():
-	pass
+	V_ROW=-1;
+	V_ID="";
+	V_Activo=false;
+	V_Visible_Actual=true;
+	V_Visible_Inicial=true;
+	V_Bloqueado_Actual=false;
+	V_Bloqueado_Inicial=false;
+	V_Nom="";
+	V_Desc="";
+	V_Padre_ID="";
+	V_Bloq_Ids=[];
+	V_DesBloq_Ids=[];
+	V_Mostrar_Ids=[];
+	V_Ocultar_Ids=[];
+	V_X=0;
+	V_Y=0;
+	V_Node=null;
+	V_NeedUpdate=true;
 #END _init()
-
-
-
-
-
-
-
 
 
 
@@ -96,26 +126,28 @@ func F_GetArray_All()->Array:
 	M_T.append(V_Padre_ID);# Padre ID
 	# Bloquea ID (Si bloquea algun nodo al tener un punto.)
 	M_T1.clear();
-	for M_q in V_Bloquea_Ids.size():
-		M_T1.append(V_Bloquea_Ids[M_q]);
+	for M_q in V_Bloq_Ids.size():
+		M_T1.append(V_Bloq_Ids[M_q]);
+	M_T.append(M_T1);
+	# Des Bloquea ID (Si Desbloquea algun nodo al tener un punto.)
+	M_T1.clear();
+	for M_q in V_DesBloq_Ids.size():
+		M_T1.append(V_DesBloq_Ids[M_q]);
 	M_T.append(M_T1);
 	# Visiblea ID (Si esta activo este punto pone en visible estos nodos)
 	M_T1.clear();
-	for M_q in V_Muestra_Ids.size():
-		M_T1.append(V_Muestra_Ids[M_q]);
+	for M_q in V_Mostrar_Ids.size():
+		M_T1.append(V_Mostrar_Ids[M_q]);
 	M_T.append(M_T1);
 	# Oculta ID (Si esta activo este punto pone en visible estos nodos)
 	M_T1.clear();
-	for M_q in V_Oculta_Ids.size():
-		M_T1.append(V_Oculta_Ids[M_q]);
+	for M_q in V_Ocultar_Ids.size():
+		M_T1.append(V_Ocultar_Ids[M_q]);
 	M_T.append(M_T1);# Nombre Corto
 	
 	CLog.Del("Res:"+str(M_T),M_LogVis);
 	return M_T;
 #END F_KeysGetArray()
-
-
-
 
 
 
@@ -143,12 +175,14 @@ func F_SetArray_All(ArrayCfg:Array):
 		V_Desc=ArrayCfg[Mq];Mq=Mq+1;# Descripcion
 		V_Padre_ID=ArrayCfg[Mq];Mq=Mq+1;# Padre ID
 		
-		V_Bloquea_Ids=ArrayCfg[Mq];Mq=Mq+1;# Bloquea ID (Si bloquea algun nodo al tener un punto.)
-		V_Muestra_Ids=ArrayCfg[Mq];Mq=Mq+1;# Visiblea ID (Si esta activo este punto pone en visible estos nodos)
-		V_Oculta_Ids=ArrayCfg[Mq];Mq=Mq+1;# Oculta ID (Si esta activo este punto pone en visible estos nodos)
+		V_Bloq_Ids=ArrayCfg[Mq];Mq=Mq+1;# des Bloquea ID (Si bloquea algun nodo al tener un punto.)
+		V_DesBloq_Ids=ArrayCfg[Mq];Mq=Mq+1;# Bloquea ID (Si bloquea algun nodo al tener un punto.)
+		V_Mostrar_Ids=ArrayCfg[Mq];Mq=Mq+1;# Visiblea ID (Si esta activo este punto pone en visible estos nodos)
+		V_Ocultar_Ids=ArrayCfg[Mq];Mq=Mq+1;# Oculta ID (Si esta activo este punto pone en visible estos nodos)
 		
 	#END If Array
 	CLog.Del("F_SetArray",M_LogVis); 
 #END F_KeysSetArray
+
 
 

@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://vp11qqu3saj2"]
+
+[ext_resource type="Script" path="res://SCN/MN_TALENTOS/ScnMnHabil.gd" id="1_h5s7w"]
+[ext_resource type="Texture2D" uid="uid://b50cwxbx2x0xd" path="res://Blender/Marcos20x20Grey.png" id="2_fpfv3"]
+[ext_resource type="PackedScene" uid="uid://twla0u27cbp8" path="res://SCN/MN_TALENTOS/MN_Uc/ScnMnHabilUc.tscn" id="3_w8u2e"]
+
+[node name="ScnMnHabil" type="Node2D"]
+script = ExtResource("1_h5s7w")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 512.0
+offset_bottom = 528.0
+texture = ExtResource("2_fpfv3")
+region_rect = Rect2(0, 0, 60, 60)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="UcHabil" parent="NinePatchRect" instance=ExtResource("3_w8u2e")]
+visible = false
+position = Vector2(10, 10)
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 9.0
+offset_right = 494.0
+offset_bottom = 39.0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "MnTal_LbTit"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 357.0
+offset_top = 466.0
+offset_right = 475.0
+offset_bottom = 512.0
+text = "MnTal_BtB01a"
+
+[node name="Bt_LngES" type="Button" parent="."]
+offset_left = 42.0
+offset_top = 462.0
+offset_right = 160.0
+offset_bottom = 508.0
+text = "ES"
+
+[node name="Bt_LngEN" type="Button" parent="."]
+offset_left = 168.0
+offset_top = 464.0
+offset_right = 286.0
+offset_bottom = 510.0
+text = "EN"
+
+[connection signal="button_up" from="Button" to="." method="_on_button_ButtonUp"]
+[connection signal="button_up" from="Bt_LngES" to="." method="_on_BtIngES_button_up"]
+[connection signal="button_up" from="Bt_LngEN" to="." method="_on_BTLngEN_button_up"]

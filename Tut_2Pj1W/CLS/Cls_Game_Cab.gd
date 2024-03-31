@@ -36,7 +36,6 @@ enum  eIdiomas {ES=0,EN=1};
 var V_Player1Cab:Cls_Player_Cab;
 var V_Player2Cab:Cls_Player_Cab;
 
-
 #Dictionary get_datetime_dict_from_system ( bool utc=false ) const
 #Returns the current date as a dictionary of keys: year, month, day, weekday, hour, minute, second, and dst (Daylight Savings Time).
 

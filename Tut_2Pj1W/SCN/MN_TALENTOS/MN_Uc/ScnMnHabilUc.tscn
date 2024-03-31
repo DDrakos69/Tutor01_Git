@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://twla0u27cbp8"]
+
+[ext_resource type="Script" path="res://SCN/MN_TALENTOS/MN_Uc/ScnMnHabilUc.gd" id="1_yidrr"]
+[ext_resource type="Texture2D" uid="uid://kmwtkrsra3sj" path="res://Blender/Marcos30x30Blue.png" id="2_44x0y"]
+
+[node name="ScnMnHabilUc" type="Node2D"]
+script = ExtResource("1_yidrr")
+
+[node name="RecMarco" type="NinePatchRect" parent="."]
+offset_right = 119.0
+offset_bottom = 37.0
+texture = ExtResource("2_44x0y")
+region_rect = Rect2(0, 0, 30, 30)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="LbTit" type="Label" parent="RecMarco"]
+modulate = Color(0, 0, 0, 1)
+layout_direction = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 116.0
+offset_bottom = 23.0
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "MnUcTit"
+horizontal_alignment = 1
+
+[node name="LbDes" type="Label" parent="RecMarco"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 15.0
+offset_right = 119.0
+offset_bottom = 35.0
+auto_translate = false
+localize_numeral_system = false
+theme_override_font_sizes/font_size = 11
+text = "MnUcDes"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Bt" type="Button" parent="RecMarco"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.944
+anchor_bottom = 1.189
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -0.328003
+offset_bottom = -14.993
+grow_vertical = 2
+flat = true
+
+[connection signal="button_up" from="RecMarco/Bt" to="." method="_on_bt_button_up"]
+[connection signal="mouse_entered" from="RecMarco/Bt" to="." method="_on_bt_MouseEntered"]
+[connection signal="mouse_exited" from="RecMarco/Bt" to="." method="_on_bt_MouseExited"]

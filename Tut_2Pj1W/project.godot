@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tut_2Pj1W"
-run/main_scene="res://SCN/Scn_0.tscn"
+run/main_scene="res://SCN/MN_TALENTOS/ScnMnHabil.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -145,7 +145,7 @@ ACT2_PUNCH4={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://TRANS/Trans.EN.translation", "res://TRANS/Trans.ES.translation")
+locale/translations=PackedStringArray("res://TRADUCIONES/Trans_Habilidades.EN.translation", "res://TRADUCIONES/Trans_Habilidades.ES.translation")
 
 [rendering]
 
