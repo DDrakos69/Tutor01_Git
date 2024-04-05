@@ -1,0 +1,134 @@
+Compuestos basicos.
+
+Cristal líquido
+Circuitos integrados
+Fibra óptica
+Fibra Plastica
+Fibra de Carbono
+Fibra de Titanio
+Fibra de Grafeno
+Fibra de Aluminio
+Fibra de Cobre
+Nanites
+Polímero termoplástico
+Gel Energetico
+
+
+
+Plasma: Una sustancia energética utilizada como fuente de energía para dispositivos tecnológicos avanzados.
+Cristal de energía: Cristales especiales que contienen energía que puede ser utilizada para alimentar dispositivos o armas.
+Bioplástico: Material sintético derivado de fuentes renovables, utilizado en la fabricación de diversos objetos.
+Gas criogénico: Utilizado para refrigeración y conservación de materiales sensibles al calor.
+Antimateria: Material altamente energético utilizado en la creación de dispositivos de propulsión y armamento avanzado.7
+Nanotubos de carbono: Estructuras de carbono a escala nanométrica extremadamente resistentes y conductoras de electricidad, utilizadas en la fabricación de componentes electrónicos y materiales compuestos.
+Aleación de plástico-metal: Una combinación de plástico y metal que combina la ligereza del plástico con la resistencia del metal, utilizado en la fabricación de estructuras y componentes.
+Telas inteligentes: Telas con sensores integrados que pueden detectar y reaccionar a cambios en el entorno, utilizadas en la fabricación de ropa y equipos tácticos.
+Biocombustible: Un combustible renovable producido a partir de biomasa, utilizado para alimentar vehículos y dispositivos de energía.
+Células de energía solar: Dispositivos que convierten la luz solar en energía eléctrica, utilizados como fuente de energía renovable en estructuras y vehículos.
+Resina de curado rápido: Un material de unión y revestimiento que se endurece rápidamente cuando se expone a la luz ultravioleta, utilizado en la fabricación de componentes y estructuras.
+Gel bioestabilizador: Un gel que puede estabilizar y mantener objetos en su lugar sin necesidad de sujetadores físicos, utilizado en la fabricación de equipos y dispositivos.
+Fibra de carbono reforzada: Un material compuesto que combina fibras de carbono con una matriz de resina, utilizado en la fabricación de componentes estructurales y partes de vehículos.
+Gel de memoria: Un material que puede recordar y volver a su forma original después de ser deformado, utilizado en la fabricación de amortiguadores y componentes mecánicos.
+Aluminio espumado: Un material ligero con una estructura porosa, utilizado en la fabricación de componentes aeroespaciales y de vehículos.
+Cerámica reforzada: Cerámica con refuerzos de materiales como el carbono o el silicio, utilizada en la fabricación de componentes resistentes al calor y la abrasión.
+Materiales de impresión 3D: Materiales especialmente diseñados para la fabricación aditiva, utilizados en la creación de prototipos y componentes personalizados.
+Grafeno aerogel: Un material ultraligero y conductor de calor, utilizado en la fabricación de aislamientos y componentes espaciales.
+Esmalte fotocromático: Un recubrimiento que cambia de color en respuesta a la luz, utilizado en la fabricación de productos decorativos y personalizables.
+
+Acero refinado: Una aleación metálica de hierro con carbono y otros elementos, utilizada en la fabricación de armas y armaduras estándar.
+Aleación de titanio: Un metal ligero pero extremadamente resistente, utilizado en la fabricación de armaduras y armas de alta gama.
+Cerámica balística: Un material compuesto diseñado para resistir impactos de proyectiles, utilizado en la fabricación de placas de blindaje.
+Carbono reforzado: Una forma de carbono con propiedades mecánicas superiores, utilizada en la fabricación de componentes estructurales y armaduras.
+Polímero balístico: Un material plástico de alta resistencia utilizado en la fabricación de chalecos antibalas y componentes de armaduras.
+Aleación de nanotubos de carbono: Una forma avanzada de carbono con propiedades extraordinarias de resistencia y ligereza, utilizada en la fabricación de armas y armaduras de alta tecnología.
+Cristal blindado: Un material transparente pero resistente a los impactos, utilizado en visores de cascos y escudos.
+Gel bioestabilizador: Un gel que puede absorber y dispersar impactos, utilizado en el revestimiento de armaduras para mitigar daños.
+Nanomateriales refractarios: Materiales capaces de resistir altas temperaturas, utilizados en la fabricación de trajes y componentes para entornos extremadamente calientes.
+Plasma condensado: Un material energético que puede generar campos de energía defensiva, utilizado en la fabricación de escudos de energía.
+Aleación de adamantio: Una aleación ficticia extremadamente resistente, utilizada en la fabricación de armas y armaduras legendarias.
+Cristal de energía: Cristales cargados con energía, utilizados como núcleos de energía para armas de energía.
+Nanorobots de reparación: Pequeños robots capaces de reparar daños en armaduras y armas durante el combate.
+Biometal: Un metal bio-sintético capaz de adaptarse a las necesidades del usuario, utilizado en la fabricación de armaduras personalizables.
+Aleación magnética: Un material que puede repeler o atraer proyectiles magnéticos, utilizado en la fabricación de armaduras anti-magnéticas.
+Grafeno reforzado: Una forma de carbono extremadamente fuerte y flexible, utilizado en la fabricación de componentes de armas y armaduras.
+Nanopartículas de invisibilidad: Partículas que pueden hacer invisible al usuario durante un corto período de tiempo, utilizadas en trajes de camuflaje.
+Tejido de camuflaje activo: Un tejido que puede cambiar de color y textura para adaptarse al entorno, utilizado en trajes de camuflaje.
+Esmalte de camuflaje óptico: Un recubrimiento que refracta la luz para ocultar objetos, utilizado en la fabricación de armaduras camufladas.
+Aleación de plástico-metal: Una combinación de plástico y metal que combina la ligereza del plástico con la resistencia del metal, utilizada en la fabricación de armas y armaduras versátiles.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Armas a distancia.
+
+Pistolas
+Escopetas
+Fusiles
+Laser o de energia.
+
+Armas a Cuarpo a Cuerpo
+
+Cuchillos
+Espadas
+Mazas
+Latigos.
+
+Pistolas:
+
+Pistola estándar de proyectiles balísticos: Un arma simple que dispara proyectiles metálicos convencionales.
+Pistola láser de baja potencia: Una versión primitiva de las armas láser, que dispara un rayo de energía de corto alcance.
+Pistola de plasma rudimentaria: Dispara proyectiles de plasma incandescente, menos precisos pero más potentes que las pistolas estándar.
+Pistola de microondas: Emite pulsos de microondas que pueden causar daños a través del calor, ideal para neutralizar sistemas electrónicos y circuitos.
+Escopetas:
+
+Escopeta de dispersión básica: Dispara perdigones de metal en un patrón amplio, efectiva a corta distancia.
+Escopeta de pulsos electromagnéticos: Emite una onda de energía electromagnética que desestabiliza los sistemas electrónicos cercanos.
+Escopeta de plasma mejorada: Dispara una ráfaga de proyectiles de plasma, con mayor alcance y potencia que la versión básica.
+Escopeta de nanobots corrosivos: Dispara una nube de nanobots que corroen y descomponen los materiales orgánicos e inorgánicos a su paso.
+Fusiles:
+
+Fusil de asalto estándar: Arma de fuego automática que dispara proyectiles balísticos a larga distancia.
+Fusil de pulsos electromagnéticos: Dispara ráfagas de pulsos electromagnéticos que pueden interferir con sistemas electrónicos y circuitos.
+Fusil de plasma avanzado: Utiliza un sistema de carga para disparar potentes proyectiles de plasma con mayor precisión y alcance.
+Fusil de antimateria experimental: Dispara pequeñas cápsulas de antimateria que causan explosiones devastadoras al impactar con un objetivo.
+Armas de energía:
+
+Lanza de energía primitiva: Un arma cuerpo a cuerpo que emite un haz de energía corto y poco potente.
+Cañón de energía de fase: Dispositivo que emite un rayo de energía capaz de atravesar materia sólida, pero con un alcance limitado.
+Arma de vórtice gravitatorio: Crea un vórtice gravitatorio que atrae y desintegra todo lo que esté dentro de su radio de acción.
+Rifle de partículas cuánticas: Dispara partículas subatómicas que pueden atravesar la materia sólida y causar daños a nivel molecular.
+
+
+Dagas:
+
+Daga de nanotecnología básica: Una daga fabricada con nanomateriales que la hacen ligera pero resistente, equipada con un sistema de autolimpieza y afilado automático.
+Daga de plasma inestable: Una daga que emite un filo de plasma inestable, capaz de cortar a través de materiales con facilidad pero con un riesgo de sobrecalentamiento.
+Daga de energía gravitatoria: Utiliza campos gravitatorios para aumentar la masa de la daga al momento del impacto, causando daños contundentes y desestabilizando al objetivo.
+Daga molecular disruptora: Una daga que utiliza tecnología avanzada para desestabilizar la estructura molecular de los objetos que corta, causando daños devastadores.
+Espadas:
+
+Espada de aleación de carbono básica: Una espada ligera y resistente fabricada con una aleación de carbono, capaz de cortar a través de materiales con facilidad.
+Espada de plasma rudimentaria: Una espada que emite un filo de plasma controlado, capaz de cortar a través de la mayoría de los materiales con facilidad, pero con un alcance limitado.
+Espada de nanotubos de carbono: Una espada fabricada con nanotubos de carbono que la hacen extremadamente resistente y liviana, con capacidad para canalizar y enfocar la energía.
+Espada de energía fotónica: Utiliza haces de luz enfocados para cortar y perforar a través de los objetivos, causando daños precisos y letales.
+Mazas:
+
+Maza magnética rudimentaria: Una maza que utiliza campos magnéticos para aumentar su masa y fuerza al impactar, ideal para aplastar objetivos blindados.
+Maza de plasma inestable: Una maza que emite descargas de plasma al impactar, causando daños de área y desestabilizando a los objetivos electrónicos.
+Maza gravitatoria mejorada: Una maza que utiliza tecnología gravitatoria para aumentar su peso y fuerza, causando daños devastadores y desestabilizando a los objetivos.
+Maza de antimateria: Utiliza pequeñas cantidades de antimateria para crear explosiones devastadoras al impactar con un objetivo, capaz de aniquilar incluso los materiales más resistentes.
+Látigos:
+
+Látigo de energía cinética básica: Un látigo que utiliza pulsos de energía cinética para aumentar la velocidad y el impacto de sus golpes, causando daños contundentes.
+Látigo de plasma controlado: Un látigo que emite filamentos de plasma controlado, capaz de cortar y quemar a través de los objetivos con precisión.
+Látigo de energía fotónica mejorado: Utiliza haces de luz enfocados para cortar y desestabilizar a los objetivos, causando daños precisos y letales.
+Látigo gravitatorio: Un látigo que utiliza campos gravitatorios para aumentar su masa y fuerza al golpear, desestabilizando a los objetivos y causando daños devastadores.

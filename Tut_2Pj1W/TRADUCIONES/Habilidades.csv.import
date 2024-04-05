@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dfeuk60q3dftf"
+
+[deps]
+
+files=["res://TRADUCIONES/Habilidades.ES.translation", "res://TRADUCIONES/Habilidades.EN.translation"]
+
+source_file="res://TRADUCIONES/Habilidades.csv"
+dest_files=["res://TRADUCIONES/Habilidades.ES.translation", "res://TRADUCIONES/Habilidades.EN.translation"]
+
+[params]
+
+compress=true
+delimiter=0

@@ -84,19 +84,29 @@ func F_log(MScn:String,MTxt:String,MAcc:int=2):
 @onready var V_ClsMapa_Sell:Cls_Mapas;#Mapa Selecionado.
 
 # Clase controladora de los ficheros SAVE
-@onready var V_ClsGameFiles:Cls_Game_File=Cls_Game_File.new();
+var V_ClsGameFile:Cls_Game_File=Cls_Game_File.new();
 
 
-# Clase controladora de los Items del juego.
+# Clase controladora de los Items del juego. (Mochila, crafteo y farmeo)
 var V_ClsItems:Cls_Items=Cls_Items.new();
 
-# Clase Items para los objetos creados en los mapas.
+
+
+
+# Clase Actores con los objetos o pnjs creados en el mundo.
+# Tenemos los objetos estaticos en el juego y los generados
+# dinamicamente un cofre, un respawn, o cualquier actor que 
+# necesite mantener su estado en los saves.
 # Se rellena al realizar el Ready de la escena.
 # Las escenas se instancian todas pero se Descargan.
 # Al Recargarlas se revisan añadieno los objetos dinamicos en el
 # mapa que corresponda y modificando sus estados si procediese.
+# Al crear el ACTOR le damos un nombre a los estaticos "ActSt_" y "ActDin_"
+# por ejemplo para definir los que se guardan o no, y despues por tipos
+# "ActDin_Sue001" para agrupar por tipo para acelerar las busquedas.
+# Pendiente de crear una indexacion por nivel o algo.
 # NT: El tipo Objeto lo define el nombre del nodo. SueloAxxx = Tipo Suelo etc
-var V_ClsObjs:Cls_Objs=Cls_Objs.new();
+var V_ClsActores:Cls_Actores=Cls_Actores.new();
 
 
 
@@ -111,7 +121,9 @@ var V_ClsPlayerCab1:Cls_Player_Cab;
 var V_ClsPlayerCab2:Cls_Player_Cab;
 
 
-
+# Contienen los items que tienen en la bolsa los jugadores.
+var V_ClsItemsPlayer1:Cls_Items=Cls_Items.new();
+var V_ClsItemsPlayer2:Cls_Items=Cls_Items.new();
 
 
 
@@ -140,9 +152,9 @@ func _init():
 	CLog=Cls_LogLine.new("G");
 	F_log("BAS","_init",1);#Aqui aun no tengo instanciada CLog
 	
-	V_ClsGameFiles=Cls_Game_File.new();
+	V_ClsGameFile=Cls_Game_File.new();
 	# - - Creamos la tabla de los Objetos del juego (Armas Escudos etc)
-	V_ClsObjs=Cls_Objs.new();
+	V_ClsActores=Cls_Objs.new();
 	
 	# - - Creamos la tabla de los Items del juego (Materiales,minerales etc.)
 	V_ClsItems=Cls_Items.new();
@@ -291,13 +303,42 @@ func F_TEST_SaveGame():
 	CLog.Com("- - - - - - - - - -SAVE - - - - - - - - - - - - - - - - - ");
 	V_ClsGameFiles.V_Ref_ClsGameCab=V_ClsGame_Cab;
 	V_ClsGameFiles.V_Ref_ClsKeys=V_ClsKeys;
-	V_ClsGameFiles.V_Ref_ClsObjs=V_ClsObjs;
+	V_ClsGameFiles.V_Ref_ClsObjsP1=V_ClsItemsPlayer1;
+	V_ClsGameFiles.V_Ref_ClsObjsP2=V_ClsItemsPlayer2;
+	
 	V_ClsGameFiles.F_SaveGame(V_Path_FileSave1);
 	CLog.Com(str(V_ClsGameFiles.V_Ref_ClsGameCab.F_GetArray()));
-	CLog.Com("- - - - - - - - - -LOAD - - - - - - - - - - - - - - - - - - ");
-	#V_ClsGameFiles.F_LoadGame(V_Path_FileSave1);
-	#CLog.Com(str(V_ClsGameFiles.V_Ref_ClsGameCab.F_GetArray()));
+
 #END F_TEST_SaveGame
+
+
+
+
+
+
+
+func F_TEST_LoadGame():
+	# - - Asocio Clases
+	V_ClsGameFiles.V_Ref_ClsGameCab=V_ClsGame_Cab;
+	V_ClsGameFiles.V_Ref_ClsKeys=V_ClsKeys;
+	
+	V_ClsGameFiles.V_Ref_ClsPlayer1Cab=V_ClsPlayerCab1;
+	V_ClsGameFiles.V_Ref_ClsPlayer2Cab=V_ClsPlayerCab2;
+	
+	V_ClsGameFiles.V_Ref_ClsHabP1=V_ClsHabil_Play1;
+	V_ClsGameFiles.V_Ref_ClsHabP2=V_ClsHabil_Play2;
+	
+	#V_ClsGameFiles.V_Ref_ClsObjs=V_ClsObjs;
+	# - - Añado un ejemplo
+	V_ClsGame_Cab.V_IdBase=0;
+	V_ClsGame_Cab.V_IdNivel=0;
+	V_ClsGame_Cab.V_IdZona=0;
+	V_ClsGame_Cab.V_Is2Player=false;
+	CLog.Com("- - - - - - - - - -LOAD - - - - - - - - - - - - - - - - - - ");
+	V_ClsGameFiles.F_LoadGame(V_Path_FileSave1);
+	CLog.Com(str(V_ClsGameFiles.V_Ref_ClsGameCab.F_GetArray()));
+#END F_TEST_SaveGame
+
 
 
 

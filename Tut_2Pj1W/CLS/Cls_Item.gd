@@ -32,14 +32,7 @@ enum eTipos{
 var V_Row:int=0;
 # ID unico Generado Cab+Num
 var V_ID:String;
-# Indica si es un objeto real o es solo dato.(Pared o plata)
-var V_IsObj:bool=false;
-# Indica que se genero dinamicamente (NO FIJO)
-# Si es dinamico se tiene que crear y revisar si existe al cargar el nivel.
-var V_IsDinamic:bool=false;
-# Nombre real del objeto creado en la escena en el _Ready
-var V_ObjName:String;
-
+# Tipo de objeto
 var V_Tipo:eTipos=eTipos.Null;
 # No se puede repetir. Forzada, Nombre corto que se traducira al final.
 var V_Tit:String;
@@ -77,10 +70,12 @@ func F_GetArray()->Array:
 	var M_T:Array;
 	#NT: El Row es interna.
 	M_T.append(V_ID);
+	M_T.append(V_Tipo);
 	M_T.append(V_Tit);
 	M_T.append(V_Des);
 	M_T.append(V_Lv);
-	
+	M_T.append(V_TMake);
+	M_T.append(V_TDell);
 	
 	CLog.Del("Res:"+str(M_T),M_LogVis);
 	return M_T;
@@ -104,10 +99,12 @@ func F_SetArray(ArrayCfg:Array):
 	if(ArrayCfg.size()==4):
 		#NT: El Row es interna.
 		V_ID=ArrayCfg[Mq];Mq=Mq+1;
+		V_Tipo=ArrayCfg[Mq];Mq=Mq+1;
 		V_Tit=ArrayCfg[Mq];Mq=Mq+1;
 		V_Des=ArrayCfg[Mq];Mq=Mq+1;
 		V_Lv=ArrayCfg[Mq];Mq=Mq+1;
-
+		V_TMake=ArrayCfg[Mq];Mq=Mq+1;
+		V_TDell=ArrayCfg[Mq];Mq=Mq+1;
 	#END If Array
 	CLog.Del("F_SetArray",M_LogVis); 
 #END F_KeysSetArray

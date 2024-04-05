@@ -1,5 +1,5 @@
 extends Node
-class_name  Cls_Objs
+class_name  Cls_Actores
 var CLog:Cls_LogLine;
 
 # - - - - Cls_Objetos - - - 
@@ -11,10 +11,11 @@ var CLog:Cls_LogLine;
 # En caso de Destrozar tiene los items que da.
 
 
-var V_Lista:Array[Cls_Obj];
+var V_Lista:Array[Cls_Actor];
 
 func _init():
 	CLog=Cls_LogLine.new("ClsObjs");
+	
 #END _init()
 
 
@@ -35,13 +36,27 @@ func F_GetArray()->Array:
 	for M_q in V_Lista.size():
 		M_T.append(V_Lista[M_q].F_GetArray());
 	#END For Rows
-	CLog.Del("Res Add:"+str(V_Lista.size()),M_LogVis);
+	CLog.Del("F_GetArray"+str(M_T),M_LogVis);
 	return M_T;
 #END F_KeysGetArray()
 
 
 
 
+
+# Obtenemos un array con los datos de la clase.
+func F_SetArray(ArrayCfg:Array):
+	var M_LogVis:bool=true;
+	var M_ClsObj:Cls_Actor;
+	CLog.Add("F_SetArray",M_LogVis);
+	V_Lista.clear();
+	for M_q in ArrayCfg.size():
+		M_ClsObj=Cls_Actor.new();
+		M_ClsObj.F_SetArray(ArrayCfg[M_q]);
+		V_Lista.append(M_ClsObj);
+	#END For Rows
+	CLog.Del("F_SetArray:"+str(V_Lista.size()),M_LogVis);
+#END F_KeysGetArray()
 
 
 
@@ -54,9 +69,9 @@ func F_GetArray()->Array:
 
 # Creamos un Objeto , le asignamos un ID unico y retornamos la clase
 # Generada y lo añadimos a la tabla
-func F_ADD_ByNode(MNodo3D:Node3D,MTipo:Cls_Obj.eTipos,
-MDinamico:bool,MSubTipo:int,MDesc:String)->Cls_Obj:
-	var M_Co:Cls_Obj=F_ADD_ByText(MNodo3D.name,MTipo,MDinamico,MSubTipo,MDesc);
+func F_ADD_ByNode(MNodo3D:Node3D,MTipo:Cls_Actor.eTipos,
+MDinamico:bool,MSubTipo:int,MDesc:String)->Cls_Actor:
+	var M_Co:Cls_Actor=F_ADD_ByText(MNodo3D.name,MTipo,MDinamico,MSubTipo,MDesc);
 	var M_LogOn:bool=true;
 	if(M_Co!=null):
 		M_Co.V_PosMapaId=MNodo3D.get_parent().name;
@@ -84,15 +99,15 @@ MDinamico:bool,MSubTipo:int,MDesc:String)->Cls_Obj:
 	
 # Creamos un Objeto , le asignamos un ID unico y retornamos la clase
 # Generada y lo añadimos a la tabla
-func F_ADD_ByText(MNodoName:String,MTipo:Cls_Obj.eTipos,
-MDinamico:bool,MSubTipo:int,MDesc:String)->Cls_Obj:
+func F_ADD_ByText(MNodoName:String,MTipo:Cls_Actor.eTipos,
+MDinamico:bool,MSubTipo:int,MDesc:String)->Cls_Actor:
 	var M_LogOn:bool=true;
-	var M_C:Cls_Obj;
+	var M_C:Cls_Actor;
 	if(MNodoName.length()>0):
 		if(F_BuscaNodo(MNodoName)!=null):
 			CLog.Com("F_ADD()..ERR("+MNodoName+")rep",M_LogOn);
 		else:
-			M_C=Cls_Obj.new();
+			M_C=Cls_Actor.new();
 			M_C._BasID=F_ID_Get();
 			M_C._BasNodoName=MNodoName;
 			M_C.V_BasTipo=MTipo;
@@ -118,8 +133,8 @@ MDinamico:bool,MSubTipo:int,MDesc:String)->Cls_Obj:
 
 
 # - Buscamos un Item por su Titulo.
-func F_BuscaNodo(MNodo:String)->Cls_Obj:
-	var M_C:Cls_Obj=null;
+func F_BuscaNodo(MNodo:String)->Cls_Actor:
+	var M_C:Cls_Actor=null;
 	for M_q in V_Lista.size():
 		if(V_Lista[M_q].V_BasNodoName==MNodo):
 			M_C=V_Lista[M_q];
@@ -137,8 +152,8 @@ func F_BuscaNodo(MNodo:String)->Cls_Obj:
 
 
 # - Buscamos un Item por su ID.
-func F_BuscaId(M_Id:String)->Cls_Obj:
-	var M_C:Cls_Obj=null;
+func F_BuscaId(M_Id:String)->Cls_Actor:
+	var M_C:Cls_Actor=null;
 	for M_q in V_Lista.size():
 		if(V_Lista[M_q].V_ID==M_Id):
 			M_C=V_Lista[M_q];

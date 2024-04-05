@@ -41,10 +41,6 @@ func _process(delta):
 
 
 
-func _on_button_ButtonUp():
-	pass # Replace with function body.
-
-
 
 func _on_BtIngES_button_up():
 	TranslationServer.set_locale("ES");
@@ -64,3 +60,13 @@ func _on_BTLngEN_button_up():
 func F_UcsRefresh():
 	V_HPs1.F_Refresh(true);
 #END F_UcsRefres
+
+
+func _on_BtSave_button_up():
+	V.F_TEST_SaveGame();
+	
+
+
+func _on_BtLoad_button_up():
+	V.F_TEST_LoadGame();
+	

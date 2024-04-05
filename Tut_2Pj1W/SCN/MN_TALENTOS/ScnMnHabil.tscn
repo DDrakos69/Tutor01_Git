@@ -35,27 +35,35 @@ theme_override_font_sizes/font_size = 21
 text = "MnTal_LbTit"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-offset_left = 357.0
-offset_top = 466.0
-offset_right = 475.0
-offset_bottom = 512.0
-text = "MnTal_BtB01a"
-
 [node name="Bt_LngES" type="Button" parent="."]
-offset_left = 42.0
-offset_top = 462.0
-offset_right = 160.0
-offset_bottom = 508.0
+offset_left = 23.0
+offset_top = 463.0
+offset_right = 111.0
+offset_bottom = 509.0
 text = "ES"
 
 [node name="Bt_LngEN" type="Button" parent="."]
-offset_left = 168.0
-offset_top = 464.0
-offset_right = 286.0
-offset_bottom = 510.0
+offset_left = 115.0
+offset_top = 463.0
+offset_right = 202.0
+offset_bottom = 509.0
 text = "EN"
 
-[connection signal="button_up" from="Button" to="." method="_on_button_ButtonUp"]
+[node name="Bt_Save" type="Button" parent="."]
+offset_left = 355.0
+offset_top = 462.0
+offset_right = 473.0
+offset_bottom = 508.0
+text = "Save"
+
+[node name="Bt_Load" type="Button" parent="."]
+offset_left = 227.0
+offset_top = 462.0
+offset_right = 345.0
+offset_bottom = 508.0
+text = "Load"
+
 [connection signal="button_up" from="Bt_LngES" to="." method="_on_BtIngES_button_up"]
 [connection signal="button_up" from="Bt_LngEN" to="." method="_on_BTLngEN_button_up"]
+[connection signal="button_up" from="Bt_Save" to="." method="_on_BtSave_button_up"]
+[connection signal="button_up" from="Bt_Load" to="." method="_on_BtLoad_button_up"]

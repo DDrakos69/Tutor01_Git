@@ -1,9 +1,9 @@
 extends Node
-class_name  Cls_Obj
+class_name  Cls_Actor
 var CLog:Cls_LogLine;
 
-# - - - - Cls_Obj - - - 
-# Contienen los datos propios para un Objeto.
+# - - - - Cls_Actor - - - 
+# Contienen los datos propios para un Actor (Objeto o personaje).
 # Parecido al de Item pero con otras propiedades.
 # Este hace referencia a objetos creados , Items son objetos virtuales.
 # Obj=Paredes o kekos Item=Plata,Hierro,

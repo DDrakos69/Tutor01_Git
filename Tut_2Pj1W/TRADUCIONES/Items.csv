@@ -1,50 +1,26 @@
 KEY,ES,EN
---ScnMnCfg--,"",""
-MnCfg_LbTitGame,"Juego","Game"
-MnCfg_BtLoad,"Cargar","Load"
-MnCfg_BtSave,"Guardar","Save"
-MnCfg_BtExit,"Salir","Exit"
-MnCfg_LbTitCfg,"Configuración","Config"
-MnCfg_BtTeclado,"Entrada","Inputs"
-MnCfg_BtIdioma,"Idioma","Language"
-MnCfg_BtGrafico,"Graficos","Graphics"
-MnCfg_BtAudio,"Sonido","Audio"
-MnCfg_BtRegresar,"Regresar","Return"
-
---ScnMnSave--,"",""
-MnSave_LbTitWin,"Guardar","Save"
-
---ScnMnLoad--,"",""
-MnLoad_LbTitWin,"Cargar","Load"
-
---ScnMnInputs--,"",""
-MnInputs_LbTitWin,"Configuracion de teclado","Config Keys"
-MnInputs_LbPressKey,"Pulse una tecla","Press Key"
-
---ScnMnLeng--,"",""
-MnLng_LbTitWin,"Idiomas","Language"
-
---ScnMnGrf--,"",""
-MnGrf_LbTitWin,"Graficos","Graphics"
-
---ScnMnAudio--,"",""
-MnAudio_LbTitWin,"Sonido","Sounds"
-
---ScnMnSave--,"",""
-MnSave_LbTitWin,"Guardar","Save"
-
---ScnMnLoad--,"",""
-MnLoad_LbTitWin,"Cargar","Load"
-
---BASE--,"",""
-BS_001,"",""
-
---ZONA--,"",""
-ZN_001,"",""
-
---NIVEL--,"",""
-LV_001,"",""
-
---MISION--,"",""
-MS_001a,"",""
-
+"--ITEMS DB--"," Items ",""
+"It_n_CL","Cristal Liquido",""
+"It_d_CL","",""
+"It_n_CI","Circuitos integrados",""
+"It_d_CI","",""
+"It_n_FO","Fibra óptica",""
+"It_d_FO","",""
+"It_n_FP","Fibra Plastica",""
+"It_d_FP","",""
+"It_n_FCa","Fibra de Carbono",""
+"It_d_FCa","",""
+"It_n_FT","Fibra de Titanio",""
+"It_d_FT","",""
+"It_n_FG","Fibra de Grafeno",""
+"It_d_FG","",""
+"It_n_FA","Fibra de Aluminio",""
+"It_d_FA","",""
+"It_n_FCo","Fibra de Cobre",""
+"It_d_FCo","",""
+"It_n_NA","Nanites",""
+"It_d_NA","",""
+"It_n_PT","Polímero termoplástico",""
+"It_d_PT","",""
+"It_n_GE","Gel Energetico",""
+"It_d_GE","",""

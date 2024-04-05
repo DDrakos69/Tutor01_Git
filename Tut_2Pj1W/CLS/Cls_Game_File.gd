@@ -5,10 +5,42 @@ class_name  Cls_Game_File
 #Usa Referencias de las clases que quieres guardar o cargar.
 # Se establece la relacion y luego se ejecuta la funcion.
 
-
+# Clase para realiza un log.
 var CLog:Cls_LogLine=Cls_LogLine.new("ClsGameFile");
 
+# Clase para cifrar los ficheros.
 var V_ClsCrypto:Cls_Crypt;
+
+
+
+
+
+#No crea clases, son referencias a las clases principales.
+
+# Datos de la partida, nivel,fase,dificultad etc.
+var V_Ref_ClsGameCab:Cls_Game_Cab;
+# Configuracion del teclado
+var V_Ref_ClsKeys:Cls_Keys;
+# Los actores son los objetos que se cargan en el nivel y su estado.
+var V_Ref_ClsActores:Cls_Actores;
+# Items que tiene el player en su inventario.
+var V_Ref_ClsObjsP1:Cls_Items;
+var V_Ref_ClsObjsP2:Cls_Items;
+# Habilidades selecionadas del Player
+var V_Ref_ClsHabP1:Cls_Habilidades;
+var V_Ref_ClsHabP2:Cls_Habilidades;
+# Cabecera del estado de cada Player
+var V_Ref_ClsPlayer1Cab:Cls_Player_Cab;
+var V_Ref_ClsPlayer2Cab:Cls_Player_Cab;
+
+
+
+
+
+
+
+
+
 
 # Constructor
 func _init():
@@ -16,24 +48,6 @@ func _init():
 	V_ClsCrypto=Cls_Crypt.new();
 	CLog.Del("_Init()");
 #END _ini
-
-
-
-#Referencias a las clases de datos a guardar o a cargar.
-var V_Ref_ClsGameCab:Cls_Game_Cab;
-
-var V_Ref_ClsKeys:Cls_Keys;
-
-var V_Ref_ClsObjsP1:Cls_Objs;
-var V_Ref_ClsObjsP2:Cls_Objs;
-
-var V_Ref_ClsHabP1:Cls_Habilidades;
-var V_Ref_ClsHabP2:Cls_Habilidades;
-
-var V_Ref_ClsPlayer1Cab:Cls_Player_Cab;
-var V_Ref_ClsPlayer2Cab:Cls_Player_Cab;
-
-
 
 
 
@@ -56,6 +70,9 @@ func F_SaveGame(M_FileName:String):
 	
 	M_t.append(V_Ref_ClsHabP1.F_File_PlayGetArray());
 	M_t.append(V_Ref_ClsHabP2.F_File_PlayerGetArray());
+	
+	M_t.append(V_Ref_ClsObjsP1.F_File_PlayGetArray());
+	M_t.append(V_Ref_ClsObjsP2.F_File_PlayGetArray());
 	
 	#M_t.append(V_Ref_ClsObjsP1.F_GetArray());
 	#M_t.append(V_Ref_ClsObjsP2.F_GetArray());
@@ -98,13 +115,6 @@ func F_SaveGame(M_FileName:String):
 	
 	CLog.Del("F_SabeGame("+M_FileName+")",V_Log);
 #END F_SaveGame
-
-
-
-
-
-
-
 
 
 
