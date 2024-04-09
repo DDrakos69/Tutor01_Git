@@ -18,11 +18,12 @@ enum eTipos{
 	Null,
 	MatPrima,Pieza,
 	ArmaBlan,ArmaFueg,
-	RopaCabeza,RopaPeto,
+	Trampa,Granada,
+	RopaCabeza,RopaPecho,
 	RopaBrazoDer,RopaBrazoIzq,
 	RopaPierDer,RopaPierIzq,
-	RopaCuello,RopaMano,RopaDedo,
-	Comida,Pocion,
+	RopaCuello,RopaMano,RopaDedo,RopaPie,
+	Comida,Bebida,Enguento,
 	Carta,Video,Audio
 	}
 
@@ -35,15 +36,20 @@ var V_ID:String;
 # Tipo de objeto
 var V_Tipo:eTipos=eTipos.Null;
 # No se puede repetir. Forzada, Nombre corto que se traducira al final.
-var V_Tit:String;
-# No necesaria
-var V_Des:String;
+var V_TitOrg:String;
+var V_DesOrg:String;
+
+# Aqui se guardar la traducion obteneida ya que se usara mucho.
+# Al decidir el idioma se cargaran aqui las traducioes
+var V_TitTrad:String;
+var V_DesTrad:String;
+
 # No Necesaria usada para saber si se dropea por nivel
 var V_Lv:int;
 #Items y cantidad para Crear
-var V_TMake:Array[Cls_StrInt];
+var V_TMake:Array[Cls_IntInt];
 #Items y cantidad para Reciclar
-var V_TDell:Array[Cls_StrInt];
+var V_TDell:Array[Cls_IntInt];
 
 
 
@@ -71,8 +77,8 @@ func F_GetArray()->Array:
 	#NT: El Row es interna.
 	M_T.append(V_ID);
 	M_T.append(V_Tipo);
-	M_T.append(V_Tit);
-	M_T.append(V_Des);
+	M_T.append(V_TitOrg);
+	M_T.append(V_DesOrg);
 	M_T.append(V_Lv);
 	M_T.append(V_TMake);
 	M_T.append(V_TDell);
@@ -91,7 +97,9 @@ func F_GetArray()->Array:
 
 
 
-# Analizamos el Array y cojemos los datos del array a la clase tras analizarlos.
+
+# Analizamos el Array y cojemos los datos del array a la 
+# clase tras analizarlos.
 func F_SetArray(ArrayCfg:Array):
 	var M_LogVis:bool=true;
 	CLog.Add("F_SetArray",M_LogVis);
@@ -100,8 +108,8 @@ func F_SetArray(ArrayCfg:Array):
 		#NT: El Row es interna.
 		V_ID=ArrayCfg[Mq];Mq=Mq+1;
 		V_Tipo=ArrayCfg[Mq];Mq=Mq+1;
-		V_Tit=ArrayCfg[Mq];Mq=Mq+1;
-		V_Des=ArrayCfg[Mq];Mq=Mq+1;
+		V_TitOrg=ArrayCfg[Mq];Mq=Mq+1;
+		V_DesOrg=ArrayCfg[Mq];Mq=Mq+1;
 		V_Lv=ArrayCfg[Mq];Mq=Mq+1;
 		V_TMake=ArrayCfg[Mq];Mq=Mq+1;
 		V_TDell=ArrayCfg[Mq];Mq=Mq+1;

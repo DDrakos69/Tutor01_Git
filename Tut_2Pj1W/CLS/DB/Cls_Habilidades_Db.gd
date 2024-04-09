@@ -4,14 +4,16 @@ class_name  Cls_Habilidades_Db;
 # - - - Cls_Habilidades_Db - - -
 # Esta clase Genera un arbol de habilidades del juego.
 # Se instancia, Configura la CaseHabilidades y se libera.
-#
+# NT: Crear las habilidades en orden ascendente ya que 
+# al cargarlas se tienen que ejecutar sus visibleos de 
+# Menor a Mayor
+
+
 
 # Variables para uso interno para acceso rapido.
 var V_ClsHs:Cls_Habilidades;
 var V_ClsH:Cls_Habilidad;#ClsHabilidad
 var V_ClsHp:Cls_Habilidad;#Cls Habilidad Padre
-
-
 
 
 

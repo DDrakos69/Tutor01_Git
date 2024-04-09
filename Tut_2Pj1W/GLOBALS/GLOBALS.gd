@@ -149,12 +149,13 @@ func F_PlayerCamPointSet(PlayerCam_N3D):
 # Iniciamos las variables y cargamos las DBS
 func _init():
 	var M_LogOn:bool=true;
+	
 	CLog=Cls_LogLine.new("G");
 	F_log("BAS","_init",1);#Aqui aun no tengo instanciada CLog
 	
 	V_ClsGameFile=Cls_Game_File.new();
 	# - - Creamos la tabla de los Objetos del juego (Armas Escudos etc)
-	V_ClsActores=Cls_Objs.new();
+	V_ClsActores=Cls_Actores.new();
 	
 	# - - Creamos la tabla de los Items del juego (Materiales,minerales etc.)
 	V_ClsItems=Cls_Items.new();
@@ -167,14 +168,6 @@ func _init():
 	V_ClsHabil_Play1=Cls_Habilidades.new();
 	V_ClsHabil_Play2=Cls_Habilidades.new();
 	
-	# - - Cargamos el arbol de las habilidades basicas para cada PLAYER
-	var M_Cdb:Cls_Habilidades_Db=Cls_Habilidades_Db.new();
-	M_Cdb.F_MAKE(V_ClsHabil_Play1);
-	M_Cdb.F_MAKE(V_ClsHabil_Play2);
-	M_Cdb=null;
-	
-	
-
 	F_log("BAS","_init",0)
 #END _INIT
 
@@ -191,8 +184,27 @@ func _init():
 
 
 
+# - - - Evento de Notificaciones Estados devueltos por el juego.
+func _notification(what):
+	CLog.Com("Notifi:"+str(what));
+	if(V_CLogFile!=null): V_CLogFile.F_FileClose();
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		get_tree().quit(0) # default behavior
+#END _Notification
+
+
+
+
+
+
+
+
+
+
+
+
 func _ready():
-	CLog.V_Visible=false;
+	CLog.V_Visible=true;
 	CLog.Add("_ready()");
 	TranslationServer.set_locale("ES");
 	
@@ -236,6 +248,23 @@ func _ready():
 	V.V_Path_App=OS.get_executable_path().get_base_dir()+"/"; #.path_join("hello.txt")
 	CLog.Com("PTH_APP:"+V.V_Path_App);
 	
+	# - - - CARGAS - - - 
+	# - - - CARGAS - - - 
+	# - - - CARGAS - - - 
+	
+	# - - Cargamos el arbol de las habilidades basicas para cada PLAYER
+	var M_Cdb_h:Cls_Habilidades_Db=Cls_Habilidades_Db.new();
+	M_Cdb_h.F_MAKE(V_ClsHabil_Play1);
+	M_Cdb_h.F_MAKE(V_ClsHabil_Play2);
+	M_Cdb_h=null;
+	CLog.Com("DB_Habilidades"+str(V_ClsHabil_Play1.V_Lista.size()));
+	
+	# Creamos los items del juego.
+	# De momento la DB es interna en el EXE.
+	var M_Cdb_i:Cls_Items_DB=Cls_Items_DB.new();
+	M_Cdb_i.F_Make_Items(V_ClsItems);
+	M_Cdb_i=null;
+	CLog.Com("DB_Items"+str(V_ClsItems.V_Lista.size()));
 	
 	#Cargo la lista de BASES,NIVELES,ZONAS
 	#De este modo una vez cargada la DB la clase contenedora se puede descargar.
@@ -244,14 +273,7 @@ func _ready():
 	M_Db=null;
 	CLog.Com("DB_MAPS"+str(V_ClsMapas.V_Lista.size()));
 	
-	
-	# Creamos los items del juego.
-	# De momento la DB es interna en el EXE.
-	var M_CIDb:Cls_Items_DB=Cls_Items_DB.new();
-	M_CIDb.F_Make_Items(V_ClsItems);
-	M_CIDb=null;
-	CLog.Com("DB_ITEMS"+str(V_ClsItems.V_Lista.size()));
-	
+
 	
 	#Defino el teclado por defecto
 	var m_TKeys:Array=[["ACT1_FRONT", 3, 87], ["ACT2_FRONT", -1],
@@ -265,11 +287,15 @@ func _ready():
 	["ACT2_PUNCH2", -1], ["ACT1_PUNCH3", 3, 89], ["ACT2_PUNCH3", -1],
 	["ACT1_PUNCH4", 3, 85], ["ACT2_PUNCH4", -1]];
 	V_ClsKeys.F_SetArray(m_TKeys);
+	CLog.Com("Default_Keys");
 	
 	
-	# - TEST - Carga de la carga OBJ Test
-	#F_TEST_ObjsCarga();
 	
+	
+	# - - Testeo de los Saves.
+	F_TEST_Files();
+
+
 	
 	CLog.Del("_ready()");
 #END _Ready
@@ -284,31 +310,72 @@ func _ready():
 
 
 
+
+
+
+# Todo el codigo para testear si se guardan bien los datos en los saves
+func F_TEST_Files():
+	CLog.Add("F_TEST_Files()");
+	
+	# - TEST - Carga de la carga OBJ Test
+	F_TEST_SaveGame();
+	
+	# Reviso si carga bien los items de los players
+	var M_TabItems1:Array[int]=V_ClsItems.V_ListaPlayer1.duplicate();
+	var M_TabItems2:Array[int]=V_ClsItems.V_ListaPlayer2.duplicate();
+	V_ClsItems.F_Player1_Clear();
+	V_ClsItems.F_Player2_Clear();
+	print("TEST ITEMS Play1 Clean... "+str((M_TabItems1!=V_ClsItems.V_ListaPlayer1)));
+	print("TEST ITEMS Play2 Clean... "+str((M_TabItems2!=V_ClsItems.V_ListaPlayer2)));
+	F_TEST_LoadGame();
+	print("TEST ITEMS Play1 Load... "+str((M_TabItems1==V_ClsItems.V_ListaPlayer1)));
+	print("TEST ITEMS Play2 Load... "+str((M_TabItems2==V_ClsItems.V_ListaPlayer2)));
+	
+	
+	CLog.Del("F_TEST_Files()");
+#END F_TEST_Files
+
+
+
+
+
+
+
+
+
+# - - Testeo del Save Game - - - 
 func F_TEST_SaveGame():
+	CLog.Add("F_TEST_SaveGame()");
 	# - - TESTE DE SAVE
-	# - - Asocio Clases
-	V_ClsGameFiles.V_Ref_ClsGameCab=V_ClsGame_Cab;
-	V_ClsGameFiles.V_Ref_ClsKeys=V_ClsKeys;
 	
-	V_ClsGameFiles.V_Ref_ClsPlayer1Cab=V_ClsPlayerCab1;
-	V_ClsGameFiles.V_Ref_ClsPlayer2Cab=V_ClsPlayerCab2;
-	
-	V_ClsGameFiles.V_Ref_ClsHabP1=V_ClsHabil_Play1;
-	V_ClsGameFiles.V_Ref_ClsHabP2=V_ClsHabil_Play2;
-	# - - Añado un ejemplo
+	# - - Añado un ejemplo para el Bab
 	V_ClsGame_Cab.V_IdBase=666;
 	V_ClsGame_Cab.V_IdNivel=6;
 	V_ClsGame_Cab.V_IdZona=69;
 	V_ClsGame_Cab.V_Is2Player=true;
-	CLog.Com("- - - - - - - - - -SAVE - - - - - - - - - - - - - - - - - ");
-	V_ClsGameFiles.V_Ref_ClsGameCab=V_ClsGame_Cab;
-	V_ClsGameFiles.V_Ref_ClsKeys=V_ClsKeys;
-	V_ClsGameFiles.V_Ref_ClsObjsP1=V_ClsItemsPlayer1;
-	V_ClsGameFiles.V_Ref_ClsObjsP2=V_ClsItemsPlayer2;
 	
-	V_ClsGameFiles.F_SaveGame(V_Path_FileSave1);
-	CLog.Com(str(V_ClsGameFiles.V_Ref_ClsGameCab.F_GetArray()));
-
+	# - - Añado items Basicos de testeo a Items
+	var M_ClsItemsDb:Cls_Items_DB=Cls_Items_DB.new();
+	V_ClsItems.V_Lista.clear();
+	V_ClsItems.V_ListaPlayer1.clear();
+	V_ClsItems.V_ListaPlayer2.clear();
+	M_ClsItemsDb.F_Make_Items(V_ClsItems);
+	M_ClsItemsDb.F_Make_Items_Test(V_ClsItems,500);
+	M_ClsItemsDb=null;
+	
+	# - - Asocio Clases
+	V_ClsGameFile.V_Ref_ClsGameCab=V_ClsGame_Cab;
+	V_ClsGameFile.V_Ref_ClsKeys=V_ClsKeys;	
+	V_ClsGameFile.V_Ref_ClsPlayer1Cab=V_ClsPlayerCab1;
+	V_ClsGameFile.V_Ref_ClsPlayer2Cab=V_ClsPlayerCab2;	
+	V_ClsGameFile.V_Ref_ClsHabP1=V_ClsHabil_Play1;
+	V_ClsGameFile.V_Ref_ClsHabP2=V_ClsHabil_Play2;
+	V_ClsGameFile.V_Ref_ClsItems=V_ClsItems;#Items de los jugadores.
+	
+	V_ClsGameFile.F_SaveGame(V_Path_FileSave1,false);
+	V_ClsGameFile.F_SaveGame(V_Path_FileSave2,true);
+	
+	CLog.Del("F_TEST_SaveGame()");
 #END F_TEST_SaveGame
 
 
@@ -317,16 +384,15 @@ func F_TEST_SaveGame():
 
 
 
+
+
+
+
+
+
+# - - Testeo del Load Game - - - 
 func F_TEST_LoadGame():
-	# - - Asocio Clases
-	V_ClsGameFiles.V_Ref_ClsGameCab=V_ClsGame_Cab;
-	V_ClsGameFiles.V_Ref_ClsKeys=V_ClsKeys;
-	
-	V_ClsGameFiles.V_Ref_ClsPlayer1Cab=V_ClsPlayerCab1;
-	V_ClsGameFiles.V_Ref_ClsPlayer2Cab=V_ClsPlayerCab2;
-	
-	V_ClsGameFiles.V_Ref_ClsHabP1=V_ClsHabil_Play1;
-	V_ClsGameFiles.V_Ref_ClsHabP2=V_ClsHabil_Play2;
+	CLog.Add("F_TEST_LoadGame()");
 	
 	#V_ClsGameFiles.V_Ref_ClsObjs=V_ClsObjs;
 	# - - Añado un ejemplo
@@ -334,9 +400,22 @@ func F_TEST_LoadGame():
 	V_ClsGame_Cab.V_IdNivel=0;
 	V_ClsGame_Cab.V_IdZona=0;
 	V_ClsGame_Cab.V_Is2Player=false;
-	CLog.Com("- - - - - - - - - -LOAD - - - - - - - - - - - - - - - - - - ");
-	V_ClsGameFiles.F_LoadGame(V_Path_FileSave1);
-	CLog.Com(str(V_ClsGameFiles.V_Ref_ClsGameCab.F_GetArray()));
+	
+	# - - Asocio Clases
+	V_ClsGameFile.V_Ref_ClsGameCab=V_ClsGame_Cab;
+	V_ClsGameFile.V_Ref_ClsKeys=V_ClsKeys;
+	
+	V_ClsGameFile.V_Ref_ClsPlayer1Cab=V_ClsPlayerCab1;
+	V_ClsGameFile.V_Ref_ClsPlayer2Cab=V_ClsPlayerCab2;
+	
+	V_ClsGameFile.V_Ref_ClsHabP1=V_ClsHabil_Play1;
+	V_ClsGameFile.V_Ref_ClsHabP2=V_ClsHabil_Play2;
+	
+	V_ClsGameFile.V_Ref_ClsItems=V_ClsItems;
+	
+	V_ClsGameFile.F_LoadGame(V_Path_FileSave1);
+	
+	CLog.Del("F_TEST_LoadGame()");
 #END F_TEST_SaveGame
 
 
@@ -346,37 +425,37 @@ func F_TEST_LoadGame():
 
 
 
-
+# - Creamos una buena cantidad de Actores para Testear el FileSave.
 func F_TEST_ObjsCarga():
 	var M_LogOn:bool=true;
 	CLog.Add("F_TEST_ObjsCarga()",M_LogOn);
-	var M_c:Cls_Obj;
+	var M_Act:Cls_Actor;
 	var M_NmNodo:String="";
 	var M_Max:int=10000;
 	for M_q in M_Max:
 		#- Intento añadir el control
 		M_NmNodo="ScnMapB01/Suelos/SueloA"+str(M_q);
-		M_c=V_ClsObjs.F_ADD_ByText(M_NmNodo,
-		Cls_Obj.eTipos.Pared,true,22,"Desc");
+		M_Act=V_ClsActores.F_ADD_ByText(M_NmNodo,
+		Cls_Actor.eTipos.Pared,true,22,"Desc");
 		#- Si lo logro termino de meter datos
-		if(M_c==null):
+		if(M_Act==null):
 			CLog.Com("F_TEST_ObjsCarga()..ERR("+M_NmNodo+")",M_LogOn);
 		else:
-			M_c.V_BasNodoName="XXX";
-			M_c.V_BasDinamico=true;
-			M_c.V_BasDesc="";
-			M_c.V_BasSubTipo=1;
-			M_c.V_BasTipo=Cls_Obj.eTipos.Pared;
-			M_c.V_BasOnOffSavePos=true;
-			M_c.V_PosMapaId="ScnMapB01";
-			M_c.V_PosX=M_q*3;
-			M_c.V_PosY=M_q*2;
-			M_c.V_BasOnOffSaveStats=true;
-			M_c.V_StatEstado=22;
-			M_c.V_StatHabierto=true;
-			M_c.V_StatTiempo=(3*M_q);
-			M_c.V_StatVida=(4*M_q);
-			M_c.V_StatVisible=true;
+			M_Act.V_BasNodoName="XXX";
+			M_Act.V_BasDinamico=true;
+			M_Act.V_BasDesc="";
+			M_Act.V_BasSubTipo=1;
+			M_Act.V_BasTipo=Cls_Actor.eTipos.Pared;
+			M_Act.V_BasOnOffSavePos=true;
+			M_Act.V_PosMapaId="ScnMapB01";
+			M_Act.V_PosX=M_q*3;
+			M_Act.V_PosY=M_q*2;
+			M_Act.V_BasOnOffSaveStats=true;
+			M_Act.V_StatEstado=22;
+			M_Act.V_StatHabierto=true;
+			M_Act.V_StatTiempo=(3*M_q);
+			M_Act.V_StatVida=(4*M_q);
+			M_Act.V_StatVisible=true;
 		#END If M_c!=Null
 	#END For Carga
 	CLog.Del("F_TEST_ObjsCarga()..ADD("+str(M_Max)+")",M_LogOn);
@@ -389,9 +468,4 @@ func F_TEST_ObjsCarga():
 
 
 
-func _notification(what):
-	CLog.Com("Notifi:"+str(what));
-	if(V_CLogFile!=null): V_CLogFile.F_FileClose();
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		get_tree().quit(0) # default behavior
-#END _Notification
+

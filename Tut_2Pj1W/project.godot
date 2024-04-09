@@ -145,7 +145,7 @@ ACT2_PUNCH4={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://TRADUCIONES/Trans_Habilidades.EN.translation", "res://TRADUCIONES/Trans_Habilidades.ES.translation", "res://TRADUCIONES/Trans_Items.EN.translation", "res://TRADUCIONES/Trans_Items.ES.translation")
+locale/translations=PackedStringArray("res://TRADUCIONES/Global.EN.translation", "res://TRADUCIONES/Global.ES.translation", "res://TRADUCIONES/Habilidades.EN.translation", "res://TRADUCIONES/Habilidades.ES.translation", "res://TRADUCIONES/Items.EN.translation", "res://TRADUCIONES/Items.ES.translation", "res://TRADUCIONES/Mapas.EN.translation", "res://TRADUCIONES/Mapas.ES.translation", "res://TRADUCIONES/Misions.EN.translation", "res://TRADUCIONES/Misions.ES.translation", "res://TRADUCIONES/Pnjs.EN.translation", "res://TRADUCIONES/Pnjs.ES.translation")
 
 [rendering]
 

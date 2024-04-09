@@ -4,10 +4,12 @@ var CLog:Cls_LogLine;
 
 # - - - - Cls_Actor - - - 
 # Contienen los datos propios para un Actor (Objeto o personaje).
-# Parecido al de Item pero con otras propiedades.
-# Este hace referencia a objetos creados , Items son objetos virtuales.
-# Obj=Paredes o kekos Item=Plata,Hierro,
-# Un OBJ puede crear items. (Carta/Cinta) de solido para a vidtual.
+# -ESTATICOS Se crean en el mapa
+# -DINAMICO Se crea por otro objeto de forma dinamica.
+# Un ACT incrementara ITEMS o/y Modifica estados de otros ACTORES.
+# EJ: Interruptor,<pikarlo>,Muestra Texto,Incrementa ITEM <Nota Clave>
+# EJ: Un Ordenador,<pikarlo>,Muestra Texto,Incrementa ITEM <Nota Clave>
+# EJ: Un Cuerpo,<pikarlo>,Suena,Incrementa ITEMs <OREJA><PIEL><COBRE><CIRCUITO>
 # Tambien se gestiona los objetos respaun.
 # Tambien las tablas para reciclar y crear el item.
 # Preparado para cargar y guardar desde fichero pero
@@ -63,7 +65,7 @@ var _BasNodoName:String;
 
 #- - Loteo
 @export var V_BasOnOffSaveLot:bool;# Necesita Almacenar Loteo
-@export var V_Lot:Array[Cls_StrInt];# Loteo (Esto son ITEMS.. )
+@export var V_Lot:Array[Cls_IntInt];# Loteo (Esto son ITEMS.. )
 
 
 
@@ -172,11 +174,11 @@ func F_SetArray(ArrayCfg:Array):
 		
 		if(V_BasOnOffSaveLot):
 			var M_TLot:Array=ArrayCfg[Mq];Mq=Mq+1;
-			var M_ClsStrInt:Cls_StrInt;
+			var M_ClsIntInt:Cls_IntInt;
 			for M_q in M_TLot.size():
-				M_ClsStrInt=Cls_StrInt.new()
-				M_ClsStrInt.F_SetArray(M_TLot[M_q]);
-				V_Lot.append(Cls_StrInt);
+				M_ClsIntInt=Cls_IntInt.new()
+				M_ClsIntInt.F_SetArray(M_TLot[M_q]);
+				V_Lot.append(Cls_IntInt);
 			#END For Loteo
 		#END If Loteo
 		
