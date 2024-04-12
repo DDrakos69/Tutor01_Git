@@ -10,12 +10,14 @@ var CLog:Cls_LogLine;
 # En caso de Creacion tiene los items necesarios 
 # En caso de Destrozar tiene los items que da.
 
-
+# Lista total de todos los cactores. de todos los niveles.
 var V_Lista:Array[Cls_Actor];
+
+# Indexacion de los Actores del nivel cargado.
+var V_LV_IDX:Array[int];
 
 func _init():
 	CLog=Cls_LogLine.new("ClsObjs");
-	
 #END _init()
 
 
@@ -39,6 +41,8 @@ func F_GetArray()->Array:
 	CLog.Del("F_GetArray"+str(M_T),M_LogVis);
 	return M_T;
 #END F_KeysGetArray()
+
+
 
 
 

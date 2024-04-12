@@ -18,6 +18,25 @@ var CLog:Cls_LogLine;
 # las tablas para Make/Recicle
 
 
+# - - Casos de Uso - - 
+# - Carga de nivel.
+# 1º Se carga el nivel
+# 2º Se indexa los ACTORES de este nivel.
+# 3º En la escena se repasan los ACTORES creados
+# 4º Los ACTORES que contengan XXXChs (Que esten dentro de una carpeta.)
+#    (/rot/Escena/ObjDin/puerta_001.scn)
+#    NIVEL -> IDX
+#    los busco en el IDX <ESTA>(Lo configuro)<FALTA>(Lo creo por defecto,Añado al IDX)
+# 5º Ahora Repaso los actores del IDX
+#    IDX -> NIVEL
+#    <NO esta en la escena>(Lo creo y configuro)
+# NT: la escena tiene que tener un ACTOR Oculto de cada 
+#     para clonarlo por codigo, si no da problemas de tipos.
+# - Creacion de un enemigo dinamico.
+#   Fabrica de robots, Crea un Robot,<Creo Actor><Añado Actor><Indexo Acto>
+# - Un Actor Modifica otro Actor.
+#   
+
 
 
 # - - ENUM Tipos de Objetos
@@ -31,41 +50,44 @@ enum eTipos{
 
 # ID unico Generado Cab+Num (Solo Lectura AutoGenerado)
 var _BasID:String;
-@export var V_BasID: String="":
+var V_BasID: String="":
 	get:return _BasID;
 	#set(value):_BasID = value;
 
 # Nombre real del objeto creado en la escena en el _Ready
-#Una vez creado no se puede modificar.
+# Una vez creado no se puede modificar.
 var _BasNodoName:String;
-@export var V_BasNodoName:String:
+var V_BasNodoName:String:
 	get:return _BasNodoName;
 
+# Si es Estatico o Dinamico (NO FIJO)
+var V_BasOnOffEstatico:bool=true;
+var V_EstaticEvtIn:Array;
+var V_EstaticEvtOut:Array;
+var V_EstaticEvtClik:Array;
 
-@export var V_BasDinamico:bool=false;# Se genero dinamicamente (NO FIJO)
-@export var V_BasTipo:eTipos=eTipos.Null;
-@export var V_BasSubTipo:int; # Sub tipo Id Ej: Escalera1=1 Escalera2=x Pared1=1 Pared2=X
-@export var V_BasDesc:String;
-#- - Stats
-@export var V_BasOnOffSaveStats:bool;# Necesita Almacenar Estados.
-@export var V_StatVida:int;#Vida actual
-@export var V_StatTiempo:int;#Usado para granadas o trampas.
-@export var V_StatVisible:bool;# Algunos tipos se pueden descarar.
-@export var V_StatHabierto:bool;
-@export var V_StatEstado:int;# No se para que . por si la necesito.
-#- Pos
-@export var V_BasOnOffSavePos:bool;# Necesita Almacenar Posicion y mapas
-@export var V_PosMapaId:String; #(Solo si es Dinamico)
-@export var V_PosX:int; #Posicion X (Solo si es Dinamico)
-@export var V_PosY:int; #Posicion Y (Solo si es Dinamico)
-@export var V_PosZ:int; #Posicion Y (Solo si es Dinamico)
-@export var V_RotX:int; #Posicion X (Solo si es Dinamico)
-@export var V_RotY:int; #Posicion Y (Solo si es Dinamico)
-@export var V_RotZ:int; #Posicion Y (Solo si es Dinamico)
-
-#- - Loteo
-@export var V_BasOnOffSaveLot:bool;# Necesita Almacenar Loteo
-@export var V_Lot:Array[Cls_IntInt];# Loteo (Esto son ITEMS.. )
+# Tipo de objeto para su creacion si es dinamico, Si es ESTATICO no hace falta.
+var V_BasTipo:eTipos=eTipos.Null;
+var V_BasDesc:String;
+# - - Stats
+var V_BasOnOffSaveStats:bool;# Necesita Almacenar Estados.
+var V_StatVida:int;#Vida actual
+var V_StatTiempo:int;#Usado para granadas o trampas.
+var V_StatVisible:bool;# Algunos tipos se pueden descarar.
+var V_StatHabierto:bool;
+var V_StatEstado:int;# Estado del objeto (cerradura multiple o algo)
+# - - Pos
+var V_BasOnOffSavePos:bool;# Necesita Almacenar Posicion y mapas
+var V_PosMapaId:String; #(Solo si es Dinamico)
+var V_PosX:int; #Posicion X (Solo si es Dinamico)
+var V_PosY:int; #Posicion Y (Solo si es Dinamico)
+var V_PosZ:int; #Posicion Y (Solo si es Dinamico)
+var V_RotX:int; #Posicion X (Solo si es Dinamico)
+var V_RotY:int; #Posicion Y (Solo si es Dinamico)
+var V_RotZ:int; #Posicion Y (Solo si es Dinamico)
+# - - Loteo
+var V_BasOnOffSaveLot:bool;# Necesita Almacenar Loteo
+var V_Lot:Array[Cls_IntInt];# Loteo (Esto son ITEMS y CANTIDADES.. )
 
 
 
@@ -90,14 +112,15 @@ func F_GetArray()->Array:
 	#CLog.Add("F_GetArray",M_LogVis);
 	var M_T:Array;
 	M_T.append(V_BasID);
-	M_T.append(F.Bool2Int(V_BasDinamico));
 	M_T.append(V_BasTipo);
 	M_T.append(V_BasNodoName);
 	M_T.append(V_BasDesc);
-	M_T.append(V_BasSubTipo);
+	M_T.append(F.Bool2Int(V_BasOnOffEstatico));
 	M_T.append(F.Bool2Int(V_BasOnOffSavePos));
 	M_T.append(F.Bool2Int(V_BasOnOffSaveStats));
 	M_T.append(F.Bool2Int(V_BasOnOffSaveLot));
+	
+	
 	
 	if(V_BasOnOffSavePos):
 		M_T.append(V_PosMapaId);
@@ -149,7 +172,6 @@ func F_SetArray(ArrayCfg:Array):
 		V_BasTipo=ArrayCfg[Mq];Mq=Mq+1;
 		V_BasNodoName=ArrayCfg[Mq];Mq=Mq+1;
 		V_BasDesc=ArrayCfg[Mq];Mq=Mq+1;
-		V_BasSubTipo=ArrayCfg[Mq];Mq=Mq+1;
 		V_BasOnOffSavePos=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
 		V_BasOnOffSaveStats=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
 		V_BasOnOffSaveLot=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;

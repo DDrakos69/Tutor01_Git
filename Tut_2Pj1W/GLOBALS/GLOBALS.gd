@@ -168,6 +168,18 @@ func _init():
 	V_ClsHabil_Play1=Cls_Habilidades.new();
 	V_ClsHabil_Play2=Cls_Habilidades.new();
 	
+	
+	# - - Asocio Clases para la clase GameFile
+	V_ClsGameFile.V_Ref_ClsGameCab=V_ClsGame_Cab;
+	V_ClsGameFile.V_Ref_ClsKeys=V_ClsKeys;	
+	V_ClsGameFile.V_Ref_ClsPlayer1Cab=V_ClsPlayerCab1;
+	V_ClsGameFile.V_Ref_ClsPlayer2Cab=V_ClsPlayerCab2;	
+	V_ClsGameFile.V_Ref_ClsHabP1=V_ClsHabil_Play1;
+	V_ClsGameFile.V_Ref_ClsHabP2=V_ClsHabil_Play2;
+	V_ClsGameFile.V_Ref_ClsItems=V_ClsItems;#Items de los jugadores.
+	V_ClsGameFile.V_Ref_ClsActores=V_ClsActores;#Actores de los niveles
+	
+	
 	F_log("BAS","_init",0)
 #END _INIT
 
@@ -371,6 +383,7 @@ func F_TEST_SaveGame():
 	V_ClsGameFile.V_Ref_ClsHabP1=V_ClsHabil_Play1;
 	V_ClsGameFile.V_Ref_ClsHabP2=V_ClsHabil_Play2;
 	V_ClsGameFile.V_Ref_ClsItems=V_ClsItems;#Items de los jugadores.
+	V_ClsGameFile.V_Ref_ClsActores=V_ClsActores;#Actores de los niveles
 	
 	V_ClsGameFile.F_SaveGame(V_Path_FileSave1,false);
 	V_ClsGameFile.F_SaveGame(V_Path_FileSave2,true);
@@ -417,6 +430,9 @@ func F_TEST_LoadGame():
 	
 	CLog.Del("F_TEST_LoadGame()");
 #END F_TEST_SaveGame
+
+
+
 
 
 

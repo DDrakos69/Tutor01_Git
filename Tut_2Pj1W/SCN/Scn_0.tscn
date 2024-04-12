@@ -23,9 +23,9 @@ glow_enabled = true
 [node name="Scn_0" type="Node3D"]
 script = ExtResource("1_sjcq7")
 
-[node name="ScnMapB01" parent="." instance=ExtResource("2_okm8t")]
+[node name="Mp_2" parent="." instance=ExtResource("2_okm8t")]
 
-[node name="ScnMapA01" parent="." instance=ExtResource("3_5n2ho")]
+[node name="Mp_1" parent="." instance=ExtResource("3_5n2ho")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ray8f")

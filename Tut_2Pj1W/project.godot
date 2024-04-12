@@ -147,6 +147,10 @@ ACT2_PUNCH4={
 
 locale/translations=PackedStringArray("res://TRADUCIONES/Global.EN.translation", "res://TRADUCIONES/Global.ES.translation", "res://TRADUCIONES/Habilidades.EN.translation", "res://TRADUCIONES/Habilidades.ES.translation", "res://TRADUCIONES/Items.EN.translation", "res://TRADUCIONES/Items.ES.translation", "res://TRADUCIONES/Mapas.EN.translation", "res://TRADUCIONES/Mapas.ES.translation", "res://TRADUCIONES/Misions.EN.translation", "res://TRADUCIONES/Misions.ES.translation", "res://TRADUCIONES/Pnjs.EN.translation", "res://TRADUCIONES/Pnjs.ES.translation")
 
+[memory]
+
+limits/message_queue/max_size_mb=16
+
 [rendering]
 
 renderer/rendering_method.mobile="gl_compatibility"
