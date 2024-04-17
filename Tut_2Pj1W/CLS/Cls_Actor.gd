@@ -168,7 +168,7 @@ func F_SetArray(ArrayCfg:Array):
 	if(ArrayCfg.size()==4):
 		
 		V_BasID=ArrayCfg[Mq];Mq=Mq+1;
-		V_BasDinamico=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
+		V_BasOnOffEstatico=F.Int2Bool(ArrayCfg[Mq]);Mq=Mq+1;
 		V_BasTipo=ArrayCfg[Mq];Mq=Mq+1;
 		V_BasNodoName=ArrayCfg[Mq];Mq=Mq+1;
 		V_BasDesc=ArrayCfg[Mq];Mq=Mq+1;
