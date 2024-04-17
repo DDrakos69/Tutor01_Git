@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://capuex3nwk3gg"]
+[gd_scene load_steps=20 format=3 uid="uid://capuex3nwk3gg"]
 
 [ext_resource type="Script" path="res://CONTROLER_3D/Game_N3D.gd" id="1_4u3n1"]
 [ext_resource type="Script" path="res://CONTROLER_3D/ChB3D_PJ.gd" id="2_fiq5i"]
 [ext_resource type="Script" path="res://CONTROLER_3D/CamCont_N3D.gd" id="3_rl13t"]
 [ext_resource type="Texture2D" uid="uid://cluds1xxfk7x5" path="res://SCN_3DBase/vector-stone-path-texture.jpg" id="4_8tne0"]
 [ext_resource type="Script" path="res://CONTROLER_3D/UI.gd" id="5_s10d4"]
+[ext_resource type="PackedScene" uid="uid://crmhynskkg50n" path="res://BLENDER/Puerta.tscn" id="6_03pwe"]
 
 [sub_resource type="Environment" id="Environment_rlhv3"]
 ambient_light_source = 1
@@ -77,15 +78,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117216, 0)
 script = ExtResource("2_fiq5i")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="PJ_ChB3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.269289, 1.4447, -1.35883)
-light_energy = 0.15
-light_specular = 0.805
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.269289, -0.635648, -0.665235)
+light_energy = 0.21
+light_specular = 0.485
 distance_fade_enabled = true
-distance_fade_begin = 0.3
-distance_fade_length = 9.8
+distance_fade_begin = 0.0
+distance_fade_length = 265.81
 
 [node name="SpotLight3D" type="SpotLight3D" parent="PJ_ChB3D"]
-transform = Transform3D(1, 0, 0, 0, 0.970951, 0.239279, 0, -0.239279, 0.970951, -0.534527, -0.154337, -0.541565)
+transform = Transform3D(1, 0, 0, 0, 0.970951, 0.239279, 0, -0.239279, 0.970951, -0.534527, 0.00832621, -0.931216)
 light_color = Color(1, 1, 0.713726, 1)
 light_energy = 1.52
 light_specular = 0.881
@@ -278,3 +279,6 @@ text = "UI Texto"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "UI Texto"
+
+[node name="Puerta" parent="." instance=ExtResource("6_03pwe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3526, -1.47266, -5.32891)
