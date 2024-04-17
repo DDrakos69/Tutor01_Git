@@ -57,12 +57,12 @@ func F_BuscaId(M_Id:String)->Cls_Habilidad:
 
 
 # Obtenemos un array con los datos para guardar en el USUARIO
-func F_File_PlayGetArray()->Array[bool]:
-	var M_T:Array[bool]
-	for M_q in V_Lista.size():
-		M_T.append(V_Lista[M_q].V_Activo);
-	#END For Habilidades
-	return M_T;
+#func F_File_PlayGetArray()->Array[bool]:
+	#var M_T:Array[bool]
+	#for M_q in V_Lista.size():
+		#M_T.append(F.Bool2Int(V_Lista[M_q].V_Activo));
+	##END For Habilidades
+	#return M_T;
 #END F_File_PlayGetArray()
 
 
@@ -73,7 +73,7 @@ func F_File_PlayGetArray()->Array[bool]:
 
 
 # Pasamos del Array del fichero a la Cfg interna
-func F_File_PlayerSetArray(M_t:Array[int])->bool:
+func F_File_PlayerSetArray(M_t:Array)->bool:
 	var M_Res:bool=false;
 	if(M_t.size()==V_Lista.size()):
 		for M_q in V_Lista.size():

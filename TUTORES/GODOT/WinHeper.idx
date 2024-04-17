@@ -1,5 +1,5 @@
 {WinHelper V2.00 by FNX A1 2024}
-{WIN_W}00541
+{WIN_W}00517
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00488
@@ -35,6 +35,110 @@
 	:-Al nodo actual se accede con el comando "SELF"
 	:igual al "THIS" en C#
 	:print(self.name);
+*001 - VARIABLES y CONSTANTES
+	:Las Variables o Constantes
+	:-
+	:Son espacios en la memoria donde se almacenan datos.
+	:Definir Variable o Constante es reservar un espacio en la memoria
+	:y referirlo por medio de un Nombre. Nombre de la Variable.
+	:De ese modo podemos obtener o definir el contenido de esa memoria.
+	:-
+	:Las VARIABLES le indican al compilador que ese valor en memoria se
+	:puede modificar a lo largo de la vida de la aplicacion,
+	:-
+	:La CONSTANTES le dice al compilador que solo se define una vez al inicio.
+	:-
+	:Segun el tipo de DATO usa un tamaño de memoria u otro
+	:un Entero usara menos memoria que una Frase (Int o String)
+	:Esto afecta a la memoria usada y a la velocidad de las operaicones
+	:realizadas con esa memoria.
+	:-
+	:Se pueden hacer operaciones con el contenido de esas memorias.
+	:Sumar dos Variables numericas 2+2 = 4
+	:Sumar dos variables Cadena "hola" + " Papa"= "Hola Papa"
+	:etc
+	:Estamos por medio de los nombres de variables operando sobre sus
+	:datos en memoria.
+	:-
+	:Por defecto godot trabaja con variables tipo VARIANT.
+	:Una variable puede ser de cualquier tipo y cambiar de tipo
+	:segun el dato que se le meta.
+	:-
+	:Se puede definir el tipo de variable de modo que solo
+	:acepte datos de ese tipo en concreto.
+	:-
+	:Las variables de godot son  CaseSensitive (Diferencia entre
+	:mayusculas y minusculas) y acepta subrallados pero no espacios
+	:-
+	:- Las VARIABLES
+	:var Nom : TIPO = VAL
+	:var Nom = VAL
+	:var My_Variable:int = 2345
+	:var My_Variable1 = "2345"
+	:-
+	:- Las CONSTANTES
+	:const NOM : TIPO = VALOR
+	:const NOM  = VALOR
+	:const My_Constante:int=6544323
+	:const My_Constante = "Soy Constante"
+	:-
+	:Las variables y constantes tienen alcance local.
+	:Si se crearon dentro de una funcion Solo afectan a esa funcion
+	:Si se crearon dentro de una escena o clase solo afectan a
+	:esa clase o escena y a todas las funciones dentro de esa clase o escena.
+	:-
+	:Para permitir que una variable sea accesible desde fuera.
+	:Se usa el comando "@export".
+	:@export var NOM : TIPO=VALOR
+	:Existen muchos tipos de @exports segun el dato que queramos exportar.
+	:EJ: @export_multiline var DESC : string; (Define un string multilinea.)
+	:-
+	:Para definir variables godot usa el comando "var"
+	:-
+	:var NomVar : TipoDato=Dato
+	:-
+	:Varibles
+	:-
+	:var P_Jugador_Nombre:String="Pako";
+	:var p_jugador_Nombre:String="Pako";
+	:var P_Jugador_Edad:int=30;
+	:var P_Jugador_Velocidad:float=10.99;
+	:var P_Jugador_Vivo:bool=true;
+	:var P_Array:Array=[1,2,3,"4",5];
+	:-
+	:Constantes
+	:-
+	:const C_Jugador_Nombre:String="Pako";
+	:const c_jugador_Nombre:String="Pako";
+	:const C_Jugador_Edad:int=30;
+	:const C_Jugador_Velocidad:float=10.99;
+	:const C_Jugador_Vivo:bool=true;
+	:const C_Array:Array=[1,2,3,"4",5];
+	:-
+	:Variables exportables
+	:-
+	:@export var v_Jugador_Nombre:String="Pako";
+	:@export var V_jugador_Nombre:String="Pako";
+	:@export var V_Jugador_Edad:int=30;
+	:@export var V_Jugador_Velocidad:float=10.99;
+	:@export var V_Jugador_Vivo:bool=true;
+	:@export var V_Array:Array=[1,2,3,"4",5];
+	:-
+	:Existen distintos tipos de export segun el tipo de dato
+	:que queramos usar.
+	:-
+	:Podemos poner un texto en marca de agua en la variable exportada con
+	:@export_placeholder("Pon un Texto") var V_VarText:String="";
+	:-
+	:Podemos decirle que es un texto grande con
+	:@export_multiline var V_COMMANDs:String="";
+	:-
+	:Para poner ToolTips a las variables exportadas se usaran
+	:doble comentario (##)
+	:## Ejecuta modificaciones sobre otros objetos
+	:## ["Mapa","Actor","Comando",Valor]
+	:## ["Mp_0","Puer_0","Vis",0],[..]..
+	:@export_multiline var V_COMMANDs:String="";
 *Acceder a un nodo y sus propiedades
 	ª10017
 	:Tenemos tres modos de acceder a las propiedades de un
@@ -3722,61 +3826,3 @@
 *V4 Controlador Basico 3D
 	:https://www.youtube.com/watch?v=J5-0X9xPDVE
 	:- Controlador sencillo para personajes 3D
-*VARIABLES y CONSTANTES
-	:Godot es fuertemente tipado.
-	:Una variable de un tipo solo acepta ese tipo.
-	:Godot es caseSensitive. (Diferencia entre mayusculas y minusculas.)
-	:Godot acepta subrallados.
-	:-
-	:Las variables (var NOM : TIPO = VAL)
-	:Se encargan de almacenar y tratar datos.
-	:Se pueden modificar sus datos
-	:No pueden almacenar tipos de datos distintos.
-	:-
-	:Las constantes.(const NOM : TIPO = VALOR)
-	:Se encargan de almacentar y tratar datos.
-	:No se pueden modifiar sus datos.
-	:No es necesario definir si tipo.(Lo ajusta de forma automatica.)
-	:-
-	:Las variables y constantes tienen alcance local.
-	:Las variables dentro de una funcion solo alcanzan esa funcion
-	:Las variables dentro de una clases solo dentro de la clase
-	:-
-	:Para permitir que una variable sea accesible desde fuera.
-	:se usa el comando "@export".(@export var NOM : TIPO)
-	:Existen muchos tipos de @exports segun el dato que queramos exportar.
-	:EJ: @export_multiline var DESC : string; (Define un string multilinea.)
-	:-
-	:Para definir variables godot usa el comando "var"
-	:-
-	:var NomVar : TipoDato=Dato
-	:-
-	:Varibles
-	:-
-	:var P_Jugador_Nombre:String="Pako";
-	:var p_jugador_Nombre:String="Pako";
-	:var P_Jugador_Edad:int=30;
-	:var P_Jugador_Velocidad:float=10.99;
-	:var P_Jugador_Vivo:bool=true;
-	:var P_Array:Array=[1,2,3,"4",5];
-	:-
-	:Constantes
-	:-
-	:const C_Jugador_Nombre:String="Pako";
-	:const c_jugador_Nombre:String="Pako";
-	:const C_Jugador_Edad:int=30;
-	:const C_Jugador_Velocidad:float=10.99;
-	:const C_Jugador_Vivo:bool=true;
-	:const C_Array:Array=[1,2,3,"4",5];
-	:-
-	:Variables exportables
-	:-
-	:@export var v_Jugador_Nombre:String="Pako";
-	:@export var V_jugador_Nombre:String="Pako";
-	:@export var V_Jugador_Edad:int=30;
-	:@export var V_Jugador_Velocidad:float=10.99;
-	:@export var V_Jugador_Vivo:bool=true;
-	:@export var V_Array:Array=[1,2,3,"4",5];
-	:-
-	:Existen distintos tipos de export segun el tipo de dato
-	:que queramos usar.

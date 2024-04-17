@@ -24,8 +24,8 @@ var V_Ref_ClsKeys:Cls_Keys;
 # Los actores son los objetos que se cargan en el nivel y su estado.
 var V_Ref_ClsActores:Cls_Actores;
 # Items que tiene el player en su inventario.
-var V_Ref_ClsObjsP1:Cls_Items;
-var V_Ref_ClsObjsP2:Cls_Items;
+# La clas eItems tiene dentro los items de cada player
+var V_Ref_ClsItems:Cls_Items;
 # Habilidades selecionadas del Player
 var V_Ref_ClsHabP1:Cls_Habilidades;
 var V_Ref_ClsHabP2:Cls_Habilidades;
@@ -57,7 +57,7 @@ func _init():
 
 
 # Guardo las tablas en el fichero Cifrando y JSONeando las tablas a texto
-func F_SaveGame(M_FileName:String):
+func F_SaveGame(M_FileName:String,M_Cifrado:bool=false):
 	var V_Log:bool=true;
 	CLog.Add("F_SabeGame("+M_FileName+")",V_Log);
 	# Genero la tabla que unifica todos los datos
@@ -68,14 +68,15 @@ func F_SaveGame(M_FileName:String):
 	M_t.append(V_Ref_ClsPlayer1Cab.F_GetArray());
 	M_t.append(V_Ref_ClsPlayer2Cab.F_GetArray());
 	
-	M_t.append(V_Ref_ClsHabP1.F_File_PlayGetArray());
+	M_t.append(V_Ref_ClsHabP1.F_File_PlayerGetArray());
 	M_t.append(V_Ref_ClsHabP2.F_File_PlayerGetArray());
 	
-	M_t.append(V_Ref_ClsObjsP1.F_File_PlayGetArray());
-	M_t.append(V_Ref_ClsObjsP2.F_File_PlayGetArray());
+	M_t.append(V_Ref_ClsItems.V_ListaPlayer1);
+	M_t.append(V_Ref_ClsItems.V_ListaPlayer2);
 	
-	#M_t.append(V_Ref_ClsObjsP1.F_GetArray());
-	#M_t.append(V_Ref_ClsObjsP2.F_GetArray());
+	# Estado de las misiones / decisiones / Estados
+	
+	M_t.append(V_Ref_ClsActores.F_GetArray());
 	
 	# Borro el fichero si existe.
 	DirAccess.remove_absolute(M_FileName);
@@ -85,7 +86,7 @@ func F_SaveGame(M_FileName:String):
 	var M_Str:String=JSON.stringify(M_t);
 	
 	# Cifro la cadena JSoneada
-	#M_Str=V_ClsCrypto.F_Cifra(M_Str);
+	if (M_Cifrado): M_Str=V_ClsCrypto.F_Cifra(M_Str);
 	
 	# Guardo el fichero
 	M_File.store_string(M_Str);
@@ -126,7 +127,7 @@ func F_SaveGame(M_FileName:String):
 
 
 # Cargo un fichero y destripo con JSON las tablas de datos (Descifra)
-func F_LoadGame(M_FileName:String):
+func F_LoadGame(M_FileName:String,M_Cifrado:bool=false):
 	var M_Log:bool=true;
 	var M_Pos:int=0;
 	CLog.Add("F_LoadGame("+M_FileName+")",M_Log);
@@ -141,13 +142,13 @@ func F_LoadGame(M_FileName:String):
 		M_File=null;
 		
 		# Descifro el texto cargado.
-		#M_Str=F.DesCifra(M_Str);
+		if (M_Cifrado): M_Str=F.DesCifra(M_Str);
 		
 		# Reviso el texto y genero Genero la tabla usando JSON
 		M_t=JSON.parse_string(M_Str);
 		
 		#- Separo la tabla en sus secciones.
-		if(M_t.size()==2):
+		if(M_t.size()==8):
 			M_Pos=0;
 			V_Ref_ClsGameCab.F_SetArray(M_t[M_Pos]);M_Pos+=1;
 			V_Ref_ClsKeys.F_SetArray(M_t[M_Pos]);M_Pos+=1;
@@ -156,9 +157,13 @@ func F_LoadGame(M_FileName:String):
 			V_Ref_ClsPlayer2Cab.F_SetArray(M_t[M_Pos]);M_Pos+=1;
 			
 			V_Ref_ClsHabP1.F_Reset();
-			V_Ref_ClsHabP2.F_Reset();
 			V_Ref_ClsHabP1.F_File_PlayerSetArray(M_t[M_Pos]);M_Pos+=1;
+			V_Ref_ClsHabP2.F_Reset();
 			V_Ref_ClsHabP2.F_File_PlayerSetArray(M_t[M_Pos]);M_Pos+=1;
+			
+			V_Ref_ClsItems.F_Player1_SetArray(M_t[M_Pos]);M_Pos+=1;
+			V_Ref_ClsItems.F_Player2_SetArray(M_t[M_Pos]);M_Pos+=1;
+			
 			
 	#M_t.append(V_Ref_ClsObjsP1.F_GetArray());
 	#M_t.append(V_Ref_ClsObjsP2.F_GetArray());
