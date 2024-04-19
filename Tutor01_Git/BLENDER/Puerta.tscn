@@ -188,9 +188,10 @@ mesh = SubResource("ArrayMesh_wvbyj")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Marco"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0637913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.33092)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Marco/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.36384)
 shape = SubResource("ConcavePolygonShape3D_2ke4b")
 
 [node name="Puerta" type="MeshInstance3D" parent="."]
