@@ -1,5 +1,4 @@
 res://CONTROLER_3D/Game_N3D.tscn
-res://BLENDER/Puerta.tscn
-res://BLENDER/In.gd
-res://BLENDER/Out2.gd
-res://BLENDER/Puerta.gd
+res://Material/Shad_MAt_Water01.tres
+res://Material/Shad_Mat_Water02.gdshader
+res://Material/Mat_Water01.tres
