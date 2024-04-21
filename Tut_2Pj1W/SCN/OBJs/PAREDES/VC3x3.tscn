@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://d342nq3iplr0u"]
+
+[ext_resource type="PackedScene" uid="uid://cvm4dsvjyhqet" path="res://SCN/OBJs/PAREDES/IMPORTS/VC3x3.gltf" id="1_usvuo"]
+
+[node name="VC3x3" instance=ExtResource("1_usvuo")]

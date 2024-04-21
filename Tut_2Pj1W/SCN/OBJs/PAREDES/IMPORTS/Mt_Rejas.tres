@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dpfe8rc1f5wn2"]
+
+[ext_resource type="Texture2D" uid="uid://dhm8pb7pgh5xt" path="res://SCN/OBJs/PAREDES/IMPORTS/VC3x3_Tx_Balla.png" id="1_qa387"]
+
+[resource]
+resource_name = "Mt_Rejas"
+cull_mode = 2
+albedo_texture = ExtResource("1_qa387")
+roughness = 0.5

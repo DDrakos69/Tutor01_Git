@@ -34,7 +34,7 @@ func F_OpenClose(M_Delta:float):
 	#6 -90 ->0	
 	#0
 	
-	V_Salto=1.0 * M_Delta;
+	V_Salto=4.0 * M_Delta;
 	if(V_Stdo==1):# 0 -> 90
 		if(V_Puerta.rotation_degrees.y<90):
 			V_Puerta.rotate_y(V_Salto);

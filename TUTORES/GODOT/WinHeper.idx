@@ -1,5 +1,5 @@
 {WinHelper V2.00 by FNX A1 2024}
-{WIN_W}00517
+{WIN_W}00693
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00488
@@ -139,6 +139,632 @@
 	:## ["Mapa","Actor","Comando",Valor]
 	:## ["Mp_0","Puer_0","Vis",0],[..]..
 	:@export_multiline var V_COMMANDs:String="";
+*01- NODO
+	:-PROPIEDADES
+	:String·t<-·teditor_description·t""
+	:MultiplayerAPI·t<-·tmultiplayer
+	:StringName·t<-·tname
+	:Node·t<-·towner
+	:ProcessMode·t<-·tprocess_mode·t0
+	:int·t<-·tprocess_physics_priority·t0
+	:int·t<-·tprocess_priority·t0
+	:ProcessThreadGroup·t<-·tprocess_thread_group·t0
+	:int·t<-·tprocess_thread_group_order
+	:BitField<ProcessThreadMessages>·t<-·tprocess_thread_messages
+	:String·t<-·tscene_file_path
+	:bool·t<-·tunique_name_in_owner·tfalse
+	:Methods¶
+	:void·t<-·t_enter_tree ( ) virtual
+	:void·t<-·t_exit_tree ( ) virtual
+	:PackedStringArray·t<-·t_get_configuration_warnings ( ) virtual const
+	:void·t<-·t_input ( InputEvent event ) virtual
+	:void·t<-·t_physics_process ( float delta ) virtual
+	:void·t<-·t_process ( float delta ) virtual
+	:void·t<-·t_ready ( ) virtual
+	:void·t<-·t_shortcut_input ( InputEvent event ) virtual
+	:void·t<-·t_unhandled_input ( InputEvent event ) virtual
+	:void·t<-·t_unhandled_key_input ( InputEvent event ) virtual
+	:void·t<-·tadd_child ( Node node, bool force_readable_name=false, InternalMode internal=0 )
+	:void·t<-·tadd_sibling ( Node sibling, bool force_readable_name=false )
+	:void·t<-·tadd_to_group ( StringName group, bool persistent=false )
+	:Variant·t<-·tcall_deferred_thread_group ( StringName method, ... ) vararg
+	:Variant·t<-·tcall_thread_safe ( StringName method, ... ) vararg
+	:bool·t<-·tcan_process ( ) const
+	:Tween·t<-·tcreate_tween ( )
+	:Node·t<-·tduplicate ( int flags=15 ) const
+	:Node·t<-·tfind_child ( String pattern, bool recursive=true, bool owned=true ) const
+	:Node[]·t<-·tfind_children ( String pattern, String type="", bool recursive=true, bool owned=true ) const
+	:Node·t<-·tfind_parent ( String pattern ) const
+	:Node·t<-·tget_child ( int idx, bool include_internal=false ) const
+	:int·t<-·tget_child_count ( bool include_internal=false ) const
+	:Node[]·t<-·tget_children ( bool include_internal=false ) const
+	:StringName[]·t<-·tget_groups ( ) const
+	:int·t<-·tget_index ( bool include_internal=false ) const
+	:Window·t<-·tget_last_exclusive_window ( ) const
+	:int·t<-·tget_multiplayer_authority ( ) const
+	:Node·t<-·tget_node ( NodePath path ) const
+	:Array·t<-·tget_node_and_resource ( NodePath path )
+	:Node·t<-·tget_node_or_null ( NodePath path ) const
+	:Node·t<-·tget_parent ( ) const
+	:NodePath·t<-·tget_path ( ) const
+	:NodePath·t<-·tget_path_to ( Node node, bool use_unique_path=false ) const
+	:float·t<-·tget_physics_process_delta_time ( ) const
+	:float·t<-·tget_process_delta_time ( ) const
+	:bool·t<-·tget_scene_instance_load_placeholder ( ) const
+	:SceneTree·t<-·tget_tree ( ) const
+	:String·t<-·tget_tree_string ( )
+	:String·t<-·tget_tree_string_pretty ( )
+	:Viewport·t<-·tget_viewport ( ) const
+	:Window·t<-·tget_window ( ) const
+	:bool·t<-·thas_node ( NodePath path ) const
+	:bool·t<-·thas_node_and_resource ( NodePath path ) const
+	:bool·t<-·tis_ancestor_of ( Node node ) const
+	:bool·t<-·tis_displayed_folded ( ) const
+	:bool·t<-·tis_editable_instance ( Node node ) const
+	:bool·t<-·tis_greater_than ( Node node ) const
+	:bool·t<-·tis_in_group ( StringName group ) const
+	:bool·t<-·tis_inside_tree ( ) const
+	:bool·t<-·tis_multiplayer_authority ( ) const
+	:bool·t<-·tis_node_ready ( ) const
+	:bool·t<-·tis_physics_processing ( ) const
+	:bool·t<-·tis_physics_processing_internal ( ) const
+	:bool·t<-·tis_processing ( ) const
+	:bool·t<-·tis_processing_input ( ) const
+	:bool·t<-·tis_processing_internal ( ) const
+	:bool·t<-·tis_processing_shortcut_input ( ) const
+	:bool·t<-·tis_processing_unhandled_input ( ) const
+	:bool·t<-·tis_processing_unhandled_key_input ( ) const
+	:void·t<-·tmove_child ( Node child_node, int to_index )
+	:void·t<-·tnotify_deferred_thread_group ( int what )
+	:void·t<-·tnotify_thread_safe ( int what )
+	:void·t<-·tprint_orphan_nodes ( ) static
+	:void·t<-·tprint_tree ( )
+	:void·t<-·tprint_tree_pretty ( )
+	:void·t<-·tpropagate_call ( StringName method, Array args=[], bool parent_first=false )
+	:void·t<-·tpropagate_notification ( int what )
+	:void·t<-·tqueue_free ( )
+	:void·t<-·tremove_child ( Node node )
+	:void·t<-·tremove_from_group ( StringName group )
+	:void·t<-·treparent ( Node new_parent, bool keep_global_transform=true )
+	:void·t<-·treplace_by ( Node node, bool keep_groups=false )
+	:void·t<-·trequest_ready ( )
+	:Error·t<-·trpc ( StringName method, ... ) vararg
+	:void·t<-·trpc_config ( StringName method, Variant config )
+	:Error·t<-·trpc_id ( int peer_id, StringName method, ... ) vararg
+	:void·t<-·tset_deferred_thread_group ( StringName property, Variant value )
+	:void·t<-·tset_display_folded ( bool fold )
+	:void·t<-·tset_editable_instance ( Node node, bool is_editable )
+	:void·t<-·tset_multiplayer_authority ( int id, bool recursive=true )
+	:void·t<-·tset_physics_process ( bool enable )
+	:void·t<-·tset_physics_process_internal ( bool enable )
+	:void·t<-·tset_process ( bool enable )
+	:void·t<-·tset_process_input ( bool enable )
+	:void·t<-·tset_process_internal ( bool enable )
+	:void·t<-·tset_process_shortcut_input ( bool enable )
+	:void·t<-·tset_process_unhandled_input ( bool enable )
+	:void·t<-·tset_process_unhandled_key_input ( bool enable )
+	:void·t<-·tset_scene_instance_load_placeholder ( bool load_placeholder )
+	:void·t<-·tset_thread_safe ( StringName property, Variant value )
+	:void·t<-·tupdate_configuration_warnings ( )
+*01- NODOS - ANIMATION PLAYER
+	ª10035ª10032
+	:Este nodo se enlaza a otro nodo sobre el que puede animar
+	:cualquier propiedad de cualquier nodo.
+	:Podemos por ejemplo crear las animaciones de unos
+	:sprites.
+	:Tambien nos permite añadir ALERTAS en fotogramas
+	:de este modo podemos dar sonido de pasos cuando el
+	:sprite pise el suelo.
+	:Para añadir los fotogramas claves pincharemos en el icono
+	:de llave al lado de la propiedad del control padre.
+	:Un AnimationPlayer puede tener muchas animaciones distintas.
+	:EJ:
+	:Añadimos un nodo Sprite2d y dentro añadimos un AnimationPlayer.
+	:En la parte inferior nos mostrara el panel de animacion "aunque
+	:tengamos selecionado el sprite2D."
+	:Le damos una duracion y nos colocamos en el fps 0.
+	:Ahora en las propiedades del sprite2D arrastramos el sprite
+	:a la propiedad "Texture" y boton de llave.
+	:Y listo ya tenemos el primer fotograma clave.
+	:Selecionamos el sigueinte FK, arrastramos y llave.
+	:Asi todos fps de la animacion.
+	:-
+	:En el caso de ser todos los sprites en un solo grafico.
+	:En la seccion "Animation" del "Sprite2D" le indicamos el tamaño
+	:de cada recuadro y el "OffSet" para despalzar el inicio.
+	:Al selecionar el Fotograma0 y Clickar en las llaves de Frame.
+	:Selecionara la porcion y selecionara a siguiente porcion.
+	:-
+	:Tambien podemos indicar que animaciones funcionan el LOOP
+	:o ciclicas Activando la doble flecha en el panel del AnimationPlayer.
+	:-
+	:Por medio del GDScript podemos manejar la animacion, saber
+	:en que fotograma esta y demas.
+	:Estos EVENTOS o SEÑALES nos indican que animacion disparo
+	:esa SEÑAL.
+	:Tambien podemos crear una funcion y llamarla desde el
+	:ANIMATIONPLAYER en un FPS concreto.
+	:(En el ANIMPLY Añadimos una pista de CALL Metod Trak,
+	:Le indicamos donde esta la funcion, y
+	:Tambien podemos premarar Eventos o Alertas en fotogramas claves
+	:para que realize tareas especificas..
+*01- NODOS - ANIMATIONTREE
+	ª10033ª10030ª10027ª10029ª10031
+	:AnimationTree o Arblo de animaciones.
+	:Este nodo nos permite enlazar un AnimationPlayer con
+	:una maquina de estados.
+	:La maquina de estados nos permite de forma visual
+	:crear distintos estados mostrando distintas animaciones
+	:en cada estado y pasando de un estado a otro.
+	:-
+	:Una maquina de estados tiene que estar atada a un
+	:AnimationPlayer.
+	:-
+	:Primero necesitamos un "AnimatioPlayer" con distintas
+	:Animaciones.
+	:Imaginemos un Keko que partulla.
+	:1- Anda hasta X posicion
+	:2- Para y mira durante un rato
+	:3- Si encuentra algo dispara.
+	:4- Si no regresa a 1 y asi.
+	:-
+	:Tenemos que tener un AnimationPlayer con
+	:distintas animaciones.
+	:Le añadimos al sprite2D el nodo del AnimationTree
+	:Le decimos al AnimationTree que es de tipo
+	:AnimationNodeStateMachine.
+	:Le decimos que su AnimPlayer es el nuestro.
+	:Y por ultimo lo "Activamos" OJO: esto hace que el
+	:AnimationTree Tome el control del AnimationPlayer
+	:por lo que el codigo añadido para su control ya no
+	:funcionara.
+	:-
+	:Al selecionarlo nos mostrara un panel con cuadros y dos
+	:cuadros por defecto. "STAR" y "END"
+	:Con el boton derecho o con el boton "+" en la parte superior
+	:podemos añadir las animaciones del AnimationPlayer.
+	:-
+	:Ahora uniremos vinculos entre el "START" y las distintas
+	:animaciones de forma que salte de
+	:PJ: de Andar a mirar a disparar y regrese a andar.
+	:-
+	:Podemos indicar el tipo de transacion si queremos que:
+	:Sea Inmediata, Cuando termine una animacion o , Sincronizada.
+	:Para 2D se suele usar Inmediata o Cuando termine.
+	:Tambien podemos modificar los parametros de un vinculo
+	:selecionandolo.
+	:E incluso añadir scripts.
+	:-
+	:Podemos acceder y modificar las animaciones que se estan
+	:ejecutando accediendo al control.
+	:-
+	:extends Node2D
+	:@onready var V_PlayBack:AnimationNodeStateMachinePlayback=$Sprite2D/AnimationTree.get("parameters/playback");
+	:func _ready():
+	:_ V_PlayBack.travel("RUN");
+	:#end func _ready
+	:func F_GetAnimTr_GetPlayBack():
+	:_ var M_Node=V_PlayBack.get_current_node();
+	:_ if(M_Node=="Run_I"):print("RUN");
+	:_ elif(M_Node=="Hidle_L"):print("Hidle");
+	:_ elif(M_Node=="Step_L"):print("Step");
+	:_ elif(M_Node=="GunA_L"):print("Gun");
+	:_ else:
+	:_ # EndIf
+	:#End func F_GetStMach_GetEstado
+	:-
+	:@onready -> carga la variable cuando ya se ha ejecutado la
+	:burbuja de readys.
+*01- NODOS CONTROL
+	:-Container
+	:Contenedor Basico (panel)
+	:-TextureRect
+	:Una textura rectangular, La extura se ajusta en tamaño
+	:-VBOXContainer
+	:-BoxContainer
+	:-HBoxContainer
+	:Cajas columnas y filas automaticas.
+	:-CenterContainer
+	:Ajusta el contenido en el centro conservando el tamaño
+	:-FlowContainer
+	:-HFlowContainer
+	:-VFlowContainer
+	:Ajusta el contenido segun el tamaño de los objetos.
+	:Si es muy ancho lo salta de linea y si entra en la
+	:linea anterior los sube.
+	:-GridContainer
+	:Ajusta los objetos contenidos segun una configuracion
+	:de columnas. 3Columnas X XFilas.
+	:-SplitContainer
+	:-HSplitContainer
+	:-VSplitContainer
+	:Es una barra que permite ajustar el tamaño de los paneles
+	:de los lados .
+	:-MarginContainer
+	:Es un panel que permite definir un espaciado.
+	:-PanelContainer
+	:Es el panel mas basico.
+	:-ScrollContainer
+	:Es un panel que permite mostrar mas de lo que se muestra
+	:mostrando barras de scrool.
+	:-TabContainer
+	:Permite mostrar distintos paneles segun el boton pinchado
+	:(Un Tab Basico)
+	:-Label
+	:Es un texto simple.
+	:-RichTextLabel
+	:Permite mostrar texto enriquezido con negritas subrallados.
+	:-ColorRect
+	:Un cuadro de un color
+	:-TextureRect
+	:Es un grafico dibujo o textura
+	:-VideoStreamPlayer
+	:Permite mostrar un video o animacion en un recuadro.
+	:-HSeparator
+	:-VSeparator
+	:Es una linea de separacion entre dos controles
+	:-Panel
+	:Es un panel contenedor que se puede poner en cualquier sitio
+	:-NinePathRect
+	:Es un panel que permite configurar texturas para esquinas,
+	:bordes y fondo pudiendo reescalarlo y conservando los
+	:bordes bien.
+	:-Button
+	:-BaseButton
+	:-TextureButton
+	:Un control con texto que permite acciones de entrada como
+	:click
+	:-LinkButton
+	:Es un texto al estilo de los link del Internet Explorer
+	:que lanza el navegador web a una direcion
+	:-ChekBox
+	:-CheckButton
+	:Permite y mantiene el estado de un chek On Off
+	:-MenuButton
+	:Al pulsarlo mostrara un menu desplegable para
+	:que se pueda decidir entre una u otra opcion
+	:-OptionButton
+	:Tambien muestra una lista pero en este caso
+	:permite chekear una opcion que pasa a ser la opcion
+	:selecionada. (La opcion Selecionada)
+	:-ColorPickerButton
+	:Boton que lanza un panel de selecion de colores y lo
+	:establece.
+	:-LineEdit
+	:Es un cuadro donde introducir un texto. (TextBox)
+	:-TextEdit
+	:-CodeEdit
+	:Es un cuadro de texto con o sin codigo donde se
+	:edita gcode
+	:-Range
+	:Es una barra donde se define un valor al desplazarla.
+	:-ProgresBar
+	:-TextureProgresBarr
+	:Mostrara una barra iluminada X% o un grafico X%
+	:-SpinBox
+	:Es un cuadro de texto con dos flechas para subir o bajar el valor
+	:-HScrollBar
+	:-VScrollBar
+	:Barras de Scroll para decidir un valor.Muestra solo un punto
+	:-HSlider
+	:-VSlider
+	:Igual que la HScrollBar pero mostranod el rango de 0 a X
+	:-ItemList
+	:Muestra una lista de elementos
+	:-MenuBar
+	:Configura una barra de menus con submenus
+	:-TabBar
+	:Muestra una fila de botones o barra de Tabs.
+	:-ReferenceRect
+	:Permite separar en Recuadros y poner notas a las cosas.
+	:-Tree
+	:Permite generar un arbol de controles .
+	:-GraphNode
+	:-GraphEdit
+	:Pendienes de revision
+	:-TouchScreenButton
+	:Es un boton que acepta touch de la pantalla tactil.
+*02- NODOS 2D
+	:Los NODOS es es componente basico de GODOT.
+	:El NODO tiene propiedades basicas a las que
+	:se le añaden otras propiedades para formar de
+	:este modo por capas otros nodos.
+	:Ejemplo:
+	:el NODO basico tiene
+	:PROCESS
+	:SCRIPT
+	:-
+	:El NODO 2D tiene lo del NODO mas
+	:TRANSFORM
+	:VISIBILITY
+	:ORDERING
+	:TEXTURE
+	:MATERIAL
+	:-
+	:El NODO 3D tiene lo del NODO mas
+	:TRANSFORM
+	:VISIBILITY
+	:-
+	:En GODOT tenemos 3 tipos de nodos.
+	:Node2D de tipo Canvas
+	:Control de tipo Canvas
+	:Node3D
+	:-
+	:Tambien tenemos otros nodos que sirven de ayudantes para
+	:controlar audio, multiplayer, conexion http y los que instalemos
+	:para propositos especificos.
+	:-
+	:LISTA DE NODOS Y RESUMEN.
+	:-
+	:- NODE2D
+	:Realiza operaciones basicas para colorar un objeto 2D un Sprite.
+	:- CAMERA2D
+	:Controla el marco de vision 2D para hacer scrool y aplicar algun filtro.
+	:-Sprite2D
+	:Representa un grafico o textura en pantalla con propiedades basicas.
+	:-AnimatedSprite2D
+	:Representa una secuencia de Sprite2D haciendo una animacion
+	:-CollisionShape2D
+	:Controla las colisiones de un objeto 2D, Tambien maneja las fisicas del objeto.
+	:Necesita estar en un contenedor.
+	:-StaticBody2D
+	:Agrupa en un cuerpo estatico otros nodos como un sprite2D y un CollisionShape2D
+	:Este "Contenedor" NO es mobible
+	:-AnimatableBody2D
+	:Agrupa en un cuerpo estatico otros nodos como un sprite2D y un CollisionShape2D
+	:Este "Contenedor" SI es mobible afectando las fisicas de los otros nodos.
+	:-RigidBody2D
+	:Es igual que StaticBody2D pero afecta y es afectado por otros nodos
+	:Tiene mas fisicas pudiendo no solo tener grabedad , tambien permite rotar y empujar.
+	:-CharacterBody2D
+	:Tambien es un contenedor pero tiene las funciones propias para
+	:controlar un personaje , acepta entrada del teclado y tiene las funciones
+	:para desplazar al personaje etc.
+	:-GrooveJoin2D
+	:Conecta dos nodos y solo deja  que se desplace uno al empujarlo en un eje.
+	:-DanpedSpringjoin2D
+	:Conecta dos nodos y les aplica fisicas de resorte,(Atados por cuerda o goma)
+	:-PinJoint
+	:Conecta dos nodos y permite que uno rote como puerta sobre el eje.
+	:-Area2D
+	:Intercepta que nodos estan o atrabiesan ese area."Caja de colision"
+	:-AudioListener2D
+	:Permite definir desde donde sale un sonido.
+	:-GPUParticles2D
+	:-CPUParticles2D
+	:Permiten generar y emitir particulas.
+	:-TileMap
+	:Genera una cuadricula para colocar mapas 2D "grill"
+	:Tiene erramientas propias para definir los sprites, animaciones etc.
+	:-CanvasModulate
+	:Permite configurar efectos en los mapas 2D, dando sombras o tiñendo
+	:el mapa.
+	:-Light2D
+	:Simula un punto de luz en el mundo 2D pudieno dar brillo ofuerza de
+	:color.
+	:-PointLight2D
+	:Simula un punto de luz, es necesario darte una textura para que
+	:sepa aplicar sombras de forma radial
+	:-DirectionalLight2D
+	:Simula un punto de luz, es necesario darte una textura para que
+	:sepa aplicar sombras de forma lineal
+	:-LightOccluder2D
+	:Es un bloque que poryecta sombras .
+	:-Line2D
+	:Permite añadir lineas vectoriales
+	:-Marker2D
+	:Es solo una marca 2D es un ayudante con una posicion y una rotacion.
+	:-MeshInstance2D
+	:Representa un objeto 3D en 2D
+	:-MultiMeshInstance2D
+	:Lo mismo que MeshInstance2D pero con muchas mayas.
+	:-NavigationRegion2D
+	:Permite definir un mapa para que personajes solo se desplacen
+	:por esa region
+	:-ParalaxBackGrouns
+	:-ParalaxLayer
+	:Definen un grafico para que sea la capa de fondo y se scroole
+	:segun se desplace la camra.
+	:-Path2D
+	:-PathFollow2D
+	:Definen unas lineas vectoriales para que luego otro nodo las recorra
+	:punto a punto, podemos definir las subdibisiones y demas.
+	:-Poligon 2D
+	:Permite crear un nodo con poligonos podemos deformar el poligono
+	:tanto como queramos.
+	:-RayCast2D
+	:Es una linea que se dispara cuando algun nodo colisiona con
+	:dicha linea.
+	:-ShapeCast2D
+	:Es un grupo de lineas que se dispara cuando un nodo
+	:colisiona con alguna de las lineas
+	:-RemoteTransform2D
+	:Es un nodo capaz de manipular las porpiedades de otro nodo.
+	:-Skeleton2D
+	:-PhysicalBone2D
+	:-Bone2D
+	:Esto se usa para hacer esqueletos en 2D Brazos, Piernas Cabeza
+	:y asi crear un muñeco animado.
+	:-VisibleOnScreenNotifier2D
+	:-VisibleOnScreenEnabled2D
+	:Son disparadores que indican si un determinado nodo esta visible
+	:en la pantalla, segun la camara.
+	:-CanvasGroup
+	:Permite agrupar distintas Canvas o texturas y trabajarlas como si
+	:fuesen un grupo con una sola colision y demas.
+	:-BackBufferCopy
+	:Permite copiar parte de la pantalla y crear una textura para
+	:usarla donde queramos.
+*03- NODOS 3D
+	:-Node3D
+	:Contiene las propiedades mas basicas de un nodo en 3D
+	:Seria como un pixel en 3D
+	:-Marker3D
+	:Es una marca en 3D se usa como ayudante.
+	:-VisualInstance3D
+	:Permite agrupar Marcacores.
+	:-GeometryInstance3D
+	:Permite agrupar geometria pudiendo modificar sus
+	:texturas, iluminaciones,lods y posprocesados.
+	:-MeshInstance3D
+	:Permite definir una maya o un poligono con sus
+	:propiedades.
+	:-MultiMeshInstance3D
+	:Permite agrumar muchas mayas como pelo o cesped.
+	:Es complejo y tiene su editor.
+	:-Label3D
+	:Permite definir un texto en 3D.
+	:-Decal
+	:Permite poryectar una textura sobre un objeto
+	:a modo de calcomania.
+	:-AnimatedSprite3D
+	:-Sprite3D
+	:Permite añadir Sprites o animaciones de sprites en
+	:el mundo 3D
+	:-WorldEnvironment
+	:Permite definir y configurar la iluminacion del entorno
+	:Tambien puede aplicar efectos y filtros.
+	:-FogVolume
+	:Permite aplicar niebla a un espacio.
+	:-GPUParticles3D
+	:Es un generador de particulas por GPU
+	:Esta muy relacionado con el WorldEnvironment
+	:-GPUParticlesAttractor3D
+	:-GPUParticlesCollision3D
+	:Junto con las particulas estos nodos son un
+	:bolumen colisionador y Atractor (atrae) las particulas.
+	:-Light3D
+	:Es un configurador de las propiedades de la luz.
+	:No es una luz en si misma.
+	:-OmniLight3D
+	:Es un emisor de luz tipo esfera.
+	:-SpotLight3D
+	:Es un emisor de luz tipo cono.
+	:-DirectionalLight3D
+	:Es un emisor de luz tipo sol. No ajusta una posicon
+	:Es mas bien la luz y sombras en posicion del sol .
+	:-CSGShape3D
+	:Son poligonos que deforman otros poligonos aplicando
+	:operaciones booleanas para su deformacion,
+	:Union, Sustracion y diferencia.
+	:Son muy practicas para trabajar colisiones.
+	:-SoftBody3D
+	:o Cuerpo blando permite simular telas.
+	:-CollisionObject3D
+	:Trabaja junto con otros nodos y permite definir o
+	:actuar cuando otro nodo colisione con este
+	:-PhisicsBody3D
+	:Trabaja junto con otros nodos y permite dotar a
+	:sus hijos de propiedades fisicas pudiendo limitar
+	:rotaciones o dar grabedad etc.
+	:-CollisionPoligon3D
+	:-CollisionShape3D
+	:Trabaja junto con otro nodo y permite detectar
+	:colisiones sobre un poligono dado o sobre una
+	:maya dada.
+	:-StaticBody3D
+	:Permite crear cuerpos estaticos que no se podran
+	:mover ni seran afectados por otros objetos.
+	:(Se muede mover pero no afectara las fisicas de otros objetos)
+	:-AnimatableBody3D
+	:Este objeto si se puede mover y afecta a las fisicas
+	:de otros objetos.
+	:-RigidBody3D
+	:Estos objetos se afectan y son afectados por otros objetos
+	:y tienen fisicas.
+	:-CharacterBody3D
+	:Es el objeto creado para ser controlado y tiene ya las
+	:fisicas propias de un personaje.
+	:-Area3D
+	:Detecta cuando un objeto esta dentro o sale
+	:y Permite definir areas y zonas con sonidos y efectos especiales
+	:(debajo del agua, una cueba etc)
+	:-Camera3D
+	:Permite representar distintos puntos de vista en el espacio 3D
+	:-VehicleWheel3D
+	:-VehicleBody3D
+	:Al igual que el CharacterBody3D tiene las fisicas propieas para
+	:simular un coche.
+	:-Join3D
+	:Permite hacer uniones de objetos
+	:-HingeJoin3D
+	:Permite simular las fisicas de una bisagra.
+	:-ConeTwistJoin3D
+	:Permite simular las fisicas de un pivote.
+	:-SliderJoin3D
+	:Permite el desplazamiento de un objeto sobre otro en un
+	:solo eje como un piston
+	:-PinJoin3D
+	:Permite unir dos objetos dando fisica a uno sobre otro como
+	:si estubiesen atados por una cuerda.
+	:-Generic6DOFjoin3D
+	:Como todos los anteriores permite definir todos los
+	:parametros de union y flexibilidad de un objeto sobre otro.
+	:-Skeleton3D
+	:Es un esqueleto, maneja uniones complejas entre muchos
+	:objetos y sus relaciones con otros.
+	:-BoneAttachment3D
+	:Permite atar otro objeto a un hueso de un skeleto
+	:-RootMotionView
+	:Es solo un ayudante que muestra una rejilla.
+	:-VoxelGI
+	:Es el mas pesado y calcula todo a tiempo real, una vez
+	:creada la escena
+	:-LightMapProbe
+	:-LightMapGI
+	:-
+	:-ReflectionProbe
+	:Captura los objetos a su alrededor y genera un mapa
+	:de feflejos sobre el objeto simulando un espejo.
+	:-ImporterMeshInstance3D
+	:Aun no se sabe que hace.
+	:-VisibleOnScreenNotifier3D
+	:-VisibleOnScreenEnabled3D
+	:Detecta cuando un nodo es visible por la camara en un
+	:area dada.
+	:-GridMap
+	:Genera una rejilla en 3D para colocar Meshes y construir
+	:un mapa.
+	:-AudioListener3D
+	:Le indica al juego cual sera el punto de escucha
+	:del sonido . por defecto es la camara.
+	:-AudioStreamPlayer3D
+	:Proyecta un sonido o musica en un punto 3D
+	:-NavigationRegion3D
+	:Es un objeto que genera un mapa de navegacion para que
+	:la ia sepa por donde moverse.
+	:-OccluderInstance3D
+	:Permite ocultar objetos que no son visibles por estar ocultos
+	:detras de otros.
+	:-Path3D
+	:-PathFollow3D
+	:Permite crear una linea dividida y recorrera en un tiempo.
+	:-RayCast3D
+	:Traza una linea y captura que objetos cortan esa linea.
+	:-ShapeCast3D
+	:Traza un rombo donde caputra que objetos entran y salen.
+	:-SpringArm3D
+	:Es un RayCast3D pero ajusta su tamaño si encuentra una
+	:colision de modo que el largo del brazo es el maximo que
+	:pueda sin colisionar.
+	:-RemoteTransform3D
+	:Permite copiar las transformaciones de un nodo a otro nodo.
+	:-XROrigin3D
+	:-XRAnchor3D
+	:-XRController3D
+	:-XRNode3D
+	:Se usan para controlar juegos VR
+	*COLLISIONSHAPE3D
+		:El CollisionShape3D es una zona que responde cuando un
+		:objeto cruza , entra o sale de es zona.
+		:Dispara eventos y detecta que ha cruzado entrado
+		:o salido.
+		:-
+		:Tenemos que definir un tipo de geometria de colision
+		:en sus propiedades.
+		:-
+		:Es aconsejable agrupar todos los objetos Pikeables
+		:en una capa para poder trabajarlos bloquearlos y demas.
 *Acceder a un nodo y sus propiedades
 	ª10017
 	:Tenemos tres modos de acceder a las propiedades de un
@@ -2005,6 +2631,27 @@
 	:func EVT_on_button_up(SELF:Button):
 	:·tprint("ES BUTTON"+SELF.name);
 	:#END _on_button_up
+*LAYERS o CAPAS
+	ª10161
+	:Godot usa las Capas o Layers para separar grupos
+	:de objetos y asignarles funciones.
+	:Es un modo de filtrar tipos de objetos para no
+	:analizar todos los objetos y asi acelerar las cosas.
+	:Ejemplo.
+	:Podemos tener una capa para los jugadores.
+	:de modo que los bloques de colision solo detecten
+	:a los jugadores y respondas cuando uno cruze.
+	:De este modo los otros objetos no activaran estos
+	:objetos.
+	:-
+	:Tenemos distintas tablas de Layers para 2D y 3D ,
+	:para Render o para Physics.
+	:Dentro de cada talba nos pone por defecto 20 celdas
+	:pero podemos añadir mas si lo necesitamos.
+	:-
+	:Podemos nombrar o dar descripcion a los Layers en
+	:la configuracion del proyecto en la seccion layers.
+	:Para las colisiones se usa el Pysics.
 *LENGUAJE
 	:Es muy parecido a pyton con algunas diferencias.
 	:Permite multilineas.
@@ -2049,621 +2696,6 @@
 	:esto le indica que desde ese momento la columna/fichero
 	:que usara sera el de ingles, NT: en y es es el tiulo de las
 	:columnas con los idiomas.
-*NODO
-	:-PROPIEDADES
-	:String·t<-·teditor_description·t""
-	:MultiplayerAPI·t<-·tmultiplayer
-	:StringName·t<-·tname
-	:Node·t<-·towner
-	:ProcessMode·t<-·tprocess_mode·t0
-	:int·t<-·tprocess_physics_priority·t0
-	:int·t<-·tprocess_priority·t0
-	:ProcessThreadGroup·t<-·tprocess_thread_group·t0
-	:int·t<-·tprocess_thread_group_order
-	:BitField<ProcessThreadMessages>·t<-·tprocess_thread_messages
-	:String·t<-·tscene_file_path
-	:bool·t<-·tunique_name_in_owner·tfalse
-	:Methods¶
-	:void·t<-·t_enter_tree ( ) virtual
-	:void·t<-·t_exit_tree ( ) virtual
-	:PackedStringArray·t<-·t_get_configuration_warnings ( ) virtual const
-	:void·t<-·t_input ( InputEvent event ) virtual
-	:void·t<-·t_physics_process ( float delta ) virtual
-	:void·t<-·t_process ( float delta ) virtual
-	:void·t<-·t_ready ( ) virtual
-	:void·t<-·t_shortcut_input ( InputEvent event ) virtual
-	:void·t<-·t_unhandled_input ( InputEvent event ) virtual
-	:void·t<-·t_unhandled_key_input ( InputEvent event ) virtual
-	:void·t<-·tadd_child ( Node node, bool force_readable_name=false, InternalMode internal=0 )
-	:void·t<-·tadd_sibling ( Node sibling, bool force_readable_name=false )
-	:void·t<-·tadd_to_group ( StringName group, bool persistent=false )
-	:Variant·t<-·tcall_deferred_thread_group ( StringName method, ... ) vararg
-	:Variant·t<-·tcall_thread_safe ( StringName method, ... ) vararg
-	:bool·t<-·tcan_process ( ) const
-	:Tween·t<-·tcreate_tween ( )
-	:Node·t<-·tduplicate ( int flags=15 ) const
-	:Node·t<-·tfind_child ( String pattern, bool recursive=true, bool owned=true ) const
-	:Node[]·t<-·tfind_children ( String pattern, String type="", bool recursive=true, bool owned=true ) const
-	:Node·t<-·tfind_parent ( String pattern ) const
-	:Node·t<-·tget_child ( int idx, bool include_internal=false ) const
-	:int·t<-·tget_child_count ( bool include_internal=false ) const
-	:Node[]·t<-·tget_children ( bool include_internal=false ) const
-	:StringName[]·t<-·tget_groups ( ) const
-	:int·t<-·tget_index ( bool include_internal=false ) const
-	:Window·t<-·tget_last_exclusive_window ( ) const
-	:int·t<-·tget_multiplayer_authority ( ) const
-	:Node·t<-·tget_node ( NodePath path ) const
-	:Array·t<-·tget_node_and_resource ( NodePath path )
-	:Node·t<-·tget_node_or_null ( NodePath path ) const
-	:Node·t<-·tget_parent ( ) const
-	:NodePath·t<-·tget_path ( ) const
-	:NodePath·t<-·tget_path_to ( Node node, bool use_unique_path=false ) const
-	:float·t<-·tget_physics_process_delta_time ( ) const
-	:float·t<-·tget_process_delta_time ( ) const
-	:bool·t<-·tget_scene_instance_load_placeholder ( ) const
-	:SceneTree·t<-·tget_tree ( ) const
-	:String·t<-·tget_tree_string ( )
-	:String·t<-·tget_tree_string_pretty ( )
-	:Viewport·t<-·tget_viewport ( ) const
-	:Window·t<-·tget_window ( ) const
-	:bool·t<-·thas_node ( NodePath path ) const
-	:bool·t<-·thas_node_and_resource ( NodePath path ) const
-	:bool·t<-·tis_ancestor_of ( Node node ) const
-	:bool·t<-·tis_displayed_folded ( ) const
-	:bool·t<-·tis_editable_instance ( Node node ) const
-	:bool·t<-·tis_greater_than ( Node node ) const
-	:bool·t<-·tis_in_group ( StringName group ) const
-	:bool·t<-·tis_inside_tree ( ) const
-	:bool·t<-·tis_multiplayer_authority ( ) const
-	:bool·t<-·tis_node_ready ( ) const
-	:bool·t<-·tis_physics_processing ( ) const
-	:bool·t<-·tis_physics_processing_internal ( ) const
-	:bool·t<-·tis_processing ( ) const
-	:bool·t<-·tis_processing_input ( ) const
-	:bool·t<-·tis_processing_internal ( ) const
-	:bool·t<-·tis_processing_shortcut_input ( ) const
-	:bool·t<-·tis_processing_unhandled_input ( ) const
-	:bool·t<-·tis_processing_unhandled_key_input ( ) const
-	:void·t<-·tmove_child ( Node child_node, int to_index )
-	:void·t<-·tnotify_deferred_thread_group ( int what )
-	:void·t<-·tnotify_thread_safe ( int what )
-	:void·t<-·tprint_orphan_nodes ( ) static
-	:void·t<-·tprint_tree ( )
-	:void·t<-·tprint_tree_pretty ( )
-	:void·t<-·tpropagate_call ( StringName method, Array args=[], bool parent_first=false )
-	:void·t<-·tpropagate_notification ( int what )
-	:void·t<-·tqueue_free ( )
-	:void·t<-·tremove_child ( Node node )
-	:void·t<-·tremove_from_group ( StringName group )
-	:void·t<-·treparent ( Node new_parent, bool keep_global_transform=true )
-	:void·t<-·treplace_by ( Node node, bool keep_groups=false )
-	:void·t<-·trequest_ready ( )
-	:Error·t<-·trpc ( StringName method, ... ) vararg
-	:void·t<-·trpc_config ( StringName method, Variant config )
-	:Error·t<-·trpc_id ( int peer_id, StringName method, ... ) vararg
-	:void·t<-·tset_deferred_thread_group ( StringName property, Variant value )
-	:void·t<-·tset_display_folded ( bool fold )
-	:void·t<-·tset_editable_instance ( Node node, bool is_editable )
-	:void·t<-·tset_multiplayer_authority ( int id, bool recursive=true )
-	:void·t<-·tset_physics_process ( bool enable )
-	:void·t<-·tset_physics_process_internal ( bool enable )
-	:void·t<-·tset_process ( bool enable )
-	:void·t<-·tset_process_input ( bool enable )
-	:void·t<-·tset_process_internal ( bool enable )
-	:void·t<-·tset_process_shortcut_input ( bool enable )
-	:void·t<-·tset_process_unhandled_input ( bool enable )
-	:void·t<-·tset_process_unhandled_key_input ( bool enable )
-	:void·t<-·tset_scene_instance_load_placeholder ( bool load_placeholder )
-	:void·t<-·tset_thread_safe ( StringName property, Variant value )
-	:void·t<-·tupdate_configuration_warnings ( )
-*NODOS - ANIMATION PLAYER
-	ª10035ª10032
-	:Este nodo se enlaza a otro nodo sobre el que puede animar
-	:cualquier propiedad de cualquier nodo.
-	:Podemos por ejemplo crear las animaciones de unos
-	:sprites.
-	:Tambien nos permite añadir ALERTAS en fotogramas
-	:de este modo podemos dar sonido de pasos cuando el
-	:sprite pise el suelo.
-	:Para añadir los fotogramas claves pincharemos en el icono
-	:de llave al lado de la propiedad del control padre.
-	:Un AnimationPlayer puede tener muchas animaciones distintas.
-	:EJ:
-	:Añadimos un nodo Sprite2d y dentro añadimos un AnimationPlayer.
-	:En la parte inferior nos mostrara el panel de animacion "aunque
-	:tengamos selecionado el sprite2D."
-	:Le damos una duracion y nos colocamos en el fps 0.
-	:Ahora en las propiedades del sprite2D arrastramos el sprite
-	:a la propiedad "Texture" y boton de llave.
-	:Y listo ya tenemos el primer fotograma clave.
-	:Selecionamos el sigueinte FK, arrastramos y llave.
-	:Asi todos fps de la animacion.
-	:-
-	:En el caso de ser todos los sprites en un solo grafico.
-	:En la seccion "Animation" del "Sprite2D" le indicamos el tamaño
-	:de cada recuadro y el "OffSet" para despalzar el inicio.
-	:Al selecionar el Fotograma0 y Clickar en las llaves de Frame.
-	:Selecionara la porcion y selecionara a siguiente porcion.
-	:-
-	:Tambien podemos indicar que animaciones funcionan el LOOP
-	:o ciclicas Activando la doble flecha en el panel del AnimationPlayer.
-	:-
-	:Por medio del GDScript podemos manejar la animacion, saber
-	:en que fotograma esta y demas.
-	:Estos EVENTOS o SEÑALES nos indican que animacion disparo
-	:esa SEÑAL.
-	:Tambien podemos crear una funcion y llamarla desde el
-	:ANIMATIONPLAYER en un FPS concreto.
-	:(En el ANIMPLY Añadimos una pista de CALL Metod Trak,
-	:Le indicamos donde esta la funcion, y
-	:Tambien podemos premarar Eventos o Alertas en fotogramas claves
-	:para que realize tareas especificas..
-*NODOS - ANIMATIONTREE
-	ª10033ª10030ª10027ª10029ª10031
-	:AnimationTree o Arblo de animaciones.
-	:Este nodo nos permite enlazar un AnimationPlayer con
-	:una maquina de estados.
-	:La maquina de estados nos permite de forma visual
-	:crear distintos estados mostrando distintas animaciones
-	:en cada estado y pasando de un estado a otro.
-	:-
-	:Una maquina de estados tiene que estar atada a un
-	:AnimationPlayer.
-	:-
-	:Primero necesitamos un "AnimatioPlayer" con distintas
-	:Animaciones.
-	:Imaginemos un Keko que partulla.
-	:1- Anda hasta X posicion
-	:2- Para y mira durante un rato
-	:3- Si encuentra algo dispara.
-	:4- Si no regresa a 1 y asi.
-	:-
-	:Tenemos que tener un AnimationPlayer con
-	:distintas animaciones.
-	:Le añadimos al sprite2D el nodo del AnimationTree
-	:Le decimos al AnimationTree que es de tipo
-	:AnimationNodeStateMachine.
-	:Le decimos que su AnimPlayer es el nuestro.
-	:Y por ultimo lo "Activamos" OJO: esto hace que el
-	:AnimationTree Tome el control del AnimationPlayer
-	:por lo que el codigo añadido para su control ya no
-	:funcionara.
-	:-
-	:Al selecionarlo nos mostrara un panel con cuadros y dos
-	:cuadros por defecto. "STAR" y "END"
-	:Con el boton derecho o con el boton "+" en la parte superior
-	:podemos añadir las animaciones del AnimationPlayer.
-	:-
-	:Ahora uniremos vinculos entre el "START" y las distintas
-	:animaciones de forma que salte de
-	:PJ: de Andar a mirar a disparar y regrese a andar.
-	:-
-	:Podemos indicar el tipo de transacion si queremos que:
-	:Sea Inmediata, Cuando termine una animacion o , Sincronizada.
-	:Para 2D se suele usar Inmediata o Cuando termine.
-	:Tambien podemos modificar los parametros de un vinculo
-	:selecionandolo.
-	:E incluso añadir scripts.
-	:-
-	:Podemos acceder y modificar las animaciones que se estan
-	:ejecutando accediendo al control.
-	:-
-	:extends Node2D
-	:@onready var V_PlayBack:AnimationNodeStateMachinePlayback=$Sprite2D/AnimationTree.get("parameters/playback");
-	:func _ready():
-	:_ V_PlayBack.travel("RUN");
-	:#end func _ready
-	:func F_GetAnimTr_GetPlayBack():
-	:_ var M_Node=V_PlayBack.get_current_node();
-	:_ if(M_Node=="Run_I"):print("RUN");
-	:_ elif(M_Node=="Hidle_L"):print("Hidle");
-	:_ elif(M_Node=="Step_L"):print("Step");
-	:_ elif(M_Node=="GunA_L"):print("Gun");
-	:_ else:
-	:_ # EndIf
-	:#End func F_GetStMach_GetEstado
-	:-
-	:@onready -> carga la variable cuando ya se ha ejecutado la
-	:burbuja de readys.
-*NODOS 2D
-	:Los NODOS es es componente basico de GODOT.
-	:El NODO tiene propiedades basicas a las que
-	:se le añaden otras propiedades para formar de
-	:este modo por capas otros nodos.
-	:Ejemplo:
-	:el NODO basico tiene
-	:PROCESS
-	:SCRIPT
-	:-
-	:El NODO 2D tiene lo del NODO mas
-	:TRANSFORM
-	:VISIBILITY
-	:ORDERING
-	:TEXTURE
-	:MATERIAL
-	:-
-	:El NODO 3D tiene lo del NODO mas
-	:TRANSFORM
-	:VISIBILITY
-	:-
-	:En GODOT tenemos 3 tipos de nodos.
-	:Node2D de tipo Canvas
-	:Control de tipo Canvas
-	:Node3D
-	:-
-	:Tambien tenemos otros nodos que sirven de ayudantes para
-	:controlar audio, multiplayer, conexion http y los que instalemos
-	:para propositos especificos.
-	:-
-	:LISTA DE NODOS Y RESUMEN.
-	:-
-	:- NODE2D
-	:Realiza operaciones basicas para colorar un objeto 2D un Sprite.
-	:- CAMERA2D
-	:Controla el marco de vision 2D para hacer scrool y aplicar algun filtro.
-	:-Sprite2D
-	:Representa un grafico o textura en pantalla con propiedades basicas.
-	:-AnimatedSprite2D
-	:Representa una secuencia de Sprite2D haciendo una animacion
-	:-CollisionShape2D
-	:Controla las colisiones de un objeto 2D, Tambien maneja las fisicas del objeto.
-	:Necesita estar en un contenedor.
-	:-StaticBody2D
-	:Agrupa en un cuerpo estatico otros nodos como un sprite2D y un CollisionShape2D
-	:Este "Contenedor" NO es mobible
-	:-AnimatableBody2D
-	:Agrupa en un cuerpo estatico otros nodos como un sprite2D y un CollisionShape2D
-	:Este "Contenedor" SI es mobible afectando las fisicas de los otros nodos.
-	:-RigidBody2D
-	:Es igual que StaticBody2D pero afecta y es afectado por otros nodos
-	:Tiene mas fisicas pudiendo no solo tener grabedad , tambien permite rotar y empujar.
-	:-CharacterBody2D
-	:Tambien es un contenedor pero tiene las funciones propias para
-	:controlar un personaje , acepta entrada del teclado y tiene las funciones
-	:para desplazar al personaje etc.
-	:-GrooveJoin2D
-	:Conecta dos nodos y solo deja  que se desplace uno al empujarlo en un eje.
-	:-DanpedSpringjoin2D
-	:Conecta dos nodos y les aplica fisicas de resorte,(Atados por cuerda o goma)
-	:-PinJoint
-	:Conecta dos nodos y permite que uno rote como puerta sobre el eje.
-	:-Area2D
-	:Intercepta que nodos estan o atrabiesan ese area."Caja de colision"
-	:-AudioListener2D
-	:Permite definir desde donde sale un sonido.
-	:-GPUParticles2D
-	:-CPUParticles2D
-	:Permiten generar y emitir particulas.
-	:-TileMap
-	:Genera una cuadricula para colocar mapas 2D "grill"
-	:Tiene erramientas propias para definir los sprites, animaciones etc.
-	:-CanvasModulate
-	:Permite configurar efectos en los mapas 2D, dando sombras o tiñendo
-	:el mapa.
-	:-Light2D
-	:Simula un punto de luz en el mundo 2D pudieno dar brillo ofuerza de
-	:color.
-	:-PointLight2D
-	:Simula un punto de luz, es necesario darte una textura para que
-	:sepa aplicar sombras de forma radial
-	:-DirectionalLight2D
-	:Simula un punto de luz, es necesario darte una textura para que
-	:sepa aplicar sombras de forma lineal
-	:-LightOccluder2D
-	:Es un bloque que poryecta sombras .
-	:-Line2D
-	:Permite añadir lineas vectoriales
-	:-Marker2D
-	:Es solo una marca 2D es un ayudante con una posicion y una rotacion.
-	:-MeshInstance2D
-	:Representa un objeto 3D en 2D
-	:-MultiMeshInstance2D
-	:Lo mismo que MeshInstance2D pero con muchas mayas.
-	:-NavigationRegion2D
-	:Permite definir un mapa para que personajes solo se desplacen
-	:por esa region
-	:-ParalaxBackGrouns
-	:-ParalaxLayer
-	:Definen un grafico para que sea la capa de fondo y se scroole
-	:segun se desplace la camra.
-	:-Path2D
-	:-PathFollow2D
-	:Definen unas lineas vectoriales para que luego otro nodo las recorra
-	:punto a punto, podemos definir las subdibisiones y demas.
-	:-Poligon 2D
-	:Permite crear un nodo con poligonos podemos deformar el poligono
-	:tanto como queramos.
-	:-RayCast2D
-	:Es una linea que se dispara cuando algun nodo colisiona con
-	:dicha linea.
-	:-ShapeCast2D
-	:Es un grupo de lineas que se dispara cuando un nodo
-	:colisiona con alguna de las lineas
-	:-RemoteTransform2D
-	:Es un nodo capaz de manipular las porpiedades de otro nodo.
-	:-Skeleton2D
-	:-PhysicalBone2D
-	:-Bone2D
-	:Esto se usa para hacer esqueletos en 2D Brazos, Piernas Cabeza
-	:y asi crear un muñeco animado.
-	:-VisibleOnScreenNotifier2D
-	:-VisibleOnScreenEnabled2D
-	:Son disparadores que indican si un determinado nodo esta visible
-	:en la pantalla, segun la camara.
-	:-CanvasGroup
-	:Permite agrupar distintas Canvas o texturas y trabajarlas como si
-	:fuesen un grupo con una sola colision y demas.
-	:-BackBufferCopy
-	:Permite copiar parte de la pantalla y crear una textura para
-	:usarla donde queramos.
-*NODOS 3D
-	:-Node3D
-	:Contiene las propiedades mas basicas de un nodo en 3D
-	:Seria como un pixel en 3D
-	:-Marker3D
-	:Es una marca en 3D se usa como ayudante.
-	:-VisualInstance3D
-	:Permite agrupar Marcacores.
-	:-GeometryInstance3D
-	:Permite agrupar geometria pudiendo modificar sus
-	:texturas, iluminaciones,lods y posprocesados.
-	:-MeshInstance3D
-	:Permite definir una maya o un poligono con sus
-	:propiedades.
-	:-MultiMeshInstance3D
-	:Permite agrumar muchas mayas como pelo o cesped.
-	:Es complejo y tiene su editor.
-	:-Label3D
-	:Permite definir un texto en 3D.
-	:-Decal
-	:Permite poryectar una textura sobre un objeto
-	:a modo de calcomania.
-	:-AnimatedSprite3D
-	:-Sprite3D
-	:Permite añadir Sprites o animaciones de sprites en
-	:el mundo 3D
-	:-WorldEnvironment
-	:Permite definir y configurar la iluminacion del entorno
-	:Tambien puede aplicar efectos y filtros.
-	:-FogVolume
-	:Permite aplicar niebla a un espacio.
-	:-GPUParticles3D
-	:Es un generador de particulas por GPU
-	:Esta muy relacionado con el WorldEnvironment
-	:-GPUParticlesAttractor3D
-	:-GPUParticlesCollision3D
-	:Junto con las particulas estos nodos son un
-	:bolumen colisionador y Atractor (atrae) las particulas.
-	:-Light3D
-	:Es un configurador de las propiedades de la luz.
-	:No es una luz en si misma.
-	:-OmniLight3D
-	:Es un emisor de luz tipo esfera.
-	:-SpotLight3D
-	:Es un emisor de luz tipo cono.
-	:-DirectionalLight3D
-	:Es un emisor de luz tipo sol. No ajusta una posicon
-	:Es mas bien la luz y sombras en posicion del sol .
-	:-CSGShape3D
-	:Son poligonos que deforman otros poligonos aplicando
-	:operaciones booleanas para su deformacion,
-	:Union, Sustracion y diferencia.
-	:Son muy practicas para trabajar colisiones.
-	:-SoftBody3D
-	:o Cuerpo blando permite simular telas.
-	:-CollisionObject3D
-	:Trabaja junto con otros nodos y permite definir o
-	:actuar cuando otro nodo colisione con este
-	:-PhisicsBody3D
-	:Trabaja junto con otros nodos y permite dotar a
-	:sus hijos de propiedades fisicas pudiendo limitar
-	:rotaciones o dar grabedad etc.
-	:-CollisionPoligon3D
-	:-CollisionShape3D
-	:Trabaja junto con otro nodo y permite detectar
-	:colisiones sobre un poligono dado o sobre una
-	:maya dada.
-	:-StaticBody3D
-	:Permite crear cuerpos estaticos que no se podran
-	:mover ni seran afectados por otros objetos.
-	:(Se muede mover pero no afectara las fisicas de otros objetos)
-	:-AnimatableBody3D
-	:Este objeto si se puede mover y afecta a las fisicas
-	:de otros objetos.
-	:-RigidBody3D
-	:Estos objetos se afectan y son afectados por otros objetos
-	:y tienen fisicas.
-	:-CharacterBody3D
-	:Es el objeto creado para ser controlado y tiene ya las
-	:fisicas propias de un personaje.
-	:-Area3D
-	:Detecta cuando un objeto esta dentro o sale
-	:y Permite definir areas y zonas con sonidos y efectos especiales
-	:(debajo del agua, una cueba etc)
-	:-Camera3D
-	:Permite representar distintos puntos de vista en el espacio 3D
-	:-VehicleWheel3D
-	:-VehicleBody3D
-	:Al igual que el CharacterBody3D tiene las fisicas propieas para
-	:simular un coche.
-	:-Join3D
-	:Permite hacer uniones de objetos
-	:-HingeJoin3D
-	:Permite simular las fisicas de una bisagra.
-	:-ConeTwistJoin3D
-	:Permite simular las fisicas de un pivote.
-	:-SliderJoin3D
-	:Permite el desplazamiento de un objeto sobre otro en un
-	:solo eje como un piston
-	:-PinJoin3D
-	:Permite unir dos objetos dando fisica a uno sobre otro como
-	:si estubiesen atados por una cuerda.
-	:-Generic6DOFjoin3D
-	:Como todos los anteriores permite definir todos los
-	:parametros de union y flexibilidad de un objeto sobre otro.
-	:-Skeleton3D
-	:Es un esqueleto, maneja uniones complejas entre muchos
-	:objetos y sus relaciones con otros.
-	:-BoneAttachment3D
-	:Permite atar otro objeto a un hueso de un skeleto
-	:-RootMotionView
-	:Es solo un ayudante que muestra una rejilla.
-	:-VoxelGI
-	:Es el mas pesado y calcula todo a tiempo real, una vez
-	:creada la escena
-	:-LightMapProbe
-	:-LightMapGI
-	:-
-	:-ReflectionProbe
-	:Captura los objetos a su alrededor y genera un mapa
-	:de feflejos sobre el objeto simulando un espejo.
-	:-ImporterMeshInstance3D
-	:Aun no se sabe que hace.
-	:-VisibleOnScreenNotifier3D
-	:-VisibleOnScreenEnabled3D
-	:Detecta cuando un nodo es visible por la camara en un
-	:area dada.
-	:-GridMap
-	:Genera una rejilla en 3D para colocar Meshes y construir
-	:un mapa.
-	:-AudioListener3D
-	:Le indica al juego cual sera el punto de escucha
-	:del sonido . por defecto es la camara.
-	:-AudioStreamPlayer3D
-	:Proyecta un sonido o musica en un punto 3D
-	:-NavigationRegion3D
-	:Es un objeto que genera un mapa de navegacion para que
-	:la ia sepa por donde moverse.
-	:-OccluderInstance3D
-	:Permite ocultar objetos que no son visibles por estar ocultos
-	:detras de otros.
-	:-Path3D
-	:-PathFollow3D
-	:Permite crear una linea dividida y recorrera en un tiempo.
-	:-RayCast3D
-	:Traza una linea y captura que objetos cortan esa linea.
-	:-ShapeCast3D
-	:Traza un rombo donde caputra que objetos entran y salen.
-	:-SpringArm3D
-	:Es un RayCast3D pero ajusta su tamaño si encuentra una
-	:colision de modo que el largo del brazo es el maximo que
-	:pueda sin colisionar.
-	:-RemoteTransform3D
-	:Permite copiar las transformaciones de un nodo a otro nodo.
-	:-XROrigin3D
-	:-XRAnchor3D
-	:-XRController3D
-	:-XRNode3D
-	:Se usan para controlar juegos VR
-*-NODOS CONTROL
-	:-Container
-	:Contenedor Basico (panel)
-	:-TextureRect
-	:Una textura rectangular, La extura se ajusta en tamaño
-	:-VBOXContainer
-	:-BoxContainer
-	:-HBoxContainer
-	:Cajas columnas y filas automaticas.
-	:-CenterContainer
-	:Ajusta el contenido en el centro conservando el tamaño
-	:-FlowContainer
-	:-HFlowContainer
-	:-VFlowContainer
-	:Ajusta el contenido segun el tamaño de los objetos.
-	:Si es muy ancho lo salta de linea y si entra en la
-	:linea anterior los sube.
-	:-GridContainer
-	:Ajusta los objetos contenidos segun una configuracion
-	:de columnas. 3Columnas X XFilas.
-	:-SplitContainer
-	:-HSplitContainer
-	:-VSplitContainer
-	:Es una barra que permite ajustar el tamaño de los paneles
-	:de los lados .
-	:-MarginContainer
-	:Es un panel que permite definir un espaciado.
-	:-PanelContainer
-	:Es el panel mas basico.
-	:-ScrollContainer
-	:Es un panel que permite mostrar mas de lo que se muestra
-	:mostrando barras de scrool.
-	:-TabContainer
-	:Permite mostrar distintos paneles segun el boton pinchado
-	:(Un Tab Basico)
-	:-Label
-	:Es un texto simple.
-	:-RichTextLabel
-	:Permite mostrar texto enriquezido con negritas subrallados.
-	:-ColorRect
-	:Un cuadro de un color
-	:-TextureRect
-	:Es un grafico dibujo o textura
-	:-VideoStreamPlayer
-	:Permite mostrar un video o animacion en un recuadro.
-	:-HSeparator
-	:-VSeparator
-	:Es una linea de separacion entre dos controles
-	:-Panel
-	:Es un panel contenedor que se puede poner en cualquier sitio
-	:-NinePathRect
-	:Es un panel que permite configurar texturas para esquinas,
-	:bordes y fondo pudiendo reescalarlo y conservando los
-	:bordes bien.
-	:-Button
-	:-BaseButton
-	:-TextureButton
-	:Un control con texto que permite acciones de entrada como
-	:click
-	:-LinkButton
-	:Es un texto al estilo de los link del Internet Explorer
-	:que lanza el navegador web a una direcion
-	:-ChekBox
-	:-CheckButton
-	:Permite y mantiene el estado de un chek On Off
-	:-MenuButton
-	:Al pulsarlo mostrara un menu desplegable para
-	:que se pueda decidir entre una u otra opcion
-	:-OptionButton
-	:Tambien muestra una lista pero en este caso
-	:permite chekear una opcion que pasa a ser la opcion
-	:selecionada. (La opcion Selecionada)
-	:-ColorPickerButton
-	:Boton que lanza un panel de selecion de colores y lo
-	:establece.
-	:-LineEdit
-	:Es un cuadro donde introducir un texto. (TextBox)
-	:-TextEdit
-	:-CodeEdit
-	:Es un cuadro de texto con o sin codigo donde se
-	:edita gcode
-	:-Range
-	:Es una barra donde se define un valor al desplazarla.
-	:-ProgresBar
-	:-TextureProgresBarr
-	:Mostrara una barra iluminada X% o un grafico X%
-	:-SpinBox
-	:Es un cuadro de texto con dos flechas para subir o bajar el valor
-	:-HScrollBar
-	:-VScrollBar
-	:Barras de Scroll para decidir un valor.Muestra solo un punto
-	:-HSlider
-	:-VSlider
-	:Igual que la HScrollBar pero mostranod el rango de 0 a X
-	:-ItemList
-	:Muestra una lista de elementos
-	:-MenuBar
-	:Configura una barra de menus con submenus
-	:-TabBar
-	:Muestra una fila de botones o barra de Tabs.
-	:-ReferenceRect
-	:Permite separar en Recuadros y poner notas a las cosas.
-	:-Tree
-	:Permite generar un arbol de controles .
-	:-GraphNode
-	:-GraphEdit
-	:Pendienes de revision
-	:-TouchScreenButton
-	:Es un boton que acepta touch de la pantalla tactil.
 *NOTIFICACIONES
 	:Existe un evento que se dispara cuando ocurre algo y podemos
 	:capturar que ocurre por medio de constantes.

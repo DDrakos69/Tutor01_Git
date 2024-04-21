@@ -104,7 +104,7 @@ MDinamico:bool,MSubTipo:int,MDesc:String)->Cls_Actor:
 # Creamos un Objeto , le asignamos un ID unico y retornamos la clase
 # Generada y lo añadimos a la tabla
 func F_ADD_ByText(MNodoName:String,MTipo:Cls_Actor.eTipos,
-MDinamico:bool,MSubTipo:int,MDesc:String)->Cls_Actor:
+MEstatico:bool,MSubTipo:int,MDesc:String)->Cls_Actor:
 	var M_LogOn:bool=true;
 	var M_C:Cls_Actor;
 	if(MNodoName.length()>0):
@@ -115,8 +115,7 @@ MDinamico:bool,MSubTipo:int,MDesc:String)->Cls_Actor:
 			M_C._BasID=F_ID_Get();
 			M_C._BasNodoName=MNodoName;
 			M_C.V_BasTipo=MTipo;
-			M_C.V_BasDinamico=MDinamico;
-			M_C.V_BasSubTipo=MSubTipo;
+			M_C.V_BasOnOffEstatico=MEstatico;
 			M_C.V_BasDesc=MDesc;
 			V_Lista.append(M_C);
 			
