@@ -1,0 +1,142 @@
+[gd_resource type="Shader" format=3 uid="uid://ddi348xscafdi"]
+
+[resource]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_always,cull_back,diffuse_burley,specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D V_TxAlbedoSamp2D : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_emission : source_color, hint_default_black,filter_linear_mipmap,repeat_enable;
+uniform vec4 emission : source_color;
+uniform float emission_energy;
+uniform sampler2D texture_refraction : filter_linear_mipmap,repeat_enable;
+uniform float refraction : hint_range(-16,16);
+uniform vec4 refraction_texture_channel;
+uniform sampler2D V_ScrnTxSamp2D : hint_screen_texture, repeat_disable, filter_linear_mipmap;uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+//uniform float V_Amplitude : hint_range(1.0, 13.0) = 0.3;  // Amplitud de las olas
+//uniform float frequency : hint_range(1.0, 1.0) = 4.0; // Frecuencia de las olas
+//uniform float time_scale : hint_range(0.1, 5.0) = 4.0; // Escala de tiempo para la animación
+//
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy*(TIME*0.01);
+	
+	// Obtener la posición original del vértice
+    //vec3 M_VtxPosV3 = VERTEX;
+    //// Calcular el desplazamiento vertical basado en el tiempo
+    //float M_DispX = V_Amplitude * 
+	//sin(TIME * time_scale + M_VtxPosV3.x * frequency);    
+	//
+    //M_VtxPosV3.y += M_DispX;// Desplazamiento del vértice    
+	//M_VtxPosV3.x += M_DispX;// Desplazamiento del vértice    
+    ////VERTEX = vertex_position;// Establecer la nueva posición del vértice
+	//
+	
+}
+
+
+
+
+
+
+void fragment() {
+	
+	
+	vec2 M_UvBaseV2 = UV;
+	
+	vec4 M_AlbedoTxV4 = texture(V_TxAlbedoSamp2D,M_UvBaseV2);
+	ALBEDO = albedo.rgb * M_AlbedoTxV4.rgb;
+	
+	float metallic_tex = 
+	dot(texture(texture_metallic,M_UvBaseV2),
+	metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = 
+	dot(texture(texture_roughness,M_UvBaseV2),
+	roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	
+	SPECULAR = specular;
+	
+	NORMAL_MAP = texture(texture_normal,M_UvBaseV2).rgb;
+	
+	NORMAL_MAP_DEPTH = normal_scale;
+	
+	vec3 emission_tex = texture(texture_emission,M_UvBaseV2).rgb;
+	EMISSION = (emission.rgb+emission_tex)*emission_energy;
+	
+	vec3 unpacked_normal = NORMAL_MAP;
+	unpacked_normal.xy = unpacked_normal.xy * 2.0 - 1.0;
+	unpacked_normal.z = sqrt(max(0.0, 1.0 - dot(unpacked_normal.xy, unpacked_normal.xy)));
+	
+	vec3 M_V3RefNormal = normalize( mix(NORMAL,TANGENT * unpacked_normal.x + BINORMAL * unpacked_normal.y + NORMAL * unpacked_normal.z,NORMAL_MAP_DEPTH) );
+	vec2 M_V2RefOfs = 
+	SCREEN_UV - M_V3RefNormal.xy * 
+	dot(texture(texture_refraction,M_UvBaseV2),refraction_texture_channel) * refraction;
+	float ref_amount = 1.0 - (albedo.a * M_AlbedoTxV4.a);
+	
+	EMISSION += textureLod(V_ScrnTxSamp2D,M_V2RefOfs,ROUGHNESS * 8.0).rgb * ref_amount * EXPOSURE;
+	ALBEDO *= 1.0 - ref_amount;
+	ALPHA = 1.0;
+	
+	
+	
+	
+	// Obtener las coordenadas de textura originales
+    //vec2 uv = FRAGCOORD.xy / SCREEN_PIXEL_SIZE.xy;
+
+    // Calcular el desplazamiento horizontal y vertical basado en el tiempo y las coordenadas UV
+    //float displacementX = V_Amplitude * sin(TIME * time_scale + M_UvBaseV2.x * frequency);
+    //float displacementY = V_Amplitude * cos(TIME * time_scale + M_UvBaseV2.y * frequency);
+
+    // Aplicar el desplazamiento a las coordenadas UV
+    //M_UvBaseV2.x += displacementX;
+    //M_UvBaseV2.y += displacementY;
+
+    // Obtener el color de la textura original utilizando las nuevas coordenadas UV distorsionadas
+    vec4 M_V4TexColor = texture(V_TxAlbedoSamp2D,M_UvBaseV2);
+	
+	// Tope olas Blancas
+    //float M_Height = VERTEX.y;// Obtener la altura
+    //float M_MaxHeight = V_Amplitude+3.0;//umbral altura máxima	
+    //float M_Mix = clamp((M_Height / M_MaxHeight), 0.0, 1.0);// Calcular factor de mezcla altura	  
+    //vec3 M_BasClrV3d = vec3(0.0, 0.1, 1.0);// Color base para la superficie del agua (azul)
+    //vec3 M_FinalClrV3D = mix(M_BasClrV3d, vec3(1.0), M_Mix);// Color final mezcla blanco según la altura	
+    ////COLOR = vec4(final_color, 1.0);// Asignar el color resultante al pixel renderizado
+	
+	
+    // Asignar el color resultante al pixel renderizado
+    //COLOR = texture_color;
+	// Modifico la textura, usando LOD
+	
+	//ALBEDO +=
+	//M_FinalClrV3D.rgb +
+	//texture(V_ScrnTxSamp2D,M_V2RefOfs).rgb * ref_amount * EXPOSURE;// * final_color;
+	//
+	
+	ALBEDO +=
+	texture(V_ScrnTxSamp2D,M_V2RefOfs).rgb * ref_amount * EXPOSURE;// * final_color;
+	
+	//ALBEDO += M_FinalClrV3D.rgb;
+	//texture(V_ScrnTxSamp2D,M_V2RefOfs).rgb * ref_amount * EXPOSURE;// * final_color;
+	
+}
+"
