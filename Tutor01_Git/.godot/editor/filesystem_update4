@@ -1,3 +1,4 @@
-res://CONTROLER_3D/Game_N3D.tscn
-res://BLENDER/Puerta.tscn
-res://BLENDER/Puerta.gd
+res://SCN_Agua/Scn_Water.tscn
+res://SCN_Agua/Water.gdshader
+res://SCN_Agua/Msh_Water.tscn
+res://SCN_Agua/Water_V1.gdshader

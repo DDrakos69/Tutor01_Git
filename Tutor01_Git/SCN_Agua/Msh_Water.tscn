@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://b30xo1gldnc7u"]
+
+[ext_resource type="Shader" path="res://SCN_Agua/Water_V1.gdshader" id="1_rqukr"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_frkda"]
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_itjh6"]
+noise_type = 3
+seed = 1
+fractal_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d3u46"]
+seamless = true
+seamless_blend_skirt = 0.163
+bump_strength = 15.3
+normalize = false
+noise = SubResource("FastNoiseLite_itjh6")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kmadq"]
+noise_type = 3
+frequency = 0.02
+fractal_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7rdg6"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_kmadq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dna8a"]
+noise_type = 3
+fractal_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wvdn6"]
+seamless = true
+seamless_blend_skirt = 0.11
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_dna8a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q50b2"]
+render_priority = 0
+shader = ExtResource("1_rqukr")
+shader_parameter/V_BaseColor = Color(0, 0.231373, 0.4, 1)
+shader_parameter/V_Metalic = 0.718
+shader_parameter/V_Roughness = 0.16
+shader_parameter/V_Direction1 = Vector2(2, 0)
+shader_parameter/V_Direction2 = Vector2(0, 1)
+shader_parameter/V_TimeScale = 0.055
+shader_parameter/V_FresnelColor = Color(0.988235, 0.768627, 0.572549, 1)
+shader_parameter/V_FresnelForze = 8.3
+shader_parameter/V_OlasRuidoEscala = 1.95
+shader_parameter/V_OlasAlturaEscala = 0.195
+shader_parameter/V_ProfColor = Color(0, 0.160784, 0.996078, 1)
+shader_parameter/V_ProfColorSuperficie = Color(0.54902, 0.588235, 1, 1)
+shader_parameter/V_ProfAtenuacion = 2.0
+shader_parameter/V_ProfFinal = -0.75
+shader_parameter/V_BordeEscala = 0.1
+shader_parameter/V_BordeCerca = 1.0
+shader_parameter/V_BordeLejos = 500.0
+shader_parameter/V_BordeColor = Color(1, 1, 1, 1)
+shader_parameter/V_TextNormal1 = SubResource("NoiseTexture2D_7rdg6")
+shader_parameter/V_TextNormal2 = SubResource("NoiseTexture2D_wvdn6")
+shader_parameter/V_OlasText = SubResource("NoiseTexture2D_d3u46")
+
+[node name="Msh_Water" type="MeshInstance3D"]
+transform = Transform3D(0.990304, 0, -0.138914, 0, 1, 0, 0.138914, 0, 0.990304, -1.02483, -0.349134, 0.426528)
+mesh = SubResource("QuadMesh_frkda")
+surface_material_override/0 = SubResource("ShaderMaterial_q50b2")

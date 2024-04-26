@@ -1,5 +1,5 @@
 {WinHelper V2.00 by FNX A1 2024}
-{WIN_W}00688
+{WIN_W}00675
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00488
@@ -765,6 +765,610 @@
 		:-
 		:Es aconsejable agrupar todos los objetos Pikeables
 		:en una capa para poder trabajarlos bloquearlos y demas.
+*09-EJ
+	*Botones Dinamicos y Eventos Dinamicos
+		:En este ejemplo creo 4 botones dinamicos y
+		:enlazo su evento Button_up a una funcion pasandole
+		:un valor.
+		:-
+		:Callable(Control,NomFuncion)
+		:Crea un objeto que indica una funcion en cualquier
+		:Control.Script y el el nombre de esa funcion.
+		:-
+		:Connect(NomEvento,Callable)
+		:Conecta un evento con un callable.
+		:Dice la funcion y donde esta el manejador
+		:de ese evento.
+		:-
+		:Otro modo mas simple y que permite mandar variables
+		:seria:
+		:NomControl.NomEvent.connect(NomFuncion.bind(Valor));
+		:No tiene mucho sentido bind = conectar pero...
+		:Conecta el NomEvent del NomControl con NomFuncion
+		:y le manda Valor como parametro.
+		:-
+		:func _ready():
+		:·tvar Mq:int=0;
+		:·twhile(Mq<4):
+		:·t·tvar MBt=Button.new();
+		:·t·tMBt.name="BT_ResX"+str(Mq);
+		:·t·tMBt.set_size(Vector2(50,30));
+		:·t·tMBt.text=str(((Mq*200)+600));
+		:·t·tself.add_child(MBt);
+		:·t·tMBt.set_position(Vector2((100+(Mq*50)),0));
+		:·t·tvar MCall=Callable(self,"F_Evt_MyButton_Up");
+		:·t·t#MBt.connect("button_up",MCall);
+		:·t·tMBt.button_down.connect(F_Evt_MyButton_Up.bind(MBt));
+		:·t·tV_ResX.append(MBt);#Añado Boton a mi tabla.
+		:·t·tMq+=1;
+		:·t#End While Mq
+		:·tprint("Botones:"+str(V_ResX.size()));
+		:·tpass # Replace with function body.
+		:#End Func _ready
+		:func F_Evt_MyButton_Up(VAL):
+		:·tif (VAL is Button):
+		:·t·tprint("MyBtPress"+str(VAL.name));
+		:·telse:
+		:·t·tprint("MyBtPress"+str(VAL));
+		:#End Func F_Evt_MyButton_Up
+	*Crear Tabla de controles dinamicos
+		:Tras PreCargar la escena madre y
+		:obtener el control de esa escena.
+		:Rellenamos una tabla con colnes de ese boton
+		:y los añadimos a la escena actual.
+		:-EJ:
+		:F_Tron("PRE-LOAD");
+		:_ var M_SCN_REPO=preload("res://SCN_REPO/SCN_REPO.tscn").instantiate();
+		:_ F_Tron("PRE-LOAD.. OK");
+		:_
+		:_ F_Tron("CLON BUTTON");
+		:_ var M_BtClon=M_SCN_REPO.get_node("REPO_BTBase");
+		:_ F_Tron("CLON BUTTON.. OK");
+		:_
+		:_ F_Tron("Botones ADD2TABLE");
+		:_ V_TBt.clear();
+		:_ var M_q:int=0;
+		:_ var M_Pos:Vector2;
+		:_ var M_Size:Vector2;
+		:_ while (M_q<20):
+		:_ _ var M_Bt:Button=M_BtClon.duplicate();# Button.new();
+		:_ _ M_Bt.name="BT"+str(M_q);
+		:_ _ M_Bt.text=M_Bt.name;
+		:_ _ V_TBt.append(M_Bt);
+		:_ _ M_q+=1;
+		:_ #EndWhile
+		:_ F_Tron("Botones ADD2TABLE.. OK");
+		:_
+		:_ F_Tron("Botones CFG + ADD");
+		:_ M_q=0;M_Size.x=40;M_Size.y=20;
+		:_ while (M_q<20):
+		:_ _ var M_Bt:Button=V_TBt[M_q];
+		:_ _ self.add_child(M_Bt);
+		:_ _ M_Bt.set_size(M_Size,false);
+		:_ _ M_Bt.visible=true;
+		:_ _ M_Pos.x=M_q*50;
+		:_ _ M_Bt.set_position(M_Pos);
+		:_ _ M_q+=1;
+		:_ #EndWhile
+		:_ F_Tron("Botones CFG + ADD.. OK");
+		:#End Func _ready
+	*Crear un Boton dinamico con evento
+		:Con este codigo ejecutado en el nodo padre creamos
+		:un nodo button y le añadimos un evento al terminar el
+		:_ready();
+		:-
+		:extends Node
+		:func _ready():
+		:_ # Crear el botón
+		:_ var boton = Button.new()
+		:_ boton.text = "Mostrar Alerta"
+		:_ boton.rect_min_size = Vector2(200, 50)
+		:_ add_child(boton)
+		:_ # Conectar la señal "pressed" del botón a la función mostrar_alerta
+		:_ boton.connect("pressed", self, "mostrar_alerta")
+		:_
+		:func mostrar_alerta():
+		:_ # Crear la alerta (un cuadro de diálogo)
+		:_ var alerta = AcceptDialog.new()
+		:_ alerta.dialog_text = "¡Esto es una alerta personalizada!"
+		:_ alerta.add_button("Aceptar", true) # Botón para cerrar la alerta
+		:-
+		:_ # Agregar la alerta como un hijo del nodo principal
+		:_ add_child(alerta)
+		:_ alerta.popup_centered() # Mostrar la alerta en el centro de la pantalla
+	*Enlazar con Blender
+		:El godot se puede enlazar con proyectos del Blender.
+		:Para ello tenemos que indicarle dos cosas.
+		:1- Indicarle donde tenemos instalado el blender.
+		:2- Decirle que use la importacion del Blender.
+		:-
+		:1- En Editor/Editor Settings
+		:- Buscamos Blender
+		:- En FileSystem/Import definimos la ruta donde
+		:- tenemos instalado el Blender.
+		:-
+		:2 - En Project/ProjectSeting
+		:- Activamos la Ver paramateros avanzados (Advanced)
+		:- Buscamos "Blender"
+		:- En FileSystem/Import lo ponemos como Enabled.
+		:-
+		:- Ahora Creamos una carpeta en el proyecto para
+		:- nuestros Blenders en el GODOT.
+		:- Guardamos nuestro Blend en esa carpeta.
+		:- Ahora nos permite añadir los objetos del Blend
+		:- al proyecto.
+		:-
+	*Importar objetos de Blender
+		:Teniendo el Blender el modelo con todos los objetos asociados
+		:a la armadura y las animaciones .
+		:Lo selecionamos todo .
+		:Exportamos a GLTF2.
+		:En las ultimas versiones de blender vienen como addons por
+		:lo que para exportar se tiene que añadir el addon GLTF2.
+		:Al exportar en blender selecionamos.
+		:-Selected Objects
+		:-+Y Up
+		:-Apply Modifiers.
+		:-UVs
+		:-Normals
+		:-VertexColors.
+		:-Material = Exports.
+		:-Images = Atumatic.
+		:-
+		:Guardamos el fichero en la carpeta configurada en el GODOT
+		:para las importaciones.
+		:-
+		:Ahora en GODOT
+		:-
+		:Creamos una nueva scena.
+		:Añadimos una Camera
+		:Tenemos que tener configurado una carpeta para los
+		:resources de blender donde pusimos el GLB
+		:Al abrir el GLB importado nos dira si que remos una escena heredada
+		:le decimos que si y la guardamos.
+		:La estrucutra sera.
+		:ESCENA
+		:_ _ AnimationPlayer
+		:_ _ Armature : Node3D
+		:_ _ _ Skeleton3D : Skeleton3D
+		:_ _ _ _ Mesh1 :MeshInstance3D
+		:_ _ _ _ MeshX :MeshInstance3D
+	*Instanciar Controles predefinidos
+		:Podemos crear controles predefinidos y preconfigurados.
+		:Para ello tenemos que añadirlos a una nueva escena.
+		:Los creamos y los configuramos.
+		:PreCargamos la escena.
+		:Buscamos el control en esa escena .
+		:Reasignamos el padre a donde queramos.
+		:EJ:
+		:func _ready():
+		:_ F_Tron("_ready");
+		:_ #Modifico el texto de un label creado
+		:_ var MLb:Label=$Lb_BtPulsado;
+		:_ MLb.text="Hola";
+		:_
+		:_ #- Precarga de forma rapida una escena.
+		:_ F_Tron("PRE-LOAD");
+		:_ var M_SCN_REPO=preload("res://SCN_REPO/SCN_REPO.tscn").instantiate();
+		:_ F_Tron("PRE-LOAD.. OK");
+		:_
+		:_ #- Carga todo lo necesario de la escena.
+		:_ #var M_SCN_REPO=load("res://SCN_REPO/SCN_REPO.tscn");
+		:_ #print("LOAD");
+		:_
+		:_ #-- Añadimos la escena instanciada a la escena actual.
+		:_ #get_tree().root.add_child(M_SCN_REPO)
+		:_ #F_Tron("ADDChild");
+		:_ #self.add_child(M_SCN_REPO);
+		:_ #F_Tron("ADDChild.. OK");
+		:_
+		:_ F_Tron("CLON BUTTON");
+		:_ var M_BtClon=M_SCN_REPO.get_node("REPO_BTBase");
+		:_ F_Tron("CLON BUTTON.. OK");
+		:_
+		:_ F_Tron("CLON BUTTON Instance");
+		:_ M_BtClon.reparent(self);
+		:_ #self.add_child(M_BtClon);
+		:_ F_Tron("CLON BUTTON Instance .. OK");
+		:_
+	*Libreria de Animaciones
+		ª10154ª10153ª10152ª10151ª10150ª10149ª10148ª10147ª10146ª10145ª10144ª10143ª10142ª10141ª10140ª10139ª10138ª10137ª10155ª10156ª10157ª10158
+		:https://www.youtube.com/watch?v=xGHgA5oftxY
+		:- -
+		:Nos descargamos el zip del video y lo instalamos en el blender en
+		:la seccion addons.
+		:En un proyecto del blender nuevo borramos todo.
+		:En el addom que aparece en la barra derecha pinchamos en
+		:"insert root", y en "animation files/soure" selecionamos la carpeta
+		:con las animaciones.
+		:Presionamos en "Inport Animations" del addon y nos traera todos los
+		:FBX de la carpeta.
+		:(Podemos aplicar el filtro de nombres de mas a bajo)
+		:Borramos en el OUTLINER del blender todas las ARMATURES  menos
+		:la primera que ya tienen todas las ANIMACIONES
+		:Entramos en la pestaña de "ANIMACIOENS"
+		:Modificamos el panel inferior a "Dope Shet" y le decimos que edite
+		:el "Action Editor"
+		:Ahora cuando ya estan todas bien (Aplicando o no el filtro de renombre)
+		:Exportamos la armadura a formato ".glb"
+		:Ahora en GODOT colocamos los .GLB a una carpeta y en la pestaña
+		:superior en IMPORT selecionamos que queremos importar una
+		:ANIMATION LIBRERY y le damos a REIMPORT
+		:Es posible que pida o tengamos que guardar y reiniciar GODOT
+		:segun la version.
+		:- -
+		:Reentramos al GODOT y pikamos dos veces sobre el fichero importado.
+		:Nos mostrara la lista de animacions pero tendremos que decirle
+		:el tipo de esqueleto ya que no lo importa.
+		:Selecionamos el ESQUELETO y en la derecha creamos un nuevo
+		:BONEMAP de tipo "SkeletoProfileHunamoid" y REIMPORTAMOS
+		:- -
+		:Tenemos que tener tambien en GLB las armaduras con los huesos y demas
+		:pero sin animaciones .
+		:NT: Para exportarla tenemos que selecionar todo incluso lo de dentro del la
+		:armadura, si no solo exportara la estructura.
+		:Ahora en GODOT para el KEKO le pikamos dos veces y le decimos al igual
+		:que el tipo de esqueleto es humanoide y REIMPORTAMOS
+		:Luego tenemos que decirle que cree una escena basada en ese KEKO
+		:por medio del menu en el GLB del KEKO "New Inherited Escene"
+		:- -
+		:Por ultimo al crear el objeto ESCENA para el KEKO añade una control
+		:ANIMATION PLAYER , si no ha cogido por defecto la biblioteca de
+		:animaciones tendremos que cerar una y asociarla a la ANIMACIONES que
+		:hemos creado antes .
+		:- -
+		:NT: El renombrar huesos y animaciones del final
+		:Mejor hacerlo cuando tengas ya todas las animaciones
+		:luego da problemas.
+		:- -
+		:Godot tiene la posibilidad de crear una libreria de
+		:animaciones para , si nuestras armaduras tiene
+		:los nombres de los huesos y los grupos de
+		:vertices iguales , se puedan asignar facilmente.
+		:- -
+		:Para ello lo primero es depurarlas en blender.
+		:Podemos obtenerlas desde la web de mixamo.
+		:Pero siempre que los nombres de los huesos sean
+		:iguales podemos tomar un esqueleto y animarlo
+		:nosotros mismos.
+		:- -
+		:Obtenemos desde mixamo las animaciones en .fbx,
+		:Las importamos a blender y las depuramos y renombramos.
+		:- -
+		:Por defecto creara un esqueleto con cada animacion.
+		:Podemos selecionar nuestro esqueleto y en el
+		:"NoLinealAnimation" asignarla a nuestro esqueleto de
+		:ese modo podremos borrar el esqueleto importado y
+		:la animacion no se perdera.
+		:- -
+		:Cuando la importemos recomiendo poner al final
+		:del nombre de la animacion la biblioteca de donde
+		:salio ya que podemos tener distintos Run o Walking.
+		:- -
+		:Ahora que ya tenemos un monton de esqueletos cada
+		:uno con una animacion .
+		:Selecionamos NUESTRO esqueleto y le asignamos
+		:cada animacion de cada esqueleto importado.
+		:Para lo cual,
+		:Selecionamos nuestro esqueleto.
+		:En la ventana de "Action Editor" buscamos la animacion.
+		:NT: Si pusimos la libreria podemos filtrar.
+		:y pulsamos en el boton "PushDown" de ese modo
+		:Aladira a la lista de animaciones de nuestro esqueleto
+		:esa animacion.
+		:- -
+		:Ahora que ya tenemos todas las animaciones asociadas
+		:a nuestro esqueleto podemos eliminar las armaduras
+		:importadas.
+		:- -
+		:Ten en cuenta que los nombres de los
+		:huesos de la animacion modificados tienen que
+		:corresponder con Huesos y Grupos de vertices.
+		:- -
+		:Para correjir si no te gustan los nombres puedes
+		:usar este script en blender.
+		:- -
+		:import bpy
+		:#__ FNC_FiltraTexto
+		:def F_FiltraTexto(M_texto):
+		:·tM_Res=M_texto;
+		:·tM_Res=M_Res.replace("mixamorig:", "");
+		:·tif ("mixamorig:" in M_Res):
+		:·t·tM_Res=M_Res.replace("mixamorig:", "");
+		:·tif ("Left" in M_Res):
+		:·t·tM_Res=M_Res.replace("Left", "L_");
+		:·tif ("Right" in M_Res):
+		:·t·tM_Res=M_Res.replace("Right", "R_");
+		:·treturn M_Res;
+		:#__ FNC_FiltraTexto FIN
+		:def F_Bones_Rename(V_ArmatureName):
+		:·t# Obtenemos el objeto del esqueleto
+		:·tM_Armature = bpy.data.objects.get(V_ArmatureName)
+		:·tif (M_Armature is None or M_Armature.type != 'ARMATURE'):
+		:·t·tprint("No se encontró el objeto de esqueleto o el objeto no es un esqueleto.")
+		:·t·treturn
+		:·t# Renombramos los huesos en todas las acciones
+		:·tfor M_Action in bpy.data.actions:
+		:·t·tfor fcurve in M_Action.fcurves:
+		:·t·t·tM_data_path = fcurve.data_path;
+		:·t·t·tM_data_path = F_FiltraTexto(M_data_path);
+		:·t# Renombramos los huesos
+		:·tfor M_Bone in M_Armature.data.bones:
+		:·t·tM_Bone.name = F_FiltraTexto(M_Bone.name);
+		:·t# Renombramos los grupos de vértices de la malla asociada al esqueleto
+		:·tM_Malla_asociada = bpy.data.meshes.get(V_ArmatureName)  # Reemplaza esto con el nombre de tu malla asociada
+		:·tif M_Malla_asociada:
+		:·t·tfor V_Group in M_Malla_asociada.vertex_groups:
+		:·t·t·tV_Group.name= F_FiltraTexto(V_Group.name);
+		:# - - EJECUTAMOS
+		:if __name__ == "__main__":
+		:·tF_Bones_Rename("ArmatureBaseFemaleT")
+		:- - -
+	*Movimiento Personalizado
+		:Para caputrar el movimiento es tan simple como:
+		:En el SCRIPT GLOBAL añadimos una funcion para obtener
+		:que tecla se ha pulsado y extraer la direcion.
+		:Esta direcion en 2 ejes la guardamos en una
+		:varible golbal tipo Vector2.
+		:#Movimiento personalizado
+		:var V_Axis:Vector2;
+		:func F_GetAxis()->Vector2:
+		:·tV_Axis.x=int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"));
+		:·tV_Axis.y=int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"));
+		:·t#print(str(V_Axis.x)+" x "+str(V_Axis.y)+" y");
+		:·treturn V_Axis.normalized();
+		:#Fin Fnc F_GetAxis
+		:En el juego, en el SCRIPT del CHARACTER ya sea
+		:3D 2D o 2.5D añadimos una funcion que usando
+		:esta variable aplique el desplazamiento.
+		:OJO: no incorpora ni gravedad ni salto.
+		:-
+		:Copiamos la que viene por defecto a otra funcion.
+		:-
+		:#Esto viene de fabrica.
+		:const SPEED = 300.0
+		:const JUMP_VELOCITY = -400.0
+		:# Get the gravity from the project settings to be synced with RigidBody nodes.
+		:var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+		:-
+		:#Codigo por defecto en una funcion.
+		:func F_MotionDefault(delta)->void:
+		:·t#Add the gravity.
+		:·tif not is_on_floor():
+		:·t·tvelocity.y += gravity * delta
+		:·t# Handle Jump.
+		:·tif Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		:·t·tvelocity.y = JUMP_VELOCITY
+		:·t# Get the input direction and handle the movement/deceleration.
+		:·t# As good practice, you should replace UI actions with custom gameplay actions.
+		:·tvar direction = Input.get_axis("ui_left", "ui_right")
+		:·tif direction:
+		:·t·tvelocity.x = direction * SPEED
+		:·telse:
+		:·t·tvelocity.x = move_toward(velocity.x, 0, SPEED)
+		:·tmove_and_slide()
+		:#End Func F_MotionDefault
+		:#Mi funcion de desplazamiento.
+		:func F_MotionControl(delta)->void:
+		:·tvelocity.x=V.F_GetAxis().x*SPEED;
+		:·tvelocity.y=V.F_GetAxis().y*SPEED;
+		:·tmove_and_slide();
+		:#End Fnc F_MotionControl
+		:#El evento quedaria asi.
+		:func _physics_process(delta):
+		:·tF_MotionControl(delta);
+		:·t#F_MotionDefault(delta);
+		:#End func _physics_process
+	*Oceano - Agua
+	*RPG Controler 3D (Camara)
+		ª10102ª10103ª10106ª10105ª10104ª10109ª10110ª10108ª10107ª10111ª10112ª10113ª10114ª10115ª10116ª10117ª10118ª10119
+		:Ahora configuraremos la camara.
+		:Lo que queremos es que la linea entre la camara y el
+		:PJ siempre este visible por lo que tendremos que ocultar
+		:esa parte.
+		:Lo lograremos usando dos camaras una con el fondo real
+		:otra con el frontal
+		:Luego las mezclamos pero a la camara frontal le decimos
+		:que cierta zona no la dibuje o la dibuje a medias.
+		:-
+		:Creamos una nueva escena para el Camera_rig
+		:Añadimos una camara y en Cull Mask le decimos
+		:que no renderize ninguna capa.
+		:Este control manejara las vistas de las camaras que
+		:haran de capas, osea que es el mezclador.
+		:-
+		:Añadimos dentro de esta camara un "SubviewportContainer"
+		:que contendra las camaras renderizadoras de las capas.
+		:y lo ajustamos a pantalla completa.
+		:Dentro añadimos un VIEWPORT y dentro una CAMARA
+		:-
+		:Les damos nombres claros y lo copiamos para tener
+		:dos SubViewPorts uno para el frontal y otro para
+		:el Back.
+		:-
+		:Creamos el Script de la escena.
+		:-
+		:Los BackGroundViewport entregan imagenes con la escala
+		:incorrecta Para que se ajuste a la pantalla a tiempo real
+		:le definimos el tamaño por codigo. (Para que sea dinamico.)
+		:Añadimos un Script a la raiz "CAMERA_RIG"
+		:Añadimos una funcion Resize "F_Resize"
+		:Creamos acceso a los ViewPorts
+		:(Con CTRL y desplazando nos crea los @onereasy xxxx)
+		:le decimos a cada ViewPort que su size sea el del DisplayServer.
+		:-
+		:Ahora tenemos que copiar la posicion general del Camera_Rig
+		:a las camaras ya que como el ViewPort no es un control 3D
+		:el GODOT no copia a sus hijos la posicion del padre y
+		:tenemos que hacerlo por codigo.
+		:-
+		:Primero añadimos un nodo 3D en mi player para obtener
+		:la posicon donde estara la camara y lo colocamos.
+		:-
+		:Ahora creamos un script dentro de una carpeta GLOBLAS
+		:que se ejecutara siempre.
+		:Dentro añadiremos una variable Node para compartir al player.
+		:-
+		:En el script del PLAYER en el _ready asignamos la variable
+		:de GLOBALS.V_Player.
+		:o mejor asignamos directamente a GLOBALS.V_CamPoint_N3D
+		:el node3D que sera el manejador de camara.
+		:-
+		:func _ready():
+		:_ V.F_PlayerSet(self);
+		:_ V.F_PlayerCamPointSet($CamPoint_N3D);
+		:-
+		:Ahora en el script de la camara igualamos el global_transform
+		:de GLOBALS.V.F_PlayerCamPointSet a nuestras Cam3D.
+		:-
+		:func _process(delta):
+		:_ V_BackG_Cam3d.global_transform=V.V_PlayerCamPoint.global_transform;
+		:_ V_Front_Cam3d.global_transform=V.V_PlayerCamPoint.global_transform;
+		:#END _Process
+		:-
+		:Ahora configuramos la primera camara para que solo renderize
+		:lo que este en la capa 1 y la segunda camara solo la capa 2
+		:ajustando el "Cull Mask"
+		:-
+		:En el mapa configuramos las paredes frontales en el
+		:visualinstance3D.Layer =2 y las del fronto en el 1.
+		:-
+		:En la camara le decimos al subviewport que el backgrouns de
+		:los objetos sean transparentes
+		:OJO el orden de las camaras afecta. la ultima camara se
+		:sobrepone a todo.
+		:-
+		:Podemos modificar el codigo para que muestre las vistas
+		:de las camaras en porciones separadas.
+		:-
+		:En el Escenario principal le decimos que las luces las
+		:trabaje tambien en las dos capas.
+		:-
+		:Tambien si queremos en el escenario principal le añadimos
+		:un WorldEnviroment para efectos y demas.
+		:-
+		:OJO: Si añades un WorldEnviroment solo te funcionara en
+		:Vulkan , en modo compatible no funciona y se carga el alpha de
+		:las capas de la camara.
+		:-
+		:Por ultimo le añadimos a la escena de las camaras el sombreador
+		:para que no nos dibuje el centro de la camara frontal.
+		:Esto lo hacemos añadiendiendo en el ViewPortContainer un
+		:material Shider en el CambasItem. para que aplique un
+		:cirlculo alha a lo que renderiza la camra frontal.
+		:-
+		:Por ultimo añadiremos un script a los objetos del frente
+		:para que modifiquen su capa si estan delante o detras del
+		:muñeco y de esa manera poder tener paredes y objetos no
+		:afectados por la transparencia.
+		:Creamos dos funciones una que mande la pared al fondo y otra
+		:que la mande al frente (Capa 1 o Capa 2)
+		:Y en el process revisamos la posicon X del player con la posicion X
+		:de la pared usando
+		:if(V.V_Player.global_position.x>global_position.x):
+		:para que si esta delante o detras llame a una u otra funcion.
+		:NT:Tambien he añadido una funcion que revisa en cada funcion
+		:si ya esta la capa bien y solo modificarta una vez.
+		:-
+	*Test For While
+		:"_ " = <TAB>
+		:Este Test revisa el uso de memoria y la velocidad de
+		:los bucles FOR y WHILE
+		:-
+		:Conclusion, Para Fores pequeños es mejor el for
+		:pero al crecer el for aumenta el uso de memoria y de
+		:ciclos siendo mas rapido y mejor el while.
+		:- RESULTADOS
+		:Repeticiones X 1000
+		:REP1: 1000000 REP2: 1000000 REP3: 1000000
+		:MEM0:49144563 MEM1:49207191 MEM2:49207191 MEM3:49207191
+		:MEMT1:62628 MEMT2:0 MEMT3:0
+		:TBas=815 TFor1=875 TWhile=938 TFor2=998
+		:TFor1-TBas=60 TWhile-TFor1=63 TFor2-TWhile=60
+		:----
+		:Repeticiones X 10000
+		:REP1: 100000000 REP2: 100000000 REP3: 100000000
+		:MEM0:49144563 MEM1:49665943 MEM2:49665943 MEM3:49665943
+		:MEMT1:521380 MEMT2:0 MEMT3:0
+		:TBas=806 TFor1=6578 TWhile=12791 TFor2=18773
+		:TFor1-TBas=5772 TWhile-TFor1=6213 TFor2-TWhile=5982
+		:-----
+		:Repeticiones X 15000
+		:REP1: 225000000 REP2: 225000000 REP3: 225000000
+		:MEM0:49144563 MEM1:50190231 MEM2:50190231 MEM3:50190231
+		:MEMT1:1045668 MEMT2:0 MEMT3:0
+		:TBas=913 TFor1=14364 TWhile=28680 TFor2=41975
+		:TFor1-TBas=13451 TWhile-TFor1=14316 TFor2-TWhile=13295
+		:-------
+		:Repeticiones X 22000
+		:REP1: 484000000 REP2: 484000000 REP3: 484000000
+		:MEM0:49144563 MEM1:51238807 MEM2:51238807 MEM3:51238807
+		:MEMT1:2094244 MEMT2:0 MEMT3:0
+		:TBas=820 TFor1=31757 TWhile=62000 TFor2=94092
+		:TFor1-TBas=30937 TWhile-TFor1=30243 TFor2-TWhile=32092
+		:-------
+		:Repeticiones X 30000
+		:REP1: 900000000 REP2: 900000000 REP3: 900000000
+		:MEM0:49144563 MEM1:51238807 MEM2:51238807 MEM3:51238807
+		:MEMT1:2094244 MEMT2:0 MEMT3:0
+		:TBas=918 TFor1=57982 TWhile=114198 TFor2=171330
+		:TFor1-TBas=57064 TWhile-TFor1=56216 TFor2-TWhile=57132
+		:------------
+		:Repeticiones X 30000
+		:REP1: 0 REP2: 900000000 REP3: 0
+		:MEM0:49139803 MEM1:49139803 MEM2:49136887 MEM3:49136887
+		:MEMT1:0 MEMT2:-2916 MEMT3:0
+		:TBas=911 TFor1=911 TWhile=56806 TFor2=56806
+		:TFor1-TBas=0 TWhile-TFor1=55895 TFor2-TWhile=0
+		:-
+		:-CODIGO
+		:print("Hola Mundo");
+		:var V_Rang:int=30000;
+		:var V_Tim0_int:int=0;var V_Tim1_int:int=0;
+		:var V_Tim2_int:int=0;var V_Tim3_int:int=0;
+		:var Mq:int=0;var Mq1:int=0;
+		:var V0:float =0;var V1:float =0;var V2:float =0;
+		:var M0:float =0;var M1:float =0;var M2:float =0;var M3:float =0;
+		:# - - Del For1
+		:V_Tim0_int=Time.get_ticks_msec();
+		:M0=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:# - - Del For1
+		:V_Tim0_int=Time.get_ticks_msec();
+		:M0=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:for MqX in range(V_Rang):
+		:_ for MqY in range(V_Rang):
+		:_ _ V0+=1;
+		:_ #Fin For MqY
+		:#Fin For MqX
+		:#----- WHILES
+		:V_Tim1_int=Time.get_ticks_msec();
+		:M1=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:while (Mq<V_Rang):
+		:_ Mq+=1;Mq1=0;
+		:_ while (Mq1<V_Rang):
+		:_ _ Mq1+=1;
+		:_ _ V1+=1;
+		:_ #Fin del While
+		:#Fin del While
+		:#----- FOR 2
+		:V_Tim2_int=Time.get_ticks_msec();
+		:M2=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:for MqR in range(V_Rang):
+		:_ for MqT in range(V_Rang):
+		:_ _ V2+=1;
+		:_ #Fin For MqY
+		:#Fin For MqX
+		:V_Tim3_int=Time.get_ticks_msec();
+		:M3=Performance.get_monitor(Performance.MEMORY_STATIC);
+		:#--Resultados
+		:print("Repeticiones X ",V_Rang);
+		:print("REP1: ",V0," REP2: ",V1," REP3: ",V2);
+		:print("MEM0:",M0," MEM1:",M1," MEM2:",M2," MEM3:",M3);
+		:print("MEMT1:",(M1-M0)," MEMT2:",(M2-M1)," MEMT3:",(M3-M2));
+		:print("TBas=",V_Tim0_int," TFor1=",V_Tim1_int," TWhile=",V_Tim2_int," TFor2=",V_Tim3_int);
+		:print("TFor1-TBas=",(V_Tim1_int-V_Tim0_int)," TWhile-TFor1=",(V_Tim2_int-V_Tim1_int),
+		:" TFor2-TWhile=",(V_Tim3_int-V_Tim2_int));
+		:-
 *Acceder a un nodo y sus propiedades
 	ª10017
 	:Tenemos tres modos de acceder a las propiedades de un
@@ -1452,608 +2056,6 @@
 	:_ F_Tron("F_Settings_Set(msaa_3d)="+str(settings["msaa_3d"]));
 	:_ #-----------------
 	:#END F_Settings_Set
-*EJ - Botones Dinamicos y Eventos Dinamicos
-	:En este ejemplo creo 4 botones dinamicos y
-	:enlazo su evento Button_up a una funcion pasandole
-	:un valor.
-	:-
-	:Callable(Control,NomFuncion)
-	:Crea un objeto que indica una funcion en cualquier
-	:Control.Script y el el nombre de esa funcion.
-	:-
-	:Connect(NomEvento,Callable)
-	:Conecta un evento con un callable.
-	:Dice la funcion y donde esta el manejador
-	:de ese evento.
-	:-
-	:Otro modo mas simple y que permite mandar variables
-	:seria:
-	:NomControl.NomEvent.connect(NomFuncion.bind(Valor));
-	:No tiene mucho sentido bind = conectar pero...
-	:Conecta el NomEvent del NomControl con NomFuncion
-	:y le manda Valor como parametro.
-	:-
-	:func _ready():
-	:·tvar Mq:int=0;
-	:·twhile(Mq<4):
-	:·t·tvar MBt=Button.new();
-	:·t·tMBt.name="BT_ResX"+str(Mq);
-	:·t·tMBt.set_size(Vector2(50,30));
-	:·t·tMBt.text=str(((Mq*200)+600));
-	:·t·tself.add_child(MBt);
-	:·t·tMBt.set_position(Vector2((100+(Mq*50)),0));
-	:·t·tvar MCall=Callable(self,"F_Evt_MyButton_Up");
-	:·t·t#MBt.connect("button_up",MCall);
-	:·t·tMBt.button_down.connect(F_Evt_MyButton_Up.bind(MBt));
-	:·t·tV_ResX.append(MBt);#Añado Boton a mi tabla.
-	:·t·tMq+=1;
-	:·t#End While Mq
-	:·tprint("Botones:"+str(V_ResX.size()));
-	:·tpass # Replace with function body.
-	:#End Func _ready
-	:func F_Evt_MyButton_Up(VAL):
-	:·tif (VAL is Button):
-	:·t·tprint("MyBtPress"+str(VAL.name));
-	:·telse:
-	:·t·tprint("MyBtPress"+str(VAL));
-	:#End Func F_Evt_MyButton_Up
-*EJ - Crear Tabla de controles dinamicos
-	:Tras PreCargar la escena madre y
-	:obtener el control de esa escena.
-	:Rellenamos una tabla con colnes de ese boton
-	:y los añadimos a la escena actual.
-	:-EJ:
-	:F_Tron("PRE-LOAD");
-	:_ var M_SCN_REPO=preload("res://SCN_REPO/SCN_REPO.tscn").instantiate();
-	:_ F_Tron("PRE-LOAD.. OK");
-	:_
-	:_ F_Tron("CLON BUTTON");
-	:_ var M_BtClon=M_SCN_REPO.get_node("REPO_BTBase");
-	:_ F_Tron("CLON BUTTON.. OK");
-	:_
-	:_ F_Tron("Botones ADD2TABLE");
-	:_ V_TBt.clear();
-	:_ var M_q:int=0;
-	:_ var M_Pos:Vector2;
-	:_ var M_Size:Vector2;
-	:_ while (M_q<20):
-	:_ _ var M_Bt:Button=M_BtClon.duplicate();# Button.new();
-	:_ _ M_Bt.name="BT"+str(M_q);
-	:_ _ M_Bt.text=M_Bt.name;
-	:_ _ V_TBt.append(M_Bt);
-	:_ _ M_q+=1;
-	:_ #EndWhile
-	:_ F_Tron("Botones ADD2TABLE.. OK");
-	:_
-	:_ F_Tron("Botones CFG + ADD");
-	:_ M_q=0;M_Size.x=40;M_Size.y=20;
-	:_ while (M_q<20):
-	:_ _ var M_Bt:Button=V_TBt[M_q];
-	:_ _ self.add_child(M_Bt);
-	:_ _ M_Bt.set_size(M_Size,false);
-	:_ _ M_Bt.visible=true;
-	:_ _ M_Pos.x=M_q*50;
-	:_ _ M_Bt.set_position(M_Pos);
-	:_ _ M_q+=1;
-	:_ #EndWhile
-	:_ F_Tron("Botones CFG + ADD.. OK");
-	:#End Func _ready
-*EJ - Crear un Boton dinamico con evento
-	:Con este codigo ejecutado en el nodo padre creamos
-	:un nodo button y le añadimos un evento al terminar el
-	:_ready();
-	:-
-	:extends Node
-	:func _ready():
-	:_ # Crear el botón
-	:_ var boton = Button.new()
-	:_ boton.text = "Mostrar Alerta"
-	:_ boton.rect_min_size = Vector2(200, 50)
-	:_ add_child(boton)
-	:_ # Conectar la señal "pressed" del botón a la función mostrar_alerta
-	:_ boton.connect("pressed", self, "mostrar_alerta")
-	:_
-	:func mostrar_alerta():
-	:_ # Crear la alerta (un cuadro de diálogo)
-	:_ var alerta = AcceptDialog.new()
-	:_ alerta.dialog_text = "¡Esto es una alerta personalizada!"
-	:_ alerta.add_button("Aceptar", true) # Botón para cerrar la alerta
-	:-
-	:_ # Agregar la alerta como un hijo del nodo principal
-	:_ add_child(alerta)
-	:_ alerta.popup_centered() # Mostrar la alerta en el centro de la pantalla
-*EJ - Enlazar con Blender
-	:El godot se puede enlazar con proyectos del Blender.
-	:Para ello tenemos que indicarle dos cosas.
-	:1- Indicarle donde tenemos instalado el blender.
-	:2- Decirle que use la importacion del Blender.
-	:-
-	:1- En Editor/Editor Settings
-	:- Buscamos Blender
-	:- En FileSystem/Import definimos la ruta donde
-	:- tenemos instalado el Blender.
-	:-
-	:2 - En Project/ProjectSeting
-	:- Activamos la Ver paramateros avanzados (Advanced)
-	:- Buscamos "Blender"
-	:- En FileSystem/Import lo ponemos como Enabled.
-	:-
-	:- Ahora Creamos una carpeta en el proyecto para
-	:- nuestros Blenders en el GODOT.
-	:- Guardamos nuestro Blend en esa carpeta.
-	:- Ahora nos permite añadir los objetos del Blend
-	:- al proyecto.
-	:-
-*EJ - Importar objetos de Blender
-	:Teniendo el Blender el modelo con todos los objetos asociados
-	:a la armadura y las animaciones .
-	:Lo selecionamos todo .
-	:Exportamos a GLTF2.
-	:En las ultimas versiones de blender vienen como addons por
-	:lo que para exportar se tiene que añadir el addon GLTF2.
-	:Al exportar en blender selecionamos.
-	:-Selected Objects
-	:-+Y Up
-	:-Apply Modifiers.
-	:-UVs
-	:-Normals
-	:-VertexColors.
-	:-Material = Exports.
-	:-Images = Atumatic.
-	:-
-	:Guardamos el fichero en la carpeta configurada en el GODOT
-	:para las importaciones.
-	:-
-	:Ahora en GODOT
-	:-
-	:Creamos una nueva scena.
-	:Añadimos una Camera
-	:Tenemos que tener configurado una carpeta para los
-	:resources de blender donde pusimos el GLB
-	:Al abrir el GLB importado nos dira si que remos una escena heredada
-	:le decimos que si y la guardamos.
-	:La estrucutra sera.
-	:ESCENA
-	:_ _ AnimationPlayer
-	:_ _ Armature : Node3D
-	:_ _ _ Skeleton3D : Skeleton3D
-	:_ _ _ _ Mesh1 :MeshInstance3D
-	:_ _ _ _ MeshX :MeshInstance3D
-*EJ - Instanciar Controles predefinidos
-	:Podemos crear controles predefinidos y preconfigurados.
-	:Para ello tenemos que añadirlos a una nueva escena.
-	:Los creamos y los configuramos.
-	:PreCargamos la escena.
-	:Buscamos el control en esa escena .
-	:Reasignamos el padre a donde queramos.
-	:EJ:
-	:func _ready():
-	:_ F_Tron("_ready");
-	:_ #Modifico el texto de un label creado
-	:_ var MLb:Label=$Lb_BtPulsado;
-	:_ MLb.text="Hola";
-	:_
-	:_ #- Precarga de forma rapida una escena.
-	:_ F_Tron("PRE-LOAD");
-	:_ var M_SCN_REPO=preload("res://SCN_REPO/SCN_REPO.tscn").instantiate();
-	:_ F_Tron("PRE-LOAD.. OK");
-	:_
-	:_ #- Carga todo lo necesario de la escena.
-	:_ #var M_SCN_REPO=load("res://SCN_REPO/SCN_REPO.tscn");
-	:_ #print("LOAD");
-	:_
-	:_ #-- Añadimos la escena instanciada a la escena actual.
-	:_ #get_tree().root.add_child(M_SCN_REPO)
-	:_ #F_Tron("ADDChild");
-	:_ #self.add_child(M_SCN_REPO);
-	:_ #F_Tron("ADDChild.. OK");
-	:_
-	:_ F_Tron("CLON BUTTON");
-	:_ var M_BtClon=M_SCN_REPO.get_node("REPO_BTBase");
-	:_ F_Tron("CLON BUTTON.. OK");
-	:_
-	:_ F_Tron("CLON BUTTON Instance");
-	:_ M_BtClon.reparent(self);
-	:_ #self.add_child(M_BtClon);
-	:_ F_Tron("CLON BUTTON Instance .. OK");
-	:_
-*EJ - Libreria de Animaciones
-	ª10154ª10153ª10152ª10151ª10150ª10149ª10148ª10147ª10146ª10145ª10144ª10143ª10142ª10141ª10140ª10139ª10138ª10137ª10155ª10156ª10157ª10158
-	:https://www.youtube.com/watch?v=xGHgA5oftxY
-	:- -
-	:Nos descargamos el zip del video y lo instalamos en el blender en
-	:la seccion addons.
-	:En un proyecto del blender nuevo borramos todo.
-	:En el addom que aparece en la barra derecha pinchamos en
-	:"insert root", y en "animation files/soure" selecionamos la carpeta
-	:con las animaciones.
-	:Presionamos en "Inport Animations" del addon y nos traera todos los
-	:FBX de la carpeta.
-	:(Podemos aplicar el filtro de nombres de mas a bajo)
-	:Borramos en el OUTLINER del blender todas las ARMATURES  menos
-	:la primera que ya tienen todas las ANIMACIONES
-	:Entramos en la pestaña de "ANIMACIOENS"
-	:Modificamos el panel inferior a "Dope Shet" y le decimos que edite
-	:el "Action Editor"
-	:Ahora cuando ya estan todas bien (Aplicando o no el filtro de renombre)
-	:Exportamos la armadura a formato ".glb"
-	:Ahora en GODOT colocamos los .GLB a una carpeta y en la pestaña
-	:superior en IMPORT selecionamos que queremos importar una
-	:ANIMATION LIBRERY y le damos a REIMPORT
-	:Es posible que pida o tengamos que guardar y reiniciar GODOT
-	:segun la version.
-	:- -
-	:Reentramos al GODOT y pikamos dos veces sobre el fichero importado.
-	:Nos mostrara la lista de animacions pero tendremos que decirle
-	:el tipo de esqueleto ya que no lo importa.
-	:Selecionamos el ESQUELETO y en la derecha creamos un nuevo
-	:BONEMAP de tipo "SkeletoProfileHunamoid" y REIMPORTAMOS
-	:- -
-	:Tenemos que tener tambien en GLB las armaduras con los huesos y demas
-	:pero sin animaciones .
-	:NT: Para exportarla tenemos que selecionar todo incluso lo de dentro del la
-	:armadura, si no solo exportara la estructura.
-	:Ahora en GODOT para el KEKO le pikamos dos veces y le decimos al igual
-	:que el tipo de esqueleto es humanoide y REIMPORTAMOS
-	:Luego tenemos que decirle que cree una escena basada en ese KEKO
-	:por medio del menu en el GLB del KEKO "New Inherited Escene"
-	:- -
-	:Por ultimo al crear el objeto ESCENA para el KEKO añade una control
-	:ANIMATION PLAYER , si no ha cogido por defecto la biblioteca de
-	:animaciones tendremos que cerar una y asociarla a la ANIMACIONES que
-	:hemos creado antes .
-	:- -
-	:NT: El renombrar huesos y animaciones del final
-	:Mejor hacerlo cuando tengas ya todas las animaciones
-	:luego da problemas.
-	:- -
-	:Godot tiene la posibilidad de crear una libreria de
-	:animaciones para , si nuestras armaduras tiene
-	:los nombres de los huesos y los grupos de
-	:vertices iguales , se puedan asignar facilmente.
-	:- -
-	:Para ello lo primero es depurarlas en blender.
-	:Podemos obtenerlas desde la web de mixamo.
-	:Pero siempre que los nombres de los huesos sean
-	:iguales podemos tomar un esqueleto y animarlo
-	:nosotros mismos.
-	:- -
-	:Obtenemos desde mixamo las animaciones en .fbx,
-	:Las importamos a blender y las depuramos y renombramos.
-	:- -
-	:Por defecto creara un esqueleto con cada animacion.
-	:Podemos selecionar nuestro esqueleto y en el
-	:"NoLinealAnimation" asignarla a nuestro esqueleto de
-	:ese modo podremos borrar el esqueleto importado y
-	:la animacion no se perdera.
-	:- -
-	:Cuando la importemos recomiendo poner al final
-	:del nombre de la animacion la biblioteca de donde
-	:salio ya que podemos tener distintos Run o Walking.
-	:- -
-	:Ahora que ya tenemos un monton de esqueletos cada
-	:uno con una animacion .
-	:Selecionamos NUESTRO esqueleto y le asignamos
-	:cada animacion de cada esqueleto importado.
-	:Para lo cual,
-	:Selecionamos nuestro esqueleto.
-	:En la ventana de "Action Editor" buscamos la animacion.
-	:NT: Si pusimos la libreria podemos filtrar.
-	:y pulsamos en el boton "PushDown" de ese modo
-	:Aladira a la lista de animaciones de nuestro esqueleto
-	:esa animacion.
-	:- -
-	:Ahora que ya tenemos todas las animaciones asociadas
-	:a nuestro esqueleto podemos eliminar las armaduras
-	:importadas.
-	:- -
-	:Ten en cuenta que los nombres de los
-	:huesos de la animacion modificados tienen que
-	:corresponder con Huesos y Grupos de vertices.
-	:- -
-	:Para correjir si no te gustan los nombres puedes
-	:usar este script en blender.
-	:- -
-	:import bpy
-	:#__ FNC_FiltraTexto
-	:def F_FiltraTexto(M_texto):
-	:·tM_Res=M_texto;
-	:·tM_Res=M_Res.replace("mixamorig:", "");
-	:·tif ("mixamorig:" in M_Res):
-	:·t·tM_Res=M_Res.replace("mixamorig:", "");
-	:·tif ("Left" in M_Res):
-	:·t·tM_Res=M_Res.replace("Left", "L_");
-	:·tif ("Right" in M_Res):
-	:·t·tM_Res=M_Res.replace("Right", "R_");
-	:·treturn M_Res;
-	:#__ FNC_FiltraTexto FIN
-	:def F_Bones_Rename(V_ArmatureName):
-	:·t# Obtenemos el objeto del esqueleto
-	:·tM_Armature = bpy.data.objects.get(V_ArmatureName)
-	:·tif (M_Armature is None or M_Armature.type != 'ARMATURE'):
-	:·t·tprint("No se encontró el objeto de esqueleto o el objeto no es un esqueleto.")
-	:·t·treturn
-	:·t# Renombramos los huesos en todas las acciones
-	:·tfor M_Action in bpy.data.actions:
-	:·t·tfor fcurve in M_Action.fcurves:
-	:·t·t·tM_data_path = fcurve.data_path;
-	:·t·t·tM_data_path = F_FiltraTexto(M_data_path);
-	:·t# Renombramos los huesos
-	:·tfor M_Bone in M_Armature.data.bones:
-	:·t·tM_Bone.name = F_FiltraTexto(M_Bone.name);
-	:·t# Renombramos los grupos de vértices de la malla asociada al esqueleto
-	:·tM_Malla_asociada = bpy.data.meshes.get(V_ArmatureName)  # Reemplaza esto con el nombre de tu malla asociada
-	:·tif M_Malla_asociada:
-	:·t·tfor V_Group in M_Malla_asociada.vertex_groups:
-	:·t·t·tV_Group.name= F_FiltraTexto(V_Group.name);
-	:# - - EJECUTAMOS
-	:if __name__ == "__main__":
-	:·tF_Bones_Rename("ArmatureBaseFemaleT")
-	:- - -
-*EJ - Movimiento Personalizado
-	:Para caputrar el movimiento es tan simple como:
-	:En el SCRIPT GLOBAL añadimos una funcion para obtener
-	:que tecla se ha pulsado y extraer la direcion.
-	:Esta direcion en 2 ejes la guardamos en una
-	:varible golbal tipo Vector2.
-	:#Movimiento personalizado
-	:var V_Axis:Vector2;
-	:func F_GetAxis()->Vector2:
-	:·tV_Axis.x=int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"));
-	:·tV_Axis.y=int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"));
-	:·t#print(str(V_Axis.x)+" x "+str(V_Axis.y)+" y");
-	:·treturn V_Axis.normalized();
-	:#Fin Fnc F_GetAxis
-	:En el juego, en el SCRIPT del CHARACTER ya sea
-	:3D 2D o 2.5D añadimos una funcion que usando
-	:esta variable aplique el desplazamiento.
-	:OJO: no incorpora ni gravedad ni salto.
-	:-
-	:Copiamos la que viene por defecto a otra funcion.
-	:-
-	:#Esto viene de fabrica.
-	:const SPEED = 300.0
-	:const JUMP_VELOCITY = -400.0
-	:# Get the gravity from the project settings to be synced with RigidBody nodes.
-	:var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-	:-
-	:#Codigo por defecto en una funcion.
-	:func F_MotionDefault(delta)->void:
-	:·t#Add the gravity.
-	:·tif not is_on_floor():
-	:·t·tvelocity.y += gravity * delta
-	:·t# Handle Jump.
-	:·tif Input.is_action_just_pressed("ui_accept") and is_on_floor():
-	:·t·tvelocity.y = JUMP_VELOCITY
-	:·t# Get the input direction and handle the movement/deceleration.
-	:·t# As good practice, you should replace UI actions with custom gameplay actions.
-	:·tvar direction = Input.get_axis("ui_left", "ui_right")
-	:·tif direction:
-	:·t·tvelocity.x = direction * SPEED
-	:·telse:
-	:·t·tvelocity.x = move_toward(velocity.x, 0, SPEED)
-	:·tmove_and_slide()
-	:#End Func F_MotionDefault
-	:#Mi funcion de desplazamiento.
-	:func F_MotionControl(delta)->void:
-	:·tvelocity.x=V.F_GetAxis().x*SPEED;
-	:·tvelocity.y=V.F_GetAxis().y*SPEED;
-	:·tmove_and_slide();
-	:#End Fnc F_MotionControl
-	:#El evento quedaria asi.
-	:func _physics_process(delta):
-	:·tF_MotionControl(delta);
-	:·t#F_MotionDefault(delta);
-	:#End func _physics_process
-*EJ - RPG Controler 3D (Camara)
-	ª10102ª10103ª10106ª10105ª10104ª10109ª10110ª10108ª10107ª10111ª10112ª10113ª10114ª10115ª10116ª10117ª10118ª10119
-	:Ahora configuraremos la camara.
-	:Lo que queremos es que la linea entre la camara y el
-	:PJ siempre este visible por lo que tendremos que ocultar
-	:esa parte.
-	:Lo lograremos usando dos camaras una con el fondo real
-	:otra con el frontal
-	:Luego las mezclamos pero a la camara frontal le decimos
-	:que cierta zona no la dibuje o la dibuje a medias.
-	:-
-	:Creamos una nueva escena para el Camera_rig
-	:Añadimos una camara y en Cull Mask le decimos
-	:que no renderize ninguna capa.
-	:Este control manejara las vistas de las camaras que
-	:haran de capas, osea que es el mezclador.
-	:-
-	:Añadimos dentro de esta camara un "SubviewportContainer"
-	:que contendra las camaras renderizadoras de las capas.
-	:y lo ajustamos a pantalla completa.
-	:Dentro añadimos un VIEWPORT y dentro una CAMARA
-	:-
-	:Les damos nombres claros y lo copiamos para tener
-	:dos SubViewPorts uno para el frontal y otro para
-	:el Back.
-	:-
-	:Creamos el Script de la escena.
-	:-
-	:Los BackGroundViewport entregan imagenes con la escala
-	:incorrecta Para que se ajuste a la pantalla a tiempo real
-	:le definimos el tamaño por codigo. (Para que sea dinamico.)
-	:Añadimos un Script a la raiz "CAMERA_RIG"
-	:Añadimos una funcion Resize "F_Resize"
-	:Creamos acceso a los ViewPorts
-	:(Con CTRL y desplazando nos crea los @onereasy xxxx)
-	:le decimos a cada ViewPort que su size sea el del DisplayServer.
-	:-
-	:Ahora tenemos que copiar la posicion general del Camera_Rig
-	:a las camaras ya que como el ViewPort no es un control 3D
-	:el GODOT no copia a sus hijos la posicion del padre y
-	:tenemos que hacerlo por codigo.
-	:-
-	:Primero añadimos un nodo 3D en mi player para obtener
-	:la posicon donde estara la camara y lo colocamos.
-	:-
-	:Ahora creamos un script dentro de una carpeta GLOBLAS
-	:que se ejecutara siempre.
-	:Dentro añadiremos una variable Node para compartir al player.
-	:-
-	:En el script del PLAYER en el _ready asignamos la variable
-	:de GLOBALS.V_Player.
-	:o mejor asignamos directamente a GLOBALS.V_CamPoint_N3D
-	:el node3D que sera el manejador de camara.
-	:-
-	:func _ready():
-	:_ V.F_PlayerSet(self);
-	:_ V.F_PlayerCamPointSet($CamPoint_N3D);
-	:-
-	:Ahora en el script de la camara igualamos el global_transform
-	:de GLOBALS.V.F_PlayerCamPointSet a nuestras Cam3D.
-	:-
-	:func _process(delta):
-	:_ V_BackG_Cam3d.global_transform=V.V_PlayerCamPoint.global_transform;
-	:_ V_Front_Cam3d.global_transform=V.V_PlayerCamPoint.global_transform;
-	:#END _Process
-	:-
-	:Ahora configuramos la primera camara para que solo renderize
-	:lo que este en la capa 1 y la segunda camara solo la capa 2
-	:ajustando el "Cull Mask"
-	:-
-	:En el mapa configuramos las paredes frontales en el
-	:visualinstance3D.Layer =2 y las del fronto en el 1.
-	:-
-	:En la camara le decimos al subviewport que el backgrouns de
-	:los objetos sean transparentes
-	:OJO el orden de las camaras afecta. la ultima camara se
-	:sobrepone a todo.
-	:-
-	:Podemos modificar el codigo para que muestre las vistas
-	:de las camaras en porciones separadas.
-	:-
-	:En el Escenario principal le decimos que las luces las
-	:trabaje tambien en las dos capas.
-	:-
-	:Tambien si queremos en el escenario principal le añadimos
-	:un WorldEnviroment para efectos y demas.
-	:-
-	:OJO: Si añades un WorldEnviroment solo te funcionara en
-	:Vulkan , en modo compatible no funciona y se carga el alpha de
-	:las capas de la camara.
-	:-
-	:Por ultimo le añadimos a la escena de las camaras el sombreador
-	:para que no nos dibuje el centro de la camara frontal.
-	:Esto lo hacemos añadiendiendo en el ViewPortContainer un
-	:material Shider en el CambasItem. para que aplique un
-	:cirlculo alha a lo que renderiza la camra frontal.
-	:-
-	:Por ultimo añadiremos un script a los objetos del frente
-	:para que modifiquen su capa si estan delante o detras del
-	:muñeco y de esa manera poder tener paredes y objetos no
-	:afectados por la transparencia.
-	:Creamos dos funciones una que mande la pared al fondo y otra
-	:que la mande al frente (Capa 1 o Capa 2)
-	:Y en el process revisamos la posicon X del player con la posicion X
-	:de la pared usando
-	:if(V.V_Player.global_position.x>global_position.x):
-	:para que si esta delante o detras llame a una u otra funcion.
-	:NT:Tambien he añadido una funcion que revisa en cada funcion
-	:si ya esta la capa bien y solo modificarta una vez.
-	:-
-*EJ - Test For While
-	:"_ " = <TAB>
-	:Este Test revisa el uso de memoria y la velocidad de
-	:los bucles FOR y WHILE
-	:-
-	:Conclusion, Para Fores pequeños es mejor el for
-	:pero al crecer el for aumenta el uso de memoria y de
-	:ciclos siendo mas rapido y mejor el while.
-	:- RESULTADOS
-	:Repeticiones X 1000
-	:REP1: 1000000 REP2: 1000000 REP3: 1000000
-	:MEM0:49144563 MEM1:49207191 MEM2:49207191 MEM3:49207191
-	:MEMT1:62628 MEMT2:0 MEMT3:0
-	:TBas=815 TFor1=875 TWhile=938 TFor2=998
-	:TFor1-TBas=60 TWhile-TFor1=63 TFor2-TWhile=60
-	:----
-	:Repeticiones X 10000
-	:REP1: 100000000 REP2: 100000000 REP3: 100000000
-	:MEM0:49144563 MEM1:49665943 MEM2:49665943 MEM3:49665943
-	:MEMT1:521380 MEMT2:0 MEMT3:0
-	:TBas=806 TFor1=6578 TWhile=12791 TFor2=18773
-	:TFor1-TBas=5772 TWhile-TFor1=6213 TFor2-TWhile=5982
-	:-----
-	:Repeticiones X 15000
-	:REP1: 225000000 REP2: 225000000 REP3: 225000000
-	:MEM0:49144563 MEM1:50190231 MEM2:50190231 MEM3:50190231
-	:MEMT1:1045668 MEMT2:0 MEMT3:0
-	:TBas=913 TFor1=14364 TWhile=28680 TFor2=41975
-	:TFor1-TBas=13451 TWhile-TFor1=14316 TFor2-TWhile=13295
-	:-------
-	:Repeticiones X 22000
-	:REP1: 484000000 REP2: 484000000 REP3: 484000000
-	:MEM0:49144563 MEM1:51238807 MEM2:51238807 MEM3:51238807
-	:MEMT1:2094244 MEMT2:0 MEMT3:0
-	:TBas=820 TFor1=31757 TWhile=62000 TFor2=94092
-	:TFor1-TBas=30937 TWhile-TFor1=30243 TFor2-TWhile=32092
-	:-------
-	:Repeticiones X 30000
-	:REP1: 900000000 REP2: 900000000 REP3: 900000000
-	:MEM0:49144563 MEM1:51238807 MEM2:51238807 MEM3:51238807
-	:MEMT1:2094244 MEMT2:0 MEMT3:0
-	:TBas=918 TFor1=57982 TWhile=114198 TFor2=171330
-	:TFor1-TBas=57064 TWhile-TFor1=56216 TFor2-TWhile=57132
-	:------------
-	:Repeticiones X 30000
-	:REP1: 0 REP2: 900000000 REP3: 0
-	:MEM0:49139803 MEM1:49139803 MEM2:49136887 MEM3:49136887
-	:MEMT1:0 MEMT2:-2916 MEMT3:0
-	:TBas=911 TFor1=911 TWhile=56806 TFor2=56806
-	:TFor1-TBas=0 TWhile-TFor1=55895 TFor2-TWhile=0
-	:-
-	:-CODIGO
-	:print("Hola Mundo");
-	:var V_Rang:int=30000;
-	:var V_Tim0_int:int=0;var V_Tim1_int:int=0;
-	:var V_Tim2_int:int=0;var V_Tim3_int:int=0;
-	:var Mq:int=0;var Mq1:int=0;
-	:var V0:float =0;var V1:float =0;var V2:float =0;
-	:var M0:float =0;var M1:float =0;var M2:float =0;var M3:float =0;
-	:# - - Del For1
-	:V_Tim0_int=Time.get_ticks_msec();
-	:M0=Performance.get_monitor(Performance.MEMORY_STATIC);
-	:# - - Del For1
-	:V_Tim0_int=Time.get_ticks_msec();
-	:M0=Performance.get_monitor(Performance.MEMORY_STATIC);
-	:for MqX in range(V_Rang):
-	:_ for MqY in range(V_Rang):
-	:_ _ V0+=1;
-	:_ #Fin For MqY
-	:#Fin For MqX
-	:#----- WHILES
-	:V_Tim1_int=Time.get_ticks_msec();
-	:M1=Performance.get_monitor(Performance.MEMORY_STATIC);
-	:while (Mq<V_Rang):
-	:_ Mq+=1;Mq1=0;
-	:_ while (Mq1<V_Rang):
-	:_ _ Mq1+=1;
-	:_ _ V1+=1;
-	:_ #Fin del While
-	:#Fin del While
-	:#----- FOR 2
-	:V_Tim2_int=Time.get_ticks_msec();
-	:M2=Performance.get_monitor(Performance.MEMORY_STATIC);
-	:for MqR in range(V_Rang):
-	:_ for MqT in range(V_Rang):
-	:_ _ V2+=1;
-	:_ #Fin For MqY
-	:#Fin For MqX
-	:V_Tim3_int=Time.get_ticks_msec();
-	:M3=Performance.get_monitor(Performance.MEMORY_STATIC);
-	:#--Resultados
-	:print("Repeticiones X ",V_Rang);
-	:print("REP1: ",V0," REP2: ",V1," REP3: ",V2);
-	:print("MEM0:",M0," MEM1:",M1," MEM2:",M2," MEM3:",M3);
-	:print("MEMT1:",(M1-M0)," MEMT2:",(M2-M1)," MEMT3:",(M3-M2));
-	:print("TBas=",V_Tim0_int," TFor1=",V_Tim1_int," TWhile=",V_Tim2_int," TFor2=",V_Tim3_int);
-	:print("TFor1-TBas=",(V_Tim1_int-V_Tim0_int)," TWhile-TFor1=",(V_Tim2_int-V_Tim1_int),
-	:" TFor2-TWhile=",(V_Tim3_int-V_Tim2_int));
-	:-
 *ENUMS
 	:Podemos obtener el tamaño o cantidad de items de un
 	:enum con :
