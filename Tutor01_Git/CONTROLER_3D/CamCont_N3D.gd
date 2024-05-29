@@ -53,12 +53,12 @@ func _process(delta):
 func _input(event):
 	
 	if(event is InputEventMouseMotion):
-		
+		# Ojo el event es el raton D-I=x F-B=y
 		#- Limitamos la rotacion en X para que mire al suelo y al cielo solo
 		var M_RotX:float=rotation.x-(event.relative.y*V_MouseSensitiveX);
 		M_RotX=clamp(M_RotX,-0.7,0.8);
 		
-		#- Creamos vector de rotacion
+		#- Creamos vector de rotacion Y=v X=h Z=f
 		var M_Vec3D:Vector3=Vector3(
 			M_RotX,
 			rotation.y-(event.relative.x*V_MouseSensitiveY),

@@ -11,8 +11,10 @@ func F_Log(M_Acc:int,M_Txt:String=""):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	F_Log(1,"_ready");
+	#-Borramos 
 	V.V_Group01.clear();
 	V.V_Group01.append($CamCont_N3D);
+	#V.V_Group01.append($CamCont_N3D/SpringArm3D/Cam_Cam3D);
 	V.V_Group01.append($CamCont_N3D/SpringArm3D/Cam_Cam3D);
 	V.V_Group01.append($CamCont_N3D/LoockAt_N3D);
 	V.V_Group01.append($PJ_ChB3D);

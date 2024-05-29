@@ -12,7 +12,7 @@
 ambient_light_source = 1
 ambient_light_color = Color(0.933333, 0.564706, 0.752941, 1)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_h21ki"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hjpru"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_j0xeb"]
 
@@ -23,11 +23,9 @@ radial_segments = 12
 rings = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_osp68"]
-size = Vector3(0.971313, 1.90992, 0.965607)
+size = Vector3(1.34664, 1.95138, 1.21189)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qiw1m"]
-radius = 0.083
-height = 0.606
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjqrw"]
 albedo_color = Color(0.835294, 0, 0.835294, 1)
@@ -80,64 +78,94 @@ directional_shadow_pancake_size = 8.6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3194, 64.3876, -4.59229)
 script = ExtResource("2_fiq5i")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="PJ_ChB3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.269289, -0.635648, -0.665235)
-light_energy = 0.21
-light_specular = 0.485
-distance_fade_enabled = true
-distance_fade_begin = 0.0
-distance_fade_length = 265.81
-
 [node name="SpotLight3D" type="SpotLight3D" parent="PJ_ChB3D"]
-transform = Transform3D(1, 0, 0, 0, 0.970951, 0.239279, 0, -0.239279, 0.970951, -0.534527, 0.00832621, -0.931216)
+transform = Transform3D(1, 0, 0, 0, 0.970951, 0.239279, 0, -0.239279, 0.970951, -0.544876, 0.0861816, -0.520831)
 light_color = Color(1, 1, 0.713726, 1)
 light_energy = 1.52
 light_specular = 0.881
-shadow_enabled = true
-spot_range = 152.587
-spot_attenuation = 0.594605
-spot_angle = 25.01
+shadow_opacity = 0.1
+distance_fade_enabled = true
+distance_fade_begin = 4.0
+spot_range = 21.781
+spot_attenuation = 1.51572
+spot_angle = 21.18
+spot_angle_attenuation = 2.21914
 
-[node name="Cuerpo_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D" groups=["GRP_PJ1"]]
-mesh = SubResource("CapsuleMesh_h21ki")
+[node name="OmniLight3D" type="OmniLight3D" parent="PJ_ChB3D/SpotLight3D"]
+transform = Transform3D(1, 0, 0, 0, 0.970951, -0.239279, 0, 0.239279, 0.970951, 0.0176468, -0.0904465, 0.0175915)
+light_energy = 0.18
+light_specular = 0.44
+distance_fade_enabled = true
+distance_fade_begin = 0.0
+distance_fade_length = 265.81
+omni_range = 3.51
+omni_attenuation = 2.92817
 
-[node name="OjoD_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/Cuerpo_Msh3D" groups=["GRP_PJ1"]]
-transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0.295955, 0.596424, -0.500965)
+[node name="pj_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D" groups=["GRP_PJ1"]]
+transform = Transform3D(1, 0, 0, 0, 1.00756, 0, 0, 0, 1, -0.0719528, 0, 0.176859)
+
+[node name="cab_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/pj_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.594472, 0, 0, 0, 0.27974, 0, 0, 0, 0.617655, -0.000392914, 0.526867, 0.0215521)
+mesh = SubResource("CapsuleMesh_hjpru")
+
+[node name="ojo_d_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/pj_Msh3D/cab_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.384381, 0, 0, 0, 0.603988, 0, 0, 0, 0.337556, 0.17984, 0.14505, -0.486678)
 mesh = SubResource("SphereMesh_j0xeb")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Brazo_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/Cuerpo_Msh3D" groups=["GRP_PJ1"]]
-transform = Transform3D(0.405, 0, 0, 0, 0.0180472, -0.404598, 0, 0.404598, 0.0180472, -0.542236, 0.195868, -0.377134)
+[node name="ojo_i_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/pj_Msh3D/cab_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.384381, 0, 0, 0, 0.603988, 0, 0, 0, 0.337556, -0.181717, 0.14505, -0.461892)
+mesh = SubResource("SphereMesh_j0xeb")
+skeleton = NodePath("../../..")
+
+[node name="cuell_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/pj_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.250803, 0, 0, 0, 0.115087, 0, 0, 0, 0.255732, 0, 0.255489, 0)
+mesh = SubResource("CapsuleMesh_hjpru")
+
+[node name="cuer_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/pj_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.87608, 0, 0, 0, 0.296149, 0, 0, 0, 0.534834, -0.00346375, -0.0708656, -0.00754499)
+mesh = SubResource("CapsuleMesh_hjpru")
+
+[node name="bra_de_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/pj_Msh3D/cuer_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.322403, 0, 0, 0, 0.0297271, -0.924836, 0, 0.666448, 0.0412525, -0.542236, 0.424652, -0.530605)
 mesh = SubResource("CapsuleMesh_uo8e1")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="OjoI_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/Cuerpo_Msh3D" groups=["GRP_PJ1"]]
-transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, -0.353366, 0.596424, -0.500965)
-mesh = SubResource("SphereMesh_j0xeb")
-skeleton = NodePath("../..")
+[node name="bra_iz_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/pj_Msh3D/cuer_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.362567, 0, 0, 0, 1.21642, 0, 0, 0, 0.605697, 0.619617, -0.610092, 0.0554724)
+mesh = SubResource("CapsuleMesh_uo8e1")
+skeleton = NodePath("../../..")
+
+[node name="pi_iz_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/pj_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.210493, 0, 0, 0, 0.362989, 0, 0, 0, 0.167494, 0.234333, -0.637241, 0)
+mesh = SubResource("CapsuleMesh_hjpru")
+
+[node name="pi_de_Msh3D" type="MeshInstance3D" parent="PJ_ChB3D/pj_Msh3D" groups=["GRP_PJ1"]]
+transform = Transform3D(0.210493, 0, 0, 0, 0.362989, 0, 0, 0, 0.167494, -0.20026, -0.633385, 0.0102687)
+mesh = SubResource("CapsuleMesh_hjpru")
 
 [node name="PJ_ColliSha3D" type="CollisionShape3D" parent="PJ_ChB3D" groups=["GRP_PJ1"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00799561, 0.00828552, -4.57764e-05)
+transform = Transform3D(1, 0, 0.000226893, 0, 1, 0, -0.000226893, 0, 1, -0.0562782, -0.0666733, -0.036684)
 shape = SubResource("BoxShape3D_osp68")
 
 [node name="CamCont_N3D" type="Node3D" parent="." groups=["GRP_PJ1"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.42991, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2453, 64.5167, -4.62654)
 script = ExtResource("3_rl13t")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CamCont_N3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.835, 0)
-collision_mask = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00254822, 0.368629, -0.371823)
+collision_mask = 3
 shape = SubResource("CapsuleShape3D_qiw1m")
-spring_length = 4.38
+spring_length = 0.0
+margin = 1.0
 
 [node name="Cam_Cam3D" type="Camera3D" parent="CamCont_N3D/SpringArm3D" groups=["GRP_PJ1"]]
-transform = Transform3D(1, 0, 0, 0, 0.971961, 0.235142, 0, -0.235142, 0.971961, 0, 0, 4.125)
+transform = Transform3D(1, 0, 0, 0, 0.971961, 0.235142, 0, -0.235142, 0.971961, 0.0051384, 0.127426, 0.0651898)
 near = 0.001
 far = 368.6
 
 [node name="LoockAt_N3D" type="Node3D" parent="CamCont_N3D" groups=["GRP_PJ1"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.41)
-visible = false
 
 [node name="Msh3D_Cubo4" type="MeshInstance3D" parent="CamCont_N3D/LoockAt_N3D"]
 transform = Transform3D(-0.121161, -0.0765142, 0.107269, 0, 0.145727, 0.103946, -0.131761, 0.0703584, -0.0986389, 0, 0, 0)

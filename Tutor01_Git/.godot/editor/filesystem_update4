@@ -2,3 +2,7 @@ res://CONTROLER_3D/Game_N3D.tscn
 res://SCN_Agua/Water_V1.gdshader
 res://SCN_Agua/Water.gdshader
 res://LVS/Scn_LV0.tscn
+res://CONTROLER_3D/Game_N3D.gd
+res://V.gd
+res://CONTROLER_3D/CamCont_N3D.gd
+res://CONTROLER_3D/ChB3D_PJ.gd

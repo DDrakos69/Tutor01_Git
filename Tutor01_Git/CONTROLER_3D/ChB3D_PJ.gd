@@ -1,24 +1,34 @@
 extends CharacterBody3D
 
+#- - - ChB3D_Pj.gd
+
+
+
 func F_Log(M_Acc:int,M_Txt:String=""):
 	V.F_Log(M_Acc,M_Txt,self.name);
 #END F_log
+
+
 
 
 var V_MoveAxis:Vector2;
 
 # Velocidad de movimiento
 var V_Speed:float = 1.0;
+
 # Velocidad de salto.
 const V_JUMP_VELOCITY = 8.5;
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var V_Gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 var V_Direction:Vector3=Vector3(0,0,-1);
 
-
-var V_CamCont:Node3D;# Controlador de la camara .
-var V_CamLookAt:Node3D;# Objeto delante de la camara apuntar a.
-var V_Luz:Node3D;# Objeto Brazo
+# Controlador de la camara .
+var V_CamCont:Node3D;
+# Objeto delante de la camara apuntar a.
+var V_CamLookAt:Node3D;
+# Objeto Brazo
+var V_Luz:Node3D;
 
 # Indica si ya se ha cargado ESTE Ready
 var V_ReadyOk=false;
@@ -76,6 +86,10 @@ func _input(event):
 	#END if Mouse Motion	
 	pass
 #END _input
+
+
+
+
 
 
 func _physics_process(delta):
@@ -140,10 +154,12 @@ func F_Move():
 	$"../UI/VBoxContainer/PosPj2_lb".text="transform:"+str(transform);
 	$"../UI/VBoxContainer/PosPj3_lb".text="basis:"+str(transform.basis);
 	$"../UI/VBoxContainer/PosPj4_lb".text="Direct:"+str(direction);
+	
+	
 	if direction:
-		velocity.x = direction.x * V_Speed;
-		velocity.z = direction.z * V_Speed;
-		if(V_Speed<8):V_Speed+=0.3;
+		velocity.x = direction.x * V_Speed;#lado
+		velocity.z = direction.z * V_Speed;#Fondo
+		if(V_Speed<3):V_Speed+=0.2;
 	else:#- Efecto de frenada
 		V_Speed=1;
 		velocity.x = move_toward(velocity.x, 0, 0.06);
@@ -188,6 +204,9 @@ func F_Gravity(delta):
 		velocity.y -= V_Gravity*delta;
 	#END If in floor
 #END F_Gravity
+
+
+
 
 
 func F_Jump():

@@ -1,4 +1,9 @@
 extends Node
+# - - - - V.gd - - - - - 
+# Auto Load
+# -Guardar datos globales
+# -Intercambio de objetos entre nodos.
+
 
 
 #Movimiento personalizado
@@ -12,15 +17,20 @@ extends Node
 #Fin Fnc F_GetAxis
 
 
+
+# - Contador de tiempo
 var V_TIME:int;
+# - Contador de record
 var V_SCORE:int;
+# - 
 var V_TTxt:String;
 var V_Init_Ok:bool=false;
 
 
 
-
-
+# - - GRROUP ( Variables )
+# - - GRROUP ( Variables )
+# - - GRROUP ( Variables )
 var V_Group01:Array=["XXX"];
 func F_Group01_Find(M_Name:String):
 	var M_Res=null;
@@ -32,11 +42,12 @@ func F_Group01_Find(M_Name:String):
 	#END For
 	return M_Res;
 #END F_GroupFind
+	
+	
+	
 #- Reviso que todos los items añadidos al grupo esten ok 
 # (Por si modifico algun nombre que me lo avise.)
 func F_Group01_Test():
-	
-	
 	var M_Res=true;
 	for M_q in V_Group01.size():
 		if(V_Group01[M_q]==null):
@@ -48,15 +59,23 @@ func F_Group01_Test():
 	return M_Res;
 #END F_GroupFind
 
+# ____ GRROUP ( Variables )
+# ____ GRROUP ( Variables )
 
 
 
 
 
 
+
+
+# - - - - LOG
+# - - - - LOG
+# - - - - LOG
 var V_LogTim:int;
 var V_LogRama:int=1;
 var V_LogTxt:String="";
+
 func F_Log(M_Acc:int,M_Txt:String="",M_Self:String=""):
 	V_LogTim=Time.get_ticks_msec();
 	if(M_Acc==1):#Open
@@ -71,6 +90,14 @@ func F_Log(M_Acc:int,M_Txt:String="",M_Self:String=""):
 		
 	print("[%06d] %s [%s]:%s" % [V_LogTim,V_LogTxt,M_Self,M_Txt]);	
 ##END F_log
+# _______ LOG
+# _______ LOG
+# _______ LOG
+
+
+
+
+
 
 
 
