@@ -4,6 +4,8 @@ func F_Log(M_Acc:int,M_Txt:String=""):
 	V.F_Log(M_Acc,M_Txt,self.name);
 #END F_log
 
+@onready var v_obj_ascen_0 = $Obj_Ascen0;
+
 
 
 
@@ -21,6 +23,8 @@ func _ready():
 	V.V_Group01.append($PJ_ChB3D/SpotLight3D);
 	V.V_Group01.append($PJ_ChB3D/Cuerpo_Msh3D/Brazo_Msh3D);
 	
+	
+	
 	if(V.F_Group01_Test()==false):
 		F_Log(0,str(V.V_Group01));
 		#get_tree().quit();
@@ -29,6 +33,10 @@ func _ready():
 	Input.mouse_mode=Input.MOUSE_MODE_CAPTURED;
 	
 	V.V_Init_Ok=true;
+	
+	v_obj_ascen_0.f_close();
+	
+	
 	F_Log(2,"_ready");
 #END _ready
 

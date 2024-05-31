@@ -21,6 +21,7 @@ V="*res://V.gd"
 
 [filesystem]
 
+import/fbx/enabled=false
 import/blender/enabled.android=true
 import/blender/enabled.web=true
 import/fbx/enabled.android=true
