@@ -35,6 +35,10 @@ var V_ReadyOk=false;
 
 #- Lo cargo a parte ya que aqui el ready aun no tienen todos los controles.
 func F_Ready():
+	V.V_Group01.append($PJ_ChB3D);
+	V.V_Group01.append($PJ_ChB3D/SpotLight3D);
+	V.V_Group01.append($PJ_ChB3D/Cuerpo_Msh3D/Brazo_Msh3D);
+	
 	V_ReadyOk=true;
 	F_Log(1,"F_Ready");
 	
@@ -42,9 +46,9 @@ func F_Ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 	
 	#- Obtengo de mi lista la referencia al CameraControler.
-	V_CamCont=V.F_Group01_Find("CamCont_N3D");
-	V_CamLookAt=V.F_Group01_Find("LoockAt_N3D");
-	V_Luz=V.F_Group01_Find("SpotLight3D");
+	V_CamCont=V.F_Group01_Find("camcont_n3d");
+	V_CamLookAt=V.F_Group01_Find("loockat_n3d");
+	V_Luz=V.F_Group01_Find("spotlight3D");
 	F_Log(0,"CamCont:"+str(V_CamCont));
 	F_Log(0,"CamLoock:"+str(V_CamLookAt));
 	F_Log(0,"V_Luz:"+str(V_Luz));

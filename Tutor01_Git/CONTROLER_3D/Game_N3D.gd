@@ -4,10 +4,7 @@ func F_Log(M_Acc:int,M_Txt:String=""):
 	V.F_Log(M_Acc,M_Txt,self.name);
 #END F_log
 
-@onready var v_obj_ascen_0 = $Obj_Ascen0;
-
-
-
+@onready var V_obj_ascen_0 = $Obj_Ascen0;
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,12 +13,9 @@ func _ready():
 	#-Borramos 
 	V.V_Group01.clear();
 	V.V_Group01.append($CamCont_N3D);
-	#V.V_Group01.append($CamCont_N3D/SpringArm3D/Cam_Cam3D);
-	V.V_Group01.append($CamCont_N3D/SpringArm3D/Cam_Cam3D);
-	V.V_Group01.append($CamCont_N3D/LoockAt_N3D);
-	V.V_Group01.append($PJ_ChB3D);
-	V.V_Group01.append($PJ_ChB3D/SpotLight3D);
-	V.V_Group01.append($PJ_ChB3D/Cuerpo_Msh3D/Brazo_Msh3D);
+	V.V_Group01.append($camcont_n3d/spring_arm3d/camera_cam3d);
+	V.V_Group01.append($camcont_n3d/loockat_n3d);
+
 	
 	
 	
@@ -34,7 +28,7 @@ func _ready():
 	
 	V.V_Init_Ok=true;
 	
-	v_obj_ascen_0.f_close();
+	V_obj_ascen_0
 	
 	
 	F_Log(2,"_ready");
@@ -44,4 +38,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit();
+		
+

@@ -570,8 +570,6 @@ transform = Transform3D(12.475, 0, 0, 0, 1.08, 0, 0, 0, 12.475, 6.63457, -0.4507
 mesh = SubResource("BoxMesh_la4bi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="suelo_mshinst3d"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="suelo_mshinst3d/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_kd8ct")

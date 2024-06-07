@@ -32,7 +32,7 @@ var V_Init_Ok:bool=false;
 # - - GRROUP ( Variables )
 # - - GRROUP ( Variables )
 var V_Group01:Array=["XXX"];
-func F_Group01_Find(M_Name:String):
+func F_Group01_Find_(M_Name:String):
 	var M_Res=null;
 	for M_q in V_Group01.size():
 		if(V_Group01[M_q].name==M_Name):
