@@ -1,6 +1,5 @@
-{WinHelper V1.05 by FNX A1 2022}
-{TITTLE}
-{WIN_W}00551
+{WinHelper V2.00 by FNX A1 2024}
+{WIN_W}00564
 {JPG_SIZE}00141
 {IMG_AUTO}10156
 {WIN_DESC_H}00516
@@ -8,14 +7,213 @@
 {WIN_EDT_GRP_H}00265
 {WIN_ALING_LEFT}00000
 {WIN_IMG_CFG}.0010.0010.0640.0480.0100
-{PANLAT_CLR}000,255,000
-
+{LAT_H}00030
+{LAT_W}00010
+{LAT_C}255255000
+*[ EJEMPLOS ]
+	*Crear mapas de normales
+		ª100000ª4ª100001ª100003ª100002ª100004ª100005ª100006ª100007
+		:Necesitamos crear dos planos  del mismo tamaño.
+		:Colocamos uno encima del otro y les ponemos nombre descrictivo.
+		:Modificamos la superficie del que queremos sacar las normales.
+		:Cuando tengamos el objeto creado .
+		:Revisamos las direciones de las caras unificando las normales.
+		:-
+		:Ahora le vamos a decir que nos muestre el normal-map en
+		:el objeto LowPoly creando el material y revisando su uv .
+		:(Esto no es necesario es solo para testear que el mapa cread
+		:este correcto.)
+		:-
+		:Con el objeto LP selecionado
+		:Entramos en UV Editor.
+		:Ceramos una nueva textura.
+		:Le colocamos los UVs si fuese necesario.
+		:-
+		:Ahora entramos en Shading
+		:Creamos un Material.
+		:Añadimos un nodo textura
+		:Selecionamos la textura que hemos creado en las UVs
+		:Le decimos que el espacio no es color (Para que lo use como datos)
+		:Le añadimos el nodo "Normal Map" para que los datos pasados
+		:por la textura los trabaje y convierta a normales.
+		:y asociamos todo para que la salida del mixer sea a normals.
+		:Podemos modificar el Base color para que se note la diferencia.
+		:-
+		:Con esto ya tencriamos en el OBJ LP como se veria el normal maps.
+		:-
+		:Ahora toca quemar en una imagen de normales el OBJ HP
+		:En Shading.
+		:Selecinamos primero el OBJ HP y despues el OBJ LP
+		:De este modo le decimos que tome el HP como fuente.
+		:Al selecionar el LP despues nos mostrara el Material.
+		:Selecionamos la textura para que sepa el fichero a guardar.
+		:-
+		:En el la ventana de "EDITOR"  en la seccion de "RENDER"
+		:selecionamos el motor "Cycles" si podemos por GPU mejor.
+		:Bajamos a la seccion "BAKE"
+		:Le decimos que Bake un TIPO NORMAL
+		:Que sea del OBJ selecionado al Objeto Activo.
+		:Osea del OBJ HP a la Imagen TX_UVs
+		:Que use una altura de extrusion de 0.8 mm mas menos
+		:(Si nos pasamos se rompe.)
+		:Ourput en ImageTexture y Borra lo que tenga.
+		:-
+		:Y listo ya tenemos la normal maps.
+		:-
+	*Tela Realista
+*[ GEOMETRY NODES ]
+	*[ EJEMPLO ]
+	*[ TUTORIAL ]
+		ª10156ª10157ª10158
+		:Se trata de poder crear objetos y modificarlos por nodos.
+		:Este arbol de modificadores se puede aplicar a cualquer objeto para modificarlo mas tarde.
+		:Para acceder tenemos la plantilla "Geomety Nodes"
+		:esta plantilla nos muestra:
+		:- "3D ViewPort"
+		:- "SpreadSheed"
+		:- "Geometry Nodes Editor"
+		:3D ViewPort ya la conocemos.
+		:SpreadSheed (presenta propiedades y datos del objeto creado)
+		:Geomety Nodes Editor (Se editan las propiedades del objeto por nodos)
+		:1º crearemos un objeto.
+		:2º En "GNE" le añadimos un modificador de geometria por nodos.
+		:Podemos apreciar que aunque para crear el "GN" se
+		:asocia a un objeto realmente por dentro los trabaja como "Nodes Groups"
+		:sin asociacion.
+		:Tambien podemos ver que se trata de un modificador por lo
+		:que se puede aplicar a cualqueir objeto.
+		:Nos crea un nodo de entrada y un nodo de salida.
+		:-El "Group Input" seria la geometria basica del objeto realcionado
+		:que podemos editar o remplazar por otra.
+		:-El "Group Output" es el nodo de salida resultante.
+		:todo lo conectado a este nodo sera creado o modificado.
+		:Podemos eliminar el "Group Input" y poner en su lugar otro objeto.
+		:Cada objeto es una funcion que genera ese objeto.(una macro)
+	*GEOMETRY
+	*MESH PRIMITIVES
+		ª10160ª10161
+		:Contiene las privitivas basicas.
+		:- CONE
+		:Crea un cono donde definiremos
+		:El radio Inf , el Radio Sup, el Alto, los Segmentos,
+		:Numero de vertices y el tipo de tapa
+		:- CUBE
+		:Crea un cubo donde definiremos
+		:Alto, Ancho, Fondo, y las subdivisiones para alto , ancho y fondo.
+		:- CYLINDER
+		:Genera un cilindro donde podemos definir
+		:el Radio, Numero de Vertices exteriores, Tipo de tapas, Altura.
+		:- GRID
+		:Genera un plano cuadrado de X x Y vertices y una separacion
+		:X e Y entre ellos.
+		:- ICO SPHERE
+		:Genera una esfera triangulada de X subdivisiones y R Radio.
+		:- MESH CIRCLE
+		:Genera un circulo plano de X vertices y R Radio pudiendo
+		:cerrarlo con una cara o multiples caras.
+		:- MESH LINE
+		:Traza una linea con X vertices desde punto A al B o un numero de
+		:saltos de distancia dada.
+		:- UV SPHERE
+		:Genera una esfera con maya cuadrada donde definiremos
+		:Radio, Segmentos y anillos.
+	*POINT
+		ª10162
+		:Crea puntos en distintos origenes.
+		:- Distribute points on Faces
+		:Crea un punto por cada cara en una posicion de la cara aleatoria.
+		:- Point
+		:- Point To Vertices
+		:- Points To Volume
+		:- Set Point Radius.
+*FBX
+	*- BLENDER (FBX) a Unreal (Animation)
+		:Blender (V 3.XX)
+		:- Include
+		:Selected Objects V
+		:Armature
+		:-Transform
+		:Scale	1
+		:Apply Scaling: All Cocal
+		:Forware Y
+		:Up Z
+		:Apply Units V
+		:-Geometry
+		:Smoothing: Face
+		:Apply Modifiers: V
+		:- Armature
+		:Primary : Y
+		:Second : X
+		:Arm FBXn Type : Null
+		:-Bake Animation : V
+		:Key All Bones : V
+		:Force Star/End Keying : V
+		:Sam..: 1 Simpl..:1
+	*- BLENDER (FBX) a Unreal (Armatur y Mesh)
+		:Blender (V 3.3.2)
+		:- Include
+		:Selected Objects V
+		:Armature + Mesh
+		:-Transform
+		:Scale = 1
+		:Apply Scaling = All Local
+		:Forward = -Z Forward
+		:Up = Y Up
+		:- Geometry
+		:Smoothing = Face
+		:Apply Modifiers = V
+		:-Armature
+		:Primary Bone Axis = Y
+		:Secondary Bone Axis = X
+		:Armature FBXNode Type = Null
+		:Add Leaf Bones = V
+		:-Bake Animations = X
+		:Blender Version 3.XX
+		:Ignore Leaf Bones	X
+		:Force Connect Children	X
+		:Automatico Bone Orientation X
+		:Secundary Bone Axis	-Z
+		:- Bake Animation = X
+		:Blender Version X
+		:- Manual Orienta	V
+		:Forward = -Z
+		:Up = +Y
+		:-Animation	V
+		:Animation OffSet	0
+	*- MIXAMO (FBX) a BLENDER
+		:- Include
+		:Costom Normal V
+		:Custom Properties V
+		:Import Enums as Strings V
+		:Image Search V
+		:-Transform
+		:Scale	1
+		:Decal Offset	0
+		:Use Pre/Post Rotation	V
+		:- Manual Orienta	V
+		:Forward	-Z
+		:Up		+Y
+		:-Animation	V
+		:Animation OffSet	0
+		:-Armature
+		:Primary Bone Axis	Y
+		:Secundary Bone Axis	-Z
+	*- UNREAL IMPORT FBX del Blender (Animacion)
+		:Para importar un Fbx con una animacion del Blender al UE
+		:Boton import.
+		:- Animation
+		:Selecionamos el fbx
+		:Nos tiene que autoselecioanr el Skeleton
+		:Animation Lenght : Exported Time.
+		:Import Bone Tracks : V
+		:Delete Existing Morph : V
+		:- Transform
+		:- Miscellan
+		:Convert Scene : V
+		:Convert Scene Units : V
 *MODELOS
-	·20230728141152
 	:https://www.cgtrader.com/es/3d-modelos?file_types[]=104&free=1
-	:
 	*Estructura de datos
-		·20230725182114
 		:esquema básico de la estructura de datos en Blender. Ten en cuenta que Blender tiene una estructura de datos compleja debido a su naturaleza 3D y su enfoque en la creación de escenas y animaciones. A continuación, se presenta un resumen simplificado de los principales componentes de la estructura de datos en Blender:
 		:Blend File (Archivo de Blender):
 		:Contiene todos los datos de la escena, incluyendo objetos, materiales, texturas, animaciones, etc.
@@ -124,66 +322,9 @@
 		:}
 		:Recuerda que esta es una estructura simplificada y que en una implementación real, podrías agregar más propiedades y métodos para manipular y gestionar los datos según tus necesidades.
 		:Espero que este ejemplo te sea útil para comprender cómo podrías representar la estructura de datos de armaduras y mallas en C#. Si tienes más preguntas o necesitas más ayuda, no dudes en preguntar. ¡Estoy aquí para ayudarte!
-		:
 	*NEW
-		·20230725174350
 	*NEW
-		·20230725174350
-*Ventana Compositor
-	·20230728141152
-	:https://www.youtube.com/watch?v=M2l-NH-lkQE
-	:
-*Ventana ViewPort3D
-	·20230728141152
-	:Es la pantalla principal de diseño 3D
-	:
-	*Herramientas
-		·20230725170039
-		*Snap (Ajuste Himan)
-			·20230725182114
-			ª10033ª10034
-			:Permite igualar la posicon de lo que creemos o desplacemos a la
-			:cara, arista, vertice u objeto sobre el que estemos.
-			:Tenemos distintas opciones
-			:-Increment (Ajusta al grill)
-			:-Vertex (Ajusta con el vertice enfocado)
-			:-Edge (Ajusta con la arista enfocado)
-			:-Face (Ajusta con la Cara enfocado)
-			:-Volume (Ajusta con el Objeto enfocado)
-			:-Edge Center (Ajusta con el centro de la arista enfocada)
-			:-Edge Perpendicular (Ajusta con el centro de la arista enfocada perpendicularmente.)
-			:Dentro de cada modo podemos indicarle otras opciones
-			:-Como que tambien copie la rotacion o que se aline con la normal.
-			:-Que se alinne con el centro , la media
-			:-Tambien que que se mueva, rote o escale segun el objeto enfocado.
-			:
-*Ventana Properties
-	·20230725170039
-	*Object Properties (Propiedades del objeto)
-		·20230725170039
-		*Transform
-			·20230725170039
-		*Relations
-			·20230725170039
-		*Collections
-			·20230725170039
-		*Instancing
-			·20230725170039
-		*Motion Paths
-			·20230725182114
-			ª10067
-			:Activa el trazado del objeto animado pudiendo configurar distintos modos
-			:como el rango, si muestra key frames, Color, lineas, Numero de Fotogramas
-			:Es necesario actualizarlo con cada modificacion de la animacion con "Update Paths"
-			:
-		*Visibility
-			·20230725170039
-		*ViewPort Display
-			·20230725170039
-		*Custom Properites
-			·20230725170039
 *Modificadores
-	·20230728141152
 	ª10022ª10023ª10028
 	:https://www.youtube.com/watch?v=s7-l1GB-mnA&list=PLfU-cGMkAuc4b7p43N5wveJ3NvKzj6Ael
 	:Son operaciones que se realizan sobre un bojeto para deformarlo o
@@ -202,110 +343,164 @@
 	:Y cuando estemos contentos podemos aplicar los cambios.
 	:Si no se apican se calcularan a tiempo real siempre, que tambien es
 	:una opcion pero consume recursos, usar a discreccion.
-	:
-	*MODIFICADORES (Modify)
-		·20230725182114
-		:Lo que hacen realmente es recopilar datos de un objeto, tratarlos y
-		:pasarselos a otro objeto.
-		:
-		*Data Transfer
-			·20230725170039
-		*MESH CACHE (En DesUso)
-			·20230725182114
-			ª10021ª10032ª10035
-			:Permite exportar e importar una animacion de un objeto dado.
-			:En propiedades tenemos que permitir exportar en formato MDD.
-			:Es necesario que los objetos sean identicos.
-			:Nos permitiria mezclar,encadenar o guardar distintas animaciones.
-			:Tambien nos permite modificar el tiempo total de la animacion.
-			:Actualmente ya no se usa, remplazado por el ACTION EDITOR
-			:https://www.youtube.com/watch?v=pzhr_JUcT_4&list=PLfU-cGMkAuc4b7p43N5wveJ3NvKzj6Ael&index=3
-			:
-		*Mesh Sequece Cache (Alembic ABC)
-			·20230725182114
-			ª10038ª10039
-			:Nos permite importar objetos y animaciones de formato ALEMBIC .ABC
-			:Si modificamos la maya de los objetos dejara de funcionar pero
-			:si podemos indicar que nos muestre Vertices,Caras,UVs o Colores
-			:la velocidad y otros parametros.
-			:
-		*Normal Edit (En DesUso)
-			·20230725182114
-			ª10040ª10041ª10042ª10043
-			:Este modificador se aplica sobre un objeto y permite
-			:configurar las normales que se muestran segun la posicion de otro objeto
-			:Se usa para que en objeos planos sus normales se ajusten de forma automatica
-			:y sean visibles segun la posicon del objeto B (la camara por ejemplo)
-			:Es necestario tener activo el AUTO SMOOTH en OBJECT DATA PROPERTIES
-			:Nos auto orienta las normales de un objeto segun otro de referencia para que solo
-			:sean visibles las caras que apuntan a ese objeto.
-			:https://www.youtube.com/watch?v=QZgmJ39cZCs&list=PLfU-cGMkAuc4b7p43N5wveJ3NvKzj6Ael&index=6
-			:
-		*Weighted Normal
-			·20230725182114
-			ª10044ª10045ª10046
-			:Este modificador se aplica sobre un objeto y nos aplica con poca geometria una curba
-			:Podemos aplicarselo solo aun grupo de vertices de un objeto y podemos
-			:marcar costuras para indicarle que zonans no queremos que aplique el suabizado.
-			:Es necestario tener activo el AUTO SMOOTH en OBJECT DATA PROPERTIES
-			:
-		*UV Project
-			·20230725182114
-			ª10047ª-1ª10051ª10052
-			:Este modificador nos permite modificar la posicion, Rotacion y escala de las UVs
-			:de un objeto segun otro objeto, sin tener que modificar las UVs o el material.
-			:Creamos el objeto, sus UVs y el material.
-			:Le aplicamos el modificador.
-			:Le asignamos otro objeto para que calcule el desplazamiento de las UVs
-			:Usara la diferencia entre las Transformaciones del objeto base y el objeto ayudante.
-			:
-		*UV Warp
-			·20230725182114
-			ª10048ª10049
-			:Este modificador nos permite modificar la posicion, Rotacion y escala de las UVs
-			:de un objeto usando la diferencia entre las transformaciones de dos objetos.
-			:Ejemplo: Objeto1.X - Objeto2.X = Desplazamiento X de la normal.
-			:Podemos definir el centro de la UV
-			:siendo 0,0 La Esquina Inf-Izq 0.5,0.5 El Centro y 1,1 la esquina Sup-Der
-			:Tambien podemos aplicar el desplazamiento solo a un Vertex Group
-			:Modificar los Ejes o los desplazamientos bases, Rotacion y escala.
-			:
-		*Vertex Weight Edit
-			·20230725182114
-			ª10053ª10054ª10055ª10056
-			:Este modificador nos permite ajustar distintos parametros de un grupo de vertices
-			:y sus pesos.
-			:Podremos tener tantos modificadores como grupos de vertices necesitemos.
-			:Nos permite ajustar
-			:Desde que valor se considera 1 (el tope) o Normalizar los pesos, definir el modo de
-			:extenderse o invertir el grupo etc.
-			:
-		*Vertex Weight Mix
-			·20230725182114
-			ª10057ª10058ª10059ª10060ª10061
-			:Nos permite mezclar distintos grupos de vertices con sus pesos.
-			:Teniendo dos grupos de vertices y sus pesos en el mismo objeto
-			:podemos aplicar distintas operaciones para mezclarlos, fundirlos
-			:restarlos o ajustarlos
-			:
-		*Vertex Weight Proximity
-			·20230725182114
-			ª10062ª10063ª10064ª10065ª10066
-			:Nos permite modificar la intensidad de los pesos de un grupo
-			:de vertices segun la proximidad de otro objeto.
-			:Tenemos un objeto con un grupo de vertices con pesos.
-			:Tenemos otro objeto animado que se aproxima a este objeto.
-			:Al aproximarse los pesos de los vertices del Vertex Group tambien
-			:se modifican.
-			:Podemos indicarle distancia minima y maxima, tipo de afectacion
-			:si vertices , aristas o caras, etc.
-			:
+	*Decimate
+		:Elimina vertices de un objeto intentando conservar la geometria
+	*DEFORMADORES
+		:Solo modifican geometria pero ni la crean ni la destruyen.
+		*ARMATURE
+			ª10125ª10126ª10127ª10128
+			:Este es el modificador encargado de modificar los grupos de vertices asociandolos a los huesos.
+			:Lo podemos crear de forma manual o de forma automatica.
+			:-MANUAL
+			:1º Creamos el objeto base o maya.
+			:2º Creamos la Armature y los huesos.
+			:3º Renombramos los huesos
+			:4º Creamos en la maya los grupos de vertices, Uno por cada hueso con el mismo nombre del hueso.
+			:5º Damos los pesos a los grupos de vertices en la maya
+			:6º Le decimos a la maya que su padre es la Armature.
+			:NT: Asegurarse de que los huesos y la maya esten aplicadas todas las deformaciones y rotaciones.
+			:-AUTOMATICO
+			:1º Creamos el objeto base o maya.
+			:2º Creamos la Armature y los huesos.
+			:3º Renombramos los huesos
+			:4º Selecionamos la Maya y añadimos a la selecion los huesos.
+			:5º Con Ctrl+P Emparentamos Maya a Armature con Pesos Automaticos.
+			:Como se puede ver en el modo automatico genera los grupos y los pesos de forma automatica
+			:de forma muy efectiva, eso que nos quitamos.
+		*CAST
+			ª10129ª10130
+			:Modifica una geometria deformandola inchandola o contrallendola segun una figura geometrica.
+			:Le podemos indicar:
+			:Shape - La figura a la que queremos que se intente igualar o deformar.
+			:Axis - El eje que se deformara.
+			:Factor - Fuerza de la deformacion
+			:Radius - Radio desde el centro que afecta la deformacion.
+			:Size - Tamaño de la deformacion (Se multiplica el Size por el Factor)
+			:Size From Radius - Iguala Size a Radius para que sean iguales.
+			:Vertex Group - Indica el grupos de vertices que sera o no afectado.
+			:Object - Indica que objeto usara como referencia (El Eje de ese objeto en lugar del propio)
+		*CURVE
+			ª10131ª10132
+			:Permite modificar un objeto o un array de objetos estirandolos y ajustandolos
+			:a una curva en un exe dado.
+			:El podificador se aplica al objeto que queremos modificar y le asociamos
+			:a una curva que nos servida de ayudante para darle forma.
+			:Le indicaremos el eje que tomara como referencia.
+			:y si queremos el grupo de vertices que se vera afectado.
+		*DISPLACE
+			ª10133ª10134ª10135
+			:Mermite desplazar los vertices de un objeto segun un mapa o imagen.
+			:Este desplazamiento estara dado por el patron Claro/oscuro de dicha imagen.
+			:Se suele usar un mapa de alturas especifico para crear rugosidad en un material
+			:Podemos indicarle :
+			:-Coordinates - que Tipo de coordenadas usara para el desplazamiento,
+			:Locales , Globales, Del propio objeto o de la UV.
+			:-Direction - El eje que desplazara los vertices X, Y , Z Segun la normal (Mapa de alturas)
+			:especifico o segun el patron de colores de la imagen.(Cada paleta es un eje Roja=x Verde=y Azul=z)
+			:-Strength - Fuerza del desplazamiento.
+			:-MidLevel- Inica donde situa la zona media del desplazamiento.
+			:-Vertex Group - Indica el grupo de vertices a modificar o a no modificar (Boton derecho en VertxGroup=
+		*HOOK
+			ª10136ª10137ª10138ª10139ª10143
+			:Este Modificador permite enganchar los vertices de la geometria de un objeto
+			:y modificarla al modificar este objeto.
+			:Tiene acceso rapido con CTRL + H en modo edicion.
+			:1º Creamos un objeto (con suficiente geometrioa)
+			:2º Creamos el objeto ayudante
+			:3º Añadimos el modificador Hook al objeto.
+			:4º le indicamos al modificador que se asocie con el objeto ayudante (Revisar Centros y escalas)
+			:5º Selecionando el Objeto entramos en modo edicion y asignamos los vertices que modificara el Hook.
+		*LAPLACIAN DEFORM
+			ª10140ª10141ª101421ª10143ª10144ª10145
+			:Este Modificador intenta suabizar un grupo de vertices de modo que el salto
+			:entre esos vertices modificados y sus cercanos no sea tan brusco.
+			:1º Creamos un objeto con suficiente geometria.
+			:2º Creamos un grupo de vertices que queremos que pueda modificar.
+			:3º Añadimos el modificador y le asignamos ese grupo en "Anchor Weights".
+			:4º Por ultimo Bindeamos el grupo.(esto marcara la forma original)
+			:A partir de esta forma suavizara las modificaciones realizadas.
+			:- Este Modificador consume muchos recursos OJO.
+			:Tambien podemos usarlo junto con HOOK para ayudar en las modificaciones.
+			:En el menu CTRL + H tenemos una opcion que nos permite añadir a la selecion
+			:de vertices los grupos de vertices de un hook.
+		*LATTICE
+			ª10146ª10147ª10148ª10149
+			:LATTICE permite modificar un objeto segun otro objeto ayudante de forma definida.
+			:Se basa en un objeto especial, un objeto LATTICE.
+			:Este objeto es un cubo con subdibisiones segun necesitemos.
+			:Podemos colocar los vertices de este Lattice al gusto y al pasarlo
+			:por el objeto principal lo deformara segun le indiquemos.
+			:El Modificador no tiene mucho.
+			:-El Objeto Tipo Lattice que se usara como objeto ayudante.
+			:-El Grupo de vertices que queremos que se afecte o que no se afecte.
+			:-La fuerza con que queremos que se afecten los bertices del objeto Base.
+			:La Chicha esta en el propio objeto Lattice.
+			:Este Objeto tiene una pestaña propia y podremos indicarle.
+			:- La resolucion o cantidad de sub divisiones del Lattice
+			:- La Interpolacion usada para cada coordenada (calculo usado para X, Y o Z /U,V,W)
+			:- Outside - Si solo genera maya Exteriro o tambien la interior
+		*MESH DEFROM
+			:Este Mod funciona igual que el LATTICE pero en lugar de usar un objeto especial
+			:usa cualquier objeto con cualquier geometria.
+			:Por lo normal se copia el objeto, se le simplifica, se le configura como WareFrame
+			:se escala y se usa para deformar al objeto principal.
+			:Funcion adel mismo modo.
+			:Se aplica sobre el objeto Base y se le dice en Object el nombre del objeto ayudante.
+			:Luego le damos precision (alcance de cada vertice a deformar)
+			:Y se Bindea para que tenga la referencia inicial
+			:Tambien le podemos indicar un Vertex Group para que aplique o proteja un grupo de vertices.
+			:Dynamic - Hace que si el modificador tiene muchos poligonos dibuje una version reducida.
+			:Este modificador consume muchos recursos.
+		*SHRINKWARP (Envoltura Retractil)
+			ª10155
+			:Nos permite unir dos objetos ajustado los vertices de conexion
+			:de la manera mas obtima pisible.
+			:Se aplica sobre el objeto a unir y le indicamos el objeto al que
+			:queremos que se una.
+			:En el Objeto a unir le podemos indicar un grupo de vertices con
+			:pesos para que sepa cuanto pueden deformarse.
+			:Tenemos distintos parametros
+			:- Warp Method (Metodo de deformacion)
+			:- Snap Mode (Modo automatico) Modo de ajuste.
+			:- Target (obejto al que pegar.)
+			:- OffSet (Distancia a considerar)
+			:- Grupo de vertices con pesos para ajuste preciso.
+			:NT:Para un mejor ajuste mirar el nodificador (DATATRANSFER)
+		*SIMPLEDEFORM
+			ª10030ª10031
+			:Este deformador nos permite modificar la maya
+			:de un objeto generando distintos efectos detorsion
+			:podemos definir el efecto TWIST, BEND, TAPER o STRETCH
+			:El angulo, el objeto origen, la dimension sobre la que aplicarlo
+			:podemos definir limites obloquear el efecto en alguna dimension.
+			:Los efectos simulan un tornado de distintas maneras
+			:Rotando (Twist), Curvando (Bend), Agrandando(Taper) o Inflando (Stretch)
+			:la maya de un objeto.
+		*Smooth
+			ª100000
+		*Smooth Corrective
+			ª100000
+		*Smooth Laplacian
+			ª100000
+		*Surface Deform
+			ª100000
+		*Warp
+			ª100000
+		*Wave
+			ª100000
+	*FISICAS (Phisics)
+		*Cloth
+		*Collision
+		*Dynamic Paint
+		*Explode
+		*Fluid
+		*Ocean
+		*Particle Instance
+		*Particle System
+		*Soft Body
 	*GENERADORES (Generate)
-		·20230725182114
 		:Modifica o deforma la geometria de un objeto.
-		:
 		*ARRAY
-			·20230725182114
 			ª10029ª10068ª10070ª10069ª10071ª10072ª10073
 			:Nos crea una o mas copias de un objeto.
 			:Podemos definir:
@@ -323,9 +518,7 @@
 			:-UVs. Realiza un desplazamiento en el UV para que las texturas
 			:no sean iguales (NT:1=100% 0=0% del tamaño de la UV)
 			:-Caps. Permite definir los objetos de inicio y final del Array.
-			:
 		*BEVEL
-			·20230725182114
 			ª10074ª10075ª10109ª10076ª10077ª10078ª10079
 			:Nos permite suabizar los bordes de un objeto añadiendo
 			:geometria usando bien las aristas o los vertices.
@@ -355,9 +548,7 @@
 			:indicaremos si queremos que marque mas las Normales.
 			:Si queremos que considere las SEAM las Costuras.
 			:O el numero de material a aplicar en el Bevel.
-			:
 		*BOOLEAN
-			·20230725182114
 			ª10080ª10081ª10082
 			:-Este modificador nos permite realizar operaciones de
 			:union, insercion y resta entre distintos objetos.
@@ -372,9 +563,7 @@
 			:metodo nuevo EXACT (consume mas recursos)
 			:Tambien podmos decirle que use metodo OBJETO o una colecion
 			:solo de Vertices, Aristas, pesos etc.
-			:
 		*BUILD
-			·20230725182114
 			ª10083ª10084
 			:Este modificador nos genera una animacion donde un objeto
 			:se crea o elimina cara a cara en un numero de fotogramas.
@@ -384,9 +573,7 @@
 			:- Si queremos que lo realize de forma Aleatoria.
 			:Por defecto el lo Crea/Elimina por orden de loops y de
 			:menor a mayor.
-			:
 		*DECIMATE
-			·20230725182114
 			ª10085ª10086
 			:Este modificador nos limpia geometria quitando el detalle
 			:en exceso.
@@ -400,16 +587,12 @@
 			:- Planar. Elimina geometria con un grado minimo pudiendo decirle
 			:que quiere mantener si por Normale, Material, costuras.
 			:Es muy destructivo.
-			:
 		*EDGE SPLIT
-			·20230725182114
 			ª10087ª10088
 			:Este modificador nos permite separar las caras del objeto.
 			:Manteniendo el objeto permite des-atar sus caras de las caras
 			:contiguas segun un angulo.
-			:
 		*GEOMETRY NODES
-			·20230725182114
 			:Explicado en un apartado propio de lo estenso que es.
 			:Se trata de un sistema de generacion de objetos damico donde
 			:podemos programar algunas cosas.
@@ -417,9 +600,7 @@
 			:siendo mucho mas potente que este.
 			:Es tan potente que tiene su propia plantilla de trabajo
 			:De momento lo veremos por encima.
-			:
 		*MASK
-			·20230725182114
 			ª10089ª10090ª10091
 			:Permite crear grupos de geometria de un objeto para ocultarla.
 			:Trabaja sobre:
@@ -430,9 +611,7 @@
 			:-Huesos.
 			:Al igual que por grupos en este caso nos mostraria solo el grupo
 			:de vertices asociado a un hueso (en Pose Mode) o la inversa.
-			:
 		*MIRROR
-			·20230725182114
 			ª10026ª10027ª10092
 			:Cea una compia espejo de un modelo en uno o mas ejes.
 			:AXIS - Podemos definir sobre cual eje realizara el espejo
@@ -448,9 +627,7 @@
 			:MIRROR OBJECT - Para saber desde donde trazar el espejo usa el centro
 			:del objeto pero tambien podemos indicar que use el centro
 			:de otro objeto, en este caso tomara desplazamiento y rotacion tambien.
-			:
 		*MULTIRESOLUTION
-			·20230725182114
 			ª10094ª10093ª10095
 			:Añade subdivisiones a una geometria para darle detalle.
 			:Trabaja DIRECTAMENTE sobre la geometria origina, no
@@ -474,9 +651,7 @@
 			:-Advanced - Nos permite configurar el modo en que esta trabajando, si queremos
 			:que tenga en cuenta los pesos de aristas (CRASES) o si tiene que usar normales
 			:de otro modificador etc.
-			:
 		*REMESH
-			·20230725182114
 			ª10096ª10097
 			:Genera una geometria basandose en la del objeto actual.
 			:NT: por la cantidad de geometria que genera es muy facil que se rompa el blender.
@@ -493,9 +668,7 @@
 			:de que quede algun trozo sin conectar.
 			:Con Threshold le indicamos la distancia para eliminar lo no conectado.
 			:Smooth Shading nos permite suabizar el resultado sin añadir geometria.
-			:
 		*SCREW
-			·20230725182114
 			ª10101ª10100ª10099ª10098
 			:Este modificador crea desde una geometria basica un TORNILLO o Tornado.
 			:Es una evolucion del Edge.Screw donde podiamos desde una geometria
@@ -519,9 +692,7 @@
 			:Smooth Shadin - Suabiza los bordes.
 			:Calculate Order - Recalcula el orden de dibujo de las caras.
 			:Flip - Voltea las normales (Dentro/Fuera)
-			:
 		*SKIN
-			·20230725182114
 			ª10107ª10106ª10104ª10103ª10102
 			:Este modificador crea sobre las aristas de un objeto una piel o envolvente.
 			:Podemos crear un muñeco de palo y con este modificador creariamos
@@ -542,9 +713,7 @@
 			:Luego tendremos que emparentar con pesos automaticos.
 			:Cada vertice tiene un radio de alcance con X e Y que podemos ajustar con el panel
 			:ITEMS.Mean Radius X/Y Tambien puese modificar las dos al tiempo con CTRL+A.
-			:
 		*SOLIDIFY
-			·20230725182114
 			ª10111ª10110ª10108
 			:Este modificador Solidifica un objeto,
 			:Tenemos dos Modos
@@ -569,9 +738,7 @@
 			:Thickness Clamp - Configuramos el tratamiento de los bordes.
 			:Output Vertex Group- Nos permite exportar como grupo de vertices las capas
 			:generadas para tratarlas con otros modificadores.
-			:
 		*SUBDIVISION SURFACE
-			·20230725182114
 			ª10024ª10025ª10112ª10105
 			:Este modificador es tan usadoque tiene atajo de teclado CTRL + 1/2/3/4/5 segun detalle.
 			:Tenemos dos modos:
@@ -590,9 +757,7 @@
 			:Se usa en EDIT MODE , nos crea un objeto simple como ayudante
 			:para deformar la geometria de otro objeto.
 			:En modo edicion podemos ver a tiempo real como queda el objeto Extruyendo , Dividiendo, etc.
-			:
 		*TRIANGULATE
-			·20230725182114
 			ª10113ª10114
 			:Por defecto se trabaja con caras de 4 vertices (Quads) pero podemos usar caras de todos los
 			:vertices que queramos (mas de 2 claro).
@@ -603,9 +768,7 @@
 			:Minimun Vertices - Indica el minimo numero de vertices de las caras a tratar (Caras con mas de X Vertices)
 			:Keep Normals - Hace que el Triangulate no toque las normales, sobre todo si son tratadas
 			:en otro modificador.
-			:
 		*VOLUME TO MESH
-			·20230725182114
 			ª10117ª10118ª10115ª10116ª10121
 			:Este modificador fue añadido en la version 2.9 y ha fue añadido para poder crear fisicas de nubes.
 			:No se aplica directamente sobre objetos, Necesita de un objeto alludante y para lo cual se
@@ -622,9 +785,7 @@
 			:en Numero de Voxels o en Tamaño de Voxels.
 			:Tiene otro MOD que tambien se añade al VOLUME
 			:Volume Displace - Este solo se encarga de dar una textura a las particulas de humo.
-			:
 		*WELD
-			·20230725182114
 			:Este modificador se usa tanto que lo han añadido como funcionalidad basica como
 			:Mesh/ Clean Up/ Merge by distance.
 			:Lo que hace basicamente es eso, coje un objeto y junta los vertices segun la distancia
@@ -632,9 +793,7 @@
 			:En el modificador le podemos indicar:
 			:Un grupo de vertices para que solo afecte ese grupo.
 			:y que afecte a todos los vertices o solo a los grupos conectados.
-			:
 		*WIREFRAME
-			·20230725182114
 			ª10123ª10123ª10123ª10123ª10123
 			:Este modificador hace solidas las aristas de nuestro objeto.
 			:Podemos configurar:
@@ -648,553 +807,86 @@
 			:- Material Offset - Nos permite dedicir cual de los materiales del objeto se aplicara.
 			:- Vertex Group - Nos permite decidir en que vertices se aplicara el mayado.
 			:- Factor - Indicamos el % de afection de los vertices selecionados.
-			:
-	*DEFORMADORES
-		·20230725182114
-		:Solo modifican geometria pero ni la crean ni la destruyen.
-		:
-		*ARMATURE
-			·20230725182114
-			ª10125ª10126ª10127ª10128
-			:Este es el modificador encargado de modificar los grupos de vertices asociandolos a los huesos.
-			:Lo podemos crear de forma manual o de forma automatica.
-			:-MANUAL
-			:1º Creamos el objeto base o maya.
-			:2º Creamos la Armature y los huesos.
-			:3º Renombramos los huesos
-			:4º Creamos en la maya los grupos de vertices, Uno por cada hueso con el mismo nombre del hueso.
-			:5º Damos los pesos a los grupos de vertices en la maya
-			:6º Le decimos a la maya que su padre es la Armature.
-			:NT: Asegurarse de que los huesos y la maya esten aplicadas todas las deformaciones y rotaciones.
-			:-AUTOMATICO
-			:1º Creamos el objeto base o maya.
-			:2º Creamos la Armature y los huesos.
-			:3º Renombramos los huesos
-			:4º Selecionamos la Maya y añadimos a la selecion los huesos.
-			:5º Con Ctrl+P Emparentamos Maya a Armature con Pesos Automaticos.
-			:Como se puede ver en el modo automatico genera los grupos y los pesos de forma automatica
-			:de forma muy efectiva, eso que nos quitamos.
-			:
-		*CAST
-			·20230725182114
-			ª10129ª10130
-			:Modifica una geometria deformandola inchandola o contrallendola segun una figura geometrica.
-			:Le podemos indicar:
-			:Shape - La figura a la que queremos que se intente igualar o deformar.
-			:Axis - El eje que se deformara.
-			:Factor - Fuerza de la deformacion
-			:Radius - Radio desde el centro que afecta la deformacion.
-			:Size - Tamaño de la deformacion (Se multiplica el Size por el Factor)
-			:Size From Radius - Iguala Size a Radius para que sean iguales.
-			:Vertex Group - Indica el grupos de vertices que sera o no afectado.
-			:Object - Indica que objeto usara como referencia (El Eje de ese objeto en lugar del propio)
-			:
-		*CURVE
-			·20230725182114
-			ª10131ª10132
-			:Permite modificar un objeto o un array de objetos estirandolos y ajustandolos
-			:a una curva en un exe dado.
-			:El podificador se aplica al objeto que queremos modificar y le asociamos
-			:a una curva que nos servida de ayudante para darle forma.
-			:Le indicaremos el eje que tomara como referencia.
-			:y si queremos el grupo de vertices que se vera afectado.
-			:
-		*DISPLACE
-			·20230725182114
-			ª10133ª10134ª10135
-			:Mermite desplazar los vertices de un objeto segun un mapa o imagen.
-			:Este desplazamiento estara dado por el patron Claro/oscuro de dicha imagen.
-			:Se suele usar un mapa de alturas especifico para crear rugosidad en un material
-			:Podemos indicarle :
-			:-Coordinates - que Tipo de coordenadas usara para el desplazamiento,
-			:Locales , Globales, Del propio objeto o de la UV.
-			:-Direction - El eje que desplazara los vertices X, Y , Z Segun la normal (Mapa de alturas)
-			:especifico o segun el patron de colores de la imagen.(Cada paleta es un eje Roja=x Verde=y Azul=z)
-			:-Strength - Fuerza del desplazamiento.
-			:-MidLevel- Inica donde situa la zona media del desplazamiento.
-			:-Vertex Group - Indica el grupo de vertices a modificar o a no modificar (Boton derecho en VertxGroup=
-			:
-		*HOOK
-			·20230725182114
-			ª10136ª10137ª10138ª10139ª10143
-			:Este Modificador permite enganchar los vertices de la geometria de un objeto
-			:y modificarla al modificar este objeto.
-			:Tiene acceso rapido con CTRL + H en modo edicion.
-			:1º Creamos un objeto (con suficiente geometrioa)
-			:2º Creamos el objeto ayudante
-			:3º Añadimos el modificador Hook al objeto.
-			:4º le indicamos al modificador que se asocie con el objeto ayudante (Revisar Centros y escalas)
-			:5º Selecionando el Objeto entramos en modo edicion y asignamos los vertices que modificara el Hook.
-			:
-		*LAPLACIAN DEFORM
-			·20230725182114
-			ª10140ª10141ª101421ª10143ª10144ª10145
-			:Este Modificador intenta suabizar un grupo de vertices de modo que el salto
-			:entre esos vertices modificados y sus cercanos no sea tan brusco.
-			:1º Creamos un objeto con suficiente geometria.
-			:2º Creamos un grupo de vertices que queremos que pueda modificar.
-			:3º Añadimos el modificador y le asignamos ese grupo en "Anchor Weights".
-			:4º Por ultimo Bindeamos el grupo.(esto marcara la forma original)
-			:A partir de esta forma suavizara las modificaciones realizadas.
-			:- Este Modificador consume muchos recursos OJO.
-			:Tambien podemos usarlo junto con HOOK para ayudar en las modificaciones.
-			:En el menu CTRL + H tenemos una opcion que nos permite añadir a la selecion
-			:de vertices los grupos de vertices de un hook.
-			:
-		*LATTICE
-			·20230725182114
-			ª10146ª10147ª10148ª10149
-			:LATTICE permite modificar un objeto segun otro objeto ayudante de forma definida.
-			:Se basa en un objeto especial, un objeto LATTICE.
-			:Este objeto es un cubo con subdibisiones segun necesitemos.
-			:Podemos colocar los vertices de este Lattice al gusto y al pasarlo
-			:por el objeto principal lo deformara segun le indiquemos.
-			:El Modificador no tiene mucho.
-			:-El Objeto Tipo Lattice que se usara como objeto ayudante.
-			:-El Grupo de vertices que queremos que se afecte o que no se afecte.
-			:-La fuerza con que queremos que se afecten los bertices del objeto Base.
-			:La Chicha esta en el propio objeto Lattice.
-			:Este Objeto tiene una pestaña propia y podremos indicarle.
-			:- La resolucion o cantidad de sub divisiones del Lattice
-			:- La Interpolacion usada para cada coordenada (calculo usado para X, Y o Z /U,V,W)
-			:- Outside - Si solo genera maya Exteriro o tambien la interior
-			:
-		*MESH DEFROM
-			·20230725182114
-			:Este Mod funciona igual que el LATTICE pero en lugar de usar un objeto especial
-			:usa cualquier objeto con cualquier geometria.
-			:Por lo normal se copia el objeto, se le simplifica, se le configura como WareFrame
-			:se escala y se usa para deformar al objeto principal.
-			:Funcion adel mismo modo.
-			:Se aplica sobre el objeto Base y se le dice en Object el nombre del objeto ayudante.
-			:Luego le damos precision (alcance de cada vertice a deformar)
-			:Y se Bindea para que tenga la referencia inicial
-			:Tambien le podemos indicar un Vertex Group para que aplique o proteja un grupo de vertices.
-			:Dynamic - Hace que si el modificador tiene muchos poligonos dibuje una version reducida.
-			:Este modificador consume muchos recursos.
-			:
-		*SHRINKWARP (Envoltura Retractil)
-			·20230725182114
-			ª10155
-			:Nos permite unir dos objetos ajustado los vertices de conexion
-			:de la manera mas obtima pisible.
-			:Se aplica sobre el objeto a unir y le indicamos el objeto al que
-			:queremos que se una.
-			:En el Objeto a unir le podemos indicar un grupo de vertices con
-			:pesos para que sepa cuanto pueden deformarse.
-			:Tenemos distintos parametros
-			:- Warp Method (Metodo de deformacion)
-			:- Snap Mode (Modo automatico) Modo de ajuste.
-			:- Target (obejto al que pegar.)
-			:- OffSet (Distancia a considerar)
-			:- Grupo de vertices con pesos para ajuste preciso.
-			:NT:Para un mejor ajuste mirar el nodificador (DATATRANSFER)
-			:
-		*SIMPLEDEFORM
-			·20230725182114
-			ª10030ª10031
-			:Este deformador nos permite modificar la maya
-			:de un objeto generando distintos efectos detorsion
-			:podemos definir el efecto TWIST, BEND, TAPER o STRETCH
-			:El angulo, el objeto origen, la dimension sobre la que aplicarlo
-			:podemos definir limites obloquear el efecto en alguna dimension.
-			:Los efectos simulan un tornado de distintas maneras
-			:Rotando (Twist), Curvando (Bend), Agrandando(Taper) o Inflando (Stretch)
-			:la maya de un objeto.
-			:
-		*Smooth
-			·20230725170039
-			ª100000
-		*Smooth Corrective
-			·20230725170039
-			ª100000
-		*Smooth Laplacian
-			·20230725170039
-			ª100000
-		*Surface Deform
-			·20230725170039
-			ª100000
-		*Warp
-			·20230725170039
-			ª100000
-		*Wave
-			·20230725170039
-			ª100000
-	*FISICAS (Phisics)
-		·20230725170039
-		*Cloth
-			·20230725170039
-		*Collision
-			·20230725170039
-		*Dynamic Paint
-			·20230725170039
-		*Explode
-			·20230725170039
-		*Fluid
-			·20230725170039
-		*Ocean
-			·20230725170039
-		*Particle Instance
-			·20230725170039
-		*Particle System
-			·20230725170039
-		*Soft Body
-			·20230725170039
-	*Decimate
-		·20230725182114
-		:Elimina vertices de un objeto intentando conservar la geometria
-		:
+	*MODIFICADORES (Modify)
+		:Lo que hacen realmente es recopilar datos de un objeto, tratarlos y
+		:pasarselos a otro objeto.
+		*Data Transfer
+		*MESH CACHE (En DesUso)
+			ª10021ª10032ª10035
+			:Permite exportar e importar una animacion de un objeto dado.
+			:En propiedades tenemos que permitir exportar en formato MDD.
+			:Es necesario que los objetos sean identicos.
+			:Nos permitiria mezclar,encadenar o guardar distintas animaciones.
+			:Tambien nos permite modificar el tiempo total de la animacion.
+			:Actualmente ya no se usa, remplazado por el ACTION EDITOR
+			:https://www.youtube.com/watch?v=pzhr_JUcT_4&list=PLfU-cGMkAuc4b7p43N5wveJ3NvKzj6Ael&index=3
+		*Mesh Sequece Cache (Alembic ABC)
+			ª10038ª10039
+			:Nos permite importar objetos y animaciones de formato ALEMBIC .ABC
+			:Si modificamos la maya de los objetos dejara de funcionar pero
+			:si podemos indicar que nos muestre Vertices,Caras,UVs o Colores
+			:la velocidad y otros parametros.
+		*Normal Edit (En DesUso)
+			ª10040ª10041ª10042ª10043
+			:Este modificador se aplica sobre un objeto y permite
+			:configurar las normales que se muestran segun la posicion de otro objeto
+			:Se usa para que en objeos planos sus normales se ajusten de forma automatica
+			:y sean visibles segun la posicon del objeto B (la camara por ejemplo)
+			:Es necestario tener activo el AUTO SMOOTH en OBJECT DATA PROPERTIES
+			:Nos auto orienta las normales de un objeto segun otro de referencia para que solo
+			:sean visibles las caras que apuntan a ese objeto.
+			:https://www.youtube.com/watch?v=QZgmJ39cZCs&list=PLfU-cGMkAuc4b7p43N5wveJ3NvKzj6Ael&index=6
+		*UV Project
+			ª10047ª-1ª10051ª10052
+			:Este modificador nos permite modificar la posicion, Rotacion y escala de las UVs
+			:de un objeto segun otro objeto, sin tener que modificar las UVs o el material.
+			:Creamos el objeto, sus UVs y el material.
+			:Le aplicamos el modificador.
+			:Le asignamos otro objeto para que calcule el desplazamiento de las UVs
+			:Usara la diferencia entre las Transformaciones del objeto base y el objeto ayudante.
+		*UV Warp
+			ª10048ª10049
+			:Este modificador nos permite modificar la posicion, Rotacion y escala de las UVs
+			:de un objeto usando la diferencia entre las transformaciones de dos objetos.
+			:Ejemplo: Objeto1.X - Objeto2.X = Desplazamiento X de la normal.
+			:Podemos definir el centro de la UV
+			:siendo 0,0 La Esquina Inf-Izq 0.5,0.5 El Centro y 1,1 la esquina Sup-Der
+			:Tambien podemos aplicar el desplazamiento solo a un Vertex Group
+			:Modificar los Ejes o los desplazamientos bases, Rotacion y escala.
+		*Vertex Weight Edit
+			ª10053ª10054ª10055ª10056
+			:Este modificador nos permite ajustar distintos parametros de un grupo de vertices
+			:y sus pesos.
+			:Podremos tener tantos modificadores como grupos de vertices necesitemos.
+			:Nos permite ajustar
+			:Desde que valor se considera 1 (el tope) o Normalizar los pesos, definir el modo de
+			:extenderse o invertir el grupo etc.
+		*Vertex Weight Mix
+			ª10057ª10058ª10059ª10060ª10061
+			:Nos permite mezclar distintos grupos de vertices con sus pesos.
+			:Teniendo dos grupos de vertices y sus pesos en el mismo objeto
+			:podemos aplicar distintas operaciones para mezclarlos, fundirlos
+			:restarlos o ajustarlos
+		*Vertex Weight Proximity
+			ª10062ª10063ª10064ª10065ª10066
+			:Nos permite modificar la intensidad de los pesos de un grupo
+			:de vertices segun la proximidad de otro objeto.
+			:Tenemos un objeto con un grupo de vertices con pesos.
+			:Tenemos otro objeto animado que se aproxima a este objeto.
+			:Al aproximarse los pesos de los vertices del Vertex Group tambien
+			:se modifican.
+			:Podemos indicarle distancia minima y maxima, tipo de afectacion
+			:si vertices , aristas o caras, etc.
+		*Weighted Normal
+			ª10044ª10045ª10046
+			:Este modificador se aplica sobre un objeto y nos aplica con poca geometria una curba
+			:Podemos aplicarselo solo aun grupo de vertices de un objeto y podemos
+			:marcar costuras para indicarle que zonans no queremos que aplique el suabizado.
+			:Es necestario tener activo el AUTO SMOOTH en OBJECT DATA PROPERTIES
 	*Simple Deform
-		·20230725182114
 		:Permite realuzar modificaciones basicas a un objeto
 		:como tornarlo alargarlo etc.
-		:
-*RIGGIN
-	·20230725170039
-	*Huesos (Armature)
-		·20230725182114
-		ª10000ª10001ª10002ª10003ª10004
-		:-Creamos una "Armature"
-		:-La armadura es un objeto especial representado como un hueso.
-		:-Este OBJ tiene una escala, posicion y rotacion.
-		:-Esta Armature seria como una lista de lineas (edges) con
-		:dos vertices (0-1) y otras propiedades
-		:-Entrando en modo "EDICION" podemos modificar la lista
-		:de esos "Huesos" (edges) y su propiedades.
-		:-Selecionando el Hueso "EXTRUIMOS" un Hueso para crear otros.
-		:-Ten en cuenta que cada hueso tiene rotaciones independientes
-		:que podemos modificar o alinear con un eje.
-		:-El OBJ Base "ARMATURE" tiene unas propiedades que podemos
-		:ver en el panel derecho.
-		:-Los "HUESOS" tambien tiene sus propiedades.
-		:Los huesos no tienen por que estar atados a su hueso padre ni estar
-		:vinculado a el.
-		:Al estar "Emparentado" copiara la rotacion y posicon del padre.
-		:Al estar "Concetado" el Vtx
-		:los "HUESOS" (MODO OBJETO) y las propias de un "HUESO"
-		:independiente (MODO EDICION).
-		:
-	*Huesos 02 (Bones)
-		·20230725182114
-		ª10005ª10006
-		:Los huesos son objetos que tienen dos vertices, pertenecen a la Armadura
-		:y aunque por defecto se crean atados y emparentados unos
-		:huesos con otros en forma de cadena, no es necesario que
-		:esten ni vinculados ni emparentados.
-		:- Para editar la estructura de la "ARMATURE"
-		:tenemos que entrar en "EDIT MODE" de la "ARMATURE".
-		:- Podemos añadir nuevos HUSESO selecionando un HUESO y
-		:extruyendo (tecla E) de este modo el HUESO que creemos
-		:estara VINCULADO y EMPARENTADO al HUESO selecionado.
-		:-Tambien podemos duplicar un hueso (tecla May + D) de este modo
-		:el HUESO estara EMPARENTADO pero NO VINCULADO al padre.
-		:-Podemos controlar las propiedades de los HUESOS con el panel
-		:BONE PROPERTIES.
-		:-Podemos EMPARENTAR/VINCULAR tambien con las teclas (Alt+P/ Ctrl+P)
-		:
-	*Huesos (Simetrize)
-		·20230725182114
-		ª10007ª10008
-		:-El blender tiene un ayudane que permite copiar una estructura de forma
-		:simetrica, se llama SYMMETRIZE.(Edit Mode Menu ARMATURE/SYMMETRIZE)
-		:Imaginemos una ARMATURE deun humano, podemos crear toda la estructura
-		:del lado derecho y con SYMMETRIZE nos generara el lado Izquierdo.
-		:- Para ello solo tenemos que nombrar los huesos terminados en R o L, F o B
-		:si selecionas los huesos terminados en R te generara los L (o F y B o R y L)
-		:
-	*Huesos (IK)(Inverse Kinematics)
-		·20230725182114
-		ª10009ª10010ª10011ª10012
-		:- Las "IK" o Inverse Kinematics (Cinematica Inversa) es un modificador que se aplica
-		:sobre un hueso, y que afecta a un numero de huesos pero de forma inversa.
-		:- Cuando creamos una estructura de huesos, por defecto se crean consecutivamente,
-		:la pierna afecta a la espinilla y esta al tobillo etc.
-		:Pero tenemos un modo de que al modificar el tobillo afecte a la espinilla y este a la pierna.
-		:Para ello se usa un CONSTRAIN (Modificador) de IK.
-		:Este modificador usa un hueso como ayudante para modificar las posiciones.
-		:- En EDIT MODE
-		:Selecionamos el hueso base (Ej: Tobillo_R)
-		:Extruimos un hueso que sera el ayudante (IK_Tobillo_R)
-		:Lo desenparentamos y desvinculamos (ALT+P)
-		:Ahora en POSE MODE
-		:Selecionamos el Hueso Base,
-		:añadimos a la selecion el Hueso Ayudante
-		:Presionamos (Ctrl + May + C) para añadir una CONSTRAIN
-		:Selecionamos IK. Esto añadira a ese hueso base un limitador.
-		:Podemos editar sus parametros en panel BONE CONSTRAIN PROPERTIES
-		:Definimos el CHAIN LENGTH (Enlaces afectados)
-		:el POLE ANGLE (Rotacion del eje)
-		:Influencia , dureza etc.
-		:NT. Esto tambien se puede hacer de forma manual añadiendolo y configurandolo
-		:a mano.
-		:
-	*Huesos (Copy Rotation)
-		·20230725182114
-		ª10014
-		:Existen muchos CONSTRAIN (Limitadores) Copiar Rotacion es otro de ellos
-		:Estos modificadores se aplican en POSE MODE
-		:Selecinamos el hueso que copiara la rotacion.
-		:Añadimos a la selecion el hueso del que copiara la rotacion.
-		:Presionamos CTRL+MAY +C para añadir la CONSTRAIN Copy Rotation
-		:Configuramos los parametros en el panel de BONE CONSTRAIN PROPERTIES
-		:podemos poner TARGET (Objetivo) y OWNER (Dueño) en LOCAL SPACE
-		:o podemos modificar la INFLUENCE al gusto.
-		:NT. Esto tambien se puede hacer de forma manual añadiendolo y configurandolo
-		:a mano.
-		:
-	*Huesos (Limit Rotation)
-		·20230725182114
-		ª10015
-		:Es otro CONSTRAIN (Limitadores)
-		:Tambien se aplica en POSE MODE.
-		:En este caso selecionamos el hueso a limitar.
-		:Presionamos CTRL+MAY +C para añadir la CONSTRAIN Limit Rotation.
-		:Configuramos los parametros en el panel de BONE CONSTRAIN PROPERTIES
-		:podemos poner OWNER (Dueño) en LOCAL SPACE
-		:podemos modificar la INFLUENCE al gusto.
-		:podemos Limitar los ejes afectados y los grados, etc.
-		:
-	*Huesos (Deform)
-		·20230725182114
-		ª10016
-		:Esta propiedad le indica a blender que considere este hueso
-		:para calcular y asociar los vertices de la maya.
-		:Si lo desactivamos, cuando asociemos la maya a la armadura
-		:no tendra en cuenta este hueso.
-		:Tambien configura alcance del hueso y de sus vertices para
-		:las influencias sobre la maya.
-		:
-	*Huesos (Custom Shape)
-		·20230725182114
-		ª10017
-		:Esta opcion modifica el objeto que representa un hueso.
-		:En OBJECT MODE creamos el objeto que queramos usar.
-		:Selecionamos la ARMATURE
-		:Entramos en POSE MODE
-		:Selecionamos culaquier hueso que queramos modificar su
-		:imagen, (IK_Mano_R).
-		:En las propiedades del hueso buscamos la opcion CUSTOM SHAPE
-		:y en CUSTOM OBJECT selecionamos el objeto que hemos creado
-		:antes para que lo use.
-		:Esto se usa para que cuando el riggeo este completo podamos
-		:ocultar todos los huesos y dejando solo los ayudantes de forma mas
-		:visible.
-		:
-	*Maya (Asociando)
-		·20230725182114
-		ª10018
-		:Ahora en OBJECT MODE creamos el objeto que queremos
-		:modificar con la ARMATURE.
-		:El ARMATURE es un modificador de un objeto normal asociando a la maya
-		:con la ARMATURE.
-		:Lo podemos hacer de modo manula tambien, emparentando la maya a la ARMATURE
-		:y añadiendo a la maya la ARMATURE.
-		:Se suele hacer de modo automatico mejor.
-		:Selecinamos primero la ARMATURE añadimos con MAY el objeto a modificar.
-		:Añadimos el Modificador, presionamos (CTRL + P) esto nos dara distintas
-		:opciones para asociar el objeto con una ARMATURE.
-		:-Armature Deform
-		:With Emtpy Groups
-		:with Envelope Weights
-		:with Automatic Weighs
-		:
-	*Maya (Deformacion)
-		·20230725182114
-		ª10019ª10020
-		:El Riggeo consiste en crear un esqueleto y con el modificar una maya.
-		:Imaginemos un humano donde modificando un dedo se modifique
-		:la maya del dedo.
-		:Al asociar la maya a la ARMATURE se crean grupos de vertices
-		:EN LA MAYA con el nombre de cada hueso.
-		:Esos grupos de vertices, el modificador ARMATURE se encarga de eso
-		:al mover/rotar/deformar un hueso el modificador mira el grupo de vertices
-		:de la maya con el nombre del hueso y usando los pesos de cada vertice
-		:modifica este vertice de la maya.
-		:Cada vertice tiene un numero "WEIGHT" o Peso que le indica la intensidad
-		:con respecto a los vertices que le rodean ajustando su tension de deformacio.
-		:Al Asociar la maya con la Armature puede
-		:No crear grupos.
-		:Crear gurpos vacios
-		:Grear grupos y añadirles vertices por proximidad
-		:Grear grupos y añadirles vertices por proximidad y calcular el peso.
-		:Para modificar los grupos de vertices podemos usar EDIT MODE de la maya
-		:o podemos usar los modos expeciales WEIGHT PAINT donde nos pintara
-		:los vertices de colores del grupo selecionado segun su peso y pintarlos.
-		:
-*FBX
-	·20230725170039
-	*- MIXAMO (FBX) a BLENDER
-		·20230725182114
-		:- Include
-		:Costom Normal V
-		:Custom Properties V
-		:Import Enums as Strings V
-		:Image Search V
-		:-Transform
-		:Scale	1
-		:Decal Offset	0
-		:Use Pre/Post Rotation	V
-		:- Manual Orienta	V
-		:Forward	-Z
-		:Up		+Y
-		:-Animation	V
-		:Animation OffSet	0
-		:-Armature
-		:Primary Bone Axis	Y
-		:Secundary Bone Axis	-Z
-		:
-	*- BLENDER (FBX) a Unreal (Armatur y Mesh)
-		·20230725182114
-		:Blender (V 3.3.2)
-		:- Include
-		:Selected Objects V
-		:Armature + Mesh
-		:-Transform
-		:Scale = 1
-		:Apply Scaling = All Local
-		:Forward = -Z Forward
-		:Up = Y Up
-		:- Geometry
-		:Smoothing = Face
-		:Apply Modifiers = V
-		:-Armature
-		:Primary Bone Axis = Y
-		:Secondary Bone Axis = X
-		:Armature FBXNode Type = Null
-		:Add Leaf Bones = V
-		:-Bake Animations = X
-		:Blender Version 3.XX
-		:Ignore Leaf Bones	X
-		:Force Connect Children	X
-		:Automatico Bone Orientation X
-		:Secundary Bone Axis	-Z
-		:- Bake Animation = X
-		:Blender Version X
-		:- Manual Orienta	V
-		:Forward = -Z
-		:Up = +Y
-		:-Animation	V
-		:Animation OffSet	0
-		:
-	*- BLENDER (FBX) a Unreal (Animation)
-		·20230725182114
-		:Blender (V 3.XX)
-		:- Include
-		:Selected Objects V
-		:Armature
-		:-Transform
-		:Scale	1
-		:Apply Scaling: All Cocal
-		:Forware Y
-		:Up Z
-		:Apply Units V
-		:-Geometry
-		:Smoothing: Face
-		:Apply Modifiers: V
-		:- Armature
-		:Primary : Y
-		:Second : X
-		:Arm FBXn Type : Null
-		:-Bake Animation : V
-		:Key All Bones : V
-		:Force Star/End Keying : V
-		:Sam..: 1 Simpl..:1
-		:
-	*- UNREAL IMPORT FBX del Blender (Animacion)
-		·20230725182114
-		:Para importar un Fbx con una animacion del Blender al UE
-		:Boton import.
-		:- Animation
-		:Selecionamos el fbx
-		:Nos tiene que autoselecioanr el Skeleton
-		:Animation Lenght : Exported Time.
-		:Import Bone Tracks : V
-		:Delete Existing Morph : V
-		:- Transform
-		:- Miscellan
-		:Convert Scene : V
-		:Convert Scene Units : V
-		:
-*[ EJEMPLOS ]
-	·20230725170039
-	*Tela Realista
-		·20230725170039
-*[ GEOMETRY NODES ]
-	·20230725170039
-	*GEOMETRY
-		·20230725170039
-	*POINT
-		·20230725182114
-		ª10162
-		:Crea puntos en distintos origenes.
-		:- Distribute points on Faces
-		:Crea un punto por cada cara en una posicion de la cara aleatoria.
-		:- Point
-		:- Point To Vertices
-		:- Points To Volume
-		:- Set Point Radius.
-		:
-	*MESH PRIMITIVES
-		·20230725182114
-		ª10160ª10161
-		:Contiene las privitivas basicas.
-		:- CONE
-		:Crea un cono donde definiremos
-		:El radio Inf , el Radio Sup, el Alto, los Segmentos,
-		:Numero de vertices y el tipo de tapa
-		:- CUBE
-		:Crea un cubo donde definiremos
-		:Alto, Ancho, Fondo, y las subdivisiones para alto , ancho y fondo.
-		:- CYLINDER
-		:Genera un cilindro donde podemos definir
-		:el Radio, Numero de Vertices exteriores, Tipo de tapas, Altura.
-		:- GRID
-		:Genera un plano cuadrado de X x Y vertices y una separacion
-		:X e Y entre ellos.
-		:- ICO SPHERE
-		:Genera una esfera triangulada de X subdivisiones y R Radio.
-		:- MESH CIRCLE
-		:Genera un circulo plano de X vertices y R Radio pudiendo
-		:cerrarlo con una cara o multiples caras.
-		:- MESH LINE
-		:Traza una linea con X vertices desde punto A al B o un numero de
-		:saltos de distancia dada.
-		:- UV SPHERE
-		:Genera una esfera con maya cuadrada donde definiremos
-		:Radio, Segmentos y anillos.
-		:
-	*[ EJEMPLO ]
-		·20230725170039
-	*[ TUTORIAL ]
-		·20230725182114
-		ª10156ª10157ª10158
-		:Se trata de poder crear objetos y modificarlos por nodos.
-		:Este arbol de modificadores se puede aplicar a cualquer objeto para modificarlo mas tarde.
-		:Para acceder tenemos la plantilla "Geomety Nodes"
-		:esta plantilla nos muestra:
-		:- "3D ViewPort"
-		:- "SpreadSheed"
-		:- "Geometry Nodes Editor"
-		:3D ViewPort ya la conocemos.
-		:SpreadSheed (presenta propiedades y datos del objeto creado)
-		:Geomety Nodes Editor (Se editan las propiedades del objeto por nodos)
-		:1º crearemos un objeto.
-		:2º En "GNE" le añadimos un modificador de geometria por nodos.
-		:Podemos apreciar que aunque para crear el "GN" se
-		:asocia a un objeto realmente por dentro los trabaja como "Nodes Groups"
-		:sin asociacion.
-		:Tambien podemos ver que se trata de un modificador por lo
-		:que se puede aplicar a cualqueir objeto.
-		:Nos crea un nodo de entrada y un nodo de salida.
-		:-El "Group Input" seria la geometria basica del objeto realcionado
-		:que podemos editar o remplazar por otra.
-		:-El "Group Output" es el nodo de salida resultante.
-		:todo lo conectado a este nodo sera creado o modificado.
-		:Podemos eliminar el "Group Input" y poner en su lugar otro objeto.
-		:Cada objeto es una funcion que genera ese objeto.(una macro)
-		:
 *PYTON
-	·20230728141152
 	:#Importamos la libreria "bpy" Blender Pyton
 	:import bpy
 	:#Creamos una clase llamada Test_Panel
@@ -1223,9 +915,7 @@
 	:def register():bpy.utils.register_class(LayoutDemoPanel)
 	:def unregister():bpy.utils.unregister_class(LayoutDemoPanel)
 	:if __name__ == "__main__": register()
-	:
 	*Caracteristicas de Payton
-		·20230725182114
 		:#Es Case Sensitive.
 		:#Usa tabs para saber que esta dentro de una funcion o clase.
 		:# Comentario linea
@@ -1255,109 +945,7 @@
 		:self.i = imagpart
 		:X=NomCls(10,20)
 		:print(X.r,X.i)
-		:
-	*Modificar Nombre de un hueso
-		·20230725182114
-		:Modificar el nobre de un hueso
-		:import bpy
-		:# Seleccionar el esqueleto
-		:armature = bpy.data.objects['Armature']
-		:# Seleccionar el hueso que deseas renombrar
-		:bone = armature.pose.bones['Hueso']
-		:# Cambiar el nombre del hueso
-		:bone.name = 'Nuevo_Nombre'
-		:
-	*Mostrar los huesos de un esqueleto
-		·20230725182114
-		:import bpy
-		:# Seleccionar el esqueleto
-		:armature = bpy.data.objects['Armature']
-		:# Recorrer todos los huesos del esqueleto y establecer su propiedad "hide" a False
-		:for bone in armature.data.bones:
-		:bone.hide = False
-		:
-	*Mostrar los grupos de Vertices de una maya
-		·20230725182114
-		:import bpy
-		:# Seleccionar el objeto que contiene los grupos de vértices
-		:obj = bpy.context.active_object
-		:# Recorrer todos los grupos de vértices del objeto e imprimir su nombre y los vértices asociados
-		:for group in obj.vertex_groups:
-		:print("Grupo:", group.name)
-		:for index, vertex in group.weight_group:
-		:print("Vértice:", index, "Peso:", vertex)
-		:
-	*Modificar los nombres de los grupos de vertices de una maya
-		·20230725182114
-		:import bpy
-		:# Seleccionar el objeto que contiene los grupos de vértices
-		:obj = bpy.context.active_object
-		:# Seleccionar el grupo de vértices que deseas renombrar
-		:group = obj.vertex_groups['Nombre del grupo']
-		:# Cambiar el nombre del grupo de vértices
-		:group.name = 'Nuevo_Nombre'
-		:
-	*Modificar Nombres de huesos y grupos de vertices
-		·20230725182114
-		:Como modificar los nombres de los grupos de vertices y los nombres
-		:de los huesos de la armadura asociada a ese objeto para que cada
-		:nombre de hueso sea igual al grupo de vertices asociado a el?
-		:import bpy
-		:# Seleccionar el objeto que contiene los grupos de vértices
-		:obj = bpy.context.active_object
-		:# Recorrer todos los grupos de vértices del objeto y cambiar el nombre del grupo y el hueso asociado
-		:for group in obj.vertex_groups:
-		:# Cambiar el nombre del grupo de vértices
-		:old_name = group.name
-		:new_name = "Bone_" + old_name # Cambia esto según el prefijo que quieras usar para los huesos
-		:group.name = new_name
-		:# Obtener el hueso asociado al grupo de vértices
-		:bone = obj.pose.bones.get(old_name)
-		:if bone is not None:
-		:# Cambiar el nombre del hueso
-		:bone.name = new_name
-		:
-	*Listar los nombres de las acciones
-		·20230725182114
-		:Este código obtiene una lista de todas las acciones en la escena
-		:actual y luego las recorre para imprimir el nombre de cada acción.
-		:import bpy
-		:# Obtener todas las acciones en la escena actual
-		:actions = bpy.data.actions
-		:# Imprimir el nombre de cada acción
-		:for action in actions:
-		:print(action.name)
-		:
-	*Renombrar nombre de una Accion
-		·20230725182114
-		:Obtenemos la acción que queremos renombrar utilizando el
-		:método "get" en "bpy.data.actions".
-		:Si la acción existe (no es "None"), cambiamos su nombre
-		:utilizando el método "name".
-		:import bpy
-		:# Obtener la acción que quieres renombrar
-		:action = bpy.data.actions.get("NombreActualDeLaAccion")
-		:if action is not None:
-		:# Cambiar el nombre de la acción
-		:action.name = "NuevoNombreDeLaAccion"
-		:
-	*Remplazar palabra del nombre de un hueso
-		·20230725182114
-		:En este ejemplo, obtenemos el objeto de armadura y la armadura
-		:asociada a ese objeto. Luego, recorremos cada hueso en la armadura y
-		:utilizamos el método "replace" de Python para eliminar la
-		:palabra "Eliminar" del nombre del hueso.
-		:import bpy
-		:# Obtener el objeto de armadura
-		:armature_obj = bpy.data.objects["NombreDeLaArmadura"]
-		:# Obtener la armadura del objeto
-		:armature = armature_obj.data
-		:# Recorrer los huesos y eliminar la palabra "Eliminar" del nombre
-		:for bone in armature.bones:
-		:bone.name = bone.name.replace("Eliminar", "")
-		:
 	*Crear un hueso en un esqueleto
-		·20230725182114
 		:Creamos los huesos de una mano.
 		:import bpy
 		:# Crear el objeto de armadura
@@ -1421,9 +1009,7 @@
 		:armature.edit_bones["Pinky2"].parent = armature.edit_bones["Pinky1"]
 		:# Actualizar la armadura
 		:armature.update()
-		:
 	*Crear una maya en a un hueso de la mano
-		·20230725182114
 		:Creamos los vertices de la maya de
 		:import bpy
 		:# Crea una malla de mano vacía
@@ -1530,9 +1116,92 @@
 		:# Repetir el proceso de extrusión y selección para crear los demás dedos y la palma de la mano.
 		:# Cambiar de nuevo al modo de objeto
 		:bpy.ops.object.mode_set(mode='OBJECT')
-		:
+	*Listar los nombres de las acciones
+		:Este código obtiene una lista de todas las acciones en la escena
+		:actual y luego las recorre para imprimir el nombre de cada acción.
+		:import bpy
+		:# Obtener todas las acciones en la escena actual
+		:actions = bpy.data.actions
+		:# Imprimir el nombre de cada acción
+		:for action in actions:
+		:print(action.name)
+	*Modificar los nombres de los grupos de vertices de una maya
+		:import bpy
+		:# Seleccionar el objeto que contiene los grupos de vértices
+		:obj = bpy.context.active_object
+		:# Seleccionar el grupo de vértices que deseas renombrar
+		:group = obj.vertex_groups['Nombre del grupo']
+		:# Cambiar el nombre del grupo de vértices
+		:group.name = 'Nuevo_Nombre'
+	*Modificar Nombre de un hueso
+		:Modificar el nobre de un hueso
+		:import bpy
+		:# Seleccionar el esqueleto
+		:armature = bpy.data.objects['Armature']
+		:# Seleccionar el hueso que deseas renombrar
+		:bone = armature.pose.bones['Hueso']
+		:# Cambiar el nombre del hueso
+		:bone.name = 'Nuevo_Nombre'
+	*Modificar Nombres de huesos y grupos de vertices
+		:Como modificar los nombres de los grupos de vertices y los nombres
+		:de los huesos de la armadura asociada a ese objeto para que cada
+		:nombre de hueso sea igual al grupo de vertices asociado a el?
+		:import bpy
+		:# Seleccionar el objeto que contiene los grupos de vértices
+		:obj = bpy.context.active_object
+		:# Recorrer todos los grupos de vértices del objeto y cambiar el nombre del grupo y el hueso asociado
+		:for group in obj.vertex_groups:
+		:# Cambiar el nombre del grupo de vértices
+		:old_name = group.name
+		:new_name = "Bone_" + old_name # Cambia esto según el prefijo que quieras usar para los huesos
+		:group.name = new_name
+		:# Obtener el hueso asociado al grupo de vértices
+		:bone = obj.pose.bones.get(old_name)
+		:if bone is not None:
+		:# Cambiar el nombre del hueso
+		:bone.name = new_name
+	*Mostrar los grupos de Vertices de una maya
+		:import bpy
+		:# Seleccionar el objeto que contiene los grupos de vértices
+		:obj = bpy.context.active_object
+		:# Recorrer todos los grupos de vértices del objeto e imprimir su nombre y los vértices asociados
+		:for group in obj.vertex_groups:
+		:print("Grupo:", group.name)
+		:for index, vertex in group.weight_group:
+		:print("Vértice:", index, "Peso:", vertex)
+	*Mostrar los huesos de un esqueleto
+		:import bpy
+		:# Seleccionar el esqueleto
+		:armature = bpy.data.objects['Armature']
+		:# Recorrer todos los huesos del esqueleto y establecer su propiedad "hide" a False
+		:for bone in armature.data.bones:
+		:bone.hide = False
+	*NEW
+	*Remplazar palabra del nombre de un hueso
+		:En este ejemplo, obtenemos el objeto de armadura y la armadura
+		:asociada a ese objeto. Luego, recorremos cada hueso en la armadura y
+		:utilizamos el método "replace" de Python para eliminar la
+		:palabra "Eliminar" del nombre del hueso.
+		:import bpy
+		:# Obtener el objeto de armadura
+		:armature_obj = bpy.data.objects["NombreDeLaArmadura"]
+		:# Obtener la armadura del objeto
+		:armature = armature_obj.data
+		:# Recorrer los huesos y eliminar la palabra "Eliminar" del nombre
+		:for bone in armature.bones:
+		:bone.name = bone.name.replace("Eliminar", "")
+	*Renombrar nombre de una Accion
+		:Obtenemos la acción que queremos renombrar utilizando el
+		:método "get" en "bpy.data.actions".
+		:Si la acción existe (no es "None"), cambiamos su nombre
+		:utilizando el método "name".
+		:import bpy
+		:# Obtener la acción que quieres renombrar
+		:action = bpy.data.actions.get("NombreActualDeLaAccion")
+		:if action is not None:
+		:# Cambiar el nombre de la acción
+		:action.name = "NuevoNombreDeLaAccion"
 	*Tambien modificar las animaciones
-		·20230725182114
 		:Renombrar los huesos de un esqueleto y los grupos de vértices de una
 		:malla asociada a ese esqueleto en Blender,
 		:python
@@ -1612,6 +1281,189 @@
 		:Ahora, este script también renombrará los huesos en todas las acciones de la escena de Blender. Asegúrate de reemplazar ParteAReemplazar con la parte específica del nombre del hueso que deseas cambiar y TextoAReemplazar con el texto que deseas utilizar como reemplazo.
 		:Recuerda guardar tu archivo de Blender antes de ejecutar el script y tener seleccionado el objeto del esqueleto y la malla asociada antes de ejecutarlo para que funcione correctamente.
 		:Si tienes alguna otra pregunta o necesitas más ayuda, no dudes en preguntar. ¡Espero que este script sea útil para tu trabajo con Blender!
-		:
-	*NEW
-		·20230725170039
+*RIGGIN
+	*Huesos (Armature)
+		ª10000ª10001ª10002ª10003ª10004
+		:-Creamos una "Armature"
+		:-La armadura es un objeto especial representado como un hueso.
+		:-Este OBJ tiene una escala, posicion y rotacion.
+		:-Esta Armature seria como una lista de lineas (edges) con
+		:dos vertices (0-1) y otras propiedades
+		:-Entrando en modo "EDICION" podemos modificar la lista
+		:de esos "Huesos" (edges) y su propiedades.
+		:-Selecionando el Hueso "EXTRUIMOS" un Hueso para crear otros.
+		:-Ten en cuenta que cada hueso tiene rotaciones independientes
+		:que podemos modificar o alinear con un eje.
+		:-El OBJ Base "ARMATURE" tiene unas propiedades que podemos
+		:ver en el panel derecho.
+		:-Los "HUESOS" tambien tiene sus propiedades.
+		:Los huesos no tienen por que estar atados a su hueso padre ni estar
+		:vinculado a el.
+		:Al estar "Emparentado" copiara la rotacion y posicon del padre.
+		:Al estar "Concetado" el Vtx
+		:los "HUESOS" (MODO OBJETO) y las propias de un "HUESO"
+		:independiente (MODO EDICION).
+	*Huesos (Copy Rotation)
+		ª10014
+		:Existen muchos CONSTRAIN (Limitadores) Copiar Rotacion es otro de ellos
+		:Estos modificadores se aplican en POSE MODE
+		:Selecinamos el hueso que copiara la rotacion.
+		:Añadimos a la selecion el hueso del que copiara la rotacion.
+		:Presionamos CTRL+MAY +C para añadir la CONSTRAIN Copy Rotation
+		:Configuramos los parametros en el panel de BONE CONSTRAIN PROPERTIES
+		:podemos poner TARGET (Objetivo) y OWNER (Dueño) en LOCAL SPACE
+		:o podemos modificar la INFLUENCE al gusto.
+		:NT. Esto tambien se puede hacer de forma manual añadiendolo y configurandolo
+		:a mano.
+	*Huesos (Custom Shape)
+		ª10017
+		:Esta opcion modifica el objeto que representa un hueso.
+		:En OBJECT MODE creamos el objeto que queramos usar.
+		:Selecionamos la ARMATURE
+		:Entramos en POSE MODE
+		:Selecionamos culaquier hueso que queramos modificar su
+		:imagen, (IK_Mano_R).
+		:En las propiedades del hueso buscamos la opcion CUSTOM SHAPE
+		:y en CUSTOM OBJECT selecionamos el objeto que hemos creado
+		:antes para que lo use.
+		:Esto se usa para que cuando el riggeo este completo podamos
+		:ocultar todos los huesos y dejando solo los ayudantes de forma mas
+		:visible.
+	*Huesos (Deform)
+		ª10016
+		:Esta propiedad le indica a blender que considere este hueso
+		:para calcular y asociar los vertices de la maya.
+		:Si lo desactivamos, cuando asociemos la maya a la armadura
+		:no tendra en cuenta este hueso.
+		:Tambien configura alcance del hueso y de sus vertices para
+		:las influencias sobre la maya.
+	*Huesos (IK)(Inverse Kinematics)
+		ª10009ª10010ª10011ª10012
+		:- Las "IK" o Inverse Kinematics (Cinematica Inversa) es un modificador que se aplica
+		:sobre un hueso, y que afecta a un numero de huesos pero de forma inversa.
+		:- Cuando creamos una estructura de huesos, por defecto se crean consecutivamente,
+		:la pierna afecta a la espinilla y esta al tobillo etc.
+		:Pero tenemos un modo de que al modificar el tobillo afecte a la espinilla y este a la pierna.
+		:Para ello se usa un CONSTRAIN (Modificador) de IK.
+		:Este modificador usa un hueso como ayudante para modificar las posiciones.
+		:- En EDIT MODE
+		:Selecionamos el hueso base (Ej: Tobillo_R)
+		:Extruimos un hueso que sera el ayudante (IK_Tobillo_R)
+		:Lo desenparentamos y desvinculamos (ALT+P)
+		:Ahora en POSE MODE
+		:Selecionamos el Hueso Base,
+		:añadimos a la selecion el Hueso Ayudante
+		:Presionamos (Ctrl + May + C) para añadir una CONSTRAIN
+		:Selecionamos IK. Esto añadira a ese hueso base un limitador.
+		:Podemos editar sus parametros en panel BONE CONSTRAIN PROPERTIES
+		:Definimos el CHAIN LENGTH (Enlaces afectados)
+		:el POLE ANGLE (Rotacion del eje)
+		:Influencia , dureza etc.
+		:NT. Esto tambien se puede hacer de forma manual añadiendolo y configurandolo
+		:a mano.
+	*Huesos (Limit Rotation)
+		ª10015
+		:Es otro CONSTRAIN (Limitadores)
+		:Tambien se aplica en POSE MODE.
+		:En este caso selecionamos el hueso a limitar.
+		:Presionamos CTRL+MAY +C para añadir la CONSTRAIN Limit Rotation.
+		:Configuramos los parametros en el panel de BONE CONSTRAIN PROPERTIES
+		:podemos poner OWNER (Dueño) en LOCAL SPACE
+		:podemos modificar la INFLUENCE al gusto.
+		:podemos Limitar los ejes afectados y los grados, etc.
+	*Huesos (Simetrize)
+		ª10007ª10008
+		:-El blender tiene un ayudane que permite copiar una estructura de forma
+		:simetrica, se llama SYMMETRIZE.(Edit Mode Menu ARMATURE/SYMMETRIZE)
+		:Imaginemos una ARMATURE deun humano, podemos crear toda la estructura
+		:del lado derecho y con SYMMETRIZE nos generara el lado Izquierdo.
+		:- Para ello solo tenemos que nombrar los huesos terminados en R o L, F o B
+		:si selecionas los huesos terminados en R te generara los L (o F y B o R y L)
+	*Huesos 02 (Bones)
+		ª10005ª10006
+		:Los huesos son objetos que tienen dos vertices, pertenecen a la Armadura
+		:y aunque por defecto se crean atados y emparentados unos
+		:huesos con otros en forma de cadena, no es necesario que
+		:esten ni vinculados ni emparentados.
+		:- Para editar la estructura de la "ARMATURE"
+		:tenemos que entrar en "EDIT MODE" de la "ARMATURE".
+		:- Podemos añadir nuevos HUSESO selecionando un HUESO y
+		:extruyendo (tecla E) de este modo el HUESO que creemos
+		:estara VINCULADO y EMPARENTADO al HUESO selecionado.
+		:-Tambien podemos duplicar un hueso (tecla May + D) de este modo
+		:el HUESO estara EMPARENTADO pero NO VINCULADO al padre.
+		:-Podemos controlar las propiedades de los HUESOS con el panel
+		:BONE PROPERTIES.
+		:-Podemos EMPARENTAR/VINCULAR tambien con las teclas (Alt+P/ Ctrl+P)
+	*Maya (Asociando)
+		ª10018
+		:Ahora en OBJECT MODE creamos el objeto que queremos
+		:modificar con la ARMATURE.
+		:El ARMATURE es un modificador de un objeto normal asociando a la maya
+		:con la ARMATURE.
+		:Lo podemos hacer de modo manula tambien, emparentando la maya a la ARMATURE
+		:y añadiendo a la maya la ARMATURE.
+		:Se suele hacer de modo automatico mejor.
+		:Selecinamos primero la ARMATURE añadimos con MAY el objeto a modificar.
+		:Añadimos el Modificador, presionamos (CTRL + P) esto nos dara distintas
+		:opciones para asociar el objeto con una ARMATURE.
+		:-Armature Deform
+		:With Emtpy Groups
+		:with Envelope Weights
+		:with Automatic Weighs
+	*Maya (Deformacion)
+		ª10019ª10020
+		:El Riggeo consiste en crear un esqueleto y con el modificar una maya.
+		:Imaginemos un humano donde modificando un dedo se modifique
+		:la maya del dedo.
+		:Al asociar la maya a la ARMATURE se crean grupos de vertices
+		:EN LA MAYA con el nombre de cada hueso.
+		:Esos grupos de vertices, el modificador ARMATURE se encarga de eso
+		:al mover/rotar/deformar un hueso el modificador mira el grupo de vertices
+		:de la maya con el nombre del hueso y usando los pesos de cada vertice
+		:modifica este vertice de la maya.
+		:Cada vertice tiene un numero "WEIGHT" o Peso que le indica la intensidad
+		:con respecto a los vertices que le rodean ajustando su tension de deformacio.
+		:Al Asociar la maya con la Armature puede
+		:No crear grupos.
+		:Crear gurpos vacios
+		:Grear grupos y añadirles vertices por proximidad
+		:Grear grupos y añadirles vertices por proximidad y calcular el peso.
+		:Para modificar los grupos de vertices podemos usar EDIT MODE de la maya
+		:o podemos usar los modos expeciales WEIGHT PAINT donde nos pintara
+		:los vertices de colores del grupo selecionado segun su peso y pintarlos.
+*Ventana Compositor
+	:https://www.youtube.com/watch?v=M2l-NH-lkQE
+*Ventana Properties
+	*Object Properties (Propiedades del objeto)
+		*Transform
+		*Relations
+		*Collections
+		*Instancing
+		*Motion Paths
+			ª10067
+			:Activa el trazado del objeto animado pudiendo configurar distintos modos
+			:como el rango, si muestra key frames, Color, lineas, Numero de Fotogramas
+			:Es necesario actualizarlo con cada modificacion de la animacion con "Update Paths"
+		*Visibility
+		*ViewPort Display
+		*Custom Properites
+*Ventana ViewPort3D
+	:Es la pantalla principal de diseño 3D
+	*Herramientas
+		*Snap (Ajuste Himan)
+			ª10033ª10034
+			:Permite igualar la posicon de lo que creemos o desplacemos a la
+			:cara, arista, vertice u objeto sobre el que estemos.
+			:Tenemos distintas opciones
+			:-Increment (Ajusta al grill)
+			:-Vertex (Ajusta con el vertice enfocado)
+			:-Edge (Ajusta con la arista enfocado)
+			:-Face (Ajusta con la Cara enfocado)
+			:-Volume (Ajusta con el Objeto enfocado)
+			:-Edge Center (Ajusta con el centro de la arista enfocada)
+			:-Edge Perpendicular (Ajusta con el centro de la arista enfocada perpendicularmente.)
+			:Dentro de cada modo podemos indicarle otras opciones
+			:-Como que tambien copie la rotacion o que se aline con la normal.
+			:-Que se alinne con el centro , la media
+			:-Tambien que que se mueva, rote o escale segun el objeto enfocado.
