@@ -32,11 +32,13 @@ var V_Init_Ok:bool=false;
 # - - GRROUP ( Variables )
 # - - GRROUP ( Variables )
 var V_Group01:Array=["XXX"];
-func F_Group01_Find_(M_Name:String):
+
+func F_Group01_Find(M_Name:String):
 	var M_Res=null;
-	for M_q in V_Group01.size():
+	print("F_Group01_Find Max:"+str(V_Group01.size()) +":"+M_Name);
+	for M_q in V_Group01.size()-1:
 		if(V_Group01[M_q].name==M_Name):
-			F_Log(0,"Find("+M_Name+")->"+str(V_Group01[M_q]));
+			F_Log(0,"OK:"+str(M_q));
 			M_Res=V_Group01[M_q];
 			break;
 	#END For

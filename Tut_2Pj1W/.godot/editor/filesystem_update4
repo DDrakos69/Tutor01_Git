@@ -1,3 +1,4 @@
+res://SCN/OBJs/obj_fuente_grande.tscn
 res://Scn_Shaders/DegradCiclo.gdshader
 res://Scn_Shaders/GrayScale.gdshader
 res://Scn_Shaders/SatBrillContras.gdshader
@@ -6,4 +7,3 @@ res://Scn_Shaders/ColorInverse.gdshader
 res://Scn_Shaders/Edges.gdshader
 res://Scn_Shaders/EdgesMatrix.gdshader
 res://Scn_Shaders/Blending.gdshader
-res://SCN/OBJs/obj_fuente_grande.tscn

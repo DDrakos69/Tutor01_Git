@@ -4,7 +4,7 @@ func F_Log(M_Acc:int,M_Txt:String=""):
 	V.F_Log(M_Acc,M_Txt,self.name);
 #END F_log
 
-@onready var V_obj_ascen_0 = $Obj_Ascen0;
+@onready var V_obj_ascen_0 = $obj_ascen0;
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +12,7 @@ func _ready():
 	F_Log(1,"_ready");
 	#-Borramos 
 	V.V_Group01.clear();
-	V.V_Group01.append($CamCont_N3D);
+	V.V_Group01.append($camcont_n3d);
 	V.V_Group01.append($camcont_n3d/spring_arm3d/camera_cam3d);
 	V.V_Group01.append($camcont_n3d/loockat_n3d);
 

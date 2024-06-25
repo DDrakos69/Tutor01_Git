@@ -1,4 +1,5 @@
 MeshInstance3D
+GPUParticles3D
 StaticBody3D
 CollisionShape3D
 CollisionPolygon3D
@@ -11,4 +12,3 @@ Label
 PanelContainer
 HBoxContainer
 VBoxContainer
-Control

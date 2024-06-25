@@ -1,5 +1,5 @@
 {WinHelper V2.00 by FNX A1 2024}
-{WIN_W}00675
+{WIN_W}00391
 {JPG_SIZE}00068
 {IMG_AUTO}10000
 {WIN_DESC_H}00488
@@ -765,6 +765,34 @@
 		:-
 		:Es aconsejable agrupar todos los objetos Pikeables
 		:en una capa para poder trabajarlos bloquearlos y demas.
+	*GPUParticles3D y CPUParticles3D
+		:Este control permite crear sistemas de particulas.
+		:La diferencia es que uno usa la GPU y otro la CPU
+		:depende del nivel de tu equipo.
+		:Es aconsejable ver los GIZMOS para lo cual pulsamos
+		:en los 3 puntos y chekeamos mostrar GIZMOS
+		:-
+		:Para que funcione tenemos que configurar un
+		:par de cosas.
+		:1º necesitamos darle un material
+		:en PROCESS MATERIAL
+		:Creamos un material PARTICLEPROCESS
+		:2º en DRAW PASSES le indicamos que MESH
+		:genera en el PASS1
+		:Podemos crear tantos PASS como querramos.
+		:Tambien podemos modificar o definir un MESH
+		:emitido.
+		:En AMOUNT podemos definir cuantos MESH
+		:se muestran al mismo tiempo.
+		:En AMOUNT RATIO el ratio de generacion, añade
+		:un factor de aletoriedad en la generacion.
+		:- TIME
+		:_LifeTime (0-600seg): Tiempo de vida de cada particula.
+		:_Interp To End (0-1):
+		:_One Shot : Una vez emitidas X Particulas se desactiva.
+		:_PreProcess (0-600seg): Adelanta la emision para que no
+		:parezca que comienza a emitir particulas.
+		:_Speed Scale
 *09-EJ
 	*Botones Dinamicos y Eventos Dinamicos
 		:En este ejemplo creo 4 botones dinamicos y

@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://capuex3nwk3gg"]
 
-[ext_resource type="Script" path="res://CONTROLER_3D/Game_N3D.gd" id="1_4u3n1"]
-[ext_resource type="PackedScene" uid="uid://btvcihrgnk844" path="res://OBJs/Obj_Cadena.tscn" id="2_5wlhy"]
-[ext_resource type="PackedScene" uid="uid://dxrramj5n20p6" path="res://OBJs/obj_ascen0.tscn" id="2_ot0ej"]
-[ext_resource type="PackedScene" uid="uid://bqsevo8h2shwj" path="res://LVS/lv_exterior.tscn" id="3_dhrk5"]
-[ext_resource type="PackedScene" uid="uid://dgdoddtmj4715" path="res://PJS/PJ.tscn" id="3_jhyhk"]
-[ext_resource type="Script" path="res://CONTROLER_3D/CamCont_N3D.gd" id="3_rl13t"]
-[ext_resource type="Script" path="res://CONTROLER_3D/UI.gd" id="5_s10d4"]
-[ext_resource type="PackedScene" uid="uid://crmhynskkg50n" path="res://BLENDER/Puerta.tscn" id="6_03pwe"]
+[ext_resource type="Script" path="res://CONTROLER_3D/game_n3d.gd" id="1_8dtc4"]
+[ext_resource type="PackedScene" uid="uid://dxrramj5n20p6" path="res://OBJs/obj_ascen0.tscn" id="2_qv65e"]
+[ext_resource type="PackedScene" uid="uid://dgdoddtmj4715" path="res://PJS/PJ.tscn" id="3_r42cx"]
+[ext_resource type="PackedScene" uid="uid://btvcihrgnk844" path="res://OBJs/Obj_Cadena.tscn" id="4_ne268"]
+[ext_resource type="PackedScene" uid="uid://bqsevo8h2shwj" path="res://LVS/lv_exterior.tscn" id="5_ckqq1"]
+[ext_resource type="Script" path="res://CONTROLER_3D/CamCont_N3D.gd" id="6_0vkfp"]
+[ext_resource type="Script" path="res://CONTROLER_3D/UI.gd" id="7_20ijb"]
+[ext_resource type="PackedScene" uid="uid://crmhynskkg50n" path="res://BLENDER/Puerta.tscn" id="8_tir1o"]
 
 [sub_resource type="Environment" id="Environment_rlhv3"]
 ambient_light_source = 1
@@ -25,19 +25,19 @@ emission = Color(0.745098, 0, 0.745098, 1)
 [sub_resource type="Theme" id="Theme_kfkt8"]
 default_font_size = 12
 
-[node name="Game_N3D" type="Node3D"]
-script = ExtResource("1_4u3n1")
+[node name="game_n3d" type="Node3D"]
+script = ExtResource("1_8dtc4")
 
-[node name="obj_ascen0" parent="." instance=ExtResource("2_ot0ej")]
+[node name="obj_ascen0" parent="." instance=ExtResource("2_qv65e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9507, 61.766, -7.9473)
 
-[node name="obj_pj" parent="." instance=ExtResource("3_jhyhk")]
+[node name="obj_pj" parent="." instance=ExtResource("3_r42cx")]
 transform = Transform3D(0.09, 0, 0, 0, 0.09, 0, 0, 0, 0.09, 48.6982, 64.2636, -1.75141)
 
-[node name="obj_cadena" parent="." instance=ExtResource("2_5wlhy")]
+[node name="obj_cadena" parent="." instance=ExtResource("4_ne268")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.49, 65.6514, -6.25588)
 
-[node name="lv_exterior" parent="." instance=ExtResource("3_dhrk5")]
+[node name="lv_exterior" parent="." instance=ExtResource("5_ckqq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.6128, 62.5522, -3.71514)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -59,7 +59,7 @@ directional_shadow_pancake_size = 8.6
 
 [node name="camcont_n3d" type="Node3D" parent="." groups=["GRP_PJ1"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2453, 64.5167, -4.62654)
-script = ExtResource("3_rl13t")
+script = ExtResource("6_0vkfp")
 
 [node name="spring_arm3d" type="SpringArm3D" parent="camcont_n3d"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00254822, 0.368629, -0.371823)
@@ -92,7 +92,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 679.0
 offset_bottom = 304.0
-script = ExtResource("5_s10d4")
+script = ExtResource("7_20ijb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 layout_mode = 0
@@ -136,5 +136,5 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "UI Texto"
 
-[node name="Puerta" parent="." instance=ExtResource("6_03pwe")]
+[node name="Puerta" parent="." instance=ExtResource("8_tir1o")]
 transform = Transform3D(-0.000450305, 0, -0.86, 0, 0.86, 0, 0.86, 0, -0.000450305, 21.9742, 79.4871, 3.06362)

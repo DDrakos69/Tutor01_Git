@@ -1,10 +1,10 @@
-res://OBJs/Obj_Cadena.tscn
+res://CONTROLER_3D/Game_N3D.tscn
 res://SCN_Agua/Water_V1.gdshader
 res://SCN_Agua/Water.gdshader
-res://CONTROLER_3D/Game_N3D.tscn
-res://LVS/lv_exterior.tscn
 res://PJS/PJ.tscn
-res://V.gd
-res://CONTROLER_3D/Game_N3D.gd
-res://CONTROLER_3D/ChB3D_PJ.gd
+res://LVS/lv_exterior.tscn
+res://OBJs/Obj_Cadena.tscn
 res://PJS/pj_n3d.gd
+res://CONTROLER_3D/game_n3d.tscn
+res://CONTROLER_3D/game_n3d.gd
+res://V.gd

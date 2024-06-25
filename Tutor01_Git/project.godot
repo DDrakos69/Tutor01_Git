@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tutor2"
-run/main_scene="res://CONTROLER_3D/Game_N3D.tscn"
+run/main_scene="res://CONTROLER_3D/game_n3d.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
