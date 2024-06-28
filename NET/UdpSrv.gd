@@ -1,22 +1,42 @@
 # - - UdpSrv.gd - - -
 extends Control
 
+#-- Para Escuchar mensajes UDP
 var V_UdpSrv:UDPServer = UDPServer.new();
-var V_Srv_Ip:String = "127.0.0.1";
-var V_Srv_Port:int = 4242;
-var V_Udp_OnLine:bool=false;
-var V_Srv_LstCon = [];
+@export var V_SrvIn_Ip:String = "127.0.0.1";
+@export var V_SrvIn_Port:int = 4242;
+
+#-- Para mandar mensajes UDP
+var V_UdpConex:PacketPeerUDP = PacketPeerUDP.new()
+@export var V_SrvOut_Ip:String = "127.0.0.1";
+@export var V_SrvOut_Port:int = 4243;
 
 
+var V_Udp_OnOff:bool=false;
 
-
-
-
+@onready var V_LbConex = $Lb_Conex;
+@onready var V_BtOnOff = $BtOnOff;
+@onready var V_LbMsgIn = $LbMsgIn;
+@onready var V_BtSend = $BtSend;
+@onready var V_TxbMsg = $TxbMsg;
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	F_StartServer();
+	V_SrvIn_Ip="";
+	V_SrvOut_Ip="";
+	if(IP.get_local_addresses().size()>0):
+		V_SrvIn_Ip=IP.get_local_addresses()[1];
+		V_SrvOut_Ip=IP.get_local_addresses()[1];
+	
+	$TxbOutIp.text=str(V_SrvOut_Ip);
+	$TxbInIp.text=str(V_SrvIn_Ip);
+	
+	$TxbOutPort.text=str(V_SrvOut_Port);
+	$TxbInPort.text=str(V_SrvIn_Port);
+	
+	#F_StartServer();
+	pass;
 #END _ready
 
 
@@ -25,21 +45,22 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(V_Udp_OnLine):F_Udp_Escucha();
+	if (V_Udp_OnOff):
+		F_Srv_Escucha();
 #END _process
 
 
 
    
-
-func F_StartServer():
-	var M_Res = V_UdpSrv.listen(V_Srv_Port);
-	if M_Res != OK:
+#-- Reviso si el puerto en este equipo esta o no usado.
+func F_Srv_TestPort()->bool:
+	var M_Res = V_UdpSrv.listen(V_SrvIn_Port);
+	if (M_Res != OK):
 		print("Error al iniciar el servidor UDP: ", M_Res);
-		V_Udp_OnLine=false;
+		return false;
 	else:
-		print("Servidor UDP iniciado en el puerto ", V_Srv_Port);
-		V_Udp_OnLine=true;
+		print("Servidor UDP iniciado en el puerto ", V_SrvIn_Port);
+		return true;
 		#set_process(true) # Activa o desactiva el _process
 	#END if
 #END F_StarServer
@@ -47,81 +68,115 @@ func F_StartServer():
 
 
 
+#- - Mando un mensaje a una ip y puerto 
+func F_Send2Srv(M_Ip:String,M_Port:int,M_Msg:String):
+	V_UdpConex.connect_to_host(M_Ip,M_Port);
+	V_UdpConex.put_packet(M_Msg.to_utf8_buffer() );
+	V_TxbMsg.text="Mandado";
+#END F_Send2Srv
 
-func F_Udp_Escucha():
-	var M_Packet = V_UdpSrv.get_packet()
-	if M_Packet.size() > 0:
-		var M_Sender_ip = V_UdpSrv.get_packet_ip()
-		var M_Sender_port = V_UdpSrv.get_packet_port()
-		var M_Received_data = M_Packet.get_string_from_utf8()
+
+
+
+func F_Srv_Escucha():
+	V_UdpSrv.poll() # Important!
+	if (V_UdpSrv.is_connection_available()):
+		var M_Conex: PacketPeerUDP = V_UdpSrv.take_connection();#peer
+		var M_Packet = M_Conex.get_packet()
 		
-		print("Recibido: ",
-		 M_Received_data, " de ",
-		 M_Sender_ip, ":",
-		 M_Sender_port);
+		V_LbMsgIn.text=str(M_Packet.get_string_from_utf8());
+		if(V_LbMsgIn.text=="Ping"):
+			
+			print("[Ping] from:"+
+				str(M_Conex.get_packet_ip())+":"+
+				str(M_Conex.get_packet_port())
+				);
+			#-- Send Pomg
+			F_Send2Srv(
+				V_SrvOut_Ip,
+				V_SrvOut_Port,
+				"Pong");
+			
 		
-		if(str(M_Received_data)=="[SEG]"):
-			V_UdpCli.send_packet(
-			M_Sender_ip, 
-			M_Sender_port, 
-			"[SEG]".to_utf8_buffer());
+		print("Accepted peer: %s:%s" %
+		 [M_Conex.get_packet_ip(), M_Conex.get_packet_ip()]);
+		
+		print("Received data: %s" % [M_Packet.get_string_from_utf8()]);
+		
+		# Reply so it knows we received the message.
+		#M_Conex.put_packet(M_Packet)
+		# Keep a reference so we can keep contacting the remote peer.
 #END F_Udp_Escucha
 
 
 
-
-
-A simple server that opens a UDP socket and returns connected PacketPeerUDP upon receiving new packets. See also PacketPeerUDP.connect_to_host().
-
-After starting the server (listen()), you will need to poll() it at regular intervals (e.g. inside Node._process()) for it to process new packets, delivering them to the appropriate PacketPeerUDP, and taking new connections.
-
-Below a small example of how it can be used:
-
-
-
-
+# - - Desactivo el Servidor
+func F_Srv_Off():
+	V_UdpSrv.stop()
+	V_UdpSrv.poll();
+	V_Udp_OnOff=false;
+	V_BtOnOff.text="Activar";
+	print("Srv Off-Line ("+str(V_SrvIn_Port)+")");
+#END F_Srv_Off
 
 
 
 
+# - - Activo el servidor (Si el puerto esta libre.)
+func F_Srv_On():
+	if(F_Srv_TestPort()):
+		V_Udp_OnOff=true;
+		V_BtOnOff.text="Des-Activar";
+		print("Srv On-Line ("+str(V_SrvIn_Port)+")");
+#END F_Srv_On
 
 
 
 
-func _ready():
-	server.listen(4242)
 
-func _process(delta):
-	server.poll() # Important!
-	if server.is_connection_available():
-		var peer: PacketPeerUDP = server.take_connection()
-		var packet = peer.get_packet()
-		print("Accepted peer: %s:%s" % [peer.get_packet_ip(), peer.get_packet_port()])
-		print("Received data: %s" % [packet.get_string_from_utf8()])
-		# Reply so it knows we received the message.
-		peer.put_packet(packet)
-		# Keep a reference so we can keep contacting the remote peer.
-		peers.append(peer)
 
-	for i in range(0, peers.size()):
-		pass # Do something with the connected peers.
 
-# client_node.gd
-class_name ClientNode
-extends Node
 
-var udp := PacketPeerUDP.new()
-var connected = false
+func _on_BtOnOff_button_up():
+	if (V_Udp_OnOff):
+		F_Srv_Off();
+	else:
+		F_Srv_On();
+#END Bt_up On Off
 
-func _ready():
-	udp.connect_to_host("127.0.0.1", 4242)
 
-func _process(delta):
-	if !connected:
-		# Try to contact server
-		udp.put_packet("The answer is... 42!".to_utf8_buffer())
-	if udp.get_available_packet_count() > 0:
-		print("Connected: %s" % udp.get_packet().get_string_from_utf8())
-		connected = true
+func _on_BtSend_button_up():
+	F_Send2Srv(V_SrvOut_Ip,V_SrvOut_Port,$TxbMsg.text);
+#END Bt_Up mandar mensaje
+
+
+
+
+
+
+func _on_txb_out_ip_text_changed():
+	V_SrvOut_Ip=$TxbOutIp.text;
+	pass # Replace with function body.
+
+
+func _on_txb_out_port_text_changed():
+	V_SrvOut_Port=int($TxbOutPort.text);
+	pass # Replace with function body.
+
+
+
+
+
+
+
+func _on_txb_in_ip_text_changed():
+	pass # Replace with function body.
+
+
+func _on_txb_in_port_text_changed():
+	F_Srv_Off();
+	V_SrvIn_Port=int($TxbInPort.text);	
+	F_Srv_On();
+	pass # Replace with function body.
 
 

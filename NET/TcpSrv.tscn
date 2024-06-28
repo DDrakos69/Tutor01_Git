@@ -10,3 +10,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_phc4g")
+
+[node name="Bt_OnOff" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TxbSrvIp" type="TextEdit" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TxbSrvPort" type="TextEdit" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TxbSrvLog" type="TextEdit" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Bt_Conect" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TxbCliIp" type="TextEdit" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TxbCliPort" type="TextEdit" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TxbSrvLog2" type="TextEdit" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Bt_Send" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="TextEdit5" type="TextEdit" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0

@@ -1,3 +1,15 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1719322046
+::res://::1719482770
 icon.svg::CompressedTexture2D::4934856648849718837::1719322040::1719322049::1::::<><>::
+net_srv.tscn::PackedScene::8331470443580744264::1719322092::0::1::::<><>::res://Node2D.gd
+Node2D.gd::GDScript::-1::1719322997::0::1::::<>Node2D<>::
+Tcp.tscn::PackedScene::2558144107903781098::1719412635::0::1::::<><>::
+TcpClient.gd::GDScript::-1::1719325514::0::1::::<>Control<>::
+TcpClient.tscn::PackedScene::5541572206737094190::1719325514::0::1::::<><>::res://TcpClient.gd
+TcpSrv.gd::GDScript::-1::1719420271::0::1::::<>Control<>::
+TcpSrv.tscn::PackedScene::1409641170893732151::1719420271::0::1::::<><>::res://TcpSrv.gd
+Udp.tscn::PackedScene::5045180253516234726::1719412197::0::1::::<><>::uid://cgqmmh7tvc004::::res://UdpSrv.tscn
+UdpClient.gd::GDScript::-1::1719404510::0::1::::<>Control<>::
+UdpClient.tscn::PackedScene::5287422139097203017::1719409396::0::1::::<><>::res://UdpClient.gd
+UdpSrv.gd::GDScript::-1::1719412192::0::1::::<>Control<>::
+UdpSrv.tscn::PackedScene::5227754924708045971::1719412234::0::1::::<><>::res://UdpSrv.gd

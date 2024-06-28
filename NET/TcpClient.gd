@@ -30,11 +30,3 @@ func _process(delta):
 
 	
 
-func F_Tcp_Connect2Srv():
-	var M_Res = V_TcpClient.connect_to_host(V_Tcp_Host,V_Tcp_Port);
-	if (M_Res != OK):
-		print("Error al conectar al servidor: ", M_Res);
-		return
-	print("Conectado al servidor en ", V_Tcp_Host, ":", V_Tcp_Port);
-	set_process(true);
-#END F_Tcp_Connect2Srv

@@ -1,10 +1,6 @@
-res://Node2D.gd
-res://UdpSrv.tscn
-res://UdpSrv.gd
-res://UdpClient.tscn
-res://UdpClient.gd
-res://Udp.tscn
 res://TcpSrv.tscn
 res://TcpSrv.gd
+res://Tcp.tscn
 res://TcpClient.tscn
+res://Udp.tscn
 res://TcpClient.gd

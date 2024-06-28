@@ -10,3 +10,66 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7p5l8")
+
+[node name="BtOnOff" type="Button" parent="."]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 159.0
+offset_bottom = 44.0
+text = "Conectar"
+
+[node name="TxbInIp" type="TextEdit" parent="."]
+offset_left = 1.0
+offset_top = 46.0
+offset_right = 101.0
+offset_bottom = 86.0
+text = "127.0.0.1"
+
+[node name="TxbInPort" type="TextEdit" parent="."]
+offset_left = 108.0
+offset_top = 46.0
+offset_right = 158.0
+offset_bottom = 86.0
+text = "2222"
+
+[node name="LbMsgIn" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 90.0
+offset_right = 204.0
+offset_bottom = 123.0
+text = ".."
+
+[node name="BtSend" type="Button" parent="."]
+offset_left = 4.0
+offset_top = 127.0
+offset_right = 163.0
+offset_bottom = 169.0
+text = "Mandar"
+
+[node name="TxbOutIp" type="TextEdit" parent="."]
+offset_left = 6.0
+offset_top = 171.0
+offset_right = 106.0
+offset_bottom = 211.0
+text = "127.0.0.1"
+
+[node name="TxbOutPort" type="TextEdit" parent="."]
+offset_left = 113.0
+offset_top = 170.0
+offset_right = 163.0
+offset_bottom = 210.0
+text = "2223"
+
+[node name="TxbMsg" type="TextEdit" parent="."]
+offset_left = 9.0
+offset_top = 212.0
+offset_right = 209.0
+offset_bottom = 252.0
+text = "..."
+
+[connection signal="button_up" from="BtOnOff" to="." method="_on_BtOnOff_button_up"]
+[connection signal="text_changed" from="TxbInIp" to="." method="_on_txb_in_ip_text_changed"]
+[connection signal="text_changed" from="TxbInPort" to="." method="_on_txb_in_port_text_changed"]
+[connection signal="button_up" from="BtSend" to="." method="_on_BtSend_button_up"]
+[connection signal="text_changed" from="TxbOutIp" to="." method="_on_txb_out_ip_text_changed"]
+[connection signal="text_changed" from="TxbOutPort" to="." method="_on_txb_out_port_text_changed"]

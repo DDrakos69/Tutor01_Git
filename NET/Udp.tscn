@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd46m8g8fd3sk"]
+[gd_scene load_steps=2 format=3 uid="uid://cd46m8g8fd3sk"]
 
 [ext_resource type="PackedScene" uid="uid://cgqmmh7tvc004" path="res://UdpSrv.tscn" id="1_wg267"]
-[ext_resource type="PackedScene" uid="uid://chljcncl01yi0" path="res://UdpClient.tscn" id="2_4lo1r"]
 
 [node name="UDP_N2d" type="Node2D"]
 
 [node name="UdpSrv" parent="." instance=ExtResource("1_wg267")]
 
-[node name="UdpClient" parent="." instance=ExtResource("2_4lo1r")]
+[node name="UdpCli" parent="." instance=ExtResource("1_wg267")]
+offset_left = 216.0
+offset_right = 216.0
+V_SrvIn_Port = 4243
+V_SrvOut_Port = 4242
